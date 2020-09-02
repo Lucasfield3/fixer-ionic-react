@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle } from '@ionic/react';
-
+import './style.css'
 
 const Landing: React.FC = ()=>{
 
