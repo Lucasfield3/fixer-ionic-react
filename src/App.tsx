@@ -1,19 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { 
-  IonApp, 
-  IonHeader, 
-  IonContent, 
-  IonToolbar, 
-  IonTitle, 
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonGrid, 
-  IonAlert,
-  IonRow,
-  IonCol
-} from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
+import Landing from './pages/Landing/landing';
+import { IonApp, IonRouterOutlet} from '@ionic/react';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -35,9 +24,12 @@ import './theme/variables.css';
 const App: React.FC = () => {
   return (
    <IonApp>
-    <IonContent>
-      <IonLabel>iiiioioi</IonLabel>
-    </IonContent>
+    <IonReactRouter>
+      <IonRouterOutlet>
+        <Route path="/landing" component={Landing} exact={true} />
+        <Route exact path="/" render={() => <Redirect to="/landing" />} />
+      </IonRouterOutlet>
+    </IonReactRouter>
    </IonApp> 
   );
 };
