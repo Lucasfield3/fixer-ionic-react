@@ -3,6 +3,7 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
 import Landing from './pages/Landing/landing';
 import { IonApp, IonRouterOutlet} from '@ionic/react';
+import './index.css';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
