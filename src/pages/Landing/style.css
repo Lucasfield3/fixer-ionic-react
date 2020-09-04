@@ -3,11 +3,46 @@
 }
 .container{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content:center;
     height: 100vh;
 }
+.logo{
+    margin-top: 1.7rem;
+    width: 130px;
+    height: 36px;
+}
 .card{
-    position: absolute;
-    top:0;
+    width:16rem;
+    height:16rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    border-radius: 21px;
+}
+.card-form{
+    border-radius: 21px;
+    width:15rem;
+}
+.row{
+    height: 7rem;
+    flex-wrap: nowrap;
+}
+.cardButton{
+    width:16rem;
+    height:16rem;
+}
+.btn-style-dark{
+    background-color: var(--ion-color-dark);
+    font-weight: bold;
+    box-shadow: var(--box-shadow);
+    border-radius: 7px;
+    font-size: 14px;
+    margin: 0 !important;
+}
+.btn-style-light{
+    background-color: var(--ion-color-primary);
+    font-weight: bold;
+    box-shadow: var(--box-shadow);
+    border-radius: 7px;
+    font-size: 14px;
+    margin: 0 !important;
 }

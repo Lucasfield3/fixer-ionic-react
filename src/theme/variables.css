@@ -49,7 +49,7 @@ http://ionicframework.com/docs/theming/ */
 
   --ion-color-dark: #011627;
   --ion-color-dark-rgb: 1,22,39;
-  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast: #20A4F3;
   --ion-color-dark-contrast-rgb: 255,255,255;
   --ion-color-dark-shade: #011322;
   --ion-color-dark-tint: #1a2d3d;
@@ -71,4 +71,5 @@ http://ionicframework.com/docs/theming/ */
 
 body{
   --ion-background-color:linear-gradient(163.93deg, #2EC4B6 0.73%, #20A4F3 96.73%);
+  --box-shadow:2px 4px 7px rgba(12, 15, 10, 0.43);
 }
