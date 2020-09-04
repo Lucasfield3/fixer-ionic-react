@@ -36,7 +36,7 @@ const handleClick = ()=>{
                     </IonCard>
                 </IonRow>
                 <IonRow className="ion-justify-content-center">
-                    <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal'>
+                    <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={3} flipSpeedFrontToBack={3}>
                         <IonCard className='card-form' color='light'>
                             <IonCardContent>
                                 <IonRow className="ion-align-items-center row">
