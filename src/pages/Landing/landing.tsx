@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import {
 IonPage,
 IonHeader,
@@ -19,37 +19,51 @@ IonImg
 import './style.css'
 import ReactCardFlip from 'react-card-flip';
 import logo from '../../Assets/palavra-logo1.png'
+import Login from '../Landing/forms/login'
+import Cadastro from '../Landing/forms/cadastro'
+
 
 const Landing: React.FC = ()=>{
 const [isFlipped, setIsflipped] = useState(false);
+
 const handleClick = ()=>{
+    setIsflipped(isFlipped)
+}
+const [cards, setCards] = useState<{}>(<Login handleClickLogin={handleClick}/>)
+
+const handleClickCadLogin  = (value:{})=>{
     setIsflipped(!isFlipped)
+    setCards(value)
 }
     return(
         <IonPage className="landing">
-            <IonImg className='logo' alt='logo' src={logo}></IonImg>
-            <IonContent >
+            <IonContent className='control-over' >
                 <IonGrid>
+                    <IonRow>
+                        <div className='img'>
+                            <IonImg className='img-logo' slot='start' alt='logo' src={logo}></IonImg>
+                        </div>
+                    </IonRow>
                 <IonRow  className="ion-justify-content-center ion-margin-top">
                     <IonCard className='card' color='light'>
                         <IonCardContent ></IonCardContent>
                     </IonCard>
                 </IonRow>
                 <IonRow className="ion-justify-content-center">
-                    <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={3} flipSpeedFrontToBack={3}>
+                    <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.2} flipSpeedFrontToBack={1.2}>
                         <IonCard className='card-form' color='light'>
                             <IonCardContent>
                                 <IonRow className="ion-align-items-center row">
                                     <IonCol>
                                         <IonButton
-                                        onClick={handleClick} 
+                                        onClick={()=>handleClickCadLogin(<Login handleClickLogin={handleClick}/>)}
                                         size="small" color='dark' 
                                         className='ion-margin btn-style-dark'
-                                        >Login</IonButton>
+                                        >Entrar</IonButton>
                                     </IonCol>
                                     <IonCol>
                                         <IonButton
-                                        onClick={handleClick} 
+                                        onClick={()=>handleClickCadLogin(<Cadastro handleClickCad={handleClick}/>)}
                                         size="small" 
                                         color='primary' 
                                         className='ion-margin btn-style-light'
@@ -57,29 +71,10 @@ const handleClick = ()=>{
                                     </IonCol>
                                 </IonRow>
                             </IonCardContent>
-                        </IonCard>
-                        <IonCard className='card-form'color='light'>
-                            <IonCardContent>
-                                <IonRow className="ion-align-items-center row">
-                                        <IonCol>
-                                            <IonButton 
-                                            onClick={handleClick} 
-                                            size="small"  
-                                            className='ion-margin btn-style-dark'
-                                            color='dark'
-                                            >Login</IonButton>
-                                        </IonCol>
-                                        <IonCol>
-                                        <IonButton 
-                                        onClick={handleClick} 
-                                        size="small" 
-                                        color='primary'
-                                        className='ion-margin btn-style-light'
-                                        >Cadastro</IonButton>
-                                        </IonCol>
-                                </IonRow>
-                            </IonCardContent>
-                        </IonCard>
+                        </IonCard >
+                        <IonCard className='card-form' color='light'>
+                            {cards}
+                        </IonCard >
                     </ReactCardFlip>
                 </IonRow>
                 </IonGrid>
@@ -90,3 +85,5 @@ const handleClick = ()=>{
 
 
 export default Landing;
+//handleClickLogin={()=> {setIsflipped(isFlipped); 
+//setCards(<Login handleClickLogin={handleClick}/>)}}

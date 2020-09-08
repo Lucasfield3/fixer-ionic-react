@@ -1,15 +1,32 @@
 .landing{
     background-color:var(--ion-background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: var(--overflow);
+}
+.control-over{
+    --overflow: hidden;
+    overflow: auto;
+}
+.control-over::-webkit-scrollbar{
+    display: none;
 }
 .container{
     display: flex;
     justify-content:center;
     height: 100vh;
 }
-.logo{
+.img{
+    display: flex;
+    justify-content: center;
+    margin-top:-9px;
+}
+.img-logo{
     margin-top: 1.7rem;
     width: 130px;
     height: 36px;
+
 }
 .card{
     width:16rem;
@@ -26,6 +43,16 @@
     height: 7rem;
     flex-wrap: nowrap;
 }
+.login-row{
+    height: 3rem;
+    flex-wrap: nowrap;
+}
+.card-content-login{
+    overflow: hidden;
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+    height: 13rem;
+}
 .cardButton{
     width:16rem;
     height:16rem;
@@ -37,6 +64,8 @@
     border-radius: 7px;
     font-size: 14px;
     margin: 0 !important;
+    width: 104px;
+    margin-left: -14px !important;
 }
 .btn-style-light{
     background-color: var(--ion-color-primary);

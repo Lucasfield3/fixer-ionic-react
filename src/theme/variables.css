@@ -63,13 +63,16 @@ http://ionicframework.com/docs/theming/ */
 
   --ion-color-light: #F6F7F8;
   --ion-color-light-rgb: 246,247,248;
-  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast: #FF206E;
   --ion-color-light-contrast-rgb: 0,0,0;
   --ion-color-light-shade: #d8d9da;
   --ion-color-light-tint: #f7f8f9;
+
+  --overflow:none;  
 }
 
 body{
   --ion-background-color:linear-gradient(163.93deg, #2EC4B6 0.73%, #20A4F3 96.73%);
   --box-shadow:2px 4px 7px rgba(12, 15, 10, 0.43);
+  
 }
