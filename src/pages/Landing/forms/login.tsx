@@ -1,4 +1,4 @@
-import React,{useRef, useState} from 'react';
+import React,{ useState} from 'react';
 import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem } from '@ionic/react';
 import Button from '../styles/Button'
 import '../style.css'
