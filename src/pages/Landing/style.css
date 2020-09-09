@@ -30,11 +30,38 @@
 }
 
 .card{
-    width:16rem;
-    height:20vh;
+    width: 13rem;
+    height: 20vh;
     margin-bottom: 1rem;
     border-radius: 10px;
     border-radius: 21px;
+}
+.ion-content-gif{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content-gif{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:0;
+    width: 24vh;
+    border-radius: 21px;
+    
+}
+.gif{
+    width: 29vh;
+    height: 16vh;
+    padding-bottom: 52%;
+    position: relative;
+    border-radius: 21px;
+    border: 1px #20A4F3 solid;
+}
+.shape-gif{
+    border-radius:50%;
+    height:12rem;
+    width:12rem;
 }
 .card-form{
     border-radius: 21px;

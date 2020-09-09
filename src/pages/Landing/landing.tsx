@@ -8,17 +8,25 @@ IonButton,
 IonRow,
 IonGrid,
 IonCol,
-IonImg
+IonImg,
+IonAvatar
 } from '@ionic/react';
 import './style.css'
 import ReactCardFlip from 'react-card-flip';
 import logo from '../../Assets/palavra-logo1.png'
+import gif from '../../Assets/giphy.gif'
 import Login from '../Landing/forms/login'
 import Cadastro from '../Landing/forms/cadastro'
 
 
 const Landing: React.FC = ()=>{
 const [isFlipped, setIsflipped] = useState(false);
+
+const mystyle = {
+    position: 'absolute',
+    borderRadius:'21px',
+    height: '5.8rem',
+} as React.CSSProperties;
 
 const handleClick = ()=>{
     setIsflipped(isFlipped)
@@ -40,7 +48,15 @@ const handleClickCadLogin  = (value:{})=>{
                     </IonRow>
                 <IonRow  className="ion-justify-content-center ion-margin-top">
                     <IonCard className='card' color='light'>
-                        <IonCardContent ></IonCardContent>
+                        <IonCardContent className="ion-align-self-center ion-justify-content-center ion-content-gif" >
+                            <div className='content-gif' >
+                                <div  className='gif'>
+                                    <IonAvatar  className='shape-gif'>
+                                        <IonImg  src={gif} alt='gif' style={mystyle}/>
+                                    </IonAvatar>
+                                </div>
+                            </div>
+                        </IonCardContent>
                     </IonCard>
                 </IonRow>
                 <IonRow className="ion-justify-content-center">
@@ -81,3 +97,8 @@ const handleClickCadLogin  = (value:{})=>{
 export default Landing;
 //handleClickLogin={()=> {setIsflipped(isFlipped); 
 //setCards(<Login handleClickLogin={handleClick}/>)}}
+//const gifStyle = {
+    //background:`url(${gif})`,
+    //backgroundRepeat:'no-repeat'
+
+//} as React.CSSProperties;
