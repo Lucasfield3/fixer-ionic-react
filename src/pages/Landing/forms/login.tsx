@@ -44,7 +44,6 @@ const clickHandler= ()=>{
                         onClick={props.handleClickLogin} 
                         color='light'
                         size="small"  
-                        expand="block"
                         >Cancelar</Button>
                     </IonCol>
                 </IonRow>

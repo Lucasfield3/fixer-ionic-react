@@ -11,6 +11,7 @@ const Button = styled(IonButton)`
     box-sizing: border-box;
     font-size: 14px;
     margin: 0 !important;
+    font-size: small;
 `;
 
 export default Button;
