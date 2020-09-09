@@ -39,7 +39,7 @@ const handleClickCadLogin  = (value:{})=>{
         <IonPage className="landing">
             <IonContent className='control-over' >
                 <IonGrid>
-                    <IonRow>
+                    <IonRow className="ion-justify-content-center">
                         <div className='img'>
                             <IonImg className='img-logo' slot='start' alt='logo' src={logo}></IonImg>
                         </div>

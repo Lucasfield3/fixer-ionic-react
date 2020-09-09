@@ -32,8 +32,8 @@ const clickHandler= ()=>{
                     <IonCol>
                         <IonButton
                         onClick={props.handleClickLogin} 
-                        size="small" 
-                        color='dark' 
+                        size="small"
+                        color='dark'
                         type='submit'
                         expand="block"
                         className='ion-margin btn-style-dark'

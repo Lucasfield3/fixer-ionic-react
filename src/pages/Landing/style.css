@@ -23,14 +23,14 @@
     margin-top:-9px;
 }
 .img-logo{
-    margin-top: 1.7rem;
-    width: 130px;
+    margin-top: 3.5rem;
+    width: 130px; 
     height: 36px;
-
 }
+
 .card{
     width:16rem;
-    height:16rem;
+    height:20vh;
     margin-bottom: 1rem;
     border-radius: 10px;
     border-radius: 21px;
@@ -44,14 +44,14 @@
     flex-wrap: nowrap;
 }
 .login-row{
-    height: 3rem;
+    height: 6rem;
     flex-wrap: nowrap;
 }
 .card-content-login{
     overflow: hidden;
     padding-top: 0!important;
     padding-bottom: 0!important;
-    height: 13rem;
+    height: ;
 }
 .cardButton{
     width:16rem;
@@ -75,3 +75,29 @@
     font-size: 14px;
     margin: 0 !important;
 }
+
+.card-content-cadastro{
+    overflow: hidden;
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+    margin: .1rem 0;
+    height: 54vh;
+}
+
+.btn-cadastro{
+    background-color: var(--ion-color-dark);
+    font-weight: bold;
+    box-shadow: var(--box-shadow);
+    border-radius: 7px;
+    font-size: 14px;
+    margin: 0 !important;
+    width: 104px;
+}
+
+
+.row-btn-cadastro{
+    margin: 1rem 0;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
