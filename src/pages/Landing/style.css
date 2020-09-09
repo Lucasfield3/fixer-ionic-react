@@ -20,7 +20,7 @@
 .img{
     display: flex;
     justify-content: center;
-    margin-top:-26px;
+    margin-top:-32px;
 }
 .img-logo{
     margin-top: 3.5rem;
@@ -51,7 +51,6 @@
     overflow: hidden;
     padding-top: 0!important;
     padding-bottom: 0!important;
-    height: ;
 }
 .cardButton{
     width:16rem;
