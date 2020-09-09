@@ -20,7 +20,7 @@
 .img{
     display: flex;
     justify-content: center;
-    margin-top:-32px;
+    margin-top: -4vh;
 }
 .img-logo{
     margin-top: 3.5rem;
