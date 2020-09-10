@@ -7,11 +7,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void }> = props => {
 
     const [input, setInput] = useState<string>('')
     const [showAlert1, setShowAlert1] = useState(false);
-    const [showAlert2, setShowAlert2] = useState(false);
-    const [showAlert3, setShowAlert3] = useState(false);
-    const [showAlert4, setShowAlert4] = useState(false);
-    const [showAlert5, setShowAlert5] = useState(false);
-    const [showAlert6, setShowAlert6] = useState(false);
+    const [backButton, setBackButton] = useState('')
 
 
     return (

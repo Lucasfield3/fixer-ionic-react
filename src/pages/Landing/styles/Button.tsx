@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {IonButton} from '@ionic/react'; 
+import {IonButton} from '@ionic/react';
 
 const Button = styled(IonButton)`
     background-color: var(--ion-color-light)!important;

@@ -1,0 +1,42 @@
+.page-inicio{
+  background-color:var(--ion-background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-left{
+  margin: 1.8rem;
+  display: block;
+  justify-content: center;
+
+}
+
+.col-right{
+  margin: 1.8rem;
+}
+
+.icon-fab-button{
+  max-height: 2rem;
+  max-width: 2rem;
+}
+
+.button-flashcards{
+  flex-wrap: wrap;
+  margin: 18px -1.6rem;
+}
+
+.button-questionarios{
+  flex-wrap: wrap;
+  margin: -3rem -1.6rem;
+}
+
+.button-classes{
+  flex-wrap: wrap;
+  margin: 1.6rem -1.6rem;
+}
+
+.button-conquistas{
+  flex-wrap: wrap;
+  margin: -4rem -1.6rem;
+}

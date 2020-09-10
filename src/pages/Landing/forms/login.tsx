@@ -31,7 +31,7 @@ const clickHandler= ()=>{
                 <IonRow className="ion-align-items-center login-row">
                     <IonCol>
                         <IonButton
-                        onClick={props.handleClickLogin} 
+                        onClick={props.handleClickLogin}
                         size="small"
                         color='dark'
                         type='submit'
