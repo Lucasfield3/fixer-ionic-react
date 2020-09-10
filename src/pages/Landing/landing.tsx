@@ -25,7 +25,7 @@ const [isFlipped, setIsflipped] = useState(false);
 const mystyle = {
     position: 'absolute',
     borderRadius:'21px',
-    height: '5.8rem',
+    height: '15.5vh',
 } as React.CSSProperties;
 
 const handleClick = ()=>{
