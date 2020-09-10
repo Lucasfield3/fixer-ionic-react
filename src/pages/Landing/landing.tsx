@@ -35,7 +35,6 @@ const Landing: React.FC = () => {
     const handleClickCadLogin = (value: {}) => {
         setIsflipped(!isFlipped)
         setCards(value)
-        setText('Cancelar')
     }
     return (
         <IonPage className="landing">
