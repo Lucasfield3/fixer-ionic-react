@@ -21,13 +21,12 @@ import Cadastro from '../Landing/forms/cadastro'
 
 const Landing: React.FC = () => {
     const [isFlipped, setIsflipped] = useState(false);
-
+    const [text, setText] = useState<string>()
     const mystyle = {
         position: 'absolute',
         borderRadius: '21px',
         height: '15.5vh',
     } as React.CSSProperties;
-
     const handleClick = () => {
         setIsflipped(isFlipped)
     }
@@ -36,6 +35,7 @@ const Landing: React.FC = () => {
     const handleClickCadLogin = (value: {}) => {
         setIsflipped(!isFlipped)
         setCards(value)
+        setText('Cancelar')
     }
     return (
         <IonPage className="landing">
@@ -73,7 +73,7 @@ const Landing: React.FC = () => {
                                         </IonCol>
                                         <IonCol>
                                             <IonButton
-                                                onClick={() => handleClickCadLogin(<Cadastro handleClickCad={handleClick} />)}
+                                                onClick={() => handleClickCadLogin(<Cadastro  handleClickCad={handleClick} />)}
                                                 size="small"
                                                 color='primary'
                                                 className='ion-margin btn-style-light'
