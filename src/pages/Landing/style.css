@@ -101,3 +101,14 @@
     justify-content: center;
 }
 
+.alert-wrapper {
+    background: #e5e5e5;
+  }
+  
+  /* Works - pass "my-custom-class" in cssClass to increase specificity */
+  .my-custom-class .alert-wrapper {
+    background: #e5e5e5;
+    border-radius: 8%;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+  }
