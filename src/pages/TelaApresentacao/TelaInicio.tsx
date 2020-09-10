@@ -19,7 +19,7 @@ const TelaInicio: React.FC = () => {
         <IonContent>
           
         <IonFab vertical="top" horizontal="start" slot="fixed">
-          <IonFabButton size="small" color="dark" className="icon-fab-button">
+          <IonFabButton size="small" color="dark" className="icon-fab-button icone">
             <IonIcon className="icon-color" icon={add} />
             <IonFabList side="bottom">
             <IonFabButton><IonIcon icon={logoVimeo} /></IonFabButton>

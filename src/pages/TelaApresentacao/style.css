@@ -16,9 +16,11 @@
   margin: 1.8rem;
 }
 
-.icon-fab-button{
+.icone{
   max-height: 2rem;
   max-width: 2rem;
+  background-color:#fff !important;
+  border-radius: 50%;
 }
 
 .button-flashcards{
