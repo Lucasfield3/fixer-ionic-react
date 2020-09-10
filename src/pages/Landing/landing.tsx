@@ -38,7 +38,7 @@ const handleClickCadLogin  = (value:{})=>{
     setCards(value)
 }
     return(
-        <IonPage className="landing">
+        <IonPage className="landing" overflow-scroll='true'>
             <IonContent className='control-over' >
                 <IonGrid>
                     <IonRow className="ion-justify-content-center">
