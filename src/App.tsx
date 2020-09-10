@@ -29,9 +29,10 @@ const App: React.FC = () => {
     <IonReactRouter>
       <IonRouterOutlet>
         
+        <Route path="/Landing" component={Landing} exact={true} />
         <Route path="/TelaInicio" component={TelaInicio} exact={true} />
-        <Route exact path="/" render={() => <Redirect to="/TelaInicio" />} />
-        <Route path="TelaIinico" component={TelaInicio} to="/TelaInicio" />
+
+        <Route exact path="/" render={() => <Redirect to="/Landing" />} />
       </IonRouterOutlet>
     </IonReactRouter>
    </IonApp> 

@@ -1,6 +1,7 @@
 import React,{ useState} from 'react';
 import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem } from '@ionic/react';
 import Button from '../styles/Button'
+import { useHistory } from 'react-router-dom'
 import '../style.css'
 
 
@@ -9,6 +10,9 @@ const [input, setInput] = useState<string>('')
 const clickHandler= ()=>{
     setInput('')
 }
+
+const history = useHistory()
+
     return(
         <>
         <IonCardContent className='card-content-login'>
@@ -31,7 +35,7 @@ const clickHandler= ()=>{
                 <IonRow className="ion-align-items-center login-row">
                     <IonCol>
                         <IonButton
-                        onClick={props.handleClickLogin}
+                        onClick={() => history.push('/TelaInicio')}
                         size="small"
                         color='dark'
                         type='submit'
