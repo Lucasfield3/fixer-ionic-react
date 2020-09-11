@@ -54,3 +54,28 @@
   background-color:#fff !important;
   border-radius: 50%;
 }
+.icone{
+  position: absolute;
+  z-index: 3;
+}
+.custom-menu{
+    --width: 500px;
+}
+@media (max-width: 340px){
+  .custom-menu {
+    --width: 100px !important;
+  }
+}
+
+.menu-items{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+.icon-fab-button light{
+  color:var(--ion-color-dark);
+  border-radius: 50%;
+  width: 30%;
+  height: 30%;
+}

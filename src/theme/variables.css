@@ -4,7 +4,6 @@ http://ionicframework.com/docs/theming/ */
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-background-color:linear-gradient(163.93deg, #2EC4B6 0.73%, #20A4F3 96.73%);
   --ion-color-primary: #20A4F3;
   --ion-color-primary-rgb: 32,164,243;
   --ion-color-primary-contrast: #000000;
@@ -74,7 +73,7 @@ http://ionicframework.com/docs/theming/ */
 body{
   --ion-background-color:linear-gradient(163.93deg, #2EC4B6 0.73%, #20A4F3 96.73%);
   --box-shadow:2px 4px 7px rgba(12, 15, 10, 0.43);
-  
+  --light:#F6F7F8;
 }
 *::-webkit-scrollbar 
 {
