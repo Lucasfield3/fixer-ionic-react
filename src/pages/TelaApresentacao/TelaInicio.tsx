@@ -50,7 +50,7 @@ const TelaInicio: React.FC = () => {
         <IonPage id="main-content" className="page-inicio">
           <IonHeader>
             <IonToolbar>
-              <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="dark">
+              <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="light">
                 <IonIcon icon={menuOutline} />
                 <IonButton slot='start'>
                   <IonMenuButton></IonMenuButton>
@@ -59,7 +59,7 @@ const TelaInicio: React.FC = () => {
             </IonToolbar>
           </IonHeader>
           <IonContent>
-            <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="dark">
+            <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="light">
               <IonIcon icon={menuOutline} />
             </IonFabButton>
           </IonContent>
