@@ -61,17 +61,19 @@
 .custom-menu{
     --width: 500px;
 }
+
 @media (max-width: 340px){
   .custom-menu {
     --width: 100px !important;
+    --ion-background-color: var(--ion-color-light);
   }
 }
 
 .menu-items{
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
 .icon-fab-button light{
   color:var(--ion-color-dark);
@@ -79,3 +81,5 @@
   width: 30%;
   height: 30%;
 }
+
+

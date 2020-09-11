@@ -11,57 +11,60 @@ const TelaInicio: React.FC = () => {
   async function closeMenu() {
     await menuController.close();
   }
-  
+
   return (
     <>
-    <IonApp>
-      <IonMenu className='custom-menu' type="overlay" side='start'contentId="main-content">
+      <IonApp>
+        <IonMenu className='custom-menu' type="overlay" side='start' contentId="main-content">
           <IonHeader>
-              <IonToolbar color="primary">
-                <IonFabButton slot='start' onClick={closeMenu} className="icon-fab-button light" size="small" color='light'>
-                  <IonIcon icon={menuOutline} />
-                </IonFabButton>
-              </IonToolbar>
+            <IonToolbar color="primary">
+              <IonFabButton slot='start' onClick={closeMenu} className="icon-fab-button light" size="small" color='light'>
+                <IonIcon icon={menuOutline} />
+              </IonFabButton>
+            </IonToolbar>
           </IonHeader>
           <IonContent>
             <IonRow className='ion-justify-content-center menu-items'>
-              <IonRow>  
-                <Button size="small"  color="light">Flashcards</Button>
-              </IonRow>
-              <IonRow>
-                <Button size="small"  color="light">Questionarios</Button>      
-              </IonRow>
-              <IonRow>
-                <Button size="small"  color="light">Classes</Button>    
-              </IonRow>
-              <IonRow>
-                <Button size="small"  color="light">Conquistas</Button>
-              </IonRow>
-              <IonRow>
-              <Button size="small"  color="light">Sair</Button>
-              </IonRow>          
+              
+                <IonRow>
+                  <Button size="large" color="light">Flashcards</Button>
+                </IonRow>
+                <IonRow>
+                  <Button size="large" color="light">Questionarios</Button>
+                </IonRow>
+                <IonRow>
+                  <Button size="large" color="light">Classes</Button>
+                </IonRow>
+                <IonRow>
+                  <Button size="large" color="light">Conquistas</Button>
+                </IonRow>
+                <IonRow>
+                  <Button className="menu-button-sair" shape="round" size="large" color="light">Sair</Button>
+                </IonRow>
+
+              
             </IonRow>
           </IonContent>
-      </IonMenu>
+        </IonMenu>
 
-      <IonPage id="main-content" className="page-inicio">
-        <IonHeader>
-          <IonToolbar>
-          <IonFabButton  slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="dark">
-            <IonIcon icon={menuOutline} />
-            <IonButton slot='start'>
-              <IonMenuButton></IonMenuButton>
-            </IonButton>
-          </IonFabButton>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-          <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="dark">
-            <IonIcon icon={menuOutline} />
-          </IonFabButton>
-        </IonContent>
-      </IonPage>
-    </IonApp>
+        <IonPage id="main-content" className="page-inicio">
+          <IonHeader>
+            <IonToolbar>
+              <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="dark">
+                <IonIcon icon={menuOutline} />
+                <IonButton slot='start'>
+                  <IonMenuButton></IonMenuButton>
+                </IonButton>
+              </IonFabButton>
+            </IonToolbar>
+          </IonHeader>
+          <IonContent>
+            <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="dark">
+              <IonIcon icon={menuOutline} />
+            </IonFabButton>
+          </IonContent>
+        </IonPage>
+      </IonApp>
     </>
   )
 }
