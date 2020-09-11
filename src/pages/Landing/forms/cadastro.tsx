@@ -12,7 +12,10 @@ const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
     
     const Props = ()=>{
         props.handleClickCad();
-        setText('Cancelar');
+        setTimeout(()=>{
+            setText('Cancelar');
+        }, 1000)
+        
     }
 
     const [showAlert2, setShowAlert2] = useState(false);

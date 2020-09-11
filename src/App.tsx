@@ -3,7 +3,6 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
 import Landing from './pages/Landing/landing';
 import { IonApp, IonRouterOutlet} from '@ionic/react';
-import './index.css';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -28,10 +27,8 @@ const App: React.FC = () => {
    <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        
         <Route path="/Landing" component={Landing} exact={true} />
         <Route path="/TelaInicio" component={TelaInicio} exact={true} />
-
         <Route exact path="/" render={() => <Redirect to="/Landing" />} />
       </IonRouterOutlet>
     </IonReactRouter>
