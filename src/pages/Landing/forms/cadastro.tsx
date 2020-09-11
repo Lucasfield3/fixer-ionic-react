@@ -73,11 +73,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
                         <IonAlert
                             isOpen={showAlert1}
                             onDidDismiss={() => setShowAlert1(false)}
-                            cssClass='
-                            my-custom-class .alert-wrapper
-                            .alert-title.sc-ion-alert-md 
-                            .alert-sub-title.sc-ion-alert-md
-                            '
+                            cssClass='my-custom-class .alert-wrapper'                            
                             header={'Parabéns !!!'}
                             subHeader={'Cadastro realizado com sucesso.'}
                             message={'Um e-mail de confirmação foi enviado para sua caixa de entrada.'}
