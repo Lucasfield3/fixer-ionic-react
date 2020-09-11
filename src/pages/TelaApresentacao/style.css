@@ -42,3 +42,15 @@
   flex-wrap: wrap;
   margin: -4rem -1.6rem;
 }
+
+.icon-fab-menu{
+  max-height: 50rem;
+  max-width: 50rem;
+}
+
+.icon-fab-button-list{
+  max-height: 2rem;
+  max-width: 2rem;
+  background-color:#fff !important;
+  border-radius: 50%;
+}
