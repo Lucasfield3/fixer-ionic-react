@@ -75,7 +75,10 @@ const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
                     >Cadastrar</IonButton>
                         <IonAlert
                             isOpen={showAlert1}
-                            onDidDismiss={() => setShowAlert1(false)}
+                            onDidDismiss={() => {
+                                setText('Voltar')
+                                setShowAlert1(false)
+                            }}
                             cssClass='my-custom-class .alert-wrapper'                            
                             header={'Parabéns !!!'}
                             subHeader={'Cadastro realizado com sucesso.'}
