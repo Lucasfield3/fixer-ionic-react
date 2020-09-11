@@ -127,10 +127,6 @@
     flex-wrap: nowrap;
     justify-content: center;
 }
-
-.alert-wrapper {
-    background: #e5e5e5;
-  }
   
   /* Works - pass "my-custom-class" in cssClass to increase specificity */
   .my-custom-class .alert-wrapper {
@@ -138,21 +134,51 @@
     border-radius: 8%;
     font-family: 'Poppins', sans-serif;
     text-align: center;
-  }
-  .my-custom-class .alert-wrapper{
+    justify-content: center;
     color:#2EC4B6;
     background-color:var(--ion-color-light);
     width:10%;
-    height: 45%;
-}
+    height: 43%;
+  }
 .alert-title.sc-ion-alert-md {
     color: var(--ion-text-color, #C2F3EE);
     font-size: 30px;
     -webkit-text-stroke:0.5px #2EC4B6;
    text-shadow:
-       3px 3px 0 #2EC4B6,
+       1px 1px 0 #2EC4B6,
      -1px -1px 0 #2EC4B6,  
       1px -1px 0 #2EC4B6,
       -1px 1px 0 #2EC4B6,
        1px 1px 0 #2EC4B6;
+}
+.alert-sub-title.sc-ion-alert-md{
+    color: var(--ion-text-color,#2EC4B6 );
+    font-size: 17px;
+    font-weight: bold;
+}
+.alert-message.sc-ion-alert-md {
+    max-height: 240px;
+    font-size: 16px;
+    color:var(--ion-color-light);
+    background-color: #2EC4B6;
+    border-radius: 5%;
+    border-right: 5px var(--ion-color-light) solid;
+    border-left: 5px var(--ion-color-light) solid;
+}
+.alert-button-group.sc-ion-alert-md{
+    justify-content: center;
+   
+}
+.alert-button.sc-ion-alert-md {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2EC4B6;
+    border: 1px #2EC4B6 solid;
+    width: 80.04px;
+    height: 25.82px;
+    border-radius: 4.51826px;
+}
+.alert-button-inner.sc-ion-alert-md{
+    justify-content: center;
 }
