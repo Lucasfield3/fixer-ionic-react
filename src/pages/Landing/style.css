@@ -3,13 +3,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.control-over{
-    --overflow: hidden;
-    overflow: auto;
-}
-.control-over::-webkit-scrollbar{
-    display: none;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
 }
 .container{
     display: flex;
