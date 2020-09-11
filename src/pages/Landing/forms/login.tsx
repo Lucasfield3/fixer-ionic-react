@@ -48,7 +48,7 @@ const history = useHistory()
                         onClick={props.handleClickLogin} 
                         color='light'
                         size="small"  
-                        >Cancelar</Button>
+                        >Voltar</Button>
                     </IonCol>
                 </IonRow>
             </IonCardContent>
