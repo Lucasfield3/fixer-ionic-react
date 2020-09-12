@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { IonButton, IonPage, IonContent, IonGrid, IonRow, IonCol, IonFab, IonFabButton, IonIcon, IonFabList, IonList, IonItem, IonThumbnail, IonImg, IonLabel, IonRouterOutlet, IonHeader, IonMenuButton, IonMenu, IonTitle, IonToolbar, IonApp } from '@ionic/react'
+import { IonButton, IonPage, IonContent, IonGrid, IonRow, IonCol, IonFab, IonFabButton, IonIcon, IonFabList, IonList, IonItem, IonThumbnail, IonImg, IonLabel, IonRouterOutlet, IonHeader, IonMenuButton, IonMenu, IonTitle, IonToolbar, IonApp, IonAvatar } from '@ionic/react'
 import { add, settings, share, person, arrowForwardCircle, arrowBackCircle, arrowUpCircle, logoVimeo, logoFacebook, logoInstagram, logoTwitter, menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import Button from '../Landing/styles/Button'
+import avatarImg from '../../Assets/images/avatar.svg'
+
 const TelaInicio: React.FC = () => {
   async function openMenu() {
     await menuController.open();
@@ -23,28 +25,35 @@ const TelaInicio: React.FC = () => {
               </IonFabButton>
             </IonToolbar>
           </IonHeader>
-          <IonContent>
-            <IonRow className='ion-justify-content-center menu-items'>
-              
-                <IonRow>
-                  <Button size="large" color="light">Flashcards</Button>
-                </IonRow>
-                <IonRow>
-                  <Button size="large" color="light">Questionarios</Button>
-                </IonRow>
-                <IonRow>
-                  <Button size="large" color="light">Classes</Button>
-                </IonRow>
-                <IonRow>
-                  <Button size="large" color="light">Conquistas</Button>
-                </IonRow>
-                <IonRow>
-                  <Button className="menu-button-sair" shape="round" size="large" color="light">Sair</Button>
-                </IonRow>
 
-              
+          <IonContent className="content-menu">
+
+            <IonAvatar className="avatar-perfil">
+              <img src={avatarImg}/>
+            </IonAvatar>
+
+            <IonRow className='ion-justify-content-center menu-items'>
+
+              <IonRow className="">
+                <Button size="large" color="light">Flashcards</Button>
+              </IonRow>
+              <IonRow>
+                <Button size="large" color="light">Questionarios</Button>
+              </IonRow>
+              <IonRow>
+                <Button size="large" color="light">Classes</Button>
+              </IonRow>
+              <IonRow>
+                <Button size="large" color="light">Conquistas</Button>
+              </IonRow>
+              <IonRow>
+                <Button className="menu-button-sair" shape="round" size="large" color="light">Sair</Button>
+              </IonRow>
+
+
             </IonRow>
           </IonContent>
+
         </IonMenu>
 
         <IonPage id="main-content" className="page-inicio">

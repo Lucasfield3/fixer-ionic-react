@@ -75,6 +75,8 @@
   align-items: center;
   justify-items: center;
 }
+
+
 .icon-fab-button light{
   color:var(--ion-color-dark);
   border-radius: 50%;
@@ -82,4 +84,7 @@
   height: 30%;
 }
 
+.avatar-perfil{
+  margin: 2rem 6rem;
+}
 
