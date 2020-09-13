@@ -18,12 +18,15 @@ const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
         
     }
 
+<<<<<<< HEAD
     /*const [showAlert2, setShowAlert2] = useState(false);
     const [showAlert3, setShowAlert3] = useState(false);
     const [showAlert4, setShowAlert4] = useState(false);
     const [showAlert5, setShowAlert5] = useState(false);
     const [showAlert6, setShowAlert6] = useState(false);
     */
+=======
+>>>>>>> 9a87dc6286a3538504cbd92061309a658f339223
     return (
         <>
             <IonCardContent className="card-content-cadastro">

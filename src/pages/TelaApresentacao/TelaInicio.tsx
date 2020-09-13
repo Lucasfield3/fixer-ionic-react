@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { IonButton, 
 IonPage, 
 IonContent, 
@@ -14,6 +15,15 @@ import { menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
+=======
+import { IonButton, IonPage, IonContent, IonGrid, IonRow, IonCol, IonFab, IonFabButton, IonIcon, IonFabList, IonList, IonItem, IonThumbnail, IonImg, IonLabel, IonRouterOutlet, IonHeader, IonMenuButton, IonMenu, IonTitle, IonToolbar, IonApp, IonAvatar } from '@ionic/react'
+import { add, settings, share, person, arrowForwardCircle, arrowBackCircle, arrowUpCircle, logoVimeo, logoFacebook, logoInstagram, logoTwitter, menuOutline } from 'ionicons/icons';
+import './style.css'
+import { menuController } from '@ionic/core';
+import Button from '../Landing/styles/Button'
+import avatarImg from '../../Assets/images/avatar.svg'
+
+>>>>>>> 9a87dc6286a3538504cbd92061309a658f339223
 const TelaInicio: React.FC = () => {
   async function openMenu() {
     await menuController.open();
@@ -46,6 +56,7 @@ const TelaInicio: React.FC = () => {
             </IonToolbar>
           </IonHeader>
 
+<<<<<<< HEAD
           <IonContent className='custom-body-menu'>
             <IonGrid className='menu-grid'>
               <IonRow className='ion-justify-content-center ion-margin menu-items'>
@@ -71,17 +82,55 @@ const TelaInicio: React.FC = () => {
                   </IonRow>
               </IonRow>
             </IonGrid>
+=======
+          <IonContent className="content-menu">
+
+            <IonAvatar className="avatar-perfil">
+              <img src={avatarImg}/>
+            </IonAvatar>
+
+            <IonRow className='ion-justify-content-center menu-items'>
+
+              <IonRow className="">
+                <Button size="large" color="light">Flashcards</Button>
+              </IonRow>
+              <IonRow>
+                <Button size="large" color="light">Questionarios</Button>
+              </IonRow>
+              <IonRow>
+                <Button size="large" color="light">Classes</Button>
+              </IonRow>
+              <IonRow>
+                <Button size="large" color="light">Conquistas</Button>
+              </IonRow>
+              <IonRow>
+                <Button className="menu-button-sair" shape="round" size="large" color="light">Sair</Button>
+              </IonRow>
+
+
+            </IonRow>
+>>>>>>> 9a87dc6286a3538504cbd92061309a658f339223
           </IonContent>
+
         </IonMenu>
 
         <IonPage id="main-content" className="page-inicio">
           <IonHeader className='custom-header'>
             <IonToolbar>
+<<<<<<< HEAD
               {fabBtn}
+=======
+              <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="light">
+                <IonIcon icon={menuOutline} />
+                <IonButton slot='start'>
+                  <IonMenuButton></IonMenuButton>
+                </IonButton>
+              </IonFabButton>
+>>>>>>> 9a87dc6286a3538504cbd92061309a658f339223
             </IonToolbar>
           </IonHeader>
           <IonContent>
-            <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="dark">
+            <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="light">
               <IonIcon icon={menuOutline} />
             </IonFabButton>
           </IonContent>
