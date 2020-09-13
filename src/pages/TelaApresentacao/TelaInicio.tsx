@@ -10,13 +10,14 @@ import {
   IonHeader,
   IonMenuButton,
   IonMenu,
-  IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar
+  IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar, IonFooter
 } from '@ionic/react'
 import { menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
 import imgAvatar from '../../Assets/images/avatar.svg'
+import smallLogo from '../../Assets/icons/logo-small.svg'
 
 const TelaInicio: React.FC = () => {
   async function openMenu() {
@@ -53,6 +54,9 @@ const TelaInicio: React.FC = () => {
             <IonAvatar className="img-avatar-perfil">
               <img src={imgAvatar} />
             </IonAvatar>
+            <IonRow>
+              <div className='label-level'>0</div>
+            </IonRow>
 
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
               <IonRow className=' ion-margin'>
@@ -69,12 +73,15 @@ const TelaInicio: React.FC = () => {
               </IonRow>
               <IonRow className='ion-margin'>
                 <IonButton className='sair' onClick={() => {
-                  history.goBack();
+                  history.push('/Landing');
                   closeMenu();
                 }} size="small" color="light">
                   Sair
                     </IonButton>
               </IonRow>
+            </IonRow>
+            <IonRow  className='small-logo'>
+              <img src={smallLogo} />
             </IonRow>
           </IonGrid>
         </IonContent>
@@ -83,8 +90,10 @@ const TelaInicio: React.FC = () => {
       <IonPage id="main-content" className="page-inicio">
         <IonHeader className='custom-header'>
           <IonToolbar>
-            <IonLabel className="label-menu-fixer">FIXER</IonLabel>
-            <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button light" size="small" color="light">
+            <IonRow className='row-label'>
+                <IonLabel className="label-menu-fixer">FIXER</IonLabel>
+            </IonRow>
+            <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button dark" size="small" color="dark">
               <IonIcon icon={menuOutline} />
               <IonButton slot='start'>
                 <IonMenuButton></IonMenuButton>
@@ -95,8 +104,8 @@ const TelaInicio: React.FC = () => {
 
 
         <IonContent className="menu-apresentacao-content">
-
-          <IonSearchbar className="search-bar"
+          <div className='line'></div>      
+          <IonSearchbar placeholder='Buscar' color='light' className="search-bar"
             value={searchText}
             onIonChange={e => setSearchText(e.detail.value!)}>
           </IonSearchbar>
@@ -105,36 +114,33 @@ const TelaInicio: React.FC = () => {
             <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel>
 
             <IonCard className="card-menu-content">
-              <IonCardHeader className="card-title-menu">
-                <IonCardTitle>Card Title</IonCardTitle>
-              </IonCardHeader>
-
               <IonCardContent className="card-title-menu">
-                VAZIO
+                <IonLabel  className='card-vazio'>
+                  VAZIO
+                </IonLabel>
               </IonCardContent>
             </IonCard>
 
             <IonLabel className="label-menu-title-cards">Mais respondidos</IonLabel>
 
             <IonCard className="card-menu-content">
-              <IonCardHeader className="card-title-menu">
-                <IonCardTitle>Card Title</IonCardTitle>
-              </IonCardHeader>
-
+              
               <IonCardContent className="card-title-menu">
-                VAZIO
+                <IonLabel className='card-vazio'>
+                    VAZIO
+                </IonLabel>
               </IonCardContent>
+
             </IonCard>
 
             <IonLabel className="label-menu-title-cards">Conquistas próximas</IonLabel>
 
             <IonCard className="card-menu-content">
-              <IonCardHeader className="card-title-menu">
-                <IonCardTitle>Card Title</IonCardTitle>
-              </IonCardHeader>
-
+              
               <IonCardContent className="card-title-menu">
-                VAZIO
+                <IonLabel className='card-vazio'>
+                    VAZIO
+                </IonLabel>
               </IonCardContent>
             </IonCard>
           </IonGrid>
