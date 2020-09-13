@@ -150,8 +150,8 @@ ion-button{
   position: absolute;
   opacity: 0.4;
   border-radius: 20%;
-  top: 3.5%;
-  left: 20%;
+  margin-top: 3vh;
+  margin-left: 8vh;
 }
 .card-vazio{
   font-size: 30px;
