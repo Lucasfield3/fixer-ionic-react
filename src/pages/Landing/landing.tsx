@@ -21,7 +21,6 @@ import Cadastro from '../Landing/forms/cadastro'
 
 const Landing: React.FC = () => {
     const [isFlipped, setIsflipped] = useState(false);
-    const [text, setText] = useState<string>()
     const mystyle = {
         position: 'absolute',
         borderRadius: '21px',

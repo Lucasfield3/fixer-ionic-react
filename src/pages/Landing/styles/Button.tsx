@@ -1,11 +1,10 @@
-import React from 'react';
 import styled from 'styled-components'
 import {IonButton} from '@ionic/react';
 
 const Button = styled(IonButton)`
     background-color: var(--ion-color-light)!important;
     font-weight: bold;
-    color:var(--ion-color-danger);
+    color:#F6F7F8;
     box-shadow: var(--box-shadow);
     border-radius: 7px;
     border: 1px solid rgba(255, 32, 110, 0.31);

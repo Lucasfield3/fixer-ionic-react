@@ -10,8 +10,12 @@ const [input, setInput] = useState<string>('')
 const clickHandler= ()=>{
     setInput('')
 }
-
 const history = useHistory()
+const Props = ()=>{
+    history.push('/TelaInicio')
+}
+
+
 
     return(
         <>
@@ -35,7 +39,7 @@ const history = useHistory()
                 <IonRow className="ion-align-items-center login-row">
                     <IonCol>
                         <IonButton
-                        onClick={() => history.push('/TelaInicio')}
+                        onClick={Props}
                         size="small"
                         color='dark'
                         type='submit'

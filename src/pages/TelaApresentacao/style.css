@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+:root {
+  --ion-safe-area-top: 20px;
+  --ion-safe-area-bottom: 22px;
+}
 .page-inicio{
   background-color:var(--ion-background-color);
   display: flex;
@@ -5,16 +10,6 @@
   align-items: center;
 }
 
-.col-left{
-  margin: 1.8rem;
-  display: block;
-  justify-content: center;
-
-}
-
-.col-right{
-  margin: 1.8rem;
-}
 
 .icone{
   max-height: 2rem;
@@ -23,31 +18,16 @@
   border-radius: 50%;
 }
 
-.button-flashcards{
-  flex-wrap: wrap;
-  margin: 18px -1.6rem;
-}
-
-.button-questionarios{
-  flex-wrap: wrap;
-  margin: -3rem -1.6rem;
-}
-
-.button-classes{
-  flex-wrap: wrap;
-  margin: 1.6rem -1.6rem;
-}
-
-.button-conquistas{
-  flex-wrap: wrap;
-  margin: -4rem -1.6rem;
-}
 
 .icon-fab-menu{
   max-height: 50rem;
   max-width: 50rem;
 }
-
+.menu-grid{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .icon-fab-button-list{
   max-height: 2rem;
   max-width: 2rem;
@@ -55,18 +35,12 @@
   border-radius: 50%;
 }
 .icone{
-  position: absolute;
+  position: absolute!important;
   z-index: 3;
 }
-.custom-menu{
-    --width: 500px;
-}
-
-@media (max-width: 340px){
-  .custom-menu {
-    --width: 100px !important;
-    --ion-background-color: var(--ion-color-light);
-  }
+.custom-header, .custom-header-menu{
+  z-index: 0;
+  background: transparent;
 }
 
 .menu-items{
@@ -75,11 +49,38 @@
   align-items: center;
   justify-items: center;
 }
-.icon-fab-button light{
-  color:var(--ion-color-dark);
+.light{
+  --ion-color-contrast:none!important;
   border-radius: 50%;
-  width: 30%;
-  height: 30%;
+  max-height: 2rem;
+  max-width: 2rem;
 }
-
-
+.custom-icon::slotted(ion-icon){
+  color: var(--ion-color-dark)!important;
+}
+ion-header ion-toolbar:first-of-type{
+  --ion-background-color: transparent;
+}
+ion-menu {
+  --max-width: 46%;
+  --min-width: 46%;
+}
+.btn-side-menu{
+  margin:-8px!important;
+  width: 101px;
+  height: 26px;
+  --border-radius: 7px;
+  font-size: 11px!important;
+  --ion-color-light-contrast:var(--ion-color-dark);
+  font-weight: bold;
+  box-sizing: border-box;
+  box-shadow: var(--box-shadow);
+}
+.sair{
+  --border-radius: 50%;
+  width: 28px!important;
+  height: 28px!important;
+  font-weight: bold;
+  font-size:10.5538px !important;
+  color: var(--ion-color-danger)!important;
+}

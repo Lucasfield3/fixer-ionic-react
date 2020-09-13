@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
-import { IonButton, IonPage, IonContent, IonGrid, IonRow, IonCol, IonFab, IonFabButton, IonIcon, IonFabList, IonList, IonItem, IonThumbnail, IonImg, IonLabel, IonRouterOutlet, IonHeader, IonMenuButton, IonMenu, IonTitle, IonToolbar, IonApp } from '@ionic/react'
-import { add, settings, share, person, arrowForwardCircle, arrowBackCircle, arrowUpCircle, logoVimeo, logoFacebook, logoInstagram, logoTwitter, menuOutline } from 'ionicons/icons';
+import { IonButton, 
+IonPage, 
+IonContent, 
+IonGrid, 
+IonRow,  
+IonFabButton, 
+IonIcon, 
+IonHeader, 
+IonMenuButton, 
+IonMenu,  
+IonToolbar, IonText } from '@ionic/react'
+import { menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
-import Button from '../Landing/styles/Button'
+import { useHistory } from 'react-router-dom'
 const TelaInicio: React.FC = () => {
   async function openMenu() {
     await menuController.open();
@@ -11,51 +21,63 @@ const TelaInicio: React.FC = () => {
   async function closeMenu() {
     await menuController.close();
   }
+ 
+  const None = ()=>{
+    setFabBtn('');
+    menuController.enable(false, 'fab-static');
+  }
+  const Block = ()=>{
+    closeMenu()
+    setFabBtn(<FlexFabBtn changeDisplay={None} handleClick={openMenu}/>);
+  }
+  const [fabBtn, setFabBtn] = useState<{}>(<FlexFabBtn changeDisplay={None} handleClick={openMenu}/>);
+  const history = useHistory()
+
 
   return (
     <>
-      <IonApp>
+        
         <IonMenu className='custom-menu' type="overlay" side='start' contentId="main-content">
-          <IonHeader>
-            <IonToolbar color="primary">
-              <IonFabButton slot='start' onClick={closeMenu} className="icon-fab-button light" size="small" color='light'>
-                <IonIcon icon={menuOutline} />
+          <IonHeader className='custom-header-menu'>
+            <IonToolbar>
+              <IonFabButton slot='start' onClick={Block} className="icon-fab-button light" size="small" color='light'>
+                <IonIcon color='dark' icon={menuOutline} />
               </IonFabButton>
             </IonToolbar>
           </IonHeader>
-          <IonContent>
-            <IonRow className='ion-justify-content-center menu-items'>
-              
-                <IonRow>
-                  <Button size="large" color="light">Flashcards</Button>
-                </IonRow>
-                <IonRow>
-                  <Button size="large" color="light">Questionarios</Button>
-                </IonRow>
-                <IonRow>
-                  <Button size="large" color="light">Classes</Button>
-                </IonRow>
-                <IonRow>
-                  <Button size="large" color="light">Conquistas</Button>
-                </IonRow>
-                <IonRow>
-                  <Button className="menu-button-sair" shape="round" size="large" color="light">Sair</Button>
-                </IonRow>
 
-              
-            </IonRow>
+          <IonContent className='custom-body-menu'>
+            <IonGrid className='menu-grid'>
+              <IonRow className='ion-justify-content-center ion-margin menu-items'>
+                  <IonRow className=' ion-margin'>
+                    <IonButton className='btn-side-menu'  size="large" color="light">Flashcards</IonButton>
+                  </IonRow>
+                  <IonRow className=' ion-margin'>
+                    <IonButton className='btn-side-menu' size="small" color="light">Questionarios</IonButton>
+                  </IonRow >
+                  <IonRow className=' ion-margin'>
+                    <IonButton className='btn-side-menu' size="small" color="light">Classes</IonButton>
+                  </IonRow>
+                  <IonRow className=' ion-margin'>
+                    <IonButton className='btn-side-menu' size="small" color="light">Conquistas</IonButton>
+                  </IonRow>
+                  <IonRow className=' ion-margin'>
+                    <IonButton className='sair' onClick={()=>{
+                      history.goBack();
+                      closeMenu();
+                      }} size="small" color="light">
+                      Sair
+                    </IonButton>
+                  </IonRow>
+              </IonRow>
+            </IonGrid>
           </IonContent>
         </IonMenu>
 
         <IonPage id="main-content" className="page-inicio">
-          <IonHeader>
+          <IonHeader className='custom-header'>
             <IonToolbar>
-              <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button icone" size="small" color="dark">
-                <IonIcon icon={menuOutline} />
-                <IonButton slot='start'>
-                  <IonMenuButton></IonMenuButton>
-                </IonButton>
-              </IonFabButton>
+              {fabBtn}
             </IonToolbar>
           </IonHeader>
           <IonContent>
@@ -64,9 +86,24 @@ const TelaInicio: React.FC = () => {
             </IonFabButton>
           </IonContent>
         </IonPage>
-      </IonApp>
     </>
   )
+}
+const FlexFabBtn:React.FC<{handleClick:()=> void; changeDisplay:()=>void}> = props=>{
+  const Props = ()=>{
+    props.handleClick();
+    props.changeDisplay();
+  }
+  return(
+    <>
+       <IonFabButton  id='fab-static' slot='start' onClick={Props} className="icon-fab-button icone" size="small" color="dark">
+          <IonIcon icon={menuOutline} />
+          <IonButton slot='start'>
+            <IonMenuButton></IonMenuButton>
+          </IonButton>
+        </IonFabButton>
+    </>
+  );
 }
 
 
