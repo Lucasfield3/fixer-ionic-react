@@ -76,7 +76,40 @@ ion-button{
   color: var(--ion-color-danger)!important;
 }
 
-.avatar-perfil{
-  margin: 2rem 6rem;
+.img-avatar-perfil{
+  margin: 2rem 0;
 }
 
+.label-menu-fixer{
+  display: flex;
+  font-size: 30px;
+  margin-right: 3rem;
+  margin-top: .4rem;
+  justify-content: center;
+  color: #333;
+  font-family: Poppins;
+}
+
+.label-menu-title-cards{
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  color: #011627;
+  font-family: 'Archivo Narrow', sans-serif;
+  margin-top: .2rem;
+}
+
+.card-menu-content{
+  background: #fdfdfd;
+  width: 13rem;
+  height: 20vh;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border-radius: 21px;
+}
+
+.card-title-menu{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
