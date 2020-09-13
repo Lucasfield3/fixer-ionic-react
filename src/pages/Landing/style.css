@@ -68,6 +68,12 @@
     height: 7rem;
     flex-wrap: nowrap;
 }
+.col-btn{
+    margin-left: 7px;
+}
+.col-login{
+    margin-left: 10px;
+}
 .login-row{
     height: 6rem;
     flex-wrap: nowrap;

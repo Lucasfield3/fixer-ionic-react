@@ -37,7 +37,7 @@ const Props = ()=>{
                 </IonCol>
             </IonRow>
                 <IonRow className="ion-align-items-center login-row">
-                    <IonCol>
+                    <IonCol className='col-login'>
                         <IonButton
                         onClick={Props}
                         size="small"

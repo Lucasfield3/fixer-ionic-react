@@ -62,7 +62,7 @@ const Landing: React.FC = () => {
                             <IonCard className='card-form' color='light'>
                                 <IonCardContent>
                                     <IonRow className="ion-align-items-center row">
-                                        <IonCol>
+                                        <IonCol className='col-btn'>
                                             <IonButton
                                                 onClick={() => handleClickCadLogin(<Login handleClickLogin={handleClick} />)}
                                                 size="small" color='dark'
