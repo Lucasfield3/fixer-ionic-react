@@ -113,3 +113,7 @@ ion-button{
   text-align: center;
   justify-content: center;
 }
+
+.search-bar{
+  border-radius: 50px;
+}

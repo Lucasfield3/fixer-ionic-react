@@ -10,7 +10,7 @@ import {
   IonHeader,
   IonMenuButton,
   IonMenu,
-  IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent
+  IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar
 } from '@ionic/react'
 import { menuOutline } from 'ionicons/icons';
 import './style.css'
@@ -26,7 +26,9 @@ const TelaInicio: React.FC = () => {
     await menuController.close();
   }
 
-  const history = useHistory()
+  const history = useHistory();
+
+  const [searchText, setSearchText] = useState('');
 
   return (
     <>
@@ -93,6 +95,11 @@ const TelaInicio: React.FC = () => {
 
 
         <IonContent className="menu-apresentacao-content">
+
+          <IonSearchbar className="search-bar"
+            value={searchText}
+            onIonChange={e => setSearchText(e.detail.value!)}>
+          </IonSearchbar>
 
           <IonGrid className="menu-grid">
             <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel>
