@@ -11,32 +11,18 @@
 }
 
 
-.icone{
-  max-height: 2rem;
-  max-width: 2rem;
-  background-color:#fff !important;
-  border-radius: 50%;
-}
-
-
-.icon-fab-menu{
-  max-height: 50rem;
-  max-width: 50rem;
-}
 .menu-grid{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.icon-fab-button-list{
-  max-height: 2rem;
-  max-width: 2rem;
-  background-color:#fff !important;
-  border-radius: 50%;
-}
-.icone{
+.dark{
   position: absolute!important;
   z-index: 3;
+  width: 2rem;
+  height: 2rem;
+  color:var(--ion-color-light);
+  --ion-color-contrast: none!important;
 }
 .custom-header, .custom-header-menu{
   z-index: 0;
@@ -49,15 +35,13 @@
   align-items: center;
   justify-items: center;
 }
+
 .light{
-  --ion-color-contrast:none!important;
-
-
-.icon-fab-button light{
   color:var(--ion-color-dark);
   border-radius: 50%;
   max-height: 2rem;
   max-width: 2rem;
+  --ion-color-contrast: none!important;
 }
 .custom-icon::slotted(ion-icon){
   color: var(--ion-color-dark)!important;
@@ -68,6 +52,9 @@ ion-header ion-toolbar:first-of-type{
 ion-menu {
   --max-width: 46%;
   --min-width: 46%;
+}
+ion-button{
+  --backgroun:none!important;
 }
 .btn-side-menu{
   margin:-8px!important;
