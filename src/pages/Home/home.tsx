@@ -34,7 +34,6 @@ const Home: React.FC = () => {
     setTimeout(()=>{
       setHome(<BtnHome backHome={()=>{ 
         closeMenu()
-        history.push('/Home')
         setTimeout(()=>{
           setHome('')
         }, 500) 
@@ -90,10 +89,11 @@ const Home: React.FC = () => {
               <IonRow className='ion-margin'>
                 <IonButton className='sair' onClick={() => {
                   closeMenu();
-                  history.push('/Landing');
                   menuController.enable(false);
                 }} size="small" color="light">
-                  Sair
+                  <Link to={'/Landing'}>
+                     Sair
+                  </Link>
                     </IonButton>
               </IonRow>
             </IonRow>
@@ -176,7 +176,7 @@ const BtnHome: React.FC<{backHome:()=>void}> = props=>{
   return(
     <>
        <IonRow className=' ion-margin'>
-        <IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light">Início</IonButton>
+        <IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light"><Link to='/Home'>Início</Link></IonButton>
       </IonRow>
     </>
   );
