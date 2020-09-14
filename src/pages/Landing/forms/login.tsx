@@ -3,6 +3,7 @@ import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem 
 import Button from '../styles/Button'
 import { useHistory } from 'react-router-dom'
 import '../style.css'
+import { menuController } from '@ionic/core';
 
 
 const Login: React.FC<{handleClickLogin:()=> void}> = props=>{
@@ -13,6 +14,7 @@ const clickHandler= ()=>{
 const history = useHistory()
 const Props = ()=>{
     history.push('/TelaInicio')
+    menuController.enable(true)
 }
 
 

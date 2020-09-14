@@ -19,6 +19,7 @@ import Login from '../Landing/forms/login'
 import Cadastro from '../Landing/forms/cadastro'
 
 
+
 const Landing: React.FC = () => {
     const [isFlipped, setIsflipped] = useState(false);
     const mystyle = {

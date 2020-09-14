@@ -26,7 +26,7 @@ const TelaInicio: React.FC = () => {
   async function closeMenu() {
     await menuController.close();
   }
-
+ 
   const history = useHistory();
 
   const [searchText, setSearchText] = useState('');
@@ -52,7 +52,7 @@ const TelaInicio: React.FC = () => {
           <IonGrid className='menu-grid'>
 
             <IonAvatar className="img-avatar-perfil">
-              <img src={imgAvatar} />
+              <img alt='Avatar' src={imgAvatar} />
             </IonAvatar>
             <IonRow>
               <div className='label-level'>0</div>
@@ -75,13 +75,14 @@ const TelaInicio: React.FC = () => {
                 <IonButton className='sair' onClick={() => {
                   history.push('/Landing');
                   closeMenu();
+                  menuController.enable(false);
                 }} size="small" color="light">
                   Sair
                     </IonButton>
               </IonRow>
             </IonRow>
             <IonRow  className='small-logo'>
-              <img src={smallLogo} />
+              <img alt='Logo' src={smallLogo} />
             </IonRow>
           </IonGrid>
         </IonContent>
