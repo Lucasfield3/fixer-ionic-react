@@ -79,3 +79,8 @@ body{
 {
   display: table!important;
 }
+a{
+  font-style:normal;
+  text-decoration: none;
+  color: inherit;
+}

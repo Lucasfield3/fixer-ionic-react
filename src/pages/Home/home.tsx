@@ -15,7 +15,7 @@ import {
 import {  menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import imgAvatar from '../../Assets/images/avatar.svg'
 import smallLogo from '../../Assets/icons/logo-small.svg'
 
@@ -73,10 +73,10 @@ const Home: React.FC = () => {
               <IonRow className=' ion-margin'>
                 <IonButton fill='solid' onClick={()=>{
                   closeMenu();
-                  history.push('/Flash-cards')
+                  //history.push('/Flash-cards')
                   changeBtn();
                   
-                  }} className='btn-side-menu' color="light">Flashcards</IonButton>
+                  }} className='btn-side-menu' color="light"><Link className='link' to={'/Flash-cards'}>Flashcards</Link></IonButton>
               </IonRow>
               <IonRow className='ion-margin'>
                 <IonButton fill='solid' className='btn-side-menu' color="light">Questionarios</IonButton>
