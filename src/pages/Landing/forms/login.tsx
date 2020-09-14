@@ -15,6 +15,7 @@ const history = useHistory()
 const Props = ()=>{
     history.push('/Home')
     menuController.enable(true)
+    setTimeout(()=>{props.handleClickLogin()}, 1000)
 }
 
 
