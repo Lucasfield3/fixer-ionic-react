@@ -121,11 +121,14 @@ const Home: React.FC = () => {
 
 
         <IonContent className="menu-apresentacao-content">
-          <div className='line'></div>      
-          <IonSearchbar placeholder='Buscar' color='light' className="search-bar"
-            value={searchText}
-            onIonChange={e => setSearchText(e.detail.value!)}>
-          </IonSearchbar>
+          <IonRow>
+                 
+            <IonSearchbar placeholder='Buscar' color='light' className="search-bar"
+              value={searchText}
+              onIonChange={e => setSearchText(e.detail.value!)}>
+                <div className='line'></div> 
+            </IonSearchbar>
+          </IonRow>
 
           <IonGrid className="menu-grid">
             <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel>

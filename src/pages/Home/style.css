@@ -144,14 +144,13 @@ ion-button{
 }
 .line{
   width: 1px;
-  height: 20px;
-  background:var(--ion-color-dark);
+  height: 24px;
+  background: var(--ion-color-dark);
   z-index: 10;
   position: absolute;
   opacity: 0.4;
   border-radius: 20%;
-  margin-top: 3vh;
-  margin-left: 8vh;
+  margin-left: 3rem;
 }
 .card-vazio{
   font-size: 30px;

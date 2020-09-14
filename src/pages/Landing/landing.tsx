@@ -76,7 +76,7 @@ const Landing: React.FC = () => {
     );
 }
 
-const InitCard: React.FC<{onClickLogin:()=>void;onClickCad:()=>void}> = props=>{
+const InitCard: React.FC<{onClickLogin:()=>void; onClickCad:()=>void}> = props=>{
 
     return(
         <>
