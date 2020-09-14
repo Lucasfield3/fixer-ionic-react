@@ -12,14 +12,14 @@ import {
   IonMenu,
   IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar, IonFooter
 } from '@ionic/react'
-import { menuOutline } from 'ionicons/icons';
+import {  menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
 import imgAvatar from '../../Assets/images/avatar.svg'
 import smallLogo from '../../Assets/icons/logo-small.svg'
 
-const TelaInicio: React.FC = () => {
+const Home: React.FC = () => {
   async function openMenu() {
     await menuController.open();
   }
@@ -28,9 +28,19 @@ const TelaInicio: React.FC = () => {
   }
  
   const history = useHistory();
-
+  const [home, setHome] = useState<{}>('')
   const [searchText, setSearchText] = useState('');
-
+  const changeBtn = ()=>{
+    setTimeout(()=>{
+      setHome(<BtnHome backHome={()=>{ 
+        closeMenu()
+        history.push('/Home')
+        setTimeout(()=>{
+          setHome('')
+        }, 500) 
+      }}/>);
+    }, 500)
+  }
   return (
     <>
 
@@ -59,8 +69,14 @@ const TelaInicio: React.FC = () => {
             </IonRow>
 
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
+              {home}
               <IonRow className=' ion-margin'>
-                <IonButton fill='solid' className='btn-side-menu' color="light">Flashcards</IonButton>
+                <IonButton fill='solid' onClick={()=>{
+                  closeMenu();
+                  history.push('/Flash-cards')
+                  changeBtn();
+                  
+                  }} className='btn-side-menu' color="light">Flashcards</IonButton>
               </IonRow>
               <IonRow className='ion-margin'>
                 <IonButton fill='solid' className='btn-side-menu' color="light">Questionarios</IonButton>
@@ -73,8 +89,8 @@ const TelaInicio: React.FC = () => {
               </IonRow>
               <IonRow className='ion-margin'>
                 <IonButton className='sair' onClick={() => {
-                  history.push('/Landing');
                   closeMenu();
+                  history.push('/Landing');
                   menuController.enable(false);
                 }} size="small" color="light">
                   Sair
@@ -153,4 +169,14 @@ const TelaInicio: React.FC = () => {
   )
 }
 
-export default TelaInicio;
+const BtnHome: React.FC<{backHome:()=>void}> = props=>{
+  return(
+    <>
+       <IonRow className=' ion-margin'>
+        <IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light">Início</IonButton>
+      </IonRow>
+    </>
+  );
+}
+
+export default Home;

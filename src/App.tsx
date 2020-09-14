@@ -21,14 +21,16 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import TelaInicio from './pages/TelaApresentacao/TelaInicio';
+import Home from './pages/Home/home';
+import FlashCards from './pages/Flash-cards/flashCards';
 const App: React.FC = () => {
   return (
    <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
         <Route path="/Landing" component={Landing} exact={true} />
-        <Route path="/TelaInicio" component={TelaInicio} exact={true} />
+        <Route path="/Home" component={Home} exact={true} />
+        <Route path="/Flash-cards" component={FlashCards} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/Landing" />} />
       </IonRouterOutlet>
     </IonReactRouter>

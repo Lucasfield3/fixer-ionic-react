@@ -13,7 +13,7 @@ const clickHandler= ()=>{
 }
 const history = useHistory()
 const Props = ()=>{
-    history.push('/TelaInicio')
+    history.push('/Home')
     menuController.enable(true)
 }
 

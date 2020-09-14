@@ -90,10 +90,10 @@ ion-button{
   border-radius: 50%;
   font-weight: bold;
   width: 11px;
-  height: 11px;
-  font-size: 9px;
+  height: 12px;
+  font-size: 8px;
   text-align: center;
-  line-height: 11px;
+  line-height: 12px;
 }
 .row-label{
   display: flex;
@@ -159,8 +159,10 @@ ion-button{
   color: var(--ion-color-dark);
 }
 .small-logo img{
+  position: absolute;
   width: 8vh;
   height: 7vh;
   margin-top: 12vh;
-  margin-right: 10vh;
+  top:68vh;
+  left: 2vh;
 }
