@@ -30,10 +30,6 @@ const Home: React.FC = () => {
   const history = useHistory();
   const [searchText, setSearchText] = useState('');
   const [home, setHome] = useState<{}>('')
-  //const[btnFlash, setbtnFlash] = useState<{}>('')
-  //const[btnQuest, setbtnQuest] = useState<{}>('')
-  //const[btnClass, setbtnClass] = useState<{}>('')
-  //const[btnCon, setbtnCon] = useState<{}>('')
   const changeBtn = ()=>{
     setTimeout(()=>{
       setHome(<BtnHome backHome={()=>{ 
