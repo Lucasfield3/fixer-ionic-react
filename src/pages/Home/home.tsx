@@ -76,7 +76,8 @@ const Home: React.FC = () => {
                   //history.push('/Flash-cards')
                   changeBtn();
                   
-                  }} className='btn-side-menu' color="light">Flashcards</IonButton></Link>
+                  }} className='btn-side-menu' color="light">Flashcards</IonButton>
+                  </Link>
               </IonRow>
               <IonRow className='ion-margin'>
                 <IonButton fill='solid' className='btn-side-menu' color="light">Questionarios</IonButton>

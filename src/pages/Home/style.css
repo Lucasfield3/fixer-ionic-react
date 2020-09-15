@@ -165,3 +165,10 @@ ion-button{
   top:68vh;
   left: 2vh;
 }
+.btn-inicio{
+  margin-bottom: -25px !important;
+}
+ion-button{
+  border-radius: 50%;
+  --backgroun: none!important;
+}
