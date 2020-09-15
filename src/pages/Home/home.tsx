@@ -70,12 +70,13 @@ const Home: React.FC = () => {
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
               {home}
               <IonRow className=' ion-margin'>
+              <Link to={'/Flash-cards'}>
                 <IonButton fill='solid' onClick={()=>{
                   closeMenu();
                   //history.push('/Flash-cards')
                   changeBtn();
                   
-                  }} className='btn-side-menu' color="light"><Link className='link' to={'/Flash-cards'}>Flashcards</Link></IonButton>
+                  }} className='btn-side-menu' color="light">Flashcards</IonButton></Link>
               </IonRow>
               <IonRow className='ion-margin'>
                 <IonButton fill='solid' className='btn-side-menu' color="light">Questionarios</IonButton>
@@ -87,14 +88,14 @@ const Home: React.FC = () => {
                 <IonButton fill='solid' className='btn-side-menu' color="light">Conquistas</IonButton>
               </IonRow>
               <IonRow className='ion-margin'>
+              <Link to={'/Landing'}>
                 <IonButton className='sair' onClick={() => {
                   closeMenu();
                   menuController.enable(false);
-                }} size="small" color="light">
-                  <Link to={'/Landing'}>
+                }} size="small" color="light">         
                      Sair
-                  </Link>
                     </IonButton>
+                    </Link>
               </IonRow>
             </IonRow>
             <IonRow  className='small-logo'>
@@ -176,7 +177,7 @@ const BtnHome: React.FC<{backHome:()=>void}> = props=>{
   return(
     <>
        <IonRow className=' ion-margin'>
-        <IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light"><Link to='/Home'>Início</Link></IonButton>
+       <Link to={'/Home'}><IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light">Início</IonButton></Link>
       </IonRow>
     </>
   );
