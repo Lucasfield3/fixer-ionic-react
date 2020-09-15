@@ -60,6 +60,7 @@
     width:12rem;
 }
 .card-form{
+    backface-visibility: hidden;
     border-radius: 21px;
     width:15rem;
     height: auto;
@@ -79,10 +80,12 @@
     flex-wrap: nowrap;
 }
 .card-content-login{
+    backface-visibility: hidden;
     overflow: hidden;
     padding-top: 0!important;
     padding-bottom: 0!important;
 }
+
 .cardButton{
     width:16rem;
     height:16rem;
@@ -107,6 +110,7 @@
 }
 
 .card-content-cadastro{
+    backface-visibility: hidden;
     overflow: hidden;
     padding-top: 0!important;
     padding-bottom: 0!important;

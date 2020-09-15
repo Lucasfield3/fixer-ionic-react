@@ -12,11 +12,11 @@ import {
     IonAvatar
 } from '@ionic/react';
 import './style.css'
-import ReactCardFlip from 'react-card-flip';
 import logo from '../../Assets/icons/palavra-logo1.png'
 import gif from '../../Assets/icons/giphy.gif'
 import Login from '../Landing/forms/login'
 import Cadastro from '../Landing/forms/cadastro'
+import ReactCardFlip from 'react-card-flip';
 
 
 
@@ -63,12 +63,12 @@ const Landing: React.FC = () => {
                         </IonCard>
                     </IonRow>
                     <IonRow className="ion-justify-content-center">
-                        <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
+                    <ReactCardFlip isFlipped={isFlipped}  flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
                             {initCard}
                             <IonCard className='card-form' color='light'>
                                 {cards}
                             </IonCard >
-                        </ReactCardFlip>
+                    </ReactCardFlip>
                     </IonRow>
                 </IonGrid>
             </IonContent>
