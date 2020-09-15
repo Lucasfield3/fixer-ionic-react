@@ -34,10 +34,7 @@ const Home: React.FC = () => {
     setTimeout(()=>{
       setHome(<BtnHome backHome={()=>{ 
         closeMenu()
-        setTimeout(()=>{
-          setHome('')
-        }, 500) 
-      }}/>);
+        setTimeout(()=>{setHome('')}, 500) }}/>);
     }, 500)
   }
   return (
@@ -59,12 +56,15 @@ const Home: React.FC = () => {
         <IonContent className='custom-body-menu'>
 
           <IonGrid className='menu-grid'>
-
-            <IonAvatar className="img-avatar-perfil">
+            
+            
+            <IonLabel className='label-perfil'>Mudar foto de perfil</IonLabel>
+            <IonAvatar className="img-avatar-perfil">              
               <img alt='Avatar' src={imgAvatar} />
             </IonAvatar>
-            <IonRow>
-              <div className='label-level'>0</div>
+    
+            <IonRow className='row-level'>
+            <IonLabel className='display'>level:</IonLabel><IonLabel className='label-level'>0</IonLabel>
             </IonRow>
 
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
