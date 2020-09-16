@@ -83,6 +83,7 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
                     'level:'
                   )}0
             </IonRow>
+          
 
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
               {home}
