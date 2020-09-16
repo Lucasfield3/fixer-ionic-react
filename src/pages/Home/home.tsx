@@ -41,15 +41,20 @@ const Home: React.FC = () => {
       }} />);
     }, 500)
   }
+const [isShown, setIsShown] = useState<boolean>(false);
+const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
   return (
     <>
-
-
-
       <IonMenu className='custom-menu' type="overlay" side='start' contentId="main-content">
         <IonHeader className='custom-header-menu'>
           <IonToolbar className="bar-menu">
-            <IonFabButton slot='start' onClick={closeMenu} className="icon-fab-button light" size="small" color='light'>
+            <IonFabButton slot='start' onClick={()=>{
+              closeMenu();
+              setTimeout(()=>{
+                setIsPhoto(false);
+                setIsShown(false);
+              }, 400)
+              }} className="icon-fab-button light" size="small" color='light'>
               <IonIcon icon={menuOutline} />
             </IonFabButton>
           </IonToolbar>
