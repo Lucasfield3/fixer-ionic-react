@@ -23,6 +23,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Home from './pages/Home/home';
 import FlashCards from './pages/Flash-cards/flashCards';
+import Questionarios from './pages/Questionarios/questionarios'
 const App: React.FC = () => {
   return (
    <IonApp>
@@ -31,6 +32,7 @@ const App: React.FC = () => {
         <Route path="/Landing" component={Landing} exact={true} />
         <Route path="/Home" component={Home} exact={true} />
         <Route path="/Flash-cards" component={FlashCards} exact={true} />
+        <Route path="/Questionarios" component={Questionarios} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/Landing" />} />
       </IonRouterOutlet>
     </IonReactRouter>
