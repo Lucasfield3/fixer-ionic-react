@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, RefObject } from 'react';
 import {
   IonButton,
   IonPage,
@@ -34,12 +34,30 @@ const Home: React.FC = () => {
     setTimeout(()=>{
       setHome(<BtnHome backHome={()=>{ 
         closeMenu()
-        setTimeout(()=>{
-          setHome('')
-        }, 500) 
-      }}/>);
+        setTimeout(()=>{setHome('')}, 500) 
+}}/>);
     }, 500)
   }
+const [isShown, setIsShown] = useState<boolean>(false);
+const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
+
+const mystyle = {
+  zIndex: 10,
+  textAlign: 'center',
+  height: '6.6rem',
+  width:' 6.6rem',
+  marginBottom: '0rem',
+  position: 'absolute',
+  cursor: 'pointer',
+  fontWeight:'bold',
+  color: 'rgb(6, 6, 43)',
+  backgroundColor: 'rgb(247, 247, 247)',
+  top:'0.5rem',
+  paddingTop: '33px',
+  borderRadius: '50%',
+  marginLeft:' 0.2rem',
+  opacity:isShownPhoto ? 0.6 : 0
+}as React.CSSProperties;
   return (
     <>
 
@@ -59,12 +77,25 @@ const Home: React.FC = () => {
         <IonContent className='custom-body-menu'>
 
           <IonGrid className='menu-grid'>
-
-            <IonAvatar className="img-avatar-perfil">
+            
+            
+            <IonAvatar onClick={()=>setIsPhoto(!isShownPhoto)} className="img-avatar-perfil">              
+              <IonLabel className='text-photo' /*</IonAvatar>style={{fontWeight:'bold', position:'absolute', color:'var(--ion-color-dark)',zIndex:11}}*/>
+                {isShownPhoto && 'Mudar foto de perfil'}
+                </IonLabel>
+              <IonLabel  style={mystyle}>
+              </IonLabel>
               <img alt='Avatar' src={imgAvatar} />
             </IonAvatar>
-            <IonRow>
-              <div className='label-level'>0</div>
+    
+            <IonRow style={{
+              opasity: isShown? 1 : 0, 
+              cursor:'pointer', 
+              width:isShown? '50px' : '18px', 
+              borderRadius:'20px'}}  onClick={()=>setIsShown(!isShown)} /*onMouseEnter={()=>handleMouseEnter(true)} onMouseLeave={()=>handleMouseEnter(false)}*/ className='row-level'>
+                  {isShown && (
+                    'level:'
+                  )}0
             </IonRow>
 
             <IonRow className='ion-justify-content-center ion-margin menu-items'>

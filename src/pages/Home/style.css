@@ -76,24 +76,75 @@ ion-button{
   font-size: 9px !important;
   color: var(--ion-color-danger)!important;
 }
-
-.img-avatar-perfil{
-  width: 90%;
-  height: 50%;
+.label-perfil{
+  z-index: 10;
+  text-align: center;
+  height: 7rem;
+  width: 7rem;
+  /* line-height: 24px; */
+  margin-bottom: 0rem;
+  position: absolute;
+  cursor: pointer;
+  font-weight: bold;
+  color: rgb(6, 6, 43);
+  background-color: rgb(247, 247, 247);
+  background-size: contain;
+  top: 2.8rem;
+  padding-top: 33px;
+  border-radius: 50%;
+  margin-left: 0.5rem;
 }
+.link-avatar{
+  background-size: contain;
+  border-radius: 50%;
+}
+.img-avatar-perfil{
+  width: 7rem;
+  height: 7rem;
+  background-color: rgb(121, 118, 118);
+  border-radius: 50%;
+}
+
 .img-avatar-perfil img{
   border: 2.5px var(--ion-color-dark) solid;
+  opacity: 1;
+  transition: opacity ease-in 100ms;
 }
-.label-level{
+.img-avatar-perfil img:hover,
+.img-avatar-perfil img:focus{
+  opacity: 0.8;
+  cursor: pointer;
+}
+.text-photo{
+  font-weight: bold;
+  position: absolute;
+  color: var(--ion-color-dark);
+  text-align: center;
+  left: 0.9rem;
+  width: 6rem;
+  z-index: 11;
+  top: 2.6rem;
+  cursor: pointer;
+}
+.row-level{
+  float: left;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin-top: 1vh;
   background: var(--ion-color-dark);
   color: var(--light);
   border-radius: 50%;
   font-weight: bold;
-  width: 11px;
-  height: 12px;
-  font-size: 8px;
+  width: 18px;
+  height: 18px;
+  font-size: 13px;
   text-align: center;
-  line-height: 12px;
+  line-height: 18px;
+}
+.label-level{
+  position: absolute;
+  margin-right: 0rem;
 }
 .row-label{
   display: flex;
@@ -119,7 +170,15 @@ ion-button{
   font-family: 'Archivo Narrow', sans-serif;
   margin-top: .2rem;
 }
-
+.display{
+ opacity: 0;
+}
+.display:hover,
+.display:focus{
+  opacity: 1;
+  position: relative;
+  margin-right: 2.5rem;
+}
 .card-menu-content{
   display: flex;
   justify-content: center;
