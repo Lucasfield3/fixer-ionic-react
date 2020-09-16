@@ -41,23 +41,6 @@ const Home: React.FC = () => {
 const [isShown, setIsShown] = useState<boolean>(false);
 const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
 
-const mystyle = {
-  zIndex: 10,
-  textAlign: 'center',
-  height: '6.6rem',
-  width:' 6.6rem',
-  marginBottom: '0rem',
-  position: 'absolute',
-  cursor: 'pointer',
-  fontWeight:'bold',
-  color: 'rgb(6, 6, 43)',
-  backgroundColor: 'rgb(247, 247, 247)',
-  top:'0.5rem',
-  paddingTop: '33px',
-  borderRadius: '50%',
-  marginLeft:' 0.2rem',
-  opacity:isShownPhoto ? 0.6 : 0
-}as React.CSSProperties;
   return (
     <>
 
@@ -66,7 +49,11 @@ const mystyle = {
       <IonMenu className='custom-menu' type="overlay" side='start' contentId="main-content">
         <IonHeader className='custom-header-menu'>
           <IonToolbar className="bar-menu">
-            <IonFabButton slot='start' onClick={closeMenu} className="icon-fab-button light" size="small" color='light'>
+            <IonFabButton slot='start' onClick={()=>{
+              closeMenu();
+              setIsPhoto(false);
+              setIsShown(false);
+              }} className="icon-fab-button light" size="small" color='light'>
               <IonIcon icon={menuOutline} />
             </IonFabButton>
           </IonToolbar>
@@ -80,10 +67,10 @@ const mystyle = {
             
             
             <IonAvatar onClick={()=>setIsPhoto(!isShownPhoto)} className="img-avatar-perfil">              
-              <IonLabel className='text-photo' /*</IonAvatar>style={{fontWeight:'bold', position:'absolute', color:'var(--ion-color-dark)',zIndex:11}}*/>
+              <IonLabel className='background-photo' style={{opacity:isShownPhoto ? 0.6 : 0}}>
+              <div className='text-photo' /*</IonAvatar>style={{fontWeight:'bold', position:'absolute', color:'var(--ion-color-dark)',zIndex:11}}*/>
                 {isShownPhoto && 'Mudar foto de perfil'}
-                </IonLabel>
-              <IonLabel  style={mystyle}>
+                </div>
               </IonLabel>
               <img alt='Avatar' src={imgAvatar} />
             </IonAvatar>
