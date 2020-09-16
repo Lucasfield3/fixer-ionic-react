@@ -77,7 +77,22 @@ ion-button{
   color: var(--ion-color-danger)!important;
 }
 .label-perfil{
+  z-index: 10;
   text-align: center;
+  height: 7rem;
+  width: 7rem;
+  /* line-height: 24px; */
+  margin-bottom: 0rem;
+  position: absolute;
+  cursor: pointer;
+  font-weight: bold;
+  color: rgb(6, 6, 43);
+  background-color: rgb(247, 247, 247);
+  background-size: contain;
+  top: 2.8rem;
+  padding-top: 33px;
+  border-radius: 50%;
+  margin-left: 0.5rem;
 }
 .link-avatar{
   background-size: contain;
@@ -100,6 +115,17 @@ ion-button{
   opacity: 0.8;
   cursor: pointer;
 }
+.text-photo{
+  font-weight: bold;
+  position: absolute;
+  color: var(--ion-color-dark);
+  text-align: center;
+  left: 0.9rem;
+  width: 6rem;
+  z-index: 11;
+  top: 2.6rem;
+  cursor: pointer;
+}
 .row-level{
   float: left;
   flex-direction: row;
@@ -115,14 +141,6 @@ ion-button{
   font-size: 13px;
   text-align: center;
   line-height: 18px;
-  transition: all ease-in 100ms;
-}
-.row-level:hover,
-.row-level:focus{
-  cursor: pointer;
-    width: 50px;
-    border-radius: 20px;
-  
 }
 .label-level{
   position: absolute;
