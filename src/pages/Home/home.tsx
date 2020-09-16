@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, RefObject } from 'react';
+import React, { useState } from 'react';
 import {
   IonButton,
   IonPage,
@@ -12,7 +12,7 @@ import {
   IonMenu,
   IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar, IonFooter
 } from '@ionic/react'
-import {  menuOutline } from 'ionicons/icons';
+import { menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory, Link } from 'react-router-dom'
@@ -26,33 +26,34 @@ const Home: React.FC = () => {
   async function closeMenu() {
     await menuController.close();
   }
- 
+
   const history = useHistory();
   const [searchText, setSearchText] = useState('');
   const [home, setHome] = useState<{}>('')
-  const changeBtn = ()=>{
-    setTimeout(()=>{
-      setHome(<BtnHome backHome={()=>{ 
+  const changeBtn = () => {
+    setTimeout(() => {
+      setHome(<BtnHome backHome={() => {
         closeMenu()
-        setTimeout(()=>{setHome('')}, 500) 
-}}/>);
+        history.push('/Home')
+        setTimeout(() => {
+          setHome('')
+        }, 500)
+      }} />);
     }, 500)
   }
 const [isShown, setIsShown] = useState<boolean>(false);
 const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
-
   return (
     <>
-
-
-
       <IonMenu className='custom-menu' type="overlay" side='start' contentId="main-content">
         <IonHeader className='custom-header-menu'>
           <IonToolbar className="bar-menu">
             <IonFabButton slot='start' onClick={()=>{
               closeMenu();
-              setIsPhoto(false);
-              setIsShown(false);
+              setTimeout(()=>{
+                setIsPhoto(false);
+                setIsShown(false);
+              }, 400)
               }} className="icon-fab-button light" size="small" color='light'>
               <IonIcon icon={menuOutline} />
             </IonFabButton>
@@ -64,9 +65,8 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
         <IonContent className='custom-body-menu'>
 
           <IonGrid className='menu-grid'>
-            
-            
-            <IonAvatar onClick={()=>setIsPhoto(!isShownPhoto)} className="img-avatar-perfil">              
+
+          <IonAvatar onClick={()=>setIsPhoto(!isShownPhoto)} className="img-avatar-perfil">              
               <IonLabel className='background-photo' style={{opacity:isShownPhoto ? 0.6 : 0}}>
               <div className='text-photo' /*</IonAvatar>style={{fontWeight:'bold', position:'absolute', color:'var(--ion-color-dark)',zIndex:11}}*/>
                 {isShownPhoto && 'Mudar foto de perfil'}
@@ -74,7 +74,6 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
               </IonLabel>
               <img alt='Avatar' src={imgAvatar} />
             </IonAvatar>
-    
             <IonRow style={{
               opasity: isShown? 1 : 0, 
               cursor:'pointer', 
@@ -88,17 +87,24 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
               {home}
               <IonRow className=' ion-margin'>
-              <Link to={'/Flash-cards'}>
-                <IonButton fill='solid' onClick={()=>{
-                  closeMenu();
-                  //history.push('/Flash-cards')
-                  changeBtn();
-                  
+                <Link to={'/Flash-cards'}>
+                  <IonButton fill='solid' onClick={() => {
+                    closeMenu();
+                    //history.push('/Flash-cards')
+                    changeBtn();
+
                   }} className='btn-side-menu' color="light">Flashcards</IonButton>
-                  </Link>
+                </Link>
               </IonRow>
               <IonRow className='ion-margin'>
-                <IonButton fill='solid' className='btn-side-menu' color="light">Questionarios</IonButton>
+                <Link to={'/Questionarios'}>
+                  <IonButton fill='solid' onClick={() => {
+                    closeMenu();
+                    //history.push('/Questionarios')
+                    changeBtn();
+                  }}
+                    className='btn-side-menu' color="light">Questionarios</IonButton>
+                </Link>
               </IonRow >
               <IonRow className='ion-margin'>
                 <IonButton fill='solid' className='btn-side-menu' color="light">Classes</IonButton>
@@ -107,17 +113,18 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
                 <IonButton fill='solid' className='btn-side-menu' color="light">Conquistas</IonButton>
               </IonRow>
               <IonRow className='ion-margin'>
-              <Link to={'/Landing'}>
-                <IonButton className='sair' onClick={() => {
-                  closeMenu();
-                  menuController.enable(false);
-                }} size="small" color="light">         
-                     Sair
+                <Link to={'/Landing'}>
+                  <IonButton className='sair' onClick={() => {
+                    closeMenu();
+                    history.push('/Landing');
+                    menuController.enable(false);
+                  }} size="small" color="light">
+                    Sair
                     </IonButton>
-                    </Link>
+                </Link>
               </IonRow>
             </IonRow>
-            <IonRow  className='small-logo'>
+            <IonRow className='small-logo'>
               <img alt='Logo' src={smallLogo} />
             </IonRow>
           </IonGrid>
@@ -128,7 +135,7 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
         <IonHeader className='custom-header'>
           <IonToolbar>
             <IonRow className='row-label'>
-                <IonLabel className="label-menu-fixer">FIXER</IonLabel>
+              <IonLabel className="label-menu-fixer">FIXER</IonLabel>
             </IonRow>
             <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button dark" size="small" color="dark">
               <IonIcon icon={menuOutline} />
@@ -142,11 +149,11 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
 
         <IonContent className="menu-apresentacao-content">
           <IonRow>
-                 
+
             <IonSearchbar placeholder='Buscar' color='light' className="search-bar"
               value={searchText}
               onIonChange={e => setSearchText(e.detail.value!)}>
-                <div className='line'></div> 
+              <div className='line'></div>
             </IonSearchbar>
           </IonRow>
 
@@ -155,7 +162,7 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
 
             <IonCard className="card-menu-content">
               <IonCardContent className="card-title-menu">
-                <IonLabel  className='card-vazio'>
+                <IonLabel className='card-vazio'>
                   VAZIO
                 </IonLabel>
               </IonCardContent>
@@ -164,10 +171,10 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
             <IonLabel className="label-menu-title-cards">Mais respondidos</IonLabel>
 
             <IonCard className="card-menu-content">
-              
+
               <IonCardContent className="card-title-menu">
                 <IonLabel className='card-vazio'>
-                    VAZIO
+                  VAZIO
                 </IonLabel>
               </IonCardContent>
 
@@ -176,10 +183,10 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
             <IonLabel className="label-menu-title-cards">Conquistas próximas</IonLabel>
 
             <IonCard className="card-menu-content">
-              
+
               <IonCardContent className="card-title-menu">
                 <IonLabel className='card-vazio'>
-                    VAZIO
+                  VAZIO
                 </IonLabel>
               </IonCardContent>
             </IonCard>
@@ -192,11 +199,11 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
   )
 }
 
-const BtnHome: React.FC<{backHome:()=>void}> = props=>{
-  return(
+const BtnHome: React.FC<{ backHome: () => void }> = props => {
+  return (
     <>
-       <IonRow className=' ion-margin'>
-       <Link to={'/Home'}><IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light">Início</IonButton></Link>
+      <IonRow className=' ion-margin'>
+        <Link to={'/Home'}><IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light">Início</IonButton></Link>
       </IonRow>
     </>
   );
