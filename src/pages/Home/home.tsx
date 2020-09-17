@@ -26,7 +26,7 @@ const Home: React.FC = () => {
   async function closeMenu() {
     await menuController.close();
   }
-
+  
   const history = useHistory();
   const [searchText, setSearchText] = useState('');
   const [home, setHome] = useState<{}>('')
@@ -127,7 +127,6 @@ const Home: React.FC = () => {
                     closeMenu();
                     //history.push('/Conquistas')
                     changeBtn();
-
                   }} className='btn-side-menu' color="light">Conquistas</IonButton>
                 </Link>
               </IonRow>
