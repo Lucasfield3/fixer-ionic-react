@@ -23,9 +23,9 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Home from './pages/Home/home';
 import FlashCards from './pages/Flash-cards/flashCards';
-import Classes from './pages/Classe/classes';
 import Questionarios from './pages/Questionarios/questionarios';
 import Conquistas from './pages/Conquistas/conquistas';
+import Classes from './pages/Classes/classes'
 const App: React.FC = () => {
   return (
    <IonApp>

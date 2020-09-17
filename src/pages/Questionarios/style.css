@@ -1,0 +1,4 @@
+.custom-header, .custom-header-menu{
+    z-index: 0;
+    background: transparent;
+  }
