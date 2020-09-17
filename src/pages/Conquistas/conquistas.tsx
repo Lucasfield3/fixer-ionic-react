@@ -10,7 +10,7 @@ import {
     IonHeader,
     IonMenuButton,
     IonMenu,
-    IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar, IonFooter, IonTitle
+    IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar, IonFooter, IonTitle, IonCol
 } from '@ionic/react'
 import { menuOutline } from 'ionicons/icons';
 import './style.css'
@@ -57,6 +57,19 @@ const Conquista: React.FC = () => {
                     </IonRow>
 
                     <IonLabel className="label-menu-title-cards">Conquistas</IonLabel>
+
+                    <IonCard id='init-card' className='card-form' color='light'>
+                        <IonCardContent>
+                            <IonRow className="ion-align-items-center row">
+                                <IonCol className='col-btn-conquistas'>
+                                    
+                                Conteudo
+
+                                </IonCol>
+                            </IonRow>
+                        </IonCardContent>
+
+                    </IonCard>
 
 
                 </IonContent>

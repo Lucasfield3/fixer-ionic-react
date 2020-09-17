@@ -218,6 +218,8 @@ ion-label div:only-child{
 .search-bar{
   --border-radius: 6px;
   --ion-color-contrast: var(--ion-color-dark)!important;
+  max-height: 100%;
+  max-width: 100%;
 }
 .line{
   width: 1px;
