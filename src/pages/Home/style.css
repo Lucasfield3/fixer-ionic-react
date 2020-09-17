@@ -57,7 +57,7 @@ ion-button{
   --backgroun:none!important;
 }
 .btn-side-menu{
-  margin:-8px!important;
+  margin:12px!important;
   width: 101px;
   height: 26px;
   --border-radius: 7px;
@@ -68,6 +68,7 @@ ion-button{
   box-shadow: var(--box-shadow);
 }
 .sair{
+  margin-top: 1.2rem;
   --border-radius: 50%;
   width: 28px!important;
   height: 28px!important;
@@ -248,4 +249,7 @@ ion-label div:only-child{
 ion-button{
   border-radius: 50%;
   --backgroun: none!important;
+}
+.espacamento{
+  margin-top: 1px;
 }

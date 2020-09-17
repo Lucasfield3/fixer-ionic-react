@@ -24,6 +24,8 @@ import './theme/variables.css';
 import Home from './pages/Home/home';
 import FlashCards from './pages/Flash-cards/flashCards';
 import Questionarios from './pages/Questionarios/questionarios'
+import Classes from './pages/Classes/classes'
+import Conquistas from './pages/Conquistas/conquistas'
 const App: React.FC = () => {
   return (
    <IonApp>
@@ -33,6 +35,8 @@ const App: React.FC = () => {
         <Route path="/Home" component={Home} exact={true} />
         <Route path="/Flash-cards" component={FlashCards} exact={true} />
         <Route path="/Questionarios" component={Questionarios} exact={true} />
+        <Route path="/Classes" component={Classes} exact={true} />
+        <Route path="/Conquistas" component={Conquistas} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/Landing" />} />
       </IonRouterOutlet>
     </IonReactRouter>

@@ -66,7 +66,7 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
 
           <IonGrid className='menu-grid'>
 
-          <IonAvatar onClick={()=>setIsPhoto(!isShownPhoto)} className="img-avatar-perfil">              
+          <IonAvatar onClick={()=>setIsPhoto(true)} onMouseEnter={()=>setIsPhoto(true)} onMouseLeave={()=>setIsPhoto(false)} className="img-avatar-perfil">              
               <IonLabel className='background-photo' style={{opacity:isShownPhoto ? 0.6 : 0}}>
               <div className='text-photo' /*</IonAvatar>style={{fontWeight:'bold', position:'absolute', color:'var(--ion-color-dark)',zIndex:11}}*/>
                 {isShownPhoto && 'Mudar foto de perfil'}
@@ -76,9 +76,9 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
             </IonAvatar>
             <IonRow style={{
               opasity: isShown? 1 : 0, 
-              cursor:'pointer', 
+              cursor:'default',
               width:isShown? '50px' : '18px', 
-              borderRadius:'20px'}}  onClick={()=>setIsShown(!isShown)} /*onMouseEnter={()=>handleMouseEnter(true)} onMouseLeave={()=>handleMouseEnter(false)}*/ className='row-level'>
+              borderRadius:'20px'}}  onMouseEnter={()=>setIsShown(true)} onMouseLeave={()=>setIsShown(false)} className='row-level'>
                   {isShown && (
                     'level:'
                   )}0
@@ -87,7 +87,7 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
 
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
               {home}
-              <IonRow className=' ion-margin'>
+              <IonRow >
                 <Link to={'/Flash-cards'}>
                   <IonButton fill='solid' onClick={() => {
                     closeMenu();
@@ -97,7 +97,7 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
                   }} className='btn-side-menu' color="light">Flashcards</IonButton>
                 </Link>
               </IonRow>
-              <IonRow className='ion-margin'>
+              <IonRow >
                 <Link to={'/Questionarios'}>
                   <IonButton fill='solid' onClick={() => {
                     closeMenu();
@@ -107,13 +107,27 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
                     className='btn-side-menu' color="light">Questionarios</IonButton>
                 </Link>
               </IonRow >
-              <IonRow className='ion-margin'>
-                <IonButton fill='solid' className='btn-side-menu' color="light">Classes</IonButton>
-              </IonRow>
-              <IonRow className='ion-margin'>
-                <IonButton fill='solid' className='btn-side-menu' color="light">Conquistas</IonButton>
-              </IonRow>
-              <IonRow className='ion-margin'>
+              <IonRow >
+                <Link to={'/Classes'}>
+                  <IonButton fill='solid' onClick={() => {
+                    closeMenu();
+                    //history.push('/Questionarios')
+                    changeBtn();
+                  }}
+                    className='btn-side-menu' color="light">Classes</IonButton>
+                </Link>
+              </IonRow >
+              <IonRow >
+                <Link to={'/Conquistas'}>
+                  <IonButton fill='solid' onClick={() => {
+                    closeMenu();
+                    //history.push('/Questionarios')
+                    changeBtn();
+                  }}
+                    className='btn-side-menu' color="light">Conquistas</IonButton>
+                </Link>
+              </IonRow >
+              <IonRow >
                 <Link to={'/Landing'}>
                   <IonButton className='sair' onClick={() => {
                     closeMenu();
@@ -203,7 +217,7 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
 const BtnHome: React.FC<{ backHome: () => void }> = props => {
   return (
     <>
-      <IonRow className=' ion-margin'>
+      <IonRow >
         <Link to={'/Home'}><IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light">Início</IonButton></Link>
       </IonRow>
     </>
