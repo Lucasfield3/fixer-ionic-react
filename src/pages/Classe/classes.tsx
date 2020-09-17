@@ -23,7 +23,7 @@ async function openMenu(){
     await menuController.open();
 }
 
-const CardQuestionarios: React.FC = ()=>{
+const cardClasses: React.FC = ()=>{
 
     return(
         <>
@@ -47,4 +47,4 @@ const CardQuestionarios: React.FC = ()=>{
 
 }
 
-export default CardQuestionarios;
+export default cardClasses;

@@ -23,7 +23,9 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Home from './pages/Home/home';
 import FlashCards from './pages/Flash-cards/flashCards';
-import Questionarios from './pages/Questionarios/questionarios'
+import cardConquistas from './pages/Conquistas/conquistas';
+import CardClasses from './pages/Classe/classes';
+import CardQuestionarios from './pages/Questionarios/questionarios';
 const App: React.FC = () => {
   return (
    <IonApp>
@@ -31,8 +33,10 @@ const App: React.FC = () => {
       <IonRouterOutlet>
         <Route path="/Landing" component={Landing} exact={true} />
         <Route path="/Home" component={Home} exact={true} />
+        <Route path="/Questionarios" component={CardQuestionarios} exact={true} />
         <Route path="/Flash-cards" component={FlashCards} exact={true} />
-        <Route path="/Questionarios" component={Questionarios} exact={true} />
+        <Route path="/Classe" component={CardClasses} exact={true} />
+        <Route path="/Conquistas" component={cardConquistas} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/Landing" />} />
       </IonRouterOutlet>
     </IonReactRouter>
