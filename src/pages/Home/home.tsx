@@ -26,7 +26,7 @@ const Home: React.FC = () => {
   async function closeMenu() {
     await menuController.close();
   }
-
+  
   const history = useHistory();
   const [searchText, setSearchText] = useState('');
   const [home, setHome] = useState<{}>('')
@@ -41,20 +41,20 @@ const Home: React.FC = () => {
       }} />);
     }, 500)
   }
-const [isShown, setIsShown] = useState<boolean>(false);
-const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
+  const [isShown, setIsShown] = useState<boolean>(false);
+  const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
   return (
     <>
       <IonMenu className='custom-menu' type="overlay" side='start' contentId="main-content">
         <IonHeader className='custom-header-menu'>
           <IonToolbar className="bar-menu">
-            <IonFabButton slot='start' onClick={()=>{
+            <IonFabButton slot='start' onClick={() => {
               closeMenu();
-              setTimeout(()=>{
+              setTimeout(() => {
                 setIsPhoto(false);
                 setIsShown(false);
               }, 400)
-              }} className="icon-fab-button light" size="small" color='light'>
+            }} className="icon-fab-button light" size="small" color='light'>
               <IonIcon icon={menuOutline} />
             </IonFabButton>
           </IonToolbar>
@@ -83,7 +83,7 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
                     'level:'
                   )}0
             </IonRow>
-          
+
 
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
               {home}
@@ -103,8 +103,8 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
                     closeMenu();
                     //history.push('/Questionarios')
                     changeBtn();
-                  }}
-                    className='btn-side-menu' color="light">Questionarios</IonButton>
+
+                  }} className='btn-side-menu' color="light">Questionarios</IonButton>
                 </Link>
               </IonRow >
               <IonRow >
@@ -138,6 +138,7 @@ const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
                     </IonButton>
                 </Link>
               </IonRow>
+
             </IonRow>
             <IonRow className='small-logo'>
               <img alt='Logo' src={smallLogo} />
