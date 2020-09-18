@@ -18,11 +18,12 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
 import imgAvatar from '../../Assets/images/avatar.svg'
 import smallLogo from '../../Assets/icons/logo-small.svg'
+import Login from '../Landing/forms/login';
+import Cadastro from '../Landing/forms/cadastro';
 
 async function openMenu() {
     await menuController.open();
 }
-
 const Conquista: React.FC = () => {
 
     const [searchText, setSearchText] = useState('');
@@ -58,12 +59,14 @@ const Conquista: React.FC = () => {
 
                     <IonLabel className="label-menu-title-cards">Conquistas</IonLabel>
 
-                    <IonCard id='init-card' className='card-form' color='light'>
+                    <IonCard id='init-card' className='card-conquistas' color='light'>
                         <IonCardContent>
                             <IonRow className="ion-align-items-center row">
                                 <IonCol className='col-btn-conquistas'>
-                                    
-                                Conteudo
+
+                                    <IonButton className="btn-card-conquistas" color="light">
+                                        Lvl 1 - 20
+                                    </IonButton>
 
                                 </IonCol>
                             </IonRow>
