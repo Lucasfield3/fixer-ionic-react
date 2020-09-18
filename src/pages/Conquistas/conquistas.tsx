@@ -81,13 +81,9 @@ const Conquista: React.FC = () => {
                             </IonCardContent>
                         </IonCard>
 
+
                         <IonCard id='init-card' className='card-conquistas' color='light'>
-
-
-
-
-
-                        <IonCardContent>
+                            <IonCardContent>
                                 <IonRow className="ion-align-items-center row">
                                     <IonCol className='col-btn-conquistas'>
 
@@ -99,7 +95,6 @@ const Conquista: React.FC = () => {
                                 </IonRow>
                             </IonCardContent>
                         </IonCard>
-
                     </ReactCardFlip>
 
 
