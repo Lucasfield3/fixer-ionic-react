@@ -49,12 +49,15 @@
 ion-header ion-toolbar:first-of-type{
   --ion-background-color: transparent;
 }
+.ios ion-header ion-toolbar:first-of-type{
+  --background: transparent;
+}
 ion-menu {
   --max-width: 46%;
   --min-width: 46%;
 }
 ion-button{
-  --backgroun:none!important;
+  --background:none!important;
 }
 .btn-side-menu{
   margin:12px!important;

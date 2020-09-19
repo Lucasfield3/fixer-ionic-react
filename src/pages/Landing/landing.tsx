@@ -50,7 +50,7 @@ const Landing: React.FC = () => {
                         </div>
                     </IonRow>
                     <IonRow className="ion-justify-content-center ion-margin-top">
-                        <IonCard className='card' color='light'>
+                        <IonCard className='ios card' color='light'>
                             <IonCardContent className="ion-align-self-center ion-justify-content-center ion-content-gif" >
                                 <div className='content-gif' >
                                     <div className='gif'>
@@ -87,7 +87,7 @@ const InitCard: React.FC<{onClickLogin:()=>void; onClickCad:()=>void}> = props=>
                         <IonButton
                             onClick={props.onClickLogin}
                             size="small" color='dark'
-                            className='ion-margin btn-style-dark'
+                            className='ios ion-margin btn-style-dark'
                         >Entrar</IonButton>
                     </IonCol>
                     <IonCol>
@@ -95,7 +95,7 @@ const InitCard: React.FC<{onClickLogin:()=>void; onClickCad:()=>void}> = props=>
                             onClick={props.onClickCad}
                             size="small"
                             color='primary'
-                            className='ion-margin btn-style-light'
+                            className='ios ion-margin btn-style-light'
                         >Cadastro</IonButton>
                     </IonCol>
                 </IonRow>

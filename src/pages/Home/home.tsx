@@ -45,8 +45,8 @@ const Home: React.FC = () => {
   const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
   return (
     <>
-      <IonMenu className='custom-menu' type="overlay" side='start' contentId="main-content">
-        <IonHeader className='custom-header-menu'>
+      <IonMenu className='ios custom-menu' type="overlay" side='start' contentId="main-content">
+        <IonHeader className='ios header-ios custom-header-menu'>
           <IonToolbar className="bar-menu">
             <IonFabButton slot='start' onClick={() => {
               closeMenu();
@@ -148,7 +148,7 @@ const Home: React.FC = () => {
       </IonMenu>
 
       <IonPage id="main-content" className="page-inicio">
-        <IonHeader className='custom-header'>
+        <IonHeader className='ios custom-header'>
           <IonToolbar>
             <IonRow className='row-label'>
               <IonLabel className="label-menu-fixer">FIXER</IonLabel>
