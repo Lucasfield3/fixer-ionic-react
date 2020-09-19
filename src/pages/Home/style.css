@@ -51,6 +51,7 @@ ion-header ion-toolbar:first-of-type{
 }
 .ios ion-header ion-toolbar:first-of-type{
   --background: transparent;
+  --border-width: 0 0 0px;
 }
 ion-menu {
   --max-width: 46%;
