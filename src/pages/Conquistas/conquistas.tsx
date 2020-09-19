@@ -18,15 +18,20 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
 import imgAvatar from '../../Assets/images/avatar.svg'
 import smallLogo from '../../Assets/icons/logo-small.svg'
+import Login from '../Landing/forms/login';
+import Cadastro from '../Landing/forms/cadastro';
+import ReactCardFlip from 'react-card-flip';
 
 async function openMenu() {
     await menuController.open();
 }
-
 const Conquista: React.FC = () => {
 
     const [searchText, setSearchText] = useState('');
-
+    const [isFlipped, setIsflipped] = useState(false);
+    const handleClick = () => {
+        setIsflipped(!isFlipped)
+    }
 
     return (
 
@@ -58,18 +63,41 @@ const Conquista: React.FC = () => {
 
                     <IonLabel className="label-menu-title-cards">Conquistas</IonLabel>
 
-                    <IonCard id='init-card' className='card-form' color='light'>
-                        <IonCardContent>
-                            <IonRow className="ion-align-items-center row">
-                                <IonCol className='col-btn-conquistas'>
-                                    
-                                Conteudo
 
-                                </IonCol>
-                            </IonRow>
-                        </IonCardContent>
 
-                    </IonCard>
+                    <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
+
+                        <IonCard id='init-card' className='card-conquistas' color='light'>
+                            <IonCardContent>
+                                <IonRow className="ion-align-items-center row">
+                                    <IonCol className='col-btn-conquistas'>
+
+                                        <IonButton onClick={handleClick} className="btn-card-conquistas" color="light">
+                                            Lvl 1 - 20
+                                    </IonButton>
+
+                                    </IonCol>
+                                </IonRow>
+                            </IonCardContent>
+                        </IonCard>
+
+
+                        <IonCard id='init-card' className='card-conquistas' color='light'>
+                            <IonCardContent>
+                                <IonRow className="ion-align-items-center row">
+                                    <IonCol className='col-btn-conquistas'>
+
+                                        <IonButton onClick={handleClick} className="btn-card-conquistas" color="light">
+                                            Lvl 1 - 21
+                                    </IonButton>
+
+                                    </IonCol>
+                                </IonRow>
+                            </IonCardContent>
+                        </IonCard>
+                    </ReactCardFlip>
+
+
 
 
                 </IonContent>
