@@ -1,13 +1,25 @@
 .custom-header{
     z-index: 0;
     background: transparent;
-  }
+}
 
-
+.container-conquistas{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(1, 22, 39, 0.29);
+  width: 93%;
+  height: 92%;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  overflow: auto;
+}
+.container-conquistas ion-row{
+  flex-wrap: nowrap;
+}
   .btn-card-conquistas{
     display: flex;
     align-items: center;
-
     background-color: var(--ion-color-dark);
     font-weight: bold;
     box-shadow: var(--box-shadow);
@@ -15,20 +27,30 @@
     margin: 0 !important;
     margin-left: 0vh !important;
     font-size: small;
-
     height: 170px;
     width: 270px;
-
     font-size: 30px;
   }
-
   .card-conquistas{
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: 21px;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 93%;
-    height: 30vh;
+    width: 4rem;
+    margin: 1vh;
+    height: 5rem;
   }
 
+
+  .line{
+    width: 1px;
+    height: 24px;
+    background: var(--ion-color-dark);
+    z-index: 10;
+    position: absolute;
+    opacity: 0.4;
+    border-radius: 20%;
+    margin-left: 3rem;
+  }
