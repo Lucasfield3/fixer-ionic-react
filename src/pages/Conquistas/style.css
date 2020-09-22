@@ -8,15 +8,15 @@
   justify-content: center;
   align-items: center;
   background: rgba(1, 22, 39, 0.29);
-  width: 15.5rem;
-  height: 63.4rem;
+  width: auto;
+  height: 65.1rem;
   border-radius: 5px;
   overflow: auto;
   margin-inline-start: 5px;
   margin-inline-end: 5px;
   margin-bottom: 1.3rem;
   margin-top: 1rem;
-  padding-bottom: 0.5em;
+  padding-bottom: 0.4em;
   padding-top: 4.5em;
 }
 .container-conquistas ion-row{
