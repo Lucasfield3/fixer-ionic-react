@@ -8,42 +8,58 @@
   justify-content: center;
   align-items: center;
   background: rgba(1, 22, 39, 0.29);
-  width: 93%;
-  height: 92%;
-  margin-bottom: 1rem;
+  width: 15.5rem;
+  height: 63.4rem;
   border-radius: 5px;
   overflow: auto;
+  margin-inline-start: 5px;
+  margin-inline-end: 5px;
+  margin-bottom: 1.3rem;
+  margin-top: 1rem;
+  padding-bottom: 0.5em;
+  padding-top: 4.5em;
 }
 .container-conquistas ion-row{
   flex-wrap: nowrap;
 }
-  .btn-card-conquistas{
-    display: flex;
-    align-items: center;
-    background-color: var(--ion-color-dark);
-    font-weight: bold;
-    box-shadow: var(--box-shadow);
-    border-radius: 7px;
-    margin: 0 !important;
-    margin-left: 0vh !important;
-    font-size: small;
-    height: 170px;
-    width: 270px;
-    font-size: 30px;
-  }
-  .card-conquistas{
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 4rem;
-    margin: 1vh;
-    height: 5rem;
-  }
-
-
+.align-conquistas{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: -3rem;
+}
+.card-conquistas{
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 4.8rem;
+  margin: 0.4vh;
+  height: 5.4rem;
+  transition: all 100ms;
+  position: relative;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.card-conquistas:hover{
+  transition: all 0.2s ease-out;
+  transform: scale(1.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  position: relative;
+}
+.card-header{
+  width: 1rem;
+  padding: 0!important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
   .line{
     width: 1px;
     height: 24px;

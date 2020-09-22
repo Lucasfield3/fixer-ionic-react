@@ -1,29 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../style.css';
 import { 
 IonCard, 
 IonCardContent, 
-IonRow, 
-IonCol, 
-IonButton, IonLabel } from '@ionic/react';
+IonHeader, 
+IonImg, 
+IonFooter, IonCardHeader, IonCardTitle, IonCardSubtitle } from '@ionic/react';
 
-const CardsConquistas: React.FC = ()=>{
-
-
+const CardsConquistas: React.FC<{img:string;}> = props=>{
 
     return(
         <>
-        <IonCard className='card-conquistas' color='light'>
-            <IonCardContent>
-                <IonRow className="ion-align-items-center row">
-                    <IonCol className='col-btn-conquistas'>
-                        <IonLabel>
-                            Lvl 1 - 20
-                        </IonLabel> 
-                    </IonCol>
-                </IonRow>
-            </IonCardContent>
-        </IonCard>
+         <IonCard color='light' className='card-conquistas'>
+            <IonImg className='card-image' src={props.img}></IonImg>
+                    {props.children}
+         </IonCard>
         </>
     );
 

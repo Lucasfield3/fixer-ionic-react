@@ -9,8 +9,10 @@ import {
     IonIcon,
     IonHeader,
     IonMenuButton,
-    IonMenu,
-    IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar, IonFooter, IonTitle, IonCol
+    IonToolbar,  
+    IonLabel, 
+    IonCard, 
+    IonSearchbar, IonCardTitle, IonCardSubtitle, IonCardContent
 } from '@ionic/react';
 import { menuOutline } from 'ionicons/icons';
 import './style.css';
@@ -55,32 +57,87 @@ const Conquista: React.FC = () => {
                     <IonLabel className="label-menu-title-cards">Conquistas</IonLabel>
 
                     <IonCard className='container-conquistas'> 
-                        <IonGrid>
+                        <IonGrid className='align-conquistas'>
                             
                                 <IonRow>
-                                    <CardsConquistas/>
-                                    <CardsConquistas/>
-                                    <CardsConquistas/>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
                                 </IonRow>
                                 <IonRow>
-                                    <CardsConquistas/>
-                                    <CardsConquistas/>
-                                    <CardsConquistas/>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
                                 </IonRow>
                                 <IonRow>
-                                    <CardsConquistas/>
-                                    <CardsConquistas/>
-                                    <CardsConquistas/>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
                                 </IonRow>
                                 <IonRow>
-                                    <CardsConquistas/>
-                                    <CardsConquistas/>
-                                    <CardsConquistas/>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
                                 </IonRow>
                                 <IonRow>
-                                    <CardsConquistas/>
-                                    <CardsConquistas/>
-                                    <CardsConquistas/>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
+                                </IonRow>
+                                <IonRow>
+                                    <CardsConquistas img={''}>
+                                            <IonCardTitle>Titulo</IonCardTitle>
+                                            <IonCardContent>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
+                                </IonRow>
+                                <IonRow>
+                                    <CardsConquistas img={''}>
+                                            <IonCardTitle>Titulo</IonCardTitle>
+                                            <IonCardContent>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
+                                </IonRow>
+                                <IonRow>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
+                                    <CardsConquistas img={''}>
+                                        <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                    </CardsConquistas>
                                 </IonRow>
 
                         </IonGrid>
