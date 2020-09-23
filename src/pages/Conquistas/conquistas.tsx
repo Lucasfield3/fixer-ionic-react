@@ -62,7 +62,7 @@ const Conquista: React.FC = () => {
                                 <IonRow>
                                     <CardsConquistas img={''}>
                                         <IonCardTitle className='card-title'>Titulo</IonCardTitle>
-                                        <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                        <IonCardContent className='card-description'>Exemplo de descrição, debloquia ao criar o seu primeiro flash card.  debloquia ao criar o seu primeiro flash card,eu primeiro flash card.  debloquia ao criar o seu primeiro flash card</IonCardContent>
                                     </CardsConquistas>
                                     <CardsConquistas img={''}>
                                         <IonCardTitle className='card-title'>Titulo</IonCardTitle>

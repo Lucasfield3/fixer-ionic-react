@@ -11,8 +11,8 @@ const CardsConquistas: React.FC<{img:string;}> = props=>{
 
     return(
         <>
-         <IonCard color='light' className='card-conquistas'>
-            <IonImg className='card-image' src={props.img}></IonImg>
+         <IonCard className='card-conquistas'>
+            <IonImg className='card-image' alt='imagem' src={props.img}></IonImg>
                     {props.children}
          </IonCard>
         </>
