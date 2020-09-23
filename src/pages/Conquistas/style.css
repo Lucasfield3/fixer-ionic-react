@@ -37,8 +37,7 @@
   flex-direction: column;
   align-items: center;
   width: 7rem;
-  height: 9.1rem;
-  transition: all 100ms;
+  max-height: 7rem;
   position: relative;
   margin-left: 0.2rem;
   margin-right: 0.2rem;
@@ -46,15 +45,16 @@
   margin-bottom: 0.7rem;
   background: var(--ion-color-light);
   overflow: hidden;
-  transition:height 0.5s;
+  transition: max-height 0.5s ease-out;
 }
 .card-conquistas:hover{
-  transition: all 0.2s ease-out;
   top:-4px;
-  height: 10.5rem;
+  max-height: 20rem;
   box-shadow: 0 0 10px var(--light);
-  z-index: 9999;
-  position: relative;
+  transition: max-height 0.5s ease-in;
+}
+.card-conquistas:hover > .card-description, .card-conquistas:hover > .card-title{
+  opacity: 1;
 }
 .card-header{
   width: 1rem;
@@ -62,6 +62,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.card-title{
+  opacity: 0;
+}
+.card-image{
+  height: 5rem;
+  width: 5rem;
 }
 .card-description{
   padding-top: 13px;
@@ -73,7 +80,10 @@
   text-align: justify;
   word-break: break-all;
   color: var(--ion-color-dark);
+  opacity: 0;
+  transition: opacity 0.2s;
 }
+
   .line{
     width: 1px;
     height: 24px;
