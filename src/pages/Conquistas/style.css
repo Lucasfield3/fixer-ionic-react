@@ -69,6 +69,8 @@
 .card-image{
   height: 5rem;
   width: 5rem;
+
+  margin: .8rem 0;
 }
 .card-description{
   padding-top: 13px;
