@@ -84,3 +84,17 @@ a{
   text-decoration: none;
   color: inherit;
 }
+.ios ion-searchbar .line{
+  display: none;
+}
+ion-searchbar .line{
+  width: 1px;
+  height: 24px;
+  background: var(--ion-color-dark);
+  z-index: 10;
+  position: absolute;
+  opacity: 0.4;
+  border-radius: 20%;
+  margin-left: 2.9rem;
+
+}
