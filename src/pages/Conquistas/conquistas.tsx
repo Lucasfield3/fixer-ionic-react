@@ -34,6 +34,15 @@ import resume from '../../Assets/icons/resume.svg'
 import disco from '../../Assets/icons/disco.svg'
 import diamond from '../../Assets/icons/diamond.svg'
 import winner from '../../Assets/icons/winner.svg'
+import criador from '../../Assets/icons/criador.svg'
+import aficionado from '../../Assets/icons/aficionado.svg'
+import entusiasta from '../../Assets/icons/entusiasta.svg'
+import genio from '../../Assets/icons/genio.svg'
+import iniciante from '../../Assets/icons/iniciante.svg'
+import mentecriativa from '../../Assets/icons/mentecriativa.svg'
+import onfire from '../../Assets/icons/onfire.svg'
+import onfire2 from '../../Assets/icons/onfire2.svg'
+import polivolente from '../../Assets/icons/polivolente.svg'
 
 
 
@@ -80,14 +89,14 @@ const Conquista: React.FC = () => {
 
                             <IonRow>
                                 <IonCol>
-                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={bandeira}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={criador}>
+                                    <IonCardTitle className='card-title'>Criador</IonCardTitle>
                                     <IonCardContent className='card-description'>Exemplo de descrição, debloquia ao criar o seu primeiro flash card.  debloquia ao criar o seu primeiro flash card,eu primeiro flash card.  debloquia ao criar o seu primeiro flash card</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
                                 <IonCol>
-                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={rocket}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={iniciante}>
+                                    <IonCardTitle className='card-title'>Iniciante</IonCardTitle>
                                     <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
@@ -95,15 +104,15 @@ const Conquista: React.FC = () => {
                             </IonRow>
                             <IonRow>
                                 <IonCol>
-                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={target}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={mentecriativa}>
+                                    <IonCardTitle className='card-title'>Mente Criativa</IonCardTitle>
                                     <IonCardContent className='card-description'>Exemplo de descrição, debloquia ao criar o seu primeiro flash card.  debloquia ao criar o seu primeiro flash card,eu primeiro flash card.  debloquia ao criar o seu primeiro flash card</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                                 <IonCol>
-                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={mortarboard}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={aficionado}>
+                                    <IonCardTitle className='card-title'>Aficionado</IonCardTitle>
                                     <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
@@ -111,31 +120,15 @@ const Conquista: React.FC = () => {
                             </IonRow>
                             <IonRow>
                                 <IonCol>
-                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={star}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={entusiasta}>
+                                    <IonCardTitle className='card-title'>Entusiasta</IonCardTitle>
                                     <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                                 <IonCol>
-                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={mentalhealth}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
-                                </CardsConquistas>
-
-                                </IonCol>
-                            </IonRow>
-                            <IonRow>
-                                <IonCol>
-                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={clock}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
-                                </CardsConquistas>
-
-                                </IonCol>
-                                <IonCol>
-                                <CardsConquistas style={{width:'auto'}}classImg='card-image' img={love}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={genio}>
+                                    <IonCardTitle className='card-title'>Gênio</IonCardTitle>
                                     <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
@@ -143,8 +136,24 @@ const Conquista: React.FC = () => {
                             </IonRow>
                             <IonRow>
                                 <IonCol>
-                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={lovemutch}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
+                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={onfire}>
+                                    <IonCardTitle className='card-title'>Onfire</IonCardTitle>
+                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                </CardsConquistas>
+
+                                </IonCol>
+                                <IonCol>
+                                <CardsConquistas style={{width:'auto'}}classImg='card-image' img={onfire2}>
+                                    <IonCardTitle className='card-title'>Onfire x2</IonCardTitle>
+                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                </CardsConquistas>
+
+                                </IonCol>
+                            </IonRow>
+                            <IonRow>
+                                <IonCol>
+                                <CardsConquistas style={{width:'auto'}} classImg='card-image' img={polivolente}>
+                                    <IonCardTitle className='card-title'>Polivolente</IonCardTitle>
                                     <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
