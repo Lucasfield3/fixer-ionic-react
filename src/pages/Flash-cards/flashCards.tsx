@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   IonButton,
   IonPage,
-  IonContent,
-  IonGrid,
+
   IonRow,
   IonFabButton,
   IonIcon,
   IonHeader,
   IonMenuButton,
-  IonMenu,
-  IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar, IonFooter, IonTitle
+  IonToolbar, IonLabel
 } from '@ionic/react'
 import { menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
-import { useHistory } from 'react-router-dom'
-import imgAvatar from '../../Assets/images/avatar.svg'
-import smallLogo from '../../Assets/icons/logo-small.svg'
 
 async function openMenu(){
     await menuController.open();
