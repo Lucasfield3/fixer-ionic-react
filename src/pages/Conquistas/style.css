@@ -39,6 +39,7 @@
   overflow: hidden;
   transition: max-height 0.5s ease-out;
 }
+
 .card-conquistas:hover{
   top:-4px;
   max-height: 20rem;
@@ -79,11 +80,11 @@
   opacity: 0;
 }
 .card-image{
-  height: 5rem;
-  width: 5rem;
-
+  height: 4.5rem;
+  width: 4.5rem;
   margin: .8rem 0;
 }
+
 .card-description{
   padding-top: 13px;
   font-size: 11px;

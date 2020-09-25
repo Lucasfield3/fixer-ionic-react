@@ -6,12 +6,12 @@ IonImg,
 } from '@ionic/react';
 
 
-const CardsConquistas: React.FC<{img:string; classImg:string}> = props=>{
+const CardsConquistas: React.FC<{img:string; classImg:string;style:{}}> = props=>{
 
     return(
         <>
          <IonCard className='ios card-conquistas'>
-            <IonImg className={props.classImg} alt='imagem' src={props.img}></IonImg>
+            <IonImg style={props.style} className={props.classImg} alt='imagem' src={props.img}></IonImg>
                     {props.children}
          </IonCard>
         </>
