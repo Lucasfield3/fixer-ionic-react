@@ -25,6 +25,7 @@
   margin-right: 0;
   margin-top: -3rem;
 }
+
 .card-conquistas{
   border-radius: 5px;
   display: flex;
@@ -44,28 +45,10 @@
   top:-4px;
   max-height: 20rem;
   box-shadow: 0 0 10px var(--light);
-  transition: max-height 0.5s ease-in;
+  transition: max-height 0.3s ease-in;
 }
-.ion .card-conquistas{
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width:auto;
-  max-height: 7rem;
-  position: relative;
-  margin-top: 0.2rem;
-  margin-bottom: 0.7rem;
-  background: var(--ion-color-light);
-  overflow: hidden;
-  transition: max-height 0.5s ease-out;
-} 
-.ios .card-conquistas:hover{
-  top:-4px;
-  max-height: 20rem;
-  box-shadow: 0 0 10px var(--light);
-  transition: max-height 0.5s ease-in;
-}
+
+
 .card-conquistas:hover > .card-description, .card-conquistas:hover > .card-title{
   opacity: 1;
 }
@@ -76,9 +59,11 @@
   flex-direction: column;
   align-items: center;
 }
+
 .card-title{
   opacity: 0;
 }
+
 .card-image{
   height: 5rem;
   width: 5rem;
@@ -99,6 +84,8 @@
   transition: opacity 0.2s;
 }
 
+
+
   .line{
     width: 1px;
     height: 24px;
@@ -110,3 +97,79 @@
     margin-left: 3rem;
   }
 
+  .ios .container-conquistas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(1, 22, 39, 0.29);
+    width: auto;
+    height:auto;
+    border-radius: 5px;
+    overflow: auto;
+    margin-inline-start: 5px;
+    margin-inline-end: 5px;
+    margin-bottom: 1.3rem;
+    margin-top: 1rem;
+    padding-bottom: 0.1em;
+    padding-top: 6.5em;
+  }
+
+  .ios .align-conquistas{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: -3rem;
+  }
+
+  .ios .card-conquistas{
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:auto;
+    max-height: 7rem;
+    position: relative;
+    margin-top: 0.2rem;
+    margin-bottom: 0.7rem;
+    background: var(--ion-color-light);
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+  } 
+
+  .ios .card-conquistas:hover{
+    top:-4px;
+    max-height: 20rem;
+    box-shadow: 0 0 10px var(--light);
+    transition: max-height 0.3s ease-in;
+  }
+
+  .ios .card-header{
+    width: 1rem;
+    padding: 0!important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ios .card-image{
+    height: 5rem;
+    width: 5rem;
+    margin: .8rem 0;
+  }
+
+  .ios .card-title{
+    opacity: 0;
+  }
+
+  .ios .card-description{
+    padding-top: 13px;
+    font-size: 11px;
+    line-height: 1.3;
+    padding-inline-start: 5px;
+    padding-inline-end: 5px;
+    padding-bottom: 5px;
+    text-align: justify;
+    word-break: break-all;
+    color: var(--ion-color-dark);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }

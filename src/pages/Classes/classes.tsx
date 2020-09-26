@@ -16,8 +16,6 @@ import { menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 
-import imgAvatar from '../../Assets/images/avatar.svg'
-import smallLogo from '../../Assets/icons/logo-small.svg'
 import { trash, share, caretForwardCircle, heart, close } from 'ionicons/icons';
 import { add, logoFacebook, logoAmazon, logoVimeo, logoTwitter, logoInstagram, settings } from 'ionicons/icons';
 

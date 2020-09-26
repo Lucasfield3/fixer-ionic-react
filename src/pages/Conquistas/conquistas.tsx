@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+import CardsConquistas from './CardsConquistas/cardsConquistas';
+import './style.css';
+import { menuController } from '@ionic/core';
 import {
     IonButton,
     IonPage,
@@ -12,21 +16,9 @@ import {
     IonToolbar,
     IonLabel,
     IonCard,
-    IonSearchbar, IonCardTitle, IonCardContent, IonCol, IonImg
+    IonSearchbar, IonCardTitle, IonCardContent, IonCol
 } from '@ionic/react';
 import { menuOutline } from 'ionicons/icons';
-import './style.css';
-import { menuController } from '@ionic/core';
-import bandeira from '../../Assets/icons/bandeira.svg'
-import CardsConquistas from './CardsConquistas/cardsConquistas';
-import rocket from '../../Assets/icons/rocket.svg'
-import target from '../../Assets/icons/target.svg'
-import mortarboard from '../../Assets/icons/mortarboard.svg'
-import star from '../../Assets/icons/star.svg'
-import clock from '../../Assets/icons/clock.svg'
-import mentalhealth from '../../Assets/icons/mentalhealth.svg'
-import love from '../../Assets/icons/love.svg'
-import lovemutch from '../../Assets/icons/lovemutch.svg'
 import message from '../../Assets/icons/message.svg'
 import planet from '../../Assets/icons/planet.svg'
 import crystal from '../../Assets/icons/crystal.svg'
@@ -35,7 +27,6 @@ import disco from '../../Assets/icons/disco.svg'
 import diamond from '../../Assets/icons/diamond.svg'
 import winner from '../../Assets/icons/winner.svg'
 import cadeado from '../../Assets/icons/padlock.svg'
-import styled from 'styled-components';
 import criador from '../../Assets/icons/criador.svg'
 import aficionado from '../../Assets/icons/aficionado.svg'
 import entusiasta from '../../Assets/icons/entusiasta.svg'
@@ -111,128 +102,127 @@ const Conquista: React.FC = () => {
 
                             <IonRow>
                                 <Disable>
-                                <CardsConquistas style={{}} classImg='card-image' img={criador}>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={criador}>
                                     <Overlay/>
                                     <Cadeado src={cadeado}></Cadeado>
-                                    <IonCardTitle className='card-title'>Criador</IonCardTitle>
-                                    <IonCardContent className='card-description'>Crie o seu primerio questionario</IonCardContent>
+                                    <IonCardTitle className='ios card-title'>Criador</IonCardTitle>
+                                    <IonCardContent className='ios ios card-description'>Crie o seu primerio questionario</IonCardContent>
                                 </CardsConquistas>
                                 </Disable>
                                 <IonCol>
-                                <CardsConquistas style={{}} classImg='card-image' img={iniciante}>
-                                    <IonCardTitle className='card-title'>Iniciante</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={iniciante}>
+                                    <IonCardTitle className='ios card-title'>Iniciante</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                             </IonRow>
                             <IonRow>
                                 <IonCol>
-                                <CardsConquistas style={{}} classImg='card-image' img={mentecriativa}>
-                                    <IonCardTitle className='card-title'>Mente Criativa</IonCardTitle>
-                                    <IonCardContent className='card-description'>Exemplo de descrição, debloquia ao criar o seu primeiro flash card.  debloquia ao criar o seu primeiro flash card,eu primeiro flash card.  debloquia ao criar o seu primeiro flash card</IonCardContent>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={mentecriativa}>
+                                    <IonCardTitle className='ios card-title'>Mente Criativa</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Exemplo de descrição, debloquia ao criar o seu primeiro flash card.  debloquia ao criar o seu primeiro flash card,eu primeiro flash card.  debloquia ao criar o seu primeiro flash card</IonCardContent>
+                                </CardsConquistas>
+
+                                </IonCol>
+                                <IonCol style={{width:'4rem'}}>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={aficionado}>
+                                    <IonCardTitle className='ios card-title'>Aficionado</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
+                                </CardsConquistas>
+
+                                </IonCol>
+                            </IonRow>
+                            <IonRow>
+                                <IonCol style={{width:'4rem'}}>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={entusiasta}>
+                                    <IonCardTitle className='ios card-title'>Entusiasta</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                                 <IonCol>
-                                <CardsConquistas style={{}} classImg='card-image' img={aficionado}>
-                                    <IonCardTitle className='card-title'>Aficionado</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={genio}>
+                                    <IonCardTitle className='ios card-title'>Gênio</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                             </IonRow>
                             <IonRow>
                                 <IonCol>
-                                <CardsConquistas style={{}} classImg='card-image' img={entusiasta}>
-                                    <IonCardTitle className='card-title'>Entusiasta</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={onfire}>
+                                    <IonCardTitle className='ios card-title'>Onfire</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                                 <IonCol>
-                                <CardsConquistas style={{}} classImg='card-image' img={genio}>
-                                    <IonCardTitle className='card-title'>Gênio</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={onfire2}>
+                                    <IonCardTitle className='ios card-title'>Onfire x2</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
+                                </CardsConquistas>
+
+                                </IonCol>
+                            </IonRow>
+                            <IonRow>
+                                <IonCol style={{width:'4rem'}}>
+                                <CardsConquistas style={{}}  classImg='ios card-image' img={polivolente}>
+                                    <IonCardTitle className='ios card-title'>Polivolente</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
+                                </CardsConquistas>
+
+                                </IonCol>
+                                <IonCol>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={planet}>
+                                    <IonCardTitle className='ios card-title'>Titulo</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
+                                </CardsConquistas>
+                                </IonCol>
+                            </IonRow>
+                            <IonRow>
+                                <IonCol>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={message}>
+                                    <IonCardTitle className='ios card-title'>Titulo</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
+                                </CardsConquistas>
+                                </IonCol>
+                                <IonCol>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={crystal}>
+                                    <IonCardTitle className='ios card-title'>Titulo</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                             </IonRow>
                             <IonRow>
                                 <IonCol>
-                                <CardsConquistas style={{}} classImg='card-image' img={onfire}>
-                                    <IonCardTitle className='card-title'>Onfire</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={resume}>
+                                    <IonCardTitle className='ios card-title'>Titulo</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                                 <IonCol>
-                                <CardsConquistas style={{}} classImg='card-image' img={onfire2}>
-                                    <IonCardTitle className='card-title'>Onfire x2</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
-                                </CardsConquistas>
-
-                                </IonCol>
-                            </IonRow>
-                            <IonRow>
-                                <IonCol>
-                                <CardsConquistas style={{width:'3.7rem'}}  classImg='card-image' img={polivolente}>
-                                    <IonCardTitle className='card-title'>Polivolente</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
-                                </CardsConquistas>
-
-                                </IonCol>
-                                <IonCol>
-                                <CardsConquistas style={{width:'3.5rem'}} classImg='card-image' img={planet}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
-                                </CardsConquistas>
-                                </IonCol>
-                            </IonRow>
-                            <IonRow>
-                                <IonCol>
-                                <CardsConquistas style={{}} classImg='card-image' img={message}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
-                                </CardsConquistas>
-
-                                </IonCol>
-                                <IonCol>
-                                <CardsConquistas style={{}} classImg='card-image' img={crystal}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={disco}>
+                                    <IonCardTitle className='ios card-title'>Titulo</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                             </IonRow>
                             <IonRow>
                                 <IonCol>
-                                <CardsConquistas style={{}} classImg='card-image' img={resume}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={diamond}>
+                                    <IonCardTitle className='ios card-title'>Titulo</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                                 <IonCol>
-                                <CardsConquistas style={{}} classImg={'card-image'} img={disco}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
-                                </CardsConquistas>
-
-                                </IonCol>
-                            </IonRow>
-                            <IonRow>
-                                <IonCol>
-                                <CardsConquistas style={{}} classImg={'card-image'} img={diamond}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
-                                </CardsConquistas>
-
-                                </IonCol>
-                                <IonCol>
-                                <CardsConquistas style={{}} classImg={'card-image'} img={winner}>
-                                    <IonCardTitle className='card-title'>Titulo</IonCardTitle>
-                                    <IonCardContent className='card-description'>Descrição da conquista</IonCardContent>
+                                <CardsConquistas style={{}} classImg='ios card-image' img={winner}>
+                                    <IonCardTitle className='ios card-title'>Titulo</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Descrição da conquista</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
                             </IonRow>
