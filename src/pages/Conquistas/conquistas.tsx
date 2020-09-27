@@ -44,14 +44,12 @@ const Overlay = styled.div`
     position: absolute;
     width:100%;
     height: 7rem;
-    z-index: 20;
 `;
 
 const Cadeado = styled.img`
     position: absolute;
     width: 4rem;
     height: 2rem;
-    z-index: 10;
     top: 31%;
 
 `;

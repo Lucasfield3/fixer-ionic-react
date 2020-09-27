@@ -3,21 +3,21 @@ import {
     IonButton,
     IonPage,
     IonContent,
-    IonGrid,
     IonRow,
     IonFabButton,
     IonIcon,
     IonHeader,
     IonMenuButton,
-    IonMenu,
-    IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar, IonFooter, IonTitle, IonActionSheet, IonFab, IonFabList
+    IonToolbar,  
+    IonLabel,  
+    IonActionSheet
 } from '@ionic/react'
 import { menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 
 import { trash, share, caretForwardCircle, heart, close } from 'ionicons/icons';
-import { add, logoFacebook, logoAmazon, logoVimeo, logoTwitter, logoInstagram, settings } from 'ionicons/icons';
+//import { add, logoFacebook, logoAmazon, logoVimeo, logoTwitter, logoInstagram, settings } from 'ionicons/icons';
 
 
 
@@ -48,7 +48,7 @@ const Classes: React.FC = () => {
                 </IonHeader>
 
 
-                <IonContent>
+                <IonContent hidden>
                     <IonButton className="btnMostrar" onClick={() => setShowActionSheet(true)} expand="block">
                         Add
                     </IonButton>
