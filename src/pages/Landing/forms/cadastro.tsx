@@ -6,7 +6,7 @@ import '../style.css'
 const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
 
     const [input, setInput] = useState<string>('')
-    const [showAlert1, setShowAlert1] = useState(false);
+    const [showAlert1, setShowAlert1] = useState<boolean>(false);
     const Props = ()=>{
         props.handleClickCad();
     }

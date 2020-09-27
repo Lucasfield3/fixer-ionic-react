@@ -108,18 +108,16 @@ ion-button{
   height: 7rem;
   background-color: rgb(121, 118, 118);
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .img-avatar-perfil img{
   border: 2.5px var(--ion-color-dark) solid;
   opacity: 1;
   transition: opacity ease-in 100ms;
-}
-.img-avatar-perfil img:hover,
-.img-avatar-perfil img:focus{
-  opacity: 0.8;
   cursor: pointer;
 }
+
 .background-photo{
   z-index: 10;
   text-align: center;
@@ -157,13 +155,13 @@ ion-label div:only-child{
   margin-top: 1vh;
   background: var(--ion-color-dark);
   color: var(--light);
-  border-radius: 50%;
+  border-radius: 1rem;
   font-weight: bold;
-  width: 18px;
-  height: 18px;
-  font-size: 13px;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 18px;
   text-align: center;
-  line-height: 18px;
+  line-height: 1.6rem;
 }
 .label-level{
   position: absolute;

@@ -15,7 +15,7 @@ import {
   IonLabel, 
   IonCard,  
   IonCardContent, 
-  IonSearchbar
+  IonSearchbar, IonBackdrop
 } from '@ionic/react'
 import { menuOutline } from 'ionicons/icons';
 import './style.css'
@@ -35,6 +35,9 @@ const Home: React.FC = () => {
   const history = useHistory();
   const [searchText, setSearchText] = useState('');
   const [home, setHome] = useState<{}>('')
+  const [backDrop, setBackDrop] = useState<{}>('');
+  const [isShown, setIsShown] = useState<boolean>(false);
+  const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
   const changeBtn = () => {
     setTimeout(() => {
       setHome(<BtnHome backHome={() => {
@@ -46,11 +49,20 @@ const Home: React.FC = () => {
       }} />);
     }, 500)
   }
-  const [isShown, setIsShown] = useState<boolean>(false);
-  const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
+  const changeBackDrop = ()=>{
+    setBackDrop(<BackDrop changeBack={()=>{
+      setBackDrop('')
+      setIsShown(false)
+      setIsPhoto(false)
+    }}/>)
+  }
+ 
   return (
     <>
-      <IonMenu className='ios custom-menu' type="overlay" side='start' contentId="main-content">
+      <IonMenu onIonDidClose={()=>{
+        setIsPhoto(false)
+        setIsShown(false)
+        }} className='ios custom-menu' type="overlay" side='start' contentId="main-content">
         <IonHeader className='ios header-ios custom-header-menu'>
           <IonToolbar className="bar-menu">
             <IonFabButton slot='start' onClick={() => {
@@ -65,15 +77,16 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-
-
         <IonContent className='custom-body-menu'>
-
+          
           <IonGrid className='menu-grid'>
-
-          <IonAvatar onClick={()=>setIsPhoto(true)} onMouseEnter={()=>setIsPhoto(true)} onMouseLeave={()=>setIsPhoto(false)} className="img-avatar-perfil">              
+            {backDrop}
+          <IonAvatar onClick={()=>{
+            setIsPhoto(!isShownPhoto)
+            changeBackDrop()
+            }}className="img-avatar-perfil">              
               <IonLabel className='background-photo' style={{opacity:isShownPhoto ? 0.6 : 0}}>
-              <div className='text-photo' /*</IonAvatar>style={{fontWeight:'bold', position:'absolute', color:'var(--ion-color-dark)',zIndex:11}}*/>
+              <div className='text-photo' >
                 {isShownPhoto && 'Mudar foto de perfil'}
                 </div>
               </IonLabel>
@@ -82,10 +95,13 @@ const Home: React.FC = () => {
             <IonRow style={{
               opasity: isShown? 1 : 0, 
               cursor:'default',
-              width:isShown? '50px' : '18px', 
-              borderRadius:'20px'}}  onMouseEnter={()=>setIsShown(true)} onMouseLeave={()=>setIsShown(false)} className='row-level'>
+              width:isShown? '5rem' : '1.5rem', 
+              borderRadius:'1rem'}}  onClick={()=>{
+                setIsShown(!isShown)
+                changeBackDrop()
+                }} className='row-level'>
                   {isShown && (
-                    'level:'
+                    'level: '
                   )}0
             </IonRow>
 
@@ -148,6 +164,7 @@ const Home: React.FC = () => {
             <IonRow className='small-logo'>
               <img alt='Logo' src={smallLogo} />
             </IonRow>
+            
           </IonGrid>
         </IonContent>
       </IonMenu>
@@ -226,6 +243,15 @@ const BtnHome: React.FC<{ backHome: () => void }> = props => {
       <IonRow >
         <IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light">Início</IonButton>
       </IonRow>
+    </>
+  );
+}
+
+const BackDrop: React.FC<{changeBack:() => void }> = props =>{
+  return(
+    <>
+       <IonBackdrop onIonBackdropTap={props.changeBack} visible={true} tappable={true} stopPropagation={true}>
+        </IonBackdrop>
     </>
   );
 }
