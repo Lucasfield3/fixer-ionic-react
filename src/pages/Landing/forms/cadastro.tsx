@@ -1,23 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem, IonAlert } from '@ionic/react';
 import Button from '../styles/Button'
 import '../style.css'
-
 
 const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
 
     const [input, setInput] = useState<string>('')
     const [showAlert1, setShowAlert1] = useState(false);
-    const [text, setText] = useState<string>('Cancelar')
-    
     const Props = ()=>{
         props.handleClickCad();
-        setTimeout(()=>{
-            setText('Cancelar');
-        }, 1000)
-        
     }
-
     /*const [showAlert2, setShowAlert2] = useState(false);
     const [showAlert3, setShowAlert3] = useState(false);
     const [showAlert4, setShowAlert4] = useState(false);
@@ -76,7 +68,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
                         <IonAlert
                             isOpen={showAlert1}
                             onDidDismiss={() => {
-                                setText('Voltar')
+                                props.handleClickCad();
                                 setShowAlert1(false)
                             }}
                             cssClass='my-custom-class .alert-wrapper'                            
@@ -85,7 +77,10 @@ const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
                             message={'Um e-mail de confirmação foi enviado para sua caixa de entrada.'}
                             buttons={[{
                                 text:'OK',
-                                handler: ()=> setText('Voltar')
+                                handler: ()=> {
+                                    props.handleClickCad();
+                                }
+                                
 
                             }]}
                         />
@@ -94,11 +89,11 @@ const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
                     </IonCol>
                     <IonCol>
                         <Button
-                            onClick={Props}
+                            onClick={()=>props.handleClickCad()}
                             size="small"
                             color='light'
                             className='ion-margin btn-style-cadastro-light'
-                        >{text}</Button>
+                        >Cancelar</Button>
                     </IonCol>
                 </IonRow>
             </IonCardContent>

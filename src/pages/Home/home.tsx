@@ -10,7 +10,12 @@ import {
   IonHeader,
   IonMenuButton,
   IonMenu,
-  IonToolbar, IonAvatar, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar, IonFooter
+  IonToolbar, 
+  IonAvatar, 
+  IonLabel, 
+  IonCard,  
+  IonCardContent, 
+  IonSearchbar
 } from '@ionic/react'
 import { menuOutline } from 'ionicons/icons';
 import './style.css'
@@ -88,47 +93,47 @@ const Home: React.FC = () => {
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
               {home}
               <IonRow >
-                <Link to={'/Flash-cards'}>
+               
                   <IonButton fill='solid' onClick={() => {
                     closeMenu();
-                    //history.push('/Flash-cards')
+                    history.push('/Flash-cards')
                     changeBtn();
 
                   }} className='btn-side-menu' color="light">Flashcards</IonButton>
-                </Link>
+                
               </IonRow>
               <IonRow >
-                <Link to={'/Questionarios'}>
+                
                   <IonButton fill='solid' onClick={() => {
                     closeMenu();
-                    //history.push('/Questionarios')
+                    history.push('/Questionarios')
                     changeBtn();
 
                   }} className='btn-side-menu' color="light">Questionarios</IonButton>
-                </Link>
+               
               </IonRow >
               <IonRow >
-                <Link to={'/Classes'}>
+               
                   <IonButton fill='solid' onClick={() => {
                     closeMenu();
-                    //history.push('/Questionarios')
+                    history.push('/Classes')
                     changeBtn();
                   }}
                     className='btn-side-menu' color="light">Classes</IonButton>
-                </Link>
+                
               </IonRow >
               <IonRow >
-                <Link to={'/Conquistas'}>
+                
                   <IonButton fill='solid' onClick={() => {
                     closeMenu();
-                    //history.push('/Questionarios')
+                    history.push('/Conquistas')
                     changeBtn();
                   }}
                     className='btn-side-menu' color="light">Conquistas</IonButton>
-                </Link>
+                
               </IonRow >
               <IonRow >
-                <Link to={'/Landing'}>
+               
                   <IonButton className='sair' onClick={() => {
                     closeMenu();
                     history.push('/Landing');
@@ -136,7 +141,7 @@ const Home: React.FC = () => {
                   }} size="small" color="light">
                     Sair
                     </IonButton>
-                </Link>
+    
               </IonRow>
 
             </IonRow>
@@ -219,7 +224,7 @@ const BtnHome: React.FC<{ backHome: () => void }> = props => {
   return (
     <>
       <IonRow >
-        <Link to={'/Home'}><IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light">Início</IonButton></Link>
+        <IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light">Início</IonButton>
       </IonRow>
     </>
   );

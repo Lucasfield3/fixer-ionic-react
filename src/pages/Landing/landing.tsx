@@ -25,13 +25,13 @@ const Landing: React.FC = () => {
     const mystyle = {
         position: 'absolute',
         borderRadius: '21px',
-        height: '15.5vh',
+        height: '15.6vh',
     } as React.CSSProperties;
     const handleClick = () => {
         setIsflipped(isFlipped)
     }
     const [cards, setCards] = useState<{}>(<Login handleClickLogin={handleClick} />)
-    const [initCard, setIniCarcd] = useState<{}>(<InitCard 
+    const [initCard] = useState<{}>(<InitCard 
         onClickLogin={()=>handleClickCadLogin(<Login handleClickLogin={handleClick} />)}
         onClickCad={()=>handleClickCadLogin(<Cadastro handleClickCad={handleClick}/>)}
         />)
@@ -51,7 +51,7 @@ const Landing: React.FC = () => {
                     </IonRow>
                     <IonRow className="ion-justify-content-center ion-margin-top">
                         <IonCard className='ios card' color='light'>
-                            <IonCardContent className="ion-align-self-center ion-justify-content-center ion-content-gif" >
+                            <IonCardContent style={{padding:0}} className="ion-align-self-center ion-justify-content-center ion-content-gif" >
                                 <div className='content-gif' >
                                     <div className='gif'>
                                         <IonAvatar className='shape-gif'>

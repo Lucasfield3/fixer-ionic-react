@@ -62,8 +62,8 @@ ion-button{
 }
 .btn-side-menu{
   margin:12px!important;
-  width: 101px;
-  height: 26px;
+  width: 6.5rem;
+  height: 1.6rem;
   --border-radius: 7px;
   font-size: 11px!important;
   --ion-color-light-contrast:var(--ion-color-dark);

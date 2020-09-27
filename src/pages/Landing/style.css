@@ -26,11 +26,15 @@
 }
 
 .card{
-    width: 13rem;
-    height: 20vh;
+    max-width: 50rem;
+    max-height: 50rem;
     margin-bottom: 1rem;
     border-radius: 10px;
     border-radius: 21px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 .ios .card{
     width: 13rem;
