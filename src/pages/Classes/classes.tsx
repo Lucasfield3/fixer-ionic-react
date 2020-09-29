@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import {
     IonButton,
     IonPage,
@@ -8,8 +8,8 @@ import {
     IonIcon,
     IonHeader,
     IonMenuButton,
-    IonToolbar,  
-    IonLabel,  
+    IonToolbar,
+    IonLabel,
     IonActionSheet
 } from '@ionic/react'
 import { menuOutline } from 'ionicons/icons';
@@ -46,7 +46,6 @@ const Classes: React.FC = () => {
                         </IonFabButton>
                     </IonToolbar>
                 </IonHeader>
-
 
                 <IonContent hidden>
                     <IonButton className="btnMostrar" onClick={() => setShowActionSheet(true)} expand="block">
@@ -93,6 +92,7 @@ const Classes: React.FC = () => {
                     >
                     </IonActionSheet>
                 </IonContent>
+
 
 
 

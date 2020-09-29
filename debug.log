@@ -2,3 +2,9 @@
 [0911/213112.329:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acesso Negado} Um processo solicitou acesso a um objeto, mas o direito de acesso não lhe foi concedido. (0xc0000022)
 [0911/213112.438:ERROR:exception_snapshot_win.cc(99)] thread ID 9420 not found in process
 [0911/213112.438:ERROR:exception_snapshot_win.cc(99)] thread ID 2352 not found in process
+[0928/084156.192:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0928/085156.193:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0928/085156.193:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0928/085656.193:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0928/193445.222:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0929/130115.388:ERROR:crash_report_database_win.cc(469)] failed to stat report
