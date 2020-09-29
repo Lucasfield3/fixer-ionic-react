@@ -114,29 +114,29 @@ const Conquista: React.FC = () => {
                                     <Overlay/>
                                     <Cadeado src={cadeado}></Cadeado>
                                     <IonCardTitle className='ios card-title'>Criador</IonCardTitle>
-                                    <IonCardContent className='ios ios card-description'>Crie o seu primerio questionario</IonCardContent>
+                                    <IonCardContent className='ios ios card-description'>Crie o seu primerio questionario.</IonCardContent>
                                 </CardsConquistas>
                                 </Disable>
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={iniciante}>
                                     <IonCardTitle className='ios card-title'>Iniciante</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Responda um questionário inteiro</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Responda um questionário inteiro.</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                             </IonRow>
                             <IonRow>
-                                <IonCol>
+                                <IonCol style={{width:'4rem'}}>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={polivolente}>
                                     <IonCardTitle className='ios card-title'>Polivolente</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Crie mais de um tipo de questionário</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Crie mais de um tipo de questionário.</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                                 <IonCol style={{width:'4rem'}}>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={prodigio}>
                                     <IonCardTitle className='ios card-title'>Prodígio</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Gabarite 1 questioário</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Gabarite 1 questionário.</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
@@ -145,15 +145,15 @@ const Conquista: React.FC = () => {
                                 <IonCol style={{width:'4rem'}}>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={entusiasta}>
                                     <IonCardTitle className='ios card-title'>Entusiasta</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Crie 50 flashcards</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Crie 50 flashcards.</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
-                                <IonCol>
+                                <IonCol style={{width:'4rem'}}>
 
                                 <CardsConquistas style={{}} classImg='ios card-image' img={aficionado}>
                                     <IonCardTitle className='ios card-title'>Aficionado</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Crie 150 flashcards</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Crie 150 flashcards.</IonCardContent>
                                 </CardsConquistas>
                         
 
@@ -163,14 +163,14 @@ const Conquista: React.FC = () => {
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={onfire}>
                                     <IonCardTitle className='ios card-title'>Onfire</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Acerte 10 perguntas seguidas</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Acerte 10 perguntas seguidas.</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={onfire2}>
                                     <IonCardTitle className='ios card-title'>Onfire x2</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Acerte 20 perguntas seguidas</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Acerte 20 perguntas seguidas.</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
@@ -179,14 +179,14 @@ const Conquista: React.FC = () => {
                                 <IonCol style={{width:'4rem'}}>
                                 <CardsConquistas style={{}}  classImg='ios card-image' img={mestrenumeros}>
                                     <IonCardTitle className='ios card-title'>Mestre dos Números</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Responda 3 questionários de ,atemática</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Responda 3 questionários de matemática.</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={planet}>
                                     <IonCardTitle className='ios card-title'>Sabe Tudo</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Gabarite 10 questionários</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Gabarite 10 questionários.</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
                             </IonRow>
@@ -194,13 +194,13 @@ const Conquista: React.FC = () => {
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={mito}>
                                     <IonCardTitle className='ios card-title'>Mito !</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Gabarite 100 questionários</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Gabarite 100 questionários.</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={mentecriativa}>
                                     <IonCardTitle className='ios card-title'>Mente Criativa</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Crie 50 questionários</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Crie 50 questionários.</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
@@ -209,14 +209,14 @@ const Conquista: React.FC = () => {
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={resume}>
                                     <IonCardTitle className='ios card-title'>Sábio dos Números</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Gabarite 10 questionários de matemática</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Gabarite 10 questionários de matemática.</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={eremitanumeros}>
                                     <IonCardTitle className='ios card-title'>Eremita dos Números</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Gabarite 50 questionários de matemática</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Gabarite 50 questionários de matemática.</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
@@ -225,35 +225,43 @@ const Conquista: React.FC = () => {
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={mestrepalavras}>
                                     <IonCardTitle className='ios card-title'>Mestre das Palavras</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Responda 3 questionários de português</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Responda 3 questionários de português.</IonCardContent>
                                 </CardsConquistas>
 
                                 </IonCol>
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={sabiopalavras}>
                                     <IonCardTitle className='ios card-title'>Sábio das Palavras</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Gabarite 10 questionários de português</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Gabarite 10 questionários de português.</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
-
-                                <IonCol>
+                            </IonRow>
+                            <IonRow>
+                                <IonCol style={{width:'4rem'}}>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={eremitapalavras}>
                                     <IonCardTitle className='ios card-title'>Eremita das Palavras</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Gabarite 50 questionários de português</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Gabarite 50 questionários de português.</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
 
-                                <IonCol>
+                                <IonCol style={{width:'4rem'}}>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={diamond}>
                                     <IonCardTitle className='ios card-title'>Organizador</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Gabarite 10 questionários de português</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Gabarite 10 questionários de português.</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
-
+                            </IonRow>
+                            <IonRow>
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={classista}>
                                     <IonCardTitle className='ios card-title'>Classista</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Crie 10 classes</IonCardContent>
+                                    <IonCardContent className='ios card-description'>Crie 10 classes.</IonCardContent>
+                                </CardsConquistas>
+                                </IonCol>
+                                <IonCol style={{opacity:'0'}} >
+                                <CardsConquistas style={{}} classImg='ios card-image' img={classista}>
+                                    <IonCardTitle className='ios card-title'>Classista</IonCardTitle>
+                                    <IonCardContent className='ios card-description'>Crie 10 classes.</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
                             </IonRow>
