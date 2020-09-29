@@ -128,7 +128,7 @@ const Conquista: React.FC = () => {
                             <IonRow>
                                 <IonCol style={{width:'4rem'}}>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={polivolente}>
-                                    <IonCardTitle className='ios card-title'>Polivolente</IonCardTitle>
+                                    <IonCardTitle className='ios card-title'>Polivalente</IonCardTitle>
                                     <IonCardContent className='ios card-description'>Crie mais de um tipo de questionário.</IonCardContent>
                                 </CardsConquistas>
 
