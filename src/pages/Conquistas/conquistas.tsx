@@ -258,10 +258,10 @@ const Conquista: React.FC = () => {
                                     <IonCardContent className='ios card-description'>Crie 10 classes.</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
-                                <IonCol style={{opacity:'0'}} >
+                                <IonCol style={{opacity:'0',pointerEvents:'none'}} >
                                 <CardsConquistas style={{}} classImg='ios card-image' img={classista}>
-                                    <IonCardTitle className='ios card-title'>Classista</IonCardTitle>
-                                    <IonCardContent className='ios card-description'>Crie 10 classes.</IonCardContent>
+                                    <IonCardTitle className='ios card-title'></IonCardTitle>
+                                    <IonCardContent className='ios card-description'></IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
                             </IonRow>
