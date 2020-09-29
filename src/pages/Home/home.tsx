@@ -20,7 +20,7 @@ import {
 import { menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import imgAvatar from '../../Assets/images/avatar.svg'
 import smallLogo from '../../Assets/icons/logo-small.svg'
 
@@ -38,6 +38,7 @@ const Home: React.FC = () => {
   const [backDrop, setBackDrop] = useState<{}>('');
   const [isShown, setIsShown] = useState<boolean>(false);
   const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
+
   const changeBtn = () => {
     setTimeout(() => {
       setHome(<BtnHome backHome={() => {
@@ -49,6 +50,7 @@ const Home: React.FC = () => {
       }} />);
     }, 500)
   }
+  
   const changeBackDrop = ()=>{
     setBackDrop(<BackDrop changeBack={()=>{
       setBackDrop('')
