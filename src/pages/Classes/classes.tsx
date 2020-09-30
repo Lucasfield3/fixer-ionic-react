@@ -47,7 +47,7 @@ const Classes: React.FC = () => {
                     </IonToolbar>
                 </IonHeader>
 
-                <IonContent hidden>
+                <IonContent >
                     <IonButton className="btnMostrar" onClick={() => setShowActionSheet(true)} expand="block">
                         Add
                     </IonButton>
@@ -92,11 +92,6 @@ const Classes: React.FC = () => {
                     >
                     </IonActionSheet>
                 </IonContent>
-
-
-
-
-
 
 
             </IonPage>
