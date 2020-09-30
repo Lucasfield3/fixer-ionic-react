@@ -13,14 +13,19 @@ import {
 import { add, menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
 async function openMenu() {
     await menuController.open();
 }
 
-const FlashCards: React.FC = () => {
+const questaoAlternativa: React.FC = () => {
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
+    const Props = () => {
+        history.push('/questaoAlternativa')
+    }
 
     return (
         <>
@@ -41,30 +46,7 @@ const FlashCards: React.FC = () => {
 
 
                 <IonContent>
-                    <IonFab vertical="bottom" horizontal="center" slot="fixed" color="dark">
-                        <IonFabButton>
-                            <IonIcon icon={add} />
-                        </IonFabButton>
-                        <IonFabList side="top">
-                            <IonButton
-                                onClick={() => history.push('/questaoDissertativa')}
-                                className="ButtonChoise"
-                                size="small"
-                                color="dark">
-                                Disertativa
-                            </IonButton>
-
-                            <IonLabel className="ion-label-choise">Ou</IonLabel>
-
-                            <IonButton
-                                onClick={() => history.push('/questaoAlternativa')}
-                                className="ButtonChoise"
-                                size="small"
-                                color="dark">
-                                Alternativa
-                            </IonButton>
-                        </IonFabList>
-                    </IonFab>
+                   ALTERNATIVA
                 </IonContent>
             </IonPage>
         </>
@@ -72,4 +54,4 @@ const FlashCards: React.FC = () => {
 
 }
 
-export default FlashCards;
+export default questaoAlternativa;

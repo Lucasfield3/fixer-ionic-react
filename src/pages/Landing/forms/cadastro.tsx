@@ -1,13 +1,13 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem, IonAlert } from '@ionic/react';
 import Button from '../styles/Button'
 import '../style.css'
 
-const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
+const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
 
     const [input, setInput] = useState<string>('')
     const [showAlert1, setShowAlert1] = useState<boolean>(false);
-    const Props = ()=>{
+    const Props = () => {
         props.handleClickCad();
     }
     /*const [showAlert2, setShowAlert2] = useState(false);
@@ -58,29 +58,29 @@ const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
 
                 <IonRow className="ion-align-items-center row-btn-cadastro">
                     <IonCol>
-                    <IonButton
-                        onClick={()=> setShowAlert1(true)}
-                        size="small" 
-                        color='dark'
-                        type='submit'
-                        className='ion-margin btn-style-dark btn-cadastro'
-                    >Cadastrar</IonButton>
+                        <IonButton
+                            onClick={() => setShowAlert1(true)}
+                            size="small"
+                            color='dark'
+                            type='submit'
+                            className='ion-margin btn-style-dark btn-cadastro'
+                        >Cadastrar</IonButton>
                         <IonAlert
                             isOpen={showAlert1}
                             onDidDismiss={() => {
                                 props.handleClickCad();
                                 setShowAlert1(false)
                             }}
-                            cssClass='my-custom-class .alert-wrapper'                            
+                            cssClass='my-custom-class .alert-wrapper'
                             header={'Parabéns !!!'}
                             subHeader={'Cadastro realizado com sucesso.'}
                             message={'Um e-mail de confirmação foi enviado para sua caixa de entrada.'}
                             buttons={[{
-                                text:'OK',
-                                handler: ()=> {
+                                text: 'OK',
+                                handler: () => {
                                     props.handleClickCad();
                                 }
-                                
+
 
                             }]}
                         />
@@ -89,7 +89,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void;}> = props => {
                     </IonCol>
                     <IonCol>
                         <Button
-                            onClick={()=>props.handleClickCad()}
+                            onClick={() => props.handleClickCad()}
                             size="small"
                             color='light'
                             className='ion-margin btn-style-cadastro-light'

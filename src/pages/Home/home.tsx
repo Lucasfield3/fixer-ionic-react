@@ -10,11 +10,11 @@ import {
   IonHeader,
   IonMenuButton,
   IonMenu,
-  IonToolbar, 
-  IonAvatar, 
-  IonLabel, 
-  IonCard,  
-  IonCardContent, 
+  IonToolbar,
+  IonAvatar,
+  IonLabel,
+  IonCard,
+  IonCardContent,
   IonSearchbar, IonBackdrop
 } from '@ionic/react'
 import { menuOutline } from 'ionicons/icons';
@@ -31,7 +31,7 @@ const Home: React.FC = () => {
   async function closeMenu() {
     await menuController.close();
   }
-  
+
   const history = useHistory();
   const [searchText, setSearchText] = useState('');
   const [home, setHome] = useState<{}>('')
@@ -50,21 +50,21 @@ const Home: React.FC = () => {
       }} />);
     }, 500)
   }
-  
-  const changeBackDrop = ()=>{
-    setBackDrop(<BackDrop changeBack={()=>{
+
+  const changeBackDrop = () => {
+    setBackDrop(<BackDrop changeBack={() => {
       setBackDrop('')
       setIsShown(false)
       setIsPhoto(false)
-    }}/>)
+    }} />)
   }
- 
+
   return (
     <>
-      <IonMenu onIonDidClose={()=>{
+      <IonMenu onIonDidClose={() => {
         setIsPhoto(false)
         setIsShown(false)
-        }} className='ios custom-menu' type="overlay" side='start' contentId="main-content">
+      }} className='ios custom-menu' type="overlay" side='start' contentId="main-content">
         <IonHeader className='ios header-ios custom-header-menu'>
           <IonToolbar className="bar-menu">
             <IonFabButton slot='start' onClick={() => {
@@ -80,93 +80,94 @@ const Home: React.FC = () => {
         </IonHeader>
 
         <IonContent className='custom-body-menu'>
-          
+
           <IonGrid className='menu-grid'>
             {backDrop}
-          <IonAvatar onClick={()=>{
-            setIsPhoto(!isShownPhoto)
-            changeBackDrop()
-            }}className="img-avatar-perfil">              
-              <IonLabel className='background-photo' style={{opacity:isShownPhoto ? 0.6 : 0}}>
-              <div className='text-photo' >
-                {isShownPhoto && 'Mudar foto de perfil'}
+            <IonAvatar onClick={() => {
+              setIsPhoto(!isShownPhoto)
+              changeBackDrop()
+            }} className="img-avatar-perfil">
+              <IonLabel className='background-photo' style={{ opacity: isShownPhoto ? 0.6 : 0 }}>
+                <div className='text-photo' >
+                  {isShownPhoto && 'Mudar foto de perfil'}
                 </div>
               </IonLabel>
               <img alt='Avatar' src={imgAvatar} />
             </IonAvatar>
             <IonRow style={{
-              opasity: isShown? 1 : 0, 
-              cursor:'default',
-              width:isShown? '5rem' : '1.5rem', 
-              borderRadius:'1rem'}}  onClick={()=>{
-                setIsShown(!isShown)
-                changeBackDrop()
-                }} className='row-level'>
-                  {isShown && (
-                    'level: '
-                  )}0
+              opasity: isShown ? 1 : 0,
+              cursor: 'default',
+              width: isShown ? '5rem' : '1.5rem',
+              borderRadius: '1rem'
+            }} onClick={() => {
+              setIsShown(!isShown)
+              changeBackDrop()
+            }} className='row-level'>
+              {isShown && (
+                'level: '
+              )}0
             </IonRow>
 
 
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
               {home}
               <IonRow >
-               
-                  <IonButton fill='solid' onClick={() => {
-                    closeMenu();
-                    history.push('/Flash-cards')
-                    changeBtn();
 
-                  }} className='btn-side-menu' color="light">Flashcards</IonButton>
-                
+                <IonButton fill='solid' onClick={() => {
+                  closeMenu();
+                  history.push('/Flash-cards')
+                  changeBtn();
+
+                }} className='btn-side-menu' color="light">Flashcards</IonButton>
+
               </IonRow>
               <IonRow >
-                
-                  <IonButton fill='solid' onClick={() => {
-                    closeMenu();
-                    history.push('/Questionarios')
-                    changeBtn();
 
-                  }} className='btn-side-menu' color="light">Questionarios</IonButton>
-               
+                <IonButton fill='solid' onClick={() => {
+                  closeMenu();
+                  history.push('/Questionarios')
+                  changeBtn();
+
+                }} className='btn-side-menu' color="light">Questionarios</IonButton>
+
               </IonRow >
               <IonRow >
-               
-                  <IonButton fill='solid' onClick={() => {
-                    closeMenu();
-                    history.push('/Classes')
-                    changeBtn();
-                  }}
-                    className='btn-side-menu' color="light">Classes</IonButton>
-                
+
+                <IonButton fill='solid' onClick={() => {
+                  closeMenu();
+                  history.push('/Classes')
+                  changeBtn();
+                }}
+                  className='btn-side-menu' color="light">Classes</IonButton>
+
               </IonRow >
               <IonRow >
-                
-                  <IonButton fill='solid' onClick={() => {
-                    closeMenu();
-                    history.push('/Conquistas')
-                    changeBtn();
-                  }}
-                    className='btn-side-menu' color="light">Conquistas</IonButton>
-                
+
+                <IonButton fill='solid' onClick={() => {
+                  closeMenu();
+                  history.push('/Conquistas')
+                  changeBtn();
+                }}
+                  className='btn-side-menu' color="light">Conquistas</IonButton>
+
               </IonRow >
               <IonRow >
-               
-                  <IonButton className='sair' onClick={() => {
-                    closeMenu();
-                    history.push('/Landing');
-                    menuController.enable(false);
-                  }} size="small" color="light">
-                    Sair
+
+                <IonButton className='sair' onClick={() => {
+                  closeMenu();
+                  history.push('/Landing');
+                  menuController.enable(false);
+                }} size="small" color="light">
+                  Sair
                     </IonButton>
-    
+
               </IonRow>
 
             </IonRow>
             <IonRow className='small-logo'>
               <img alt='Logo' src={smallLogo} />
             </IonRow>
-            
+
           </IonGrid>
         </IonContent>
       </IonMenu>
@@ -249,11 +250,11 @@ const BtnHome: React.FC<{ backHome: () => void }> = props => {
   );
 }
 
-const BackDrop: React.FC<{changeBack:() => void }> = props =>{
-  return(
+const BackDrop: React.FC<{ changeBack: () => void }> = props => {
+  return (
     <>
-       <IonBackdrop onIonBackdropTap={props.changeBack} visible={true} tappable={true} stopPropagation={true}>
-        </IonBackdrop>
+      <IonBackdrop onIonBackdropTap={props.changeBack} visible={true} tappable={true} stopPropagation={true}>
+      </IonBackdrop>
     </>
   );
 }
