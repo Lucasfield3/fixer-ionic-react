@@ -10,13 +10,13 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonActionSheet
+    IonActionSheet, IonFab, IonFabList, IonGrid
 } from '@ionic/react'
-import { menuOutline } from 'ionicons/icons';
+import { logoFacebook, logoInstagram, logoTwitter, logoVimeo, menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 
-import { trash, share, caretForwardCircle, heart, close } from 'ionicons/icons';
+import { add, trash, share, caretForwardCircle, heart, close, arrowBackCircle } from 'ionicons/icons';
 //import { add, logoFacebook, logoAmazon, logoVimeo, logoTwitter, logoInstagram, settings } from 'ionicons/icons';
 
 
@@ -47,6 +47,7 @@ const Classes: React.FC = () => {
                     </IonToolbar>
                 </IonHeader>
 
+<<<<<<< HEAD
                 <IonContent >
                     <IonButton className="btnMostrar" onClick={() => setShowActionSheet(true)} expand="block">
                         Add
@@ -91,6 +92,19 @@ const Classes: React.FC = () => {
                         }]}
                     >
                     </IonActionSheet>
+=======
+                <IonContent>
+                    <IonFab vertical="bottom" horizontal="center" slot="fixed" color="dark">
+                        <IonFabButton>
+                            <IonIcon icon={add} />
+                        </IonFabButton>
+                        <IonFabList side="top">
+                            <IonButton className="ButtonChoise" size="small" color="dark">Disertativa</IonButton>
+                            <IonLabel className="ion-label-choise">Ou</IonLabel>
+                            <IonButton className="ButtonChoise" size="small" color="dark">Alternativa</IonButton>
+                        </IonFabList>
+                    </IonFab>
+>>>>>>> 6450bf99b7aa927e5242c6d3e01b05e87aaef5f2
                 </IonContent>
 
 

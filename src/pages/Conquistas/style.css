@@ -78,15 +78,15 @@
 
 .card-description{
   padding-top: 13px;
-    font-size: 11px;
-    line-height: 1.3;
-    padding-inline-start: 4px;
-    padding-inline-end: 4px;
-    padding-bottom: 5px;
-    color: var(--ion-color-dark);
-    opacity: 0;
-    transition: opacity 0.2s;
-    font-weight: 600;
+  font-size: 11px;
+  line-height: 1.3;
+  padding-inline-start: 4px;
+  padding-inline-end: 4px;
+  padding-bottom: 5px;
+  color: var(--ion-color-dark);
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-weight: 600;
   text-align: center;
 }
 

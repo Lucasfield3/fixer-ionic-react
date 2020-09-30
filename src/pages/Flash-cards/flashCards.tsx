@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import {
-  IonButton,
-  IonPage,
-  IonRow,
-  IonFabButton,
-  IonIcon,
-  IonHeader,
-  IonMenuButton,
-  IonToolbar, 
-  IonLabel, 
-  IonContent, 
-  IonSearchbar, IonCard, IonGrid
+  IonSearchbar, 
+    IonCard, 
+    IonGrid,
+    IonPage,
+    IonRow,
+    IonFabButton,
+    IonIcon,
+    IonHeader,
+    IonMenuButton,
+    IonToolbar, 
+    IonLabel, 
+    IonContent, 
+    IonFab, 
+    IonFabList, IonButton
 } from '@ionic/react'
-import { menuOutline } from 'ionicons/icons';
+import { add, menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
+import { useHistory } from 'react-router-dom';
 
-async function openMenu(){
+async function openMenu() {
     await menuController.open();
 }
 
@@ -24,6 +28,7 @@ async function openMenu(){
 const FlashCards: React.FC = ()=>{
 
     const [searchText, setSearchText] = useState('');
+    const history = useHistory();
 
     return(
         <>
@@ -57,6 +62,32 @@ const FlashCards: React.FC = ()=>{
                         <IonGrid className='align-conquistas'>
                         </IonGrid>
                     </IonCard>
+
+                
+                    <IonFab vertical="bottom" horizontal="center" slot="fixed" color="dark">
+                        <IonFabButton>
+                            <IonIcon icon={add} />
+                        </IonFabButton>
+                        <IonFabList side="top">
+                            <IonButton
+                                onClick={() => history.push('/questaoDissertativa')}
+                                className="ButtonChoise"
+                                size="small"
+                                color="dark">
+                                Disertativa
+                            </IonButton>
+
+                            <IonLabel className="ion-label-choise">Ou</IonLabel>
+
+                            <IonButton
+                                onClick={() => history.push('/questaoAlternativa')}
+                                className="ButtonChoise"
+                                size="small"
+                                color="dark">
+                                Alternativa
+                            </IonButton>
+                        </IonFabList>
+                    </IonFab>
                 </IonContent>
             </IonPage>
         </>
