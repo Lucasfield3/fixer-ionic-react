@@ -239,6 +239,7 @@
     border-radius: 5%;
     border-right: 5px var(--ion-color-light) solid;
     border-left: 5px var(--ion-color-light) solid;
+    line-height: 1.2rem;
 }
 .alert-message.sc-ion-alert-ios {
     display: flex;
@@ -249,6 +250,7 @@
     border-right: 5px var(--ion-color-light) solid;
     border-left: 5px var(--ion-color-light) solid;
     text-shadow:none;
+    line-height: 1.2rem;
 }
 .alert-button-group.sc-ion-alert-md{
     justify-content: center;
@@ -281,4 +283,10 @@
     justify-content: center;
     width: 40px;
     height: 20px;
+}
+.alert-button.sc-ion-alert-ios:last-child{
+    padding-top: 0.6rem;
+}
+.alert-button.sc-ion-alert-md:last-child{
+    padding-top: 0.6rem;
 }
