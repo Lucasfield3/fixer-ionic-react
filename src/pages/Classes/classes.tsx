@@ -10,13 +10,14 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonActionSheet, IonFab, IonFabList, IonGrid
+    IonFab, 
+    IonFabList
 } from '@ionic/react'
-import { logoFacebook, logoInstagram, logoTwitter, logoVimeo, menuOutline } from 'ionicons/icons';
+import { menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 
-import { add, trash, share, caretForwardCircle, heart, close, arrowBackCircle } from 'ionicons/icons';
+import { add, /*trash, share, caretForwardCircle, heart, close, arrowBackCircle*/ } from 'ionicons/icons';
 //import { add, logoFacebook, logoAmazon, logoVimeo, logoTwitter, logoInstagram, settings } from 'ionicons/icons';
 
 

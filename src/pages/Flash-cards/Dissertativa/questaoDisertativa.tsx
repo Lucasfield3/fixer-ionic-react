@@ -8,7 +8,9 @@ import {
     IonIcon,
     IonHeader,
     IonMenuButton,
-    IonToolbar, IonLabel, IonContent, IonFab, IonFabList, IonItem, IonInput
+    IonToolbar, 
+    IonLabel, 
+    IonContent, IonItem, IonInput
 } from '@ionic/react'
 import { add, menuOutline, arrowUndoSharp, text } from 'ionicons/icons';
 import './style.css'
