@@ -33,9 +33,10 @@ const questaoDissertativa: React.FC = () => {
                             <IonLabel className="label-menu-fixer-dissertativa">FIXER</IonLabel>
                         </IonRow>
                         <IonFabButton
-                            onClick={() => {
+                            onClick={() =>{ 
                                 history.push('/Flash-cards')
-                                menuController.enable(false);}}
+                                menuController.enable(true);
+                            }}
                             slot='start'
                             className="icon-fab-button light"
                             size="small"

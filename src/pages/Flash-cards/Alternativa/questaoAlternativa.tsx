@@ -35,7 +35,10 @@ const questaoAlternativa: React.FC = () => {
                             <IonLabel className="label-menu-fixer-alternativa">FIXER</IonLabel>
                         </IonRow>
                         <IonFabButton
-                            onClick={() => history.push('/Flash-cards')}
+                            onClick={() =>{ 
+                                history.push('/Flash-cards')
+                                menuController.enable(true);
+                            }}
                             slot='start'
                             className="icon-fab-button light"
                             size="small"
