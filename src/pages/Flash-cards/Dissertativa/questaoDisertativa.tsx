@@ -8,8 +8,8 @@ import {
     IonIcon,
     IonHeader,
     IonMenuButton,
-    IonToolbar, 
-    IonLabel, 
+    IonToolbar,
+    IonLabel,
     IonContent, IonItem, IonInput
 } from '@ionic/react'
 import { add, menuOutline, arrowUndoSharp, text } from 'ionicons/icons';
@@ -18,8 +18,9 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 
 
+
 const questaoDissertativa: React.FC = () => {
-    
+
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
 
@@ -32,7 +33,9 @@ const questaoDissertativa: React.FC = () => {
                             <IonLabel className="label-menu-fixer-dissertativa">FIXER</IonLabel>
                         </IonRow>
                         <IonFabButton
-                            onClick={() => history.push('/Flash-cards')}
+                            onClick={() => {
+                                history.push('/Flash-cards')
+                                menuController.enable(false);}}
                             slot='start'
                             className="icon-fab-button light"
                             size="small"

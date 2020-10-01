@@ -9,7 +9,7 @@
     align-items: center;
     background: rgba(1, 22, 39, 0.29);
     width: auto;
-    height: 24.3rem;
+    height: 80%;
     border-radius: 5px;
     overflow: auto;
     margin-inline-start: 5px;
@@ -37,4 +37,7 @@
   } 
   .custom-fabButton{
     --ion-color-dark-contrast:var(--ion-color-success)!important;
+  }
+  .ion-fab-margin{
+    left: 84%;
   }

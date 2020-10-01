@@ -22,6 +22,9 @@ const questaoAlternativa: React.FC = () => {
     
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
+    async function closeMenu() {
+        await menuController.close();
+      }
 
     return (
         <>
