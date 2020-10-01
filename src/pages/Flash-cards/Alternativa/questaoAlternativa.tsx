@@ -8,24 +8,18 @@ import {
     IonIcon,
     IonHeader,
     IonMenuButton,
-    IonToolbar, IonLabel, IonContent, IonFab, IonFabList
+    IonToolbar, IonLabel, IonContent, IonFab, IonFabList, IonItem, IonInput
 } from '@ionic/react'
-import { add, menuOutline } from 'ionicons/icons';
+import { add, menuOutline, arrowUndoSharp, text } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 
-async function openMenu() {
-    await menuController.open();
-}
 
 const questaoAlternativa: React.FC = () => {
-
+    
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
-    const Props = () => {
-        history.push('/questaoAlternativa')
-    }
 
     return (
         <>
@@ -33,10 +27,15 @@ const questaoAlternativa: React.FC = () => {
                 <IonHeader className='custom-header'>
                     <IonToolbar>
                         <IonRow className='row-label'>
-                            <IonLabel className="label-menu-fixer">FIXER</IonLabel>
+                            <IonLabel className="label-menu-fixer-alternativa">FIXER</IonLabel>
                         </IonRow>
-                        <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button dark" size="small" color="dark">
-                            <IonIcon icon={menuOutline} />
+                        <IonFabButton
+                            onClick={() => history.push('/Flash-cards')}
+                            slot='start'
+                            className="icon-fab-button light"
+                            size="small"
+                            color="light">
+                            <IonIcon icon={arrowUndoSharp} />
                             <IonButton slot='start'>
                                 <IonMenuButton></IonMenuButton>
                             </IonButton>
@@ -46,7 +45,11 @@ const questaoAlternativa: React.FC = () => {
 
 
                 <IonContent>
-                   ALTERNATIVA
+
+                    <IonItem className="item-input-alternativa">
+                        <IonInput type="text" className="input-alternativa" placeholder="Digite aqui o título da classe."></IonInput>
+                    </IonItem>
+
                 </IonContent>
             </IonPage>
         </>

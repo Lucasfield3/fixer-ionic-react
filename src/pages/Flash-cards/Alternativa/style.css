@@ -1,0 +1,22 @@
+.label-menu-fixer-alternativa{
+  display: flex;
+  font-size: 20px;
+  margin-top: .4rem;
+  margin-right: 3.5rem;
+  justify-content: center;
+  color: var(--ion-color-dark);
+  font-family: Poppins;
+}
+
+.item-input-alternativa{
+  --background: #fdfdfd;
+  border-radius: 2rem;
+  margin: 1rem;
+  height: 2.3rem;
+}
+
+.input-alternativa{
+  justify-content: center;
+  text-align: center;
+  
+}
