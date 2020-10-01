@@ -20,3 +20,23 @@
   text-align: center;
   
 }
+
+.card-alternativa{
+    backface-visibility: hidden;
+    border-radius: 21px;
+    width: auto;
+    height: 15rem;
+}
+
+.row-alternativa{
+  justify-content: center;
+  text-align: center;
+
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: center;
+  color: #011627;
+  font-family: 'Archivo Narrow', sans-serif;
+  margin-top: .2rem;
+}
