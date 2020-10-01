@@ -13,7 +13,7 @@ import {
     IonLabel, 
     IonContent, 
     IonFab, 
-    IonFabList, IonButton
+    IonFabList, IonButton, IonCardContent
 } from '@ionic/react'
 import { add, menuOutline } from 'ionicons/icons';
 import './style.css'
@@ -58,15 +58,20 @@ const FlashCards: React.FC = ()=>{
                     </IonRow>
 
                     <IonLabel className="label-menu-title-cards">FlashCards</IonLabel>
-                    <IonCard className='container-conquistas'>
+                    <IonCard className='container-flashcards'>
                         <IonGrid className='align-conquistas'>
+                            <IonCardContent className="card-title-menu">
+                                <IonLabel className='card-vazio'>
+                                    VAZIO
+                                </IonLabel>
+                            </IonCardContent>
                         </IonGrid>
                     </IonCard>
 
                 
-                    <IonFab vertical="bottom" horizontal="center" slot="fixed" color="dark">
-                        <IonFabButton>
-                            <IonIcon icon={add} />
+                    <IonFab style={{marginLeft:'3.6rem'}} vertical="bottom" horizontal="center" slot="fixed" color="dark">
+                        <IonFabButton className='custom-fabButton' color="dark">
+                            <IonIcon className="add-icon" icon={add} />
                         </IonFabButton>
                         <IonFabList side="top">
                             <IonButton
@@ -79,7 +84,7 @@ const FlashCards: React.FC = ()=>{
 
                             <IonLabel className="ion-label-choise">Ou</IonLabel>
 
-                            <IonButton
+                            <IonButton                           
                                 onClick={() => history.push('/questaoAlternativa')}
                                 className="ButtonChoise"
                                 size="small"
