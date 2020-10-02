@@ -18,5 +18,8 @@
 .input-dissertativa{
   justify-content: center;
   text-align: center;
-  
+  --padding-top: 0px;
+}
+ion-item{
+  --highlight-color-focused: none;
 }

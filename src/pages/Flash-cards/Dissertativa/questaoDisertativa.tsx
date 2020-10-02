@@ -10,7 +10,7 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonItem, IonInput, IonTextarea
+    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea
 } from '@ionic/react'
 import { add, menuOutline, arrowUndoSharp, text } from 'ionicons/icons';
 import './style.css'
@@ -21,6 +21,7 @@ import { useHistory } from 'react-router';
 
 const QuestaoDissertativa: React.FC = () => {
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
     const [text, setText] = useState<string>('')
 
@@ -53,9 +54,15 @@ const QuestaoDissertativa: React.FC = () => {
                 <IonContent>
 
                     <IonItem className="item-input-dissertativa">
-                        <IonTextarea placeholder="Cole aqui seu enunciado." value={text} onIonChange={e => setText(e.detail.value!)}></IonTextarea>
+                        <IonInput type="text" required className="input-dissertativa" placeholder="Digite aqui o título da classe."></IonInput>
                     </IonItem>
-
+                    <IonCard id='init-card-alternativa' className='card-alternativa' color='light'>
+                        <IonCardContent>
+                            <IonRow className="row-alternativa">
+                                <IonTextarea required rows={6} cols={20} style={{overFlow:'auto',overFlowY:'scroll',}} color='dark' value={text} onIonChange={e => setText(e.detail.value!)} placeholder="Cole aqui seu enunciado."></IonTextarea>
+                            </IonRow>
+                        </IonCardContent>
+                    </IonCard >
                 </IonContent>
             </IonPage>
         </>
