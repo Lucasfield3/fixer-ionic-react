@@ -19,6 +19,7 @@
   justify-content: center;
   text-align: center;
   --padding-top: 0px;
+  --padding-bottom: 7px;
 }
 ion-item{
   --highlight-color-focused: none;
