@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {
     IonButton,
     IonPage,
@@ -10,7 +10,7 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonItem, IonInput
+    IonContent, IonItem, IonInput, IonTextarea
 } from '@ionic/react'
 import { add, menuOutline, arrowUndoSharp, text } from 'ionicons/icons';
 import './style.css'
@@ -19,10 +19,10 @@ import { useHistory } from 'react-router';
 
 
 
-const questaoDissertativa: React.FC = () => {
+const QuestaoDissertativa: React.FC = () => {
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
+    const [text, setText] = useState<string>('')
 
     return (
         <>
@@ -53,7 +53,7 @@ const questaoDissertativa: React.FC = () => {
                 <IonContent>
 
                     <IonItem className="item-input-dissertativa">
-                        <IonInput type="text" className="input-dissertativa" placeholder="Digite aqui o título da classe."></IonInput>
+                        <IonTextarea placeholder="Cole aqui seu enunciado." value={text} onIonChange={e => setText(e.detail.value!)}></IonTextarea>
                     </IonItem>
 
                 </IonContent>
@@ -63,4 +63,4 @@ const questaoDissertativa: React.FC = () => {
 
 }
 
-export default questaoDissertativa;
+export default QuestaoDissertativa;
