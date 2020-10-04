@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import {
     IonButton,
     IonPage,
@@ -34,7 +34,7 @@ const QuestaoDissertativa: React.FC = () => {
                             <IonLabel className="label-menu-fixer-dissertativa">FIXER</IonLabel>
                         </IonRow>
                         <IonFabButton
-                            onClick={() =>{ 
+                            onClick={() => {
                                 history.push('/Flash-cards')
                                 menuController.enable(true);
                             }}
@@ -52,18 +52,39 @@ const QuestaoDissertativa: React.FC = () => {
 
 
                 <IonContent>
-
                     <IonItem className="item-input-dissertativa">
                         <IonInput type="text" required className="input-dissertativa" placeholder="Digite aqui o título da classe."></IonInput>
                     </IonItem>
+
                     <IonCard id='init-card-alternativa' className='card-alternativa' color='light'>
-                        <IonCardContent>
+                        <div className="header-theme">
+                            <IonButton className="btn-tema-dissertativa">Tema</IonButton>
+                            <IonInput className="input-tema" placeholder="Insira aqui a matéria" onIonChange={e => setText(e.detail.value!)}></IonInput>
+                        </div>
+                        <hr className="hr-up-primary"></hr>
+                        <IonCardContent className="content-background">
                             <IonRow className="row-alternativa">
-                                <IonTextarea required rows={6} cols={20} style={{overFlow:'auto',overFlowY:'scroll',}} color='dark' value={text} onIonChange={e => setText(e.detail.value!)} placeholder="Cole aqui seu enunciado."></IonTextarea>
+                                <IonTextarea required style={{ overFlow: 'auto', overFlowY: 'scroll', }} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Cole aqui seu enunciado."></IonTextarea>
                             </IonRow>
                         </IonCardContent>
+                        <hr className="hr-down-primary"></hr>
                     </IonCard >
+
+
+                    <IonCard id='init-card-alternativa' className='card-alternativa-secundary' color='light'>
+                        <hr className="hr-up-secundary"></hr>
+                        <IonCardContent>
+                            <IonRow className="row-alternativa">
+                                <IonTextarea required rows={6} cols={20} style={{ overFlow: 'auto', overFlowY: 'scroll', }} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Digite ou cole a resposta dissertativa."></IonTextarea>
+                            </IonRow>
+                        </IonCardContent>
+                        <hr className="hr-down-secundary"></hr>
+                    </IonCard >
+                    <div className="div-criar-questionario">
+                        <IonButton className="btn-criar">Criar</IonButton>
+                    </div>
                 </IonContent>
+
             </IonPage>
         </>
     );

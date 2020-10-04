@@ -6,6 +6,7 @@
   justify-content: center;
   color: var(--ion-color-dark);
   font-family: Poppins;
+  
 }
 
 .item-input-alternativa{
@@ -20,6 +21,7 @@
   text-align: center;
   --padding-top: 0px;
   --padding-bottom: 7px;
+  
 }
 
 .card-alternativa{
@@ -27,6 +29,7 @@
     border-radius: 21px;
     width: auto;
     height: 15rem;
+    
 }
 
 .row-alternativa{
@@ -39,8 +42,32 @@
   justify-content: center;
   color: #011627;
   font-family: 'Archivo Narrow', sans-serif;
-  margin-top: .2rem;
+
 }
 ion-item{
   --highlight-color-focused: none;
+}
+
+.hr-up-primary{
+  margin: -.1rem 0;
+  background: black;
+  width: 300px;
+}
+
+.hr-down-primary{
+  margin: 3rem 0;
+  background: black;
+  width: 300px;
+}
+
+.hr-up-secundary{
+  margin: 1.5rem 0;
+  background: black;
+  width: 300px;
+}
+
+.hr-down-secundary{
+  margin: -7.1rem 0;
+  background: black;
+  width: 300px;
 }

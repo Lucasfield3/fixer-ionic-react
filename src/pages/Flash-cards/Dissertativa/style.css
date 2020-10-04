@@ -24,3 +24,47 @@
 ion-item{
   --highlight-color-focused: none;
 }
+
+.btn-tema-dissertativa{
+  padding: 1px;
+  margin: 12px 12px!important;
+  width: 4.6rem;
+  height: 1.8rem;
+  font-size: 11px!important;
+  --ion-color-light-contrast:var(--ion-color-dark);
+  font-weight: bold;
+}
+
+.header-theme{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-tema{
+  color: #011627;
+  text-decoration: underline;
+  font-size: 18px;
+}
+
+.card-alternativa-secundary{
+    backface-visibility: hidden;
+    border-radius: 21px;
+    width: auto;
+    height: 12rem;
+}
+
+.btn-criar{
+  margin: 12px 12px!important;
+  width: 4.6rem;
+  height: 1.8rem;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold;
+}
+
+.div-criar-questionario{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
