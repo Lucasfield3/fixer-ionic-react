@@ -253,7 +253,7 @@ ion-label div:only-child{
 }
 ion-button{
   border-radius: 50%;
-  --backgroun: none!important;
+  --background: none!important;
 }
 .espacamento{
   margin-top: 1px;

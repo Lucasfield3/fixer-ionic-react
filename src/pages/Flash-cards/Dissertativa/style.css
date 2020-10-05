@@ -33,6 +33,19 @@ ion-item{
   font-size: 11px!important;
   --ion-color-light-contrast:var(--ion-color-dark);
   font-weight: bold;
+  margin-right: 0!important;
+  --background:none!important;
+  border:1px #aba8a8 solid;
+  --box-shadow:0px 0px 0px var(--ion-color-light)!important;
+  border-radius: 0.8rem;
+}
+.ios .btn-tema-dissertativa{
+  border:1px #aba8a8 solid;
+  border-radius: 0.8rem;
+  --background-activated:var(--ion-color-light) ;
+  --background-focused: var(--ion-color-light) ;
+  --background-hover: var(--ion-color-light) ;
+  --box-shadow:0px 0px 0px var(--ion-color-light)!important;
 }
 
 .header-theme{
@@ -43,17 +56,82 @@ ion-item{
 
 .input-tema{
   color: #011627;
-  text-decoration: underline;
-  font-size: 18px;
-}
-
-.card-alternativa-secundary{
-    backface-visibility: hidden;
-    border-radius: 21px;
+    font-size: 16px;
+    padding-bottom: 0!important;
+    margin-bottom: 8px !important;
+    margin-left: 1rem;
     width: auto;
-    height: 12rem;
+    text-decoration: none;
+    border-bottom: 1px#aba8a8 solid;
+    margin-top: 10px;
+    height: 1.8rem;
+    margin-right: 0.5rem;
+}
+.card-dissertativa{
+  border-radius: 21px;
+  width: auto;
+  height: 16.5rem;
+}
+.row-dissertativa{
+  justify-content: center;
+  text-align: justify;
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  justify-content: center;
+  color: var(--ion-color-dark);
+  font-family: 'Archivo Narrow', sans-serif;
+  height: 11rem;
+}
+.ios .row-dissertativa{
+  justify-content: center;
+  text-align: justify;
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  justify-content: center;
+  color: var(--ion-color-dark);
+  font-family: 'Archivo Narrow', sans-serif;
+  height: 11rem;
+  padding-left:6px;
+}
+.content-background{
+  background-color: #CFE8F7;
+  padding:0;
+}
+.card-dissertativa-secundary{
+  border-radius: 21px;
+  width: auto;
+}
+.row-header{
+  border-bottom: 1px var(--ion-color-dark) solid;
+  height: 2.9rem;
+}
+.row-footer{
+  border-bottom: 1px var(--ion-color-dark) solid;
+  padding: 0!important;
+  margin:0!important;
+}
+.row-header-resposta{
+  border-bottom: 1px var(--ion-color-dark) solid;
+  height: 2rem;
+}
+.row-footer-resposta{
+  border-top: 1px var(--ion-color-dark) solid;
+  height: 2rem;
 }
 
+.ios .btn-criar{
+  margin: 12px 12px!important;
+  width: 4.6rem;
+  height: 1.8rem;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold;
+  --background-activated:var(--ion-color-light) ;
+  --background-focused: var(--ion-color-light) ;
+  --background-hover: var(--ion-color-light) ;
+}
 .btn-criar{
   margin: 12px 12px!important;
   width: 4.6rem;
@@ -63,8 +141,3 @@ ion-item{
   font-weight: bold;
 }
 
-.div-criar-questionario{
-  justify-content: center;
-  display: flex;
-  align-items: center;
-}

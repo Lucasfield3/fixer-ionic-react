@@ -10,7 +10,7 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea
+    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader
 } from '@ionic/react'
 import { add, menuOutline, arrowUndoSharp, text } from 'ionicons/icons';
 import './style.css'
@@ -52,37 +52,43 @@ const QuestaoDissertativa: React.FC = () => {
 
 
                 <IonContent>
-                    <IonItem className="item-input-dissertativa">
-                        <IonInput type="text" required className="input-dissertativa" placeholder="Digite aqui o título da classe."></IonInput>
+                    <IonItem style={{borderRadius:'6px'}} className="item-input-dissertativa">
+                        <IonInput  type="text" required className="input-dissertativa" placeholder="Insira o título da classe"></IonInput>
                     </IonItem>
 
-                    <IonCard id='init-card-alternativa' className='card-alternativa' color='light'>
-                        <div className="header-theme">
-                            <IonButton className="btn-tema-dissertativa">Tema</IonButton>
-                            <IonInput className="input-tema" placeholder="Insira aqui a matéria" onIonChange={e => setText(e.detail.value!)}></IonInput>
-                        </div>
-                        <hr className="hr-up-primary"></hr>
+                    <IonCard  className='card-dissertativa' color='light'>
+                        <IonCardHeader style={{padding:0}}>
+                            <IonRow className='ios ion-justify-content-space-between row-header'>
+                                <IonButton className="ios btn-tema-dissertativa">Tema</IonButton>
+                                <IonInput className="input-tema" placeholder="Insira a matéria" onIonChange={e => setText(e.detail.value!)}></IonInput>
+                            </IonRow>
+                        </IonCardHeader>
                         <IonCardContent className="content-background">
-                            <IonRow className="row-alternativa">
-                                <IonTextarea required style={{ overFlow: 'auto', overFlowY: 'scroll', }} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Cole aqui seu enunciado."></IonTextarea>
+                            <IonRow className="ios row-dissertativa">
+                                <IonTextarea rows={5} cols={20} required style={{ overFlow: 'auto', overFlowY: 'scroll',height:'10.4rem',wordSapacig:'-2px'}} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Digite ou cole o enunciado do flash-card"></IonTextarea>
                             </IonRow>
                         </IonCardContent>
-                        <hr className="hr-down-primary"></hr>
+                        <IonRow className='row-footer' color='light'></IonRow>
                     </IonCard >
 
 
-                    <IonCard id='init-card-alternativa' className='card-alternativa-secundary' color='light'>
-                        <hr className="hr-up-secundary"></hr>
-                        <IonCardContent>
-                            <IonRow className="row-alternativa">
-                                <IonTextarea required rows={6} cols={20} style={{ overFlow: 'auto', overFlowY: 'scroll', }} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Digite ou cole a resposta dissertativa."></IonTextarea>
+                    <IonCard  className='card-dissertativa-secundary' color='light'>
+                            <IonCardHeader style={{padding:0}}>
+                                <IonRow color='light' className='row-header-resposta'></IonRow>
+                            </IonCardHeader>
+                        <IonCardContent style={{height:'9rem'}} className="content-background">
+                            <IonRow className="ios row-dissertativa">
+                                <IonTextarea required rows={4} cols={20} style={{ overFlow: 'auto', overFlowY: 'scroll', }} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Digite ou cole a resposta dissertativa"></IonTextarea>
                             </IonRow>
                         </IonCardContent>
-                        <hr className="hr-down-secundary"></hr>
-                    </IonCard >
-                    <div className="div-criar-questionario">
-                        <IonButton className="btn-criar">Criar</IonButton>
-                    </div>
+                        <IonRow color='light' className='row-footer-resposta'></IonRow>
+                    </IonCard > 
+                    <IonRow>
+
+                    </IonRow>
+                    <IonRow className='ios ion-justify-content-center'>
+                        <IonButton className="ios btn-criar">Criar</IonButton>
+                    </IonRow>
                 </IonContent>
 
             </IonPage>
