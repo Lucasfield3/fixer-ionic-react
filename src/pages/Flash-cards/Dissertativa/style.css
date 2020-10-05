@@ -28,25 +28,24 @@ ion-item{
 .btn-tema-dissertativa{
   padding: 1px;
   margin: 12px 12px!important;
-  width: 4.6rem;
+  width: auto;
   height: 1.8rem;
   font-size: 11px!important;
   --ion-color-light-contrast:var(--ion-color-dark);
   font-weight: bold;
   margin-right: 0!important;
   --background:none!important;
-  border:1px #aba8a8 solid;
-  --box-shadow:0px 0px 0px var(--ion-color-light)!important;
-  border-radius: 0.8rem;
+  border-radius: 4px!important;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)!important;
 }
 .ios .btn-tema-dissertativa{
-  border:1px #aba8a8 solid;
-  border-radius: 0.8rem;
-  --background-activated:var(--ion-color-light) ;
-  --background-focused: var(--ion-color-light) ;
-  --background-hover: var(--ion-color-light) ;
-  --box-shadow:0px 0px 0px var(--ion-color-light)!important;
+  --background-activated: #f1f1f1;
+  --background-focused: #f1f1f1;
+  --background-hover: #f1f1f1;
+  --box-shadow: 0px 0px 0px var(--ion-color-light);
+  --border-radius: 4px!important;
 }
+
 
 .header-theme{
   display: flex;
@@ -128,9 +127,9 @@ ion-item{
   font-size: 11px!important;
   --background: #fdfdfd !important;
   font-weight: bold;
-  --background-activated:var(--ion-color-light) ;
-  --background-focused: var(--ion-color-light) ;
-  --background-hover: var(--ion-color-light) ;
+  --background-activated: #f1f1f1;
+  --background-focused: #f1f1f1;
+  --background-hover: #f1f1f1;
 }
 .btn-criar{
   margin: 12px 12px!important;
@@ -140,4 +139,9 @@ ion-item{
   --background: #fdfdfd !important;
   font-weight: bold;
 }
-
+.native-textarea.sc-ion-textarea-md{
+  word-spacing:-2px;
+}
+.native-textarea.sc-ion-textarea-ios{
+  word-spacing:-2px;
+}

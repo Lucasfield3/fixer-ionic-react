@@ -65,7 +65,7 @@ const QuestaoDissertativa: React.FC = () => {
                         </IonCardHeader>
                         <IonCardContent className="content-background">
                             <IonRow className="ios row-dissertativa">
-                                <IonTextarea rows={5} cols={20} required style={{ overFlow: 'auto', overFlowY: 'scroll',height:'10.4rem',wordSapacig:'-2px'}} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Digite ou cole o enunciado do flash-card"></IonTextarea>
+                                <IonTextarea rows={5} cols={20} required style={{ overFlow: 'auto', overFlowY: 'scroll',height:'10.4rem',wordSpacing:'-2px!important'}} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Digite ou cole o enunciado do flash-card"></IonTextarea>
                             </IonRow>
                         </IonCardContent>
                         <IonRow className='row-footer' color='light'></IonRow>
@@ -78,7 +78,7 @@ const QuestaoDissertativa: React.FC = () => {
                             </IonCardHeader>
                         <IonCardContent style={{height:'9rem'}} className="content-background">
                             <IonRow className="ios row-dissertativa">
-                                <IonTextarea required rows={4} cols={20} style={{ overFlow: 'auto', overFlowY: 'scroll', }} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Digite ou cole a resposta dissertativa"></IonTextarea>
+                                <IonTextarea required rows={4} cols={20} style={{ overFlow: 'auto', overFlowY: 'scroll',wordSpacing:'-2px!important' }} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Digite ou cole a resposta dissertativa"></IonTextarea>
                             </IonRow>
                         </IonCardContent>
                         <IonRow color='light' className='row-footer-resposta'></IonRow>
