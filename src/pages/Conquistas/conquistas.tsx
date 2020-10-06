@@ -235,7 +235,8 @@ const Conquista: React.FC = () => {
                                     <IonCardContent className='ios card-description'>Gabarite 10 questionários de português</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
-
+                            </IonRow>
+                            <IonRow>
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={eremitapalavras}>
                                     <IonCardTitle className='ios card-title'>Eremita das Palavras</IonCardTitle>
@@ -249,15 +250,13 @@ const Conquista: React.FC = () => {
                                     <IonCardContent className='ios card-description'>Gabarite 10 questionários de português</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
-
+                            </IonRow>
                                 <IonCol>
                                 <CardsConquistas style={{}} classImg='ios card-image' img={classista}>
                                     <IonCardTitle className='ios card-title'>Classista</IonCardTitle>
                                     <IonCardContent className='ios card-description'>Crie 10 classes</IonCardContent>
                                 </CardsConquistas>
                                 </IonCol>
-                            </IonRow>
-
                         </IonGrid>
 
                     </IonCard>
