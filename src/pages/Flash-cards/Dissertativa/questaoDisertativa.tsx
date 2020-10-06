@@ -88,10 +88,10 @@ const QuestaoDissertativa: React.FC = () => {
                         <IonRow color='light' className='row-footer-resposta'></IonRow>
                     </IonCard > 
 
-                    <IonRow className='row-toggle'>                                              
+                    <IonRow className='row-toggle'>                                            
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>                        
                         <IonToggle className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>
-                        <IonLabel className='tooltip-text'>Opcional</IonLabel>                     
+                        <IonLabel className='tooltip-text'>Opcional</IonLabel>                    
                     </IonRow>
                     <IonRow className='ios row-timer'>
                         <IonCol className='timer-back'>

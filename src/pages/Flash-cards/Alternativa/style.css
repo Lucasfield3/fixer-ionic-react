@@ -71,3 +71,40 @@ ion-item{
   background: black;
   width: 300px;
 }
+
+.card-alternativa{
+  border-radius: 21px;
+  width: auto;
+  height: 16.5rem;
+}
+
+.btn-tema-alternativa{
+  padding: 1px;
+  margin: 12px 12px!important;
+  width: auto;
+  height: 1.8rem;
+  font-size: 11px!important;
+  --ion-color-light-contrast:var(--ion-color-dark);
+  font-weight: bold;
+  margin-right: 0!important;
+  --background:none!important;
+  border-radius: 4px!important;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)!important;
+}
+
+.row-alternativa{
+  justify-content: center;
+  text-align: justify;
+  display: flex;
+  font-size: 16px;
+  font-weight: bold;
+  justify-content: center;
+  color: var(--ion-color-dark);
+  font-family: 'Archivo Narrow', sans-serif;
+  height: 11rem;
+}
+
+.input-questoes-add{
+  height: 5px;
+  width: 5px;
+}

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import {
     IonButton,
     IonPage,
@@ -10,7 +10,7 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonInput, IonItem, IonCard, IonCardContent, IonCol, IonTextarea
+    IonContent, IonInput, IonItem, IonCard, IonCardContent, IonCol, IonTextarea, IonCardHeader
 } from '@ionic/react'
 import { add, menuOutline, arrowUndoSharp, text } from 'ionicons/icons';
 import './style.css'
@@ -56,18 +56,23 @@ const QuestaoAlternativa: React.FC = () => {
                     </IonItem>
 
 
-                    <IonCard id='init-card-alternativa' className='card-alternativa' color='light'>
-                        <IonCardContent>
-                            <IonRow className="row-alternativa">
-                                <IonTextarea rows={6} cols={20} style={{overFlow:'auto',overFlowY:'scroll',}} color='dark' value={text} onIonChange={e => setText(e.detail.value!)} placeholder="Cole aqui seu enunciado."></IonTextarea>
+                    <IonCard className='card-alternativa' color='light'>
+                        <IonCardHeader style={{ padding: 0 }}>
+                            <IonRow className='ios ion-justify-content-space-between row-header'>
+                                <IonButton className="ios btn-tema-alternativa">Tema</IonButton>
+                                <IonInput className="input-tema" placeholder="Insira a matéria" onIonChange={e => setText(e.detail.value!)}></IonInput>
+                            </IonRow>
+                        </IonCardHeader>
+                        <IonCardContent className="content-background">
+                            <IonRow className="ios row-dissertativa">
+                                <IonTextarea rows={5} cols={20} required style={{ overFlow: 'auto', overFlowY: 'scroll', height: '10.4rem', wordSpacing: '-2px!important' }} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Digite ou cole o enunciado do flash-card"></IonTextarea>
                             </IonRow>
                         </IonCardContent>
+                        <IonRow className='row-footer' color='light'></IonRow>
                     </IonCard >
-
-
-
-
                 </IonContent>
+
+
 
 
 
