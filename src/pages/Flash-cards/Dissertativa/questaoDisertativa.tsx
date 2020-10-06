@@ -10,12 +10,14 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader
+    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid
 } from '@ionic/react'
-import { add, menuOutline, arrowUndoSharp, text } from 'ionicons/icons';
+import { add, menuOutline, arrowUndoSharp ,text ,timerOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
+import style from 'styled-components';
+import styled from 'styled-components';
 
 
 
@@ -24,6 +26,8 @@ const QuestaoDissertativa: React.FC = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
     const [text, setText] = useState<string>('')
+    const [timer, setTimer] = useState<{}>(<Timer/>)
+    const [shownTimer, setShownTimer] = useState<boolean>(false);
 
     return (
         <>
@@ -78,14 +82,24 @@ const QuestaoDissertativa: React.FC = () => {
                             </IonCardHeader>
                         <IonCardContent style={{height:'9rem'}} className="content-background">
                             <IonRow className="ios row-dissertativa">
-                                <IonTextarea required rows={4} cols={20} style={{ overFlow: 'auto', overFlowY: 'scroll',wordSpacing:'-2px!important' }} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Digite ou cole a resposta dissertativa"></IonTextarea>
+                                <IonTextarea required rows={4} cols={20} style={{ overFlow: 'auto', overFlowY: 'scroll',wordSpacing:'-2px!important' }} color='dark' onIonChange={e => setText(e.detail.value!)} placeholder="Digite ou cole a resposta"></IonTextarea>
                             </IonRow>
                         </IonCardContent>
                         <IonRow color='light' className='row-footer-resposta'></IonRow>
                     </IonCard > 
-                    <IonRow>
 
+                    <IonRow className='row-toggle'>                                              
+                        <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>                        
+                        <IonToggle className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>
+                        <IonLabel className='tooltip-text'>Opcional</IonLabel>                     
                     </IonRow>
+                    <IonRow className='ios row-timer'>
+                        <IonCol className='timer-back'>
+                            <IonIcon className='icon-styled' icon={timerOutline} />
+                            {shownTimer && timer}
+                        </IonCol>
+                    </IonRow>
+                                 
                     <IonRow className='ios ion-justify-content-center'>
                         <IonButton className="ios btn-criar">Criar</IonButton>
                     </IonRow>
@@ -95,6 +109,32 @@ const QuestaoDissertativa: React.FC = () => {
         </>
     );
 
+}
+
+const StyledTimer = styled(IonCol)`
+    width:auto;
+    height:2rem;
+`;
+const Timertext = styled(IonInput)`
+    text-align:center;
+    color:var(--ion-color-dark);
+    border-radius:16px;
+    background:var(--ion-color-light);
+    font-weight:bold;
+    width: 3rem;
+    height: -webkit-fill-available;
+    --padding-start: 3px;
+    --padding-end: 3px;
+`;
+const Timer:React.FC = ()=>{
+
+    return(
+        <>
+            <StyledTimer>
+                <Timertext placeholder='00:00'></Timertext>
+            </StyledTimer>
+        </>
+    );
 }
 
 export default QuestaoDissertativa;
