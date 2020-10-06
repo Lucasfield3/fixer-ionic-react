@@ -94,13 +94,10 @@ const QuestaoDissertativa: React.FC = () => {
                         <IonLabel className='tooltip-text'>Opcional</IonLabel>                     
                     </IonRow>
                     <IonRow className='ios row-timer'>
-                        <IonCol className='timer-back'>
-                            <IonIcon className='icon-styled' icon={timerOutline} />
-                            {shownTimer && timer}
-                        </IonCol>
+                        {shownTimer && timer}
                     </IonRow>
                                  
-                    <IonRow className='ios ion-justify-content-center'>
+                    <IonRow style={{marginTop:'1.7rem'}} className='ios ion-justify-content-center'>
                         <IonButton className="ios btn-criar">Criar</IonButton>
                     </IonRow>
                 </IonContent>
@@ -112,8 +109,12 @@ const QuestaoDissertativa: React.FC = () => {
 }
 
 const StyledTimer = styled(IonCol)`
+    display:flex;
+    flex-direction:row;
     width:auto;
     height:2rem;
+    align-items: center;
+    position:absolute;
 `;
 const Timertext = styled(IonInput)`
     text-align:center;
@@ -131,6 +132,7 @@ const Timer:React.FC = ()=>{
     return(
         <>
             <StyledTimer>
+                <IonIcon className='icon-styled' icon={timerOutline} />
                 <Timertext placeholder='00:00'></Timertext>
             </StyledTimer>
         </>

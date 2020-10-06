@@ -99,7 +99,7 @@ const Conquista: React.FC = () => {
                         <IonSearchbar placeholder='Buscar' color='light' className="ios search-bar"
                             value={searchText}
                             onIonChange={e => setSearchText(e.detail.value!)}>
-                            <div className='ios line'></div>
+                            <div className='line'></div>
                         </IonSearchbar>
                     </IonRow>
 
