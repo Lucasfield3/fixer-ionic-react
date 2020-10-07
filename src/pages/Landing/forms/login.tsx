@@ -27,7 +27,7 @@ const Props = ()=>{
                 <IonCol>
                     <IonItem color='light'>
                         <IonLabel color='primary' position='floating'>Login:</IonLabel>  
-                        <IonInput value={input} onChange={e=> setInput.bind(e.target)} color='dark'type='text'></IonInput>
+                        <IonInput value={input} onChange={e => setInput.bind(e.target)} color='dark'type='text'></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>

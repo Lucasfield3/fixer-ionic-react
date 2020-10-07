@@ -108,3 +108,134 @@ ion-item{
   height: 5px;
   width: 5px;
 }
+
+.ios .btn-criar{
+  margin: 12px 12px!important;
+  width: 4.6rem;
+  height: 1.8rem;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold;
+  --background-activated: #f1f1f1;
+  --background-focused: #f1f1f1;
+  --background-hover: #f1f1f1;
+}
+
+.btn-criar{
+  margin: 12px 12px!important;
+  width: 4.6rem;
+  height: 1.8rem;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold;
+}
+
+.btn-criar-alternativa{
+  margin: 12px 12px!important;
+  width: 4.6rem;
+  height: 1.8rem;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold;
+}
+
+.modal-wrapper {
+  background: #fdfdfd;
+}
+
+.my-custom-class .modal-wrapper {
+  background: #fdfdfd;
+}
+
+.my-custom-class {
+  --background: #fdfdfd;
+  --max-height: 30vh;
+  --max-width: 40vh;
+  --border-radius: 15px;
+}
+
+.btn-sim{
+  margin-right: 16px;
+  width: 4.6rem !important;
+  height: 1.8rem !important;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold !important;
+
+  text-align: center;
+  justify-content: center;
+  color:#2EC4B6;
+  background-color:var(--ion-color-light);
+}
+
+.btn-nao{
+  width: 4.6rem !important;
+  height: 1.8rem !important;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold !important;
+
+  text-align: center;
+  justify-content: center;
+  color:#FF206E;
+  background-color:var(--ion-color-light);
+}
+
+.div-modal-alternativa{
+  justify-content: center;
+  align-items: center;
+  display: block;
+  margin: 1rem 3rem;
+}
+
+.ios .div-modal-alternativa{
+  justify-content: center;
+  align-items: center;
+  display: block;
+  margin: 1rem 3rem;
+}
+
+.modal-text{
+  text-align: center;
+  margin: 50px 0;
+}
+
+.btn-dissertativa{
+  margin-right: 10px;
+  width: 6rem !important;
+  height: 1.8rem !important;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold !important;
+}
+
+.btn-alternativa{
+  margin-right: 16px;
+  width: 6rem !important;
+  height: 1.8rem !important;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold !important;
+}
+
+.btn-modal{
+  margin-left: 1rem;
+  margin-top: 1rem ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label-modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  justify-content: center;
+  color: #011627;
+  font-family: 'Archivo Narrow', sans-serif;
+  margin-right: .6rem;
+}
+
