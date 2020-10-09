@@ -140,8 +140,8 @@ const QuestaoDissertativa: React.FC = () => {
                                         setShowPopover(false)
                                     }}
                                 >
-                                    <IonRow  className='ion-justify-content-center'>
-                                        <IonLabel style={{fontWeight:'bold', fontSize:'18px', lineHeight:'3rem'}} color='success'>Temas salvos!</IonLabel>
+                                    <IonRow  className='ion-justify-content-center ion-text-align-center'>
+                                        <IonLabel style={{fontWeight:'bold', fontSize:'18px', lineHeight:'8rem'}} color='success'>Temas salvos!</IonLabel>
                                     </IonRow>
                                 </IonPopover>
 
