@@ -206,3 +206,37 @@ ion-item{
 .toggle:hover + .tooltip-text{
   visibility: visible;
 }
+.popover-content.sc-ion-popover-md{
+  border-radius:21px;
+  --background:var(--ion-color-light);
+
+}
+
+.my-custom-class .popover-content.sc-ion-popover-ios .tema {
+  border-radius:21px;
+  --background:var(--ion-color-light);
+  --width:10rem!important;
+  --height:10rem!important;
+}
+.save .popover-content.sc-ion-popover-ios{
+  border-radius:21px;
+  --background:var(--ion-color-light);
+  justify-content: center;
+  width:10rem;
+  height:4rem;
+}
+.btn-save{
+  width: 4rem;
+  height: 1.7rem;
+  --ion-color-light-contrast: var(--ion-color-success)!important;
+  border: 1px solid var(--ion-color-success);
+  font-size: 13px;
+  border-radius: 0.2rem;
+}
+.btn-cancel{
+  width: 5rem;
+  height: 1.7rem;
+  border: 1px solid rgba(255, 32, 110, 0.31);
+  font-size: 13px;
+  border-radius: 0.2rem;
+}
