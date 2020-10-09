@@ -132,8 +132,8 @@ ion-item{
 
 .btn-criar-alternativa{
   margin: 12px 12px!important;
-  width: 4.6rem;
-  height: 1.8rem;
+  width: 7rem;
+  height: 2.3rem;
   font-size: 11px!important;
   --background: #fdfdfd !important;
   font-weight: bold;
@@ -149,15 +149,15 @@ ion-item{
 
 .my-custom-class {
   --background: #fdfdfd;
-  --max-height: 30vh;
-  --max-width: 40vh;
+  --height: 23vh;
+  --width: 40vh;
   --border-radius: 15px;
 }
 
 .btn-sim{
   margin-right: 16px;
-  width: 4.6rem !important;
-  height: 1.8rem !important;
+  width: 6.6rem !important;
+  height: 2.3rem !important;
   font-size: 11px!important;
   --background: #fdfdfd !important;
   font-weight: bold !important;
@@ -169,8 +169,8 @@ ion-item{
 }
 
 .btn-nao{
-  width: 4.6rem !important;
-  height: 1.8rem !important;
+  width: 6.6rem !important;
+  height: 2.3rem !important;
   font-size: 11px!important;
   --background: #fdfdfd !important;
   font-weight: bold !important;
@@ -201,18 +201,18 @@ ion-item{
 }
 
 .btn-dissertativa{
-  margin-right: 10px;
-  width: 6rem !important;
-  height: 1.8rem !important;
+  margin: auto;
+  width: 10rem !important;
+  height: 3rem !important;
   font-size: 11px!important;
   --background: #fdfdfd !important;
   font-weight: bold !important;
 }
 
 .btn-alternativa{
-  margin-right: 16px;
-  width: 6rem !important;
-  height: 1.8rem !important;
+  margin: auto;
+  width: 10rem !important;
+  height: 3rem !important;
   font-size: 11px!important;
   --background: #fdfdfd !important;
   font-weight: bold !important;
@@ -220,11 +220,12 @@ ion-item{
 
 .btn-modal{
   margin-left: 1rem;
-  margin-top: 1rem ;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 
 .label-modal{
   display: flex;
@@ -237,5 +238,11 @@ ion-item{
   color: #011627;
   font-family: 'Archivo Narrow', sans-serif;
   margin-right: .6rem;
+}
+
+.header-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 

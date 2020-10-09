@@ -10,7 +10,7 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonInput, IonItem, IonCard, IonCardContent, IonCol, IonTextarea, IonCardHeader, IonModal, IonText
+    IonContent, IonInput, IonItem, IonCard, IonCardContent, IonCol, IonTextarea, IonCardHeader, IonModal, IonText, IonCardSubtitle, IonCardTitle
 } from '@ionic/react'
 import { add, menuOutline, arrowUndoSharp, text } from 'ionicons/icons';
 import './style.css'
@@ -22,6 +22,7 @@ const QuestaoAlternativa: React.FC = () => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [showModal, setShowModal] = useState(false)
+    const [showModal2, setShowModal2] = useState(false)
     const history = useHistory()
     const [text, setText] = useState<string>('')
     return (
@@ -74,19 +75,26 @@ const QuestaoAlternativa: React.FC = () => {
 
                     <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
                         <IonModal isOpen={showModal} cssClass='my-custom-class'>
-                            <div className="div-modal-alternativa">
+                            <IonCardTitle className="div-modal-alternativa">
                                 <IonText className="modal-text" color="dark">
-                                    <h3>Deseja criar mais um flashcard ?</h3>
+                                    <h4>Deseja criar mais um flashcard ?</h4>
                                 </IonText>
-                                <IonButton className="btn-sim" onClick={() => setShowModal(true)}>Sim</IonButton>
-                                <IonButton className="btn-nao" onClick={() => setShowModal(false)}>Não</IonButton>
-                                <div className="btn-modal">
-                                    <IonButton className="btn-dissertativa" onClick={() => setShowModal(true)}>Dissertativa</IonButton>
-                                    <IonLabel className="label-modal">ou</IonLabel>
-                                    <IonButton className="btn-alternativa" onClick={() => setShowModal(true)}>Alternativa</IonButton>
-                                </div>
-                            </div>
+                                <IonCardSubtitle className="header-btn">
+                                    <IonButton className="btn-sim" onClick={() => setShowModal2(true)}>Sim</IonButton>
+                                    <IonButton className="btn-nao" onClick={() => setShowModal(false)}>Não</IonButton>
+                                </IonCardSubtitle>
+                            </IonCardTitle>
                         </IonModal>
+
+
+                        <IonRow className="btn-modal">
+                            <IonModal isOpen={showModal2} cssClass='my-custom-class'>
+                                <IonButton className="btn-dissertativa" onClick={() => setShowModal2(true)}>Dissertativa</IonButton>
+                                <IonLabel className="label-modal">ou</IonLabel>
+                                <IonButton className="btn-alternativa" onClick={() => setShowModal2(true)}>Alternativa</IonButton>
+                            </IonModal>
+                        </IonRow>
+
                         <IonButton className="ios btn-criar-alternativa" onClick={() => setShowModal(true)}>Criar</IonButton>
                     </IonRow>
                 </IonContent>
