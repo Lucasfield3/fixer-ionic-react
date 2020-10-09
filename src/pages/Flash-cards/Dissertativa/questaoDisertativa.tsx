@@ -117,8 +117,8 @@ const QuestaoDissertativa: React.FC = () => {
                                             setText('')
                                             }} color='light'>+</IonFabButton>
                                         {items.map(item=>(
-                                             <IonRow  className='ion-justify-content-center'>
-                                                <IonInput readonly key={item.id} style={{border:'1px #000 solid', height:'2rem', cursor:'default'}} className='temas-inputs' color='dark' type='text'>{item.text}</IonInput>
+                                             <IonRow style={{cursor:'default'}}  className='ion-justify-content-center'>
+                                                <IonInput readonly key={item.id} style={{border:'1px #000 solid', height:'2rem'}} className='temas-inputs' color='dark' type='text'>{item.text}</IonInput>
                                                 <IonFabButton onClick={()=>DeleteTema(item.id)} color='light'>-</IonFabButton>
                                             </IonRow>
                                         ))}
