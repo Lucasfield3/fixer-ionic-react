@@ -112,7 +112,10 @@ const QuestaoDissertativa: React.FC = () => {
                                     </IonRow>
                                     <IonRow className='ion-justify-content-center'>
                                     <IonInput  style={{border:'1px #000 solid', height:'2rem'}} placeholder='Tema' color='dark'  onIonChange={e => setText(e.detail.value!)} value={text} type='text'></IonInput>
-                                        <IonFabButton  onClick={()=>AddTema()} color='light'>+</IonFabButton>
+                                        <IonFabButton  onClick={()=>{
+                                            AddTema()
+                                            setText('')
+                                            }} color='light'>+</IonFabButton>
                                         {items.map(item=>(
                                              <IonRow  className='ion-justify-content-center'>
                                                 <IonInput readonly key={item.id} style={{border:'1px #000 solid', height:'2rem', cursor:'default'}} className='temas-inputs' color='dark' type='text'>{item.text}</IonInput>
