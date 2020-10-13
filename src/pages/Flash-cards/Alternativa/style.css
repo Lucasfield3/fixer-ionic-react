@@ -245,4 +245,31 @@ ion-item{
   justify-content: center;
   align-items: center;
 }
+.temas-textarea{
+  border-radius: 1.7rem;
+  height: auto;
+  margin-right: 5px;
+  background: var(--ion-color-light)!important;
+  margin-top: 0;
+  box-shadow: var(--box-shadow);
+  padding-inline-end: 2px;
+}
 
+.ios .temas-textarea{
+  border-radius: 1.7rem;
+  height: auto;
+  margin-right: 5px;
+  background: var(--ion-color-light)!important;
+  border: 0.65px rgb(199, 199, 199) solid;
+  margin-top: 0;
+  padding-inline-end: 2px;
+}
+.add-temas{
+  border-radius: 1.7rem;
+  height: auto!important;
+  margin-right: 5px;
+  padding-inline-end: 2px;
+  background: var(--ion-color-light)!important;
+  box-shadow: var(--box-shadow);
+  margin-top: 0;
+}
