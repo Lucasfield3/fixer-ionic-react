@@ -26,15 +26,15 @@ const QuestaoDissertativa: React.FC = () => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
-    const [textTitle, setTextTitle] = useState('')
-    const [textMat, setTextMat] = useState('')
-    const [textAreaQuestion, setTextAreaQuestion] = useState('')
-    const [textAreaAnswer, setTextAreaAnswer] = useState('')
-    const [timer, setTimer] = useState<{}>(<Timer />)
-    const [checked, setChecked] = useState(false);
+    const [textTitle, setTextTitle] = useState<string>('')
+    const [textMat, setTextMat] = useState<string>('')
+    const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
+    const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
+    const [timer, setTimer] = useState<{}>(<Timer/>)
+    const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
-    const [showPopover, setShowPopover] = useState(false);
-    const [shownPopsave, setShownPopsave] = useState<boolean>(false);
+    const [showPopover, setShowPopover] = useState<boolean>(false);
+    const [shownPopsave, setShownPopsave]= useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
     
     const temas = {
@@ -69,7 +69,7 @@ const QuestaoDissertativa: React.FC = () => {
         setItems([])
 
     }, [])
-    const CleanInputs = () => {
+    const CleanInputs = ()=>{
         setTextPop('')
         setTextAreaAnswer('')
         setTextAreaQuestion('')
@@ -109,8 +109,8 @@ const QuestaoDissertativa: React.FC = () => {
 
 
                 <IonContent>
-                    <IonItem style={{ borderRadius: '6px' }} className="item-input-dissertativa">
-                        <IonInput value={textTitle} type="text" required className="input-dissertativa" onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título da classe"></IonInput>
+                    <IonItem style={{borderRadius:'6px'}} className="item-input-dissertativa">
+                        <IonInput  value={textTitle} type="text" required className="input-dissertativa"  onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Flashcard"></IonInput>
                     </IonItem>
 
                     <IonCard className='card-dissertativa' color='light'>
