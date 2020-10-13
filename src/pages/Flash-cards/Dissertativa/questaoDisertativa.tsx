@@ -109,7 +109,7 @@ const QuestaoDissertativa: React.FC = () => {
 
                 <IonContent>
                     <IonItem style={{borderRadius:'6px'}} className="item-input-dissertativa">
-                        <IonInput  value={textTitle} type="text" required className="input-dissertativa"  onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título da classe"></IonInput>
+                        <IonInput  value={textTitle} type="text" required className="input-dissertativa"  onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Flashcard"></IonInput>
                     </IonItem>
 
                     <IonCard  className='card-dissertativa' color='light'>
