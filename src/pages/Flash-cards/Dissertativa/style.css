@@ -81,6 +81,7 @@ ion-item{
   color: var(--ion-color-dark);
   font-family: 'Archivo Narrow', sans-serif;
   height: 11rem;
+  overflow: auto;
 }
 .ios .row-dissertativa{
   justify-content: center;
@@ -93,6 +94,7 @@ ion-item{
   font-family: 'Archivo Narrow', sans-serif;
   height: 11rem;
   padding-left:6px;
+  overflow: auto;
 }
 .content-background{
   background-color: #CFE8F7;
@@ -211,19 +213,70 @@ ion-item{
   --background:var(--ion-color-light);
 
 }
-
-.my-custom-class .popover-content.sc-ion-popover-ios .tema {
-  border-radius:21px;
-  --background:var(--ion-color-light);
-  --width:10rem!important;
-  --height:10rem!important;
+.my-custom-class{
+  --height: 35vh;
 }
-.save .popover-content.sc-ion-popover-ios{
+
+.save .popover-content.sc-ion-popover-md{
   border-radius:21px;
   --background:var(--ion-color-light);
   justify-content: center;
   width:10rem;
   height:4rem;
+  
+}
+.back-temas{
+  background: #C8F9F3;
+  border-radius: 6px;
+  border:0.65px #41EAD4 solid;
+  height: 8.3rem;
+  margin: 0rem 1rem 1rem 1rem;
+  overflow-y: auto;
+}
+.back-temas > ion-input{
+  background-color: var(--ion-color-light)!important;
+  margin-right: 2px;
+}
+.back-temas::-webkit-scrollbar{
+  width: 7px;
+  padding-left: 2px;
+}
+.back-temas::-webkit-scrollbar-thumb{
+  background: #4a5a66;
+  border-radius: 8px;
+}
+.back-temas::-webkit-scrollbar-thumb:hover{
+  background: var(--ion-color-dark);
+}
+.add-temas{
+  border-radius: 1.7rem;
+  height: 2rem;
+  margin-right: 5px;
+  background: var(--ion-color-light);
+  box-shadow: var(--box-shadow);
+}
+
+.ios .add-temas{
+  --padding-start:5px;
+  border: 0.65px rgb(199, 199, 199) solid;
+  border-radius: 1.7rem;
+  height: 2rem;
+  margin-right: 5px;
+  background: var(--ion-color-light);
+}
+.temas-inputs{
+  border-radius: 1.7rem;
+  height: 2rem;
+  margin-right: 5px;
+  background: var(--ion-color-light);
+  box-shadow: var(--box-shadow);
+}
+.ios .temas-inputs{
+  border-radius: 1.7rem;
+  height: 2rem;
+  margin-right: 5px;
+  background: var(--ion-color-light);
+  border: 0.65px rgb(199, 199, 199) solid;
 }
 .btn-save{
   width: 4rem;
@@ -239,4 +292,55 @@ ion-item{
   border: 1px solid rgba(255, 32, 110, 0.31);
   font-size: 13px;
   border-radius: 0.2rem;
+}
+.add-btn{
+  --ion-color-light-contrast: var(--ion-color-success)!important;
+  width: 2rem;
+  height: 2rem;
+}
+.remove-btn{
+  width: 2rem;
+  height: 2rem;
+}
+.question{
+  overflow-x: auto;
+  overflow-y: visible;
+  height:10.4rem;
+  word-spacing: -2px!important;
+}
+.answer{
+  overflow-y: auto;
+  overflow-y: visible;
+  word-spacing: -2px!important;
+}
+.ios .question{
+  overflow-x: auto;
+  overflow-y: visible;
+  height:10.4rem;
+  word-spacing: -2px!important;
+}
+.ios .answer{
+  overflow-x: auto;
+  overflow-y:visible;
+  word-spacing: -2px!important;
+}
+.question .native-textarea.sc-ion-textarea-md{
+  --padding-top:0;
+  --padding-bottom:0;
+  height:10.3rem;
+}
+.answer .native-textarea.sc-ion-textarea-md{
+  --padding-top:0;
+  --padding-bottom:0;
+  height: 8.5rem;
+}
+.ios .question .native-textarea.sc-ion-textarea-ios{
+  --padding-top:0;
+  --padding-bottom:0;
+  height:10.3rem;
+}
+.ios .answer .native-textarea.sc-ion-textarea-ios{
+  --padding-top:0;
+  --padding-bottom:0;
+  height:8.5rem;
 }
