@@ -36,6 +36,7 @@ const QuestaoDissertativa: React.FC = () => {
     const [showPopover, setShowPopover] = useState(false);
     const [shownPopsave, setShownPopsave] = useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
+    
     const temas = {
         id: -1,
         textPop: ''
