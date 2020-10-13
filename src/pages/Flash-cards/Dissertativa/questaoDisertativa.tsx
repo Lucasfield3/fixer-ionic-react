@@ -172,7 +172,7 @@ const QuestaoDissertativa: React.FC = () => {
                     <IonRow className='row-toggle'>                                            
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>                        
                         <IonToggle className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>
-                        <IonLabel className='tooltip-text'>Opcional</IonLabel>                    
+                        <IonLabel className='tooltip-text'>Opcional</IonLabel>                   
                     </IonRow>
                     <IonRow className='ios row-timer'>
                         {shownTimer && timer}
