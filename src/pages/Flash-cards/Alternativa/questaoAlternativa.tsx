@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     IonButton,
     IonPage,
@@ -12,13 +12,11 @@ import {
     IonLabel,
     IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle, IonCardSubtitle, IonCardTitle, IonModal, IonText
 } from '@ionic/react'
-import { add, menuOutline, arrowUndoSharp ,text ,timerOutline, remove, key } from 'ionicons/icons';
+import { add, arrowUndoSharp, timerOutline, remove} from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
-import style from 'styled-components';
 import styled from 'styled-components';
-import { flattenDiagnosticMessageText, textChangeRangeIsUnchanged } from 'typescript';
 
 
 
@@ -36,9 +34,12 @@ const QuestaoDissertativa: React.FC = () => {
     const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave]= useState<boolean>(false);
+    const [showPopChoose, setShowPopChoose] = useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
     const [showModal, setShowModal] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
+    const [textTarget, setTextTarget] = useState<string>('')
+    const [btnShow, setBtnShow] = useState<{}>()
    
     const temas = {
         id:0,
@@ -60,7 +61,6 @@ const QuestaoDissertativa: React.FC = () => {
         }, 1000)
     }
     const AddTema = ()=>{
-
         if(textPop !==''){
             setItems([...items, {
                 id:items.length +1,
@@ -70,34 +70,28 @@ const QuestaoDissertativa: React.FC = () => {
         }
     }
     const AddAlternative = ()=>{
-
-        if(textRightAnswer !==''){
+        
+        if(textAreaAlternative !==''){
             setAlternatives([...alternatives, {
                 id:alternatives.length +1,
-                textAreaAlternative:''
+                textAreaAlternative:textAreaAlternative
                 }
             ])
-        } 
+        }
+
         console.log(alternatives)
         
-        if(alternatives.length == 4){
+        if(alternatives.length == 5){
             setAlternatives(alternatives)
+
+        }
+        if(alternatives.length > 0){
+            setBtnShow(<ButtonPop showPop={()=> setShowPopChoose(true)}/>)
         }
 
     }
-    const handleChange = ()=>{
-        
-        let event:React.ChangeEvent<HTMLIonTextareaElement>
-        const alternativesUp = alternatives.map(alternative =>{
-            alternative.textAreaAlternative = event.target.value!;
-            setAlternatives([...alternatives, {
-                id:alternatives.length,
-                textAreaAlternative:alternative.textAreaAlternative
-            }])
-        })
-        
-    }
-
+ 
+ 
 
     const DeleteAlternatives = (id:number)=>{
         const alternativeToBedeleted = alternatives.filter(alternative=> alternative.id !==id);
@@ -121,6 +115,22 @@ const QuestaoDissertativa: React.FC = () => {
         setTextAreaQuestion('')
         setTextMat('')
         setTextTitle('')
+    }
+
+    const PickRightAnswer = ()=>{
+        let alternativas = Array.from(document.getElementsByClassName('alternativas-textarea') as HTMLCollectionOf<HTMLElement>)
+        alternativas.forEach(item =>{
+           item.addEventListener('mouseover', ()=>{
+               item.setAttribute("style", "color:var(--ion-color-success); border: 1px solid var(--ion-color-primary);");
+               
+           })
+           item.addEventListener('mouseout' , ()=>{
+            item.setAttribute("style", "border: none;");
+           })
+       });
+
+ 
+
     }
 
     return (
@@ -192,7 +202,7 @@ const QuestaoDissertativa: React.FC = () => {
                                             setShowPopover(false)
                                             setItems([])
                                             setTextPop('')
-                                            }} color='light' className='btn-cancel'>Cancelar</IonButton>
+                                            }} color='light' className='btn-cancel'>Limpar</IonButton>
                                     </IonRow>
                                 </IonPopover>
                                 <IonPopover
@@ -250,19 +260,24 @@ const QuestaoDissertativa: React.FC = () => {
                     
                     <IonGrid>
                         <IonRow className='ion-justify-content-center'>
-                                <IonTextarea autoGrow={true} className='ios add-temas' placeholder='Resposta certa' color='dark'  onIonChange={e => setTextRightAnswer(e.detail.value!)} value={textRightAnswer}></IonTextarea>
-                                <IonFabButton className='add-btn'  onClick={()=>{
+                                <IonTextarea autoGrow={true} className='ios add-temas' placeholder='Insira as alternativas' color='dark'  onIonChange={e => setTextAreaAlternative(e.detail.value!)} value={textAreaAlternative}></IonTextarea>
+                                <IonFabButton className='add-btn'  onClick={()=> {
                                     AddAlternative()
+                                    setTextAreaAlternative('')
                                     }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                         </IonRow>                                        
                             {alternatives.map((alternative, index)=>(
                                 <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center'>
-                                    <IonTextarea  autoGrow={true} key={alternative.id} value={alternative.textAreaAlternative} onIonChange={()=>handleChange} className='ios temas-textarea' color='dark' placeholder='alternativas'></IonTextarea>
+                                    <IonTextarea name='inputs' autoGrow={true} key={alternative.id} value={alternative.textAreaAlternative}  className='ios alternativas-textarea' color='dark' placeholder='alternativas'></IonTextarea>
                                     <IonFabButton  onClick={()=>DeleteAlternatives(alternative.id)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
                                 </IonRow>
                             ))}
                     </IonGrid>
-
+                        {btnShow}
+                        <PopRightAnswer hidePopover={()=>{
+                            setShowPopChoose(false)
+                            PickRightAnswer()
+                            }} isOpen={showPopChoose}/>
                     <IonRow className='row-toggle'>                                            
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>                        
                         <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>
@@ -313,5 +328,33 @@ const Timer:React.FC = ()=>{
         </>
     );
 }
+
+const PopRightAnswer:React.FC<{isOpen:boolean; hidePopover:()=>void}> = props=>{
+
+    return(
+        <>
+             <IonPopover
+                isOpen={props.isOpen}
+                cssClass='my-custom-class quantidade'
+                onDidDismiss={props.hidePopover}
+            >
+                <IonRow  className='ion-justify-content-center ion-text-align-center'>
+                    <IonLabel style={{fontWeight:'bold', fontSize:'16px'}} color='dark'>Agora Escolha a resposta certa.</IonLabel>
+                </IonRow>
+            </IonPopover>
+        </>
+    );
+}
+const ButtonPop:React.FC<{showPop:()=>void}> = props =>{
+
+    return(
+        <>
+            <IonRow  className='ios ion-justify-content-center'>
+                <IonButton className="ios btn-quantidade" color='light' onClick={props.showPop} >Definir essa quantidade de alternativas</IonButton>
+            </IonRow>
+        </>
+    );
+}
+
 
 export default QuestaoDissertativa;

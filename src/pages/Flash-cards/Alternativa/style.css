@@ -129,7 +129,14 @@ ion-item{
   --background: #fdfdfd !important;
   font-weight: bold;
 }
-
+.btn-quantidade{
+  width: 15.6rem;
+  height: 1.8rem;
+  font-size: 10px;
+  --background: #fdfdfd !important;
+  font-weight: bold;
+  --ion-color-light-contrast:var(--ion-color-dark)!important;
+}
 .btn-criar-alternativa{
   margin: 12px 12px!important;
   width: 7rem;
@@ -245,7 +252,7 @@ ion-item{
   justify-content: center;
   align-items: center;
 }
-.temas-textarea{
+.alternativas-textarea{
   border-radius: 1.7rem;
   height: auto;
   margin-right: 5px;
@@ -255,7 +262,7 @@ ion-item{
   padding-inline-end: 2px;
 }
 
-.ios .temas-textarea{
+.ios .alternativas-textarea{
   border-radius: 1.7rem;
   height: auto;
   margin-right: 5px;
@@ -272,4 +279,12 @@ ion-item{
   background: var(--ion-color-light)!important;
   box-shadow: var(--box-shadow);
   margin-top: 0;
+}
+.quantidade .popover-content.sc-ion-popover-md{
+  border-radius:21px;
+  --background:var(--ion-color-light);
+  justify-content: center;
+  width: 15rem;
+  height:4rem;
+  
 }
