@@ -246,6 +246,10 @@ ion-item{
   align-items: center;
 }
 .temas-textarea{
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+
   border-radius: 1.7rem;
   height: auto;
   margin-right: 5px;

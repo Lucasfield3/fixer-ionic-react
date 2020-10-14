@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import {
     IonButton,
     IonPage,
-
     IonRow,
     IonFabButton,
     IonIcon,
@@ -22,7 +21,8 @@ import { textChangeRangeIsUnchanged } from 'typescript';
 
 
 
-const QuestaoDissertativa: React.FC = () => {
+const QuestaoDissertativa: React.FC = (props) => {
+
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()

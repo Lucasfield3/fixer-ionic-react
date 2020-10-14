@@ -147,8 +147,7 @@ ion-button{
 ion-label div:only-child{
   opacity: 1;
 }
-.row-level{
-  float: left;
+.row-exp{
   flex-direction: row;
   justify-content: center;
   flex-wrap: nowrap;
@@ -161,6 +160,7 @@ ion-label div:only-child{
   height: 1.5rem;
   font-size: 18px;
   text-align: center;
+  align-items: center;
   line-height: 1.6rem;
 }
 .label-level{
