@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
-  IonSearchbar, 
-    IonCard, 
+    IonSearchbar,
+    IonCard,
     IonGrid,
     IonPage,
     IonRow,
@@ -9,10 +9,10 @@ import {
     IonIcon,
     IonHeader,
     IonMenuButton,
-    IonToolbar, 
-    IonLabel, 
-    IonContent, 
-    IonFab, 
+    IonToolbar,
+    IonLabel,
+    IonContent,
+    IonFab,
     IonFabList, IonButton, IonCardContent
 } from '@ionic/react'
 import { add, menu, menuOutline } from 'ionicons/icons';
@@ -25,13 +25,13 @@ async function openMenu() {
 }
 
 
-const FlashCards: React.FC = ()=>{
+const FlashCards: React.FC = () => {
 
     const [searchText, setSearchText] = useState('');
     const history = useHistory();
 
 
-    return(
+    return (
         <>
             <IonPage>
                 <IonHeader className='custom-header'>
@@ -69,8 +69,8 @@ const FlashCards: React.FC = ()=>{
                         </IonGrid>
                     </IonCard>
 
-                
-                    <IonFab style={{left:'80%'}} vertical="bottom" horizontal="center" slot="fixed" color="dark">
+
+                    <IonFab style={{ left: '80%' }} vertical="bottom" horizontal="center" slot="fixed" color="dark">
                         <IonFabButton className='custom-fabButton' color="dark">
                             <IonIcon className="add-icon" icon={add} />
                         </IonFabButton>
@@ -88,8 +88,8 @@ const FlashCards: React.FC = ()=>{
 
                             <IonLabel className="ion-label-choise">Ou</IonLabel>
 
-                            <IonButton                           
-                                onClick={() =>{ 
+                            <IonButton
+                                onClick={() => {
                                     history.push('/questaoAlternativa')
                                     menuController.enable(false)
                                 }}

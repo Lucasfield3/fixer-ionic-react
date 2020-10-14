@@ -52,7 +52,7 @@ const Home: React.FC = () => {
   }
 
   const changeBackDrop = () => {
-    setBackDrop(<BackDrop changeBack={() => {
+      setBackDrop(<BackDrop changeBack={() => {
       setBackDrop('')
       setIsShown(false)
       setIsPhoto(false)
