@@ -1,28 +1,28 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonFabButton, IonFooter, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonModal, IonPage, IonPopover, IonRow, IonTitle, IonToolbar } from '@ionic/react'
 import { pin, walk, warning, wifi, wine } from 'ionicons/icons';
-import cardClose from '../../Assets/images/cardClose.svg'
+import cardPositive from '../../Assets/images/cardPositive.svg'
 import './styles.css'
 
 const CardGreen: React.FC = () => {
 
   return (
     <>
-      <IonCard className='card-error' color='light'>
-        <IonRow className='ios ion-justify-content-space-between card-invalid-header'></IonRow>
+      <IonCard className='card-accept' color='light'>
+        <IonRow className='ios ion-justify-content-space-between card-acertou-header'></IonRow>
         <IonCardHeader color="light" style={{ height: '20rem' }}>
 
           <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
-            <IonIcon className="icon-invalid" icon={cardClose}></IonIcon>
+            <IonIcon className="icon-acertou" icon={cardPositive}></IonIcon>
 
           </IonRow>
 
-          <IonRow className='row-invalid'>
-            <IonLabel id="label-invalid">Ops... Tente novamente.</IonLabel>
+          <IonRow className='row-acertou'>
+            <IonLabel className="label-acertou">Pabranéns, Você acertou !</IonLabel>
           </IonRow>
 
           <IonRow>
-            <IonLabel className="msg-invalid">A resposta está incorreta, verifique novamente. </IonLabel>
+            <IonLabel className="msg-acertou">A resposta está incorreta, verifique novamente. </IonLabel>
           </IonRow>
 
           <IonRow>
@@ -30,12 +30,12 @@ const CardGreen: React.FC = () => {
           </IonRow>
 
           <IonRow>
-            <IonLabel className="row-invalid-exp"> 0000</IonLabel>
+            <IonLabel className="row-acertou-exp"> 0</IonLabel>
           </IonRow>
 
         </IonCardHeader>
 
-        <IonRow className='ios ion-justify-content-space-between card-invalid-footer'></IonRow>
+        <IonRow className='ios ion-justify-content-space-between card-acertou-footer'></IonRow>
       </IonCard >
     </>
   );

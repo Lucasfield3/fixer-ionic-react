@@ -28,7 +28,7 @@ import Conquistas from './pages/Conquistas/conquistas';
 import Classes from './pages/Classes/classes'
 import questaoAlternativa from './pages/Flash-cards/Alternativa/questaoAlternativa'
 import questaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDisertativa'
-import CardRed from './components/cardEvent/cardRed';
+import CardRed from './components/cardRed/cardRed';
 import CardGreen from './components/CardGreen/cardGreen';
 const App: React.FC = () => {
   return (
