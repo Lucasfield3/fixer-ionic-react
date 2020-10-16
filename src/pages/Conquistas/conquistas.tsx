@@ -49,7 +49,7 @@ import prodigio from '../../Assets/icons/prodigio.svg'
 
 
 const Overlay = styled.div`
-   background: var(--ion-color-dark);
+    background: var(--ion-color-dark);
     opacity: 0.5;
     position: absolute;
     width:100%;
