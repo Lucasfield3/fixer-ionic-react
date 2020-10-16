@@ -19,7 +19,7 @@ import { useHistory } from 'react-router';
 import styled from 'styled-components';
 
 
-const QuestaoDissertativa: React.FC = () => {
+const QuestaoAlternativa: React.FC = () => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
@@ -426,4 +426,4 @@ const PopRightAnswer:React.FC<{isOpen:boolean; hidePopover:()=>void;ablePick:()=
 
 
 
-export default QuestaoDissertativa;
+export default QuestaoAlternativa;
