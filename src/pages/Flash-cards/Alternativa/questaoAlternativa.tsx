@@ -26,7 +26,6 @@ const QuestaoDissertativa: React.FC = () => {
     const [textTitle, setTextTitle] = useState<string>('')
     const [textMat, setTextMat] = useState<string>('')
     const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
-    const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
     const [timer, setTimer] = useState<{}>(<Timer />)
     const [checked, setChecked] = useState<boolean>(false);
@@ -34,12 +33,15 @@ const QuestaoDissertativa: React.FC = () => {
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave]= useState<boolean>(false);
     const [showPopChoose, setShowPopChoose] = useState<boolean>(false);
+    const [shownPopRight, setShownPopRight] = useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
     const [showModal, setShowModal] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
     const [textTarget, setTextTarget] = useState<string>('')
-    const [btnShow, setBtnShow] = useState<{}>()
-   
+    const [textBtn, setTextBtn] = useState('Definir essa quantidade')
+    const [btnShow, setBtnShow] = useState<{}>(<ButtonPop showPop={()=>setShowPopChoose(true)}>{textBtn}</ButtonPop>)
+
+    
     const temas = {
         id: 0,
         textPop: ''
@@ -84,9 +86,7 @@ const QuestaoDissertativa: React.FC = () => {
             setAlternatives(alternatives)
 
         }
-        if(alternatives.length > 0){
-            setBtnShow(<ButtonPop showPop={()=> setShowPopChoose(true)}/>)
-        }
+      
 
     }
  
@@ -95,6 +95,8 @@ const QuestaoDissertativa: React.FC = () => {
     const DeleteAlternatives = (id: number) => {
         const alternativeToBedeleted = alternatives.filter(alternative => alternative.id !== id);
         setAlternatives(alternativeToBedeleted)
+
+        
     }
 
     const DeleteTema = (id: number) => {
@@ -108,6 +110,13 @@ const QuestaoDissertativa: React.FC = () => {
         setAlternatives([])
 
     }, [])
+const ShowBtn = ()=>{
+    if(alternatives.length > 0){
+        setBtnShow(<ButtonPop showPop={()=> {
+            setShowPopChoose(true)
+        }}>{textBtn}</ButtonPop>)
+    }
+}
     const CleanInputs = () => {
         setTextPop('')
         setTextAreaAlternative('')
@@ -117,20 +126,36 @@ const QuestaoDissertativa: React.FC = () => {
     }
 
     const PickRightAnswer = ()=>{
-        let alternativas = Array.from(document.getElementsByClassName('alternativas-textarea') as HTMLCollectionOf<HTMLElement>)
+        const alternativas = Array.from(document.getElementsByClassName('alternativas-textarea') as HTMLCollectionOf<HTMLElement>)
+        alternativas.length = alternatives.length
         alternativas.forEach(item =>{
-           item.addEventListener('mouseover', ()=>{
-               item.setAttribute("style", "color:var(--ion-color-success); border: 1px solid var(--ion-color-primary);");
-               
-           })
-           item.addEventListener('mouseout' , ()=>{
-            item.setAttribute("style", "border: none;");
-           })
+           item.addEventListener('click', ()=>{
+            item.style.border = '1px #000 solid'
+         } ,true)
        });
-
- 
-
+       setShowPopChoose(false)
     }
+    const DisableRemove = ()=>{
+        const btnRemove =  Array.from(document.getElementsByClassName('remove-btn') as HTMLCollectionOf<HTMLButtonElement>)
+           btnRemove.forEach(button =>{
+                button.disabled = true
+           })
+    }
+    const AbleRemove = ()=>{
+        const btnRemove =  Array.from(document.getElementsByClassName('remove-btn') as HTMLCollectionOf<HTMLButtonElement>)
+           btnRemove.forEach(button =>{
+                button.disabled = false
+           })
+    }
+    const AbleAdd = ()=>{
+        const addAlternativas = document.getElementById('add-alternative') as HTMLButtonElement
+        return addAlternativas.disabled == false
+    }
+    const DisableAdd = ()=>{
+        const addAlternativas = document.getElementById('add-alternative') as HTMLButtonElement
+        return addAlternativas.disabled == true
+    }
+       
 
     return (
         <>
@@ -260,23 +285,42 @@ const QuestaoDissertativa: React.FC = () => {
                     <IonGrid>
                         <IonRow className='ion-justify-content-center'>
                                 <IonTextarea autoGrow={true} className='ios add-temas' placeholder='Insira as alternativas' color='dark'  onIonChange={e => setTextAreaAlternative(e.detail.value!)} value={textAreaAlternative}></IonTextarea>
-                                <IonFabButton className='add-btn'  onClick={()=> {
+                                <IonFabButton id='add-alternative' className='add-btn'  onClick={()=> {
                                     AddAlternative()
                                     setTextAreaAlternative('')
                                     }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                         </IonRow>                                        
                             {alternatives.map((alternative, index)=>(
                                 <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center'>
-                                    <IonTextarea name='inputs' autoGrow={true} key={alternative.id} value={alternative.textAreaAlternative}  className='ios alternativas-textarea' color='dark' placeholder='alternativas'></IonTextarea>
+                                    <IonCol style={{height:'auto', width:'10rem'}} key={alternative.id} onFocus={(e)=>{
+                                            e.currentTarget.style.border = '2px var(--ion-color-danger) solid'
+                                    }}   className='ios alternativas-textarea' color='dark' placeholder='alternativas'>{alternative.textAreaAlternative}</IonCol>
                                     <IonFabButton  onClick={()=>DeleteAlternatives(alternative.id)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
                                 </IonRow>
                             ))}
                     </IonGrid>
-                        {btnShow}
-                        <PopRightAnswer hidePopover={()=>{
-                            setShowPopChoose(false)
+                        {alternatives.length > 0 && btnShow}
+                        <PopRightAnswer isOpen={shownPopRight} ablePick={()=>{
                             PickRightAnswer()
-                            }} isOpen={showPopChoose}/>
+                            setShownPopRight(false)
+                            }} hidePopover={()=>setShownPopRight(false) }/>
+                        <PopChoose hidePopover={()=>{
+                            setShowPopChoose(false)
+                            }} 
+                            isOpen={showPopChoose}
+                            ablePick={()=>{
+                                setShownPopRight(true)
+                                DisableRemove()
+                                DisableAdd()
+                                setBtnShow('')
+                            }}
+                            disablePick={()=>{
+                                setShowPopChoose(false)
+                                AbleRemove()
+                                AbleAdd()                        
+                            }}
+                            >
+                        </PopChoose>
                     <IonRow className='row-toggle'>                                            
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>                        
                         <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>
@@ -328,7 +372,7 @@ const Timer: React.FC = () => {
     );
 }
 
-const PopRightAnswer:React.FC<{isOpen:boolean; hidePopover:()=>void}> = props=>{
+const PopChoose:React.FC<{isOpen:boolean; hidePopover:()=>void;disablePick:()=>void;ablePick:()=>void}> = props=>{
 
     return(
         <>
@@ -338,7 +382,11 @@ const PopRightAnswer:React.FC<{isOpen:boolean; hidePopover:()=>void}> = props=>{
                 onDidDismiss={props.hidePopover}
             >
                 <IonRow  className='ion-justify-content-center ion-text-align-center'>
-                    <IonLabel style={{fontWeight:'bold', fontSize:'16px'}} color='dark'>Agora Escolha a resposta certa.</IonLabel>
+                    <IonLabel style={{fontWeight:'bold', fontSize:'16px'}} color='dark'>Tem certeza dessa quantidade?</IonLabel>
+                </IonRow>
+                <IonRow  className='ios ion-justify-content-center'>
+                    <IonButton id='sim' className="ios yes" color='success' onClick={props.ablePick} >Sim</IonButton>
+                    <IonButton className="ios no" color='danger' onClick={props.disablePick} >Não</IonButton>
                 </IonRow>
             </IonPopover>
         </>
@@ -349,11 +397,33 @@ const ButtonPop:React.FC<{showPop:()=>void}> = props =>{
     return(
         <>
             <IonRow  className='ios ion-justify-content-center'>
-                <IonButton className="ios btn-quantidade" color='light' onClick={props.showPop} >Definir essa quantidade de alternativas</IonButton>
+    <IonButton className="ios btn-quantidade" color='light'  onClick={props.showPop} >{props.children}</IonButton>
             </IonRow>
+            
         </>
     );
 }
+const PopRightAnswer:React.FC<{isOpen:boolean; hidePopover:()=>void;ablePick:()=>void}> = props=>{
+
+    return(
+        <>
+             <IonPopover
+                isOpen={props.isOpen}
+                cssClass='my-custom-class quantidade'
+                onDidDismiss={props.hidePopover}
+            >
+                <IonRow  className='ion-justify-content-center ion-text-align-center'>
+                    <IonLabel style={{fontWeight:'bold', fontSize:'16px'}} color='dark'>Agora escolha a alternativa certa.</IonLabel>
+                </IonRow>
+                <IonRow  className='ios ion-justify-content-center'>
+                    <IonButton id='Okay' className="ios ok-btn" color='success' onClick={props.ablePick} >Ok</IonButton>
+                   
+                </IonRow>
+            </IonPopover>
+        </>
+    );
+}
+
 
 
 export default QuestaoDissertativa;
