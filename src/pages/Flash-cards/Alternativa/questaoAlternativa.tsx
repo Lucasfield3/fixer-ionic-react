@@ -299,7 +299,7 @@ const ShowBtn = ()=>{
                                 </IonRow>
                             ))}
                     </IonGrid>
-                        {alternatives.length > 0 && btnShow}
+                        {alternatives.length > 1 && btnShow}
                         <PopRightAnswer isOpen={shownPopRight} ablePick={()=>{
                             PickRightAnswer()
                             setShownPopRight(false)
