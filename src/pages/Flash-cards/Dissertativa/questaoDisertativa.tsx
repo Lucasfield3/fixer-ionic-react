@@ -146,7 +146,7 @@ const QuestaoDissertativa: React.FC = (props) => {
                                             setShowPopover(false)
                                             setItems([])
                                             setTextPop('')
-                                        }} color='light' className='btn-cancel'>Cancelar</IonButton>
+                                            }} color='light' className='btn-cancel'>Limpar</IonButton>
                                     </IonRow>
                                 </IonPopover>
                                 <IonPopover
