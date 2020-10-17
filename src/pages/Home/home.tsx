@@ -1,4 +1,6 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import {
   IonButton,
   IonPage,
@@ -23,8 +25,28 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
 import imgAvatar from '../../Assets/images/avatar.svg'
 import smallLogo from '../../Assets/icons/logo-small.svg'
+import 'swiper/swiper-bundle.css';
+
 
 const Home: React.FC = () => {
+
+  const slides = []
+
+  for (let i = 0; i < 5; i += 1) {
+    slides.push(
+      <SwiperSlide key={`slide-${i}`} tag="li">
+        <img
+          src="https://miro.medium.com/max/700/1*jCMOLE3GeLi4cksKyTHvPQ.jpeg"
+          style={{ listStyle: 'none' }}
+          alt={`slide-${i}`} />
+      </SwiperSlide>
+    )
+  }
+
+
+
+
+
   async function openMenu() {
     await menuController.open();
   }
@@ -52,7 +74,7 @@ const Home: React.FC = () => {
   }
 
   const changeBackDrop = () => {
-      setBackDrop(<BackDrop changeBack={() => {
+    setBackDrop(<BackDrop changeBack={() => {
       setBackDrop('')
       setIsShown(false)
       setIsPhoto(false)
@@ -203,9 +225,22 @@ const Home: React.FC = () => {
 
             <IonCard className="card-menu-content">
               <IonCardContent className="card-title-menu">
-                <IonLabel className='card-vazio'>
-                  VAZIO
-                </IonLabel>
+                <Swiper
+                  spaceBetween={50}
+                  slidesPerView={3}
+                  navigation
+                  pagination={{ clickable: true }}
+                  height={100}
+                  width={100}
+                  onSlideChange={() => console.log('slide change')}
+                  onSwiper={(swiper) => console.log(swiper)}
+                >
+                  <SwiperSlide>Slide 1</SwiperSlide>
+                  <SwiperSlide>Slide 2</SwiperSlide>
+                  <SwiperSlide>Slide 3</SwiperSlide>
+                  <SwiperSlide>Slide 4</SwiperSlide>
+                  <SwiperSlide>Slide 4</SwiperSlide>
+                </Swiper>
               </IonCardContent>
             </IonCard>
 
@@ -215,7 +250,9 @@ const Home: React.FC = () => {
 
               <IonCardContent className="card-title-menu">
                 <IonLabel className='card-vazio'>
-                  VAZIO
+                  <IonLabel className='card-vazio'>
+                    VAZIO
+                </IonLabel>
                 </IonLabel>
               </IonCardContent>
 
