@@ -17,6 +17,7 @@ import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
+import { stringify } from 'querystring';
 
 
 const QuestaoAlternativa: React.FC = () => {
@@ -31,17 +32,15 @@ const QuestaoAlternativa: React.FC = () => {
     const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
-    const [shownPopsave, setShownPopsave] = useState<boolean>(false);
-    const [showPopChoose, setShowPopChoose] = useState<boolean>(false);
-    const [shownPopRight, setShownPopRight] = useState<boolean>(false);
+    const [shownPopsave, setShownPopsave]= useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
     const [showModal, setShowModal] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
-    const [textTarget, setTextTarget] = useState<string>('')
-    const [textBtn, setTextBtn] = useState('Definir essa quantidade')
-    const [btnShow, setBtnShow] = useState<{}>(<ButtonPop showPop={() => setShowPopChoose(true)}>{textBtn}</ButtonPop>)
+    const [textRightAnswer, setTextRightAnswer] = useState<string>('')
 
+    
 
+  
     const temas = {
         id: 0,
         textPop: ''
@@ -81,8 +80,13 @@ const QuestaoAlternativa: React.FC = () => {
         }
 
         console.log(alternatives)
+<<<<<<< HEAD
 
         if (alternatives.length == 5) {
+=======
+        
+        if(alternatives.length == 4){
+>>>>>>> 9b4ea2cfbbbfd56d8d0def67b87808b4e8cb32aa
             setAlternatives(alternatives)
 
         }
@@ -110,6 +114,7 @@ const QuestaoAlternativa: React.FC = () => {
         setAlternatives([])
 
     }, [])
+<<<<<<< HEAD
     const ShowBtn = () => {
         if (alternatives.length > 0) {
             setBtnShow(<ButtonPop showPop={() => {
@@ -117,6 +122,9 @@ const QuestaoAlternativa: React.FC = () => {
             }}>{textBtn}</ButtonPop>)
         }
     }
+=======
+
+>>>>>>> 9b4ea2cfbbbfd56d8d0def67b87808b4e8cb32aa
     const CleanInputs = () => {
         setTextPop('')
         setTextAreaAlternative('')
@@ -125,6 +133,7 @@ const QuestaoAlternativa: React.FC = () => {
         setTextTitle('')
     }
 
+<<<<<<< HEAD
     const PickRightAnswer = () => {
         const alternativas = Array.from(document.getElementsByClassName('alternativas-textarea') as HTMLCollectionOf<HTMLElement>)
         alternativas.length = alternatives.length
@@ -156,6 +165,8 @@ const QuestaoAlternativa: React.FC = () => {
         return addAlternativas.disabled == true
     }
 
+=======
+>>>>>>> 9b4ea2cfbbbfd56d8d0def67b87808b4e8cb32aa
 
     return (
         <>
@@ -282,6 +293,7 @@ const QuestaoAlternativa: React.FC = () => {
                     </IonModal>
 
 
+<<<<<<< HEAD
                     <IonGrid>
                         <IonRow className='ion-justify-content-center'>
                             <IonTextarea autoGrow={true} className='ios add-temas' placeholder='Insira as alternativas' color='dark' onIonChange={e => setTextAreaAlternative(e.detail.value!)} value={textAreaAlternative}></IonTextarea>
@@ -325,6 +337,31 @@ const QuestaoAlternativa: React.FC = () => {
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>
                         <IonToggle checked={checked} onIonChange={(e) => setChecked(e.detail.checked)} className='ios toggle' onClick={() => setShownTimer(!shownTimer)} />
                         <IonLabel className='tooltip-text'>Opcional</IonLabel>
+=======
+                    <IonGrid className='array-div'>
+                    <IonRow style={{marginBottom:'1rem'}} className='ion-justify-content-center'>
+                                <IonTextarea autoGrow={textRightAnswer == '' && false || true} style={{height: textRightAnswer == '' && '4rem' || 'auto'}} className='ios alternativa-correta' placeholder='Insira a alternativa correta' color='dark'  onIonChange={e => setTextRightAnswer(e.detail.value!)} value={textRightAnswer}></IonTextarea>
+                    </IonRow>
+                        <IonRow  className='ion-justify-content-center'>
+                                <IonTextarea autoGrow={true} className='ios add-alternativas'  placeholder='Insira a/as alternativas' color='dark'  onIonChange={e => setTextAreaAlternative(e.detail.value!)} value={textAreaAlternative}></IonTextarea>
+                                <IonFabButton id='add-alternative' className='add-btn'  onClick={()=> {
+                                    AddAlternative()
+                                    setTextAreaAlternative('')
+                                    }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
+                        </IonRow>                       
+                            {alternatives.map((alternative, index)=>(
+                                <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
+                                    <IonCol style={{height:'auto', width:'10rem'}} key={alternative.id} className='alternativas' color='dark' placeholder='alternativas'>{alternative.textAreaAlternative}</IonCol>
+                                    <IonFabButton  onClick={()=>DeleteAlternatives(alternative.id)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
+                                </IonRow>
+                            ))}                       
+                    </IonGrid>
+                       
+                    <IonRow className='row-toggle'>                                            
+                        <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>                        
+                        <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>
+                        <IonLabel className='tooltip-text'>Opcional</IonLabel>                    
+>>>>>>> 9b4ea2cfbbbfd56d8d0def67b87808b4e8cb32aa
                     </IonRow>
                     <IonRow className='ios row-timer'>
                         {shownTimer && timer}
@@ -372,6 +409,7 @@ const Timer: React.FC = () => {
     );
 }
 
+<<<<<<< HEAD
 const PopChoose: React.FC<{ isOpen: boolean; hidePopover: () => void; disablePick: () => void; ablePick: () => void }> = props => {
 
     return (
@@ -425,5 +463,7 @@ const PopRightAnswer: React.FC<{ isOpen: boolean; hidePopover: () => void; ableP
 }
 
 
+=======
+>>>>>>> 9b4ea2cfbbbfd56d8d0def67b87808b4e8cb32aa
 
 export default QuestaoAlternativa;
