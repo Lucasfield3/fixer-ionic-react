@@ -31,6 +31,7 @@ import questaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDiserta
 import CardRed from './components/CardRed/cardRed';
 import CardGreen from './components/CardGreen/cardGreen';
 import swiperSlide from './components/Swiper/swiperSlide';
+import AnswerDissertativa from './components/AnswerQuestion/AnserDissertativa';
 const App: React.FC = () => {
   return (
    <IonApp>
@@ -47,6 +48,7 @@ const App: React.FC = () => {
         <Route path="/CardRed" component={CardRed} exact={true} />
         <Route path="/CardGreen" component={CardGreen} exact={true} />
         <Route path="/swiperSlide" component={swiperSlide} exact={true} />
+        <Route path="/AnswerDissertativa" component={AnswerDissertativa} exact={true} />
 
 
 

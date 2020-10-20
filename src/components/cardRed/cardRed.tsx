@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonFabButton, IonFooter, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonModal, IonPage, IonPopover, IonRow, IonTitle, IonToolbar } from '@ionic/react'
-import { pin, walk, warning, wifi, wine } from 'ionicons/icons';
+import { IonCard, IonCardHeader, IonIcon, IonLabel, IonRow } from '@ionic/react'
 import cardClose from '../../Assets/images/cardClose.svg'
 import './styles.css'
 

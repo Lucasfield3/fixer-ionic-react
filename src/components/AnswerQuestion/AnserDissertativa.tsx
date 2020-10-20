@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
     IonButton,
     IonPage,
-
     IonRow,
     IonFabButton,
     IonIcon,
@@ -10,49 +9,40 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle, IonCardSubtitle, IonCardTitle, IonModal, IonText
+    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle
 } from '@ionic/react'
-import { add, arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
-import './style.css'
+import { add, menuOutline, arrowUndoSharp, text, timerOutline, remove } from 'ionicons/icons';
+import './styles.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { stringify } from 'querystring';
+import backAnswer from '../../Assets/images/back.svg';
+import nextAnswer from '../../Assets/images/next.svg';
+import { textChangeRangeIsUnchanged } from 'typescript';
 
 
-const QuestaoAlternativa: React.FC = () => {
+
+const AnswerDissertativa: React.FC = (props) => {
+
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
     const [textTitle, setTextTitle] = useState<string>('')
     const [textMat, setTextMat] = useState<string>('')
     const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
-    const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
+    const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
     const [timer, setTimer] = useState<{}>(<Timer />)
     const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
-    const [shownPopsave, setShownPopsave]= useState<boolean>(false);
+    const [shownPopsave, setShownPopsave] = useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
-    const [showModal, setShowModal] = useState(false)
-    const [showModal2, setShowModal2] = useState(false)
-    const [textRightAnswer, setTextRightAnswer] = useState<string>('')
 
-    
-
-  
     const temas = {
-        id: 0,
+        id: -1,
         textPop: ''
     }
-    const answer =
-    {
-        id: 0,
-        textAreaAlternative: ''
-    }
-
     const [items, setItems] = useState([temas]);
-    const [alternatives, setAlternatives] = useState([answer]);
     const popOverSave = () => {
         setShownPopsave(true);
         setTimeout(() => {
@@ -61,43 +51,15 @@ const QuestaoAlternativa: React.FC = () => {
         }, 1000)
     }
     const AddTema = () => {
+
         if (textPop !== '') {
             setItems([...items, {
-                id: items.length + 1,
+                id: items.length,
                 textPop: textPop
             }
             ])
         }
     }
-    const AddAlternative = () => {
-
-        if (textAreaAlternative !== '') {
-            setAlternatives([...alternatives, {
-                id: alternatives.length + 1,
-                textAreaAlternative: textAreaAlternative
-            }
-            ])
-        }
-
-        console.log(alternatives)
-        
-        if(alternatives.length == 4){
-            setAlternatives(alternatives)
-
-        }
-
-
-    }
-
-
-
-    const DeleteAlternatives = (id: number) => {
-        const alternativeToBedeleted = alternatives.filter(alternative => alternative.id !== id);
-        setAlternatives(alternativeToBedeleted)
-
-
-    }
-
     const DeleteTema = (id: number) => {
         const itemToBedeleted = items.filter(item => item.id !== id);
         setItems(itemToBedeleted)
@@ -106,17 +68,15 @@ const QuestaoAlternativa: React.FC = () => {
     useEffect(() => {
 
         setItems([])
-        setAlternatives([])
 
     }, [])
     const CleanInputs = () => {
         setTextPop('')
-        setTextAreaAlternative('')
+        setTextAreaAnswer('')
         setTextAreaQuestion('')
         setTextMat('')
         setTextTitle('')
     }
-
 
     return (
         <>
@@ -136,8 +96,7 @@ const QuestaoAlternativa: React.FC = () => {
                                 setShownTimer(false)
                             }}
                             slot='start'
-                            className="icon-fab-button light"
-
+                            className="ios icon-fab-button light"
                             size="small"
                             color="light">
                             <IonIcon icon={arrowUndoSharp} />
@@ -224,55 +183,51 @@ const QuestaoAlternativa: React.FC = () => {
                         <IonRow className='row-footer' color='light'></IonRow>
                     </IonCard >
 
-                    <IonModal isOpen={showModal} cssClass='my-custom-class'>
-                        <IonCardTitle className="div-modal-alternativa">
-                            <IonText className="modal-text" color="dark">
-                                <h4>Deseja criar mais um flashcard ?</h4>
-                            </IonText>
-                            <IonCardSubtitle className="header-btn">
-                                <IonButton className="btn-sim" onClick={() => setShowModal2(true)}>Sim</IonButton>
-                                <IonButton className="btn-nao" onClick={() => setShowModal(false)}>Não</IonButton>
-                            </IonCardSubtitle>
-                        </IonCardTitle>
-                    </IonModal>
 
-                    <IonModal isOpen={showModal2} cssClass='my-custom-class'>
-                        <IonButton className="btn-dissertativa" onClick={() => setShowModal2(true)}>Dissertativa</IonButton>
-                        <IonLabel className="label-modal">ou</IonLabel>
-                        <IonButton className="btn-alternativa" onClick={() => setShowModal2(true)}>Alternativa</IonButton>
-                    </IonModal>
+                    <IonCard className='card-dissertativa-secundary' color='light'>
+                        <IonCardHeader style={{ padding: 0 }}>
+                            <IonRow color='light' className='row-header-resposta'></IonRow>
+                        </IonCardHeader>
+                        <IonCardContent style={{ height: '9rem' }} className="content-background">
+                            <IonRow className="ios row-dissertativa">
+                                <IonTextarea
+                                    overflow-scroll="true"
+                                    className='ios answer'
+                                    required
+                                    value={textAreaAnswer}
+                                    rows={4}
+                                    cols={20}
+                                    color='dark'
+                                    onIonChange={e => setTextAreaAnswer(e.detail.value!)}
+                                    placeholder="Digite ou cole a resposta">
+                                </IonTextarea>
+                            </IonRow>
+                        </IonCardContent>
+                        <IonRow color='light' className='row-footer-resposta'></IonRow>
+                    </IonCard >
 
-
-                    <IonGrid className='array-div'>
-                    <IonRow style={{marginBottom:'1rem'}} className='ion-justify-content-center'>
-                                <IonTextarea autoGrow={textRightAnswer == '' && false || true} style={{height: textRightAnswer == '' && '4rem' || 'auto'}} className='ios alternativa-correta' placeholder='Insira a alternativa correta' color='dark'  onIonChange={e => setTextRightAnswer(e.detail.value!)} value={textRightAnswer}></IonTextarea>
-                    </IonRow>
-                        <IonRow  className='ion-justify-content-center'>
-                                <IonTextarea autoGrow={true} className='ios add-alternativas'  placeholder='Insira a/as alternativas' color='dark'  onIonChange={e => setTextAreaAlternative(e.detail.value!)} value={textAreaAlternative}></IonTextarea>
-                                <IonFabButton id='add-alternative' className='add-btn'  onClick={()=> {
-                                    AddAlternative()
-                                    setTextAreaAlternative('')
-                                    }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
-                        </IonRow>                       
-                            {alternatives.map((alternative, index)=>(
-                                <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
-                                    <IonCol style={{height:'auto', width:'10rem'}} key={alternative.id} className='alternativas' color='dark' placeholder='alternativas'>{alternative.textAreaAlternative}</IonCol>
-                                    <IonFabButton  onClick={()=>DeleteAlternatives(alternative.id)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
-                                </IonRow>
-                            ))}                       
-                    </IonGrid>
-                       
-                    <IonRow className='row-toggle'>                                            
-                        <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>                        
-                        <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>
-                        <IonLabel className='tooltip-text'>Opcional</IonLabel>                    
+                    <IonRow className='row-toggle'>
+                        <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>
+                        <IonToggle checked={checked} onIonChange={(e) => setChecked(e.detail.checked)} className='ios toggle' onClick={() => setShownTimer(!shownTimer)} />
+                        <IonLabel className='tooltip-text'>Opcional</IonLabel>
                     </IonRow>
                     <IonRow className='ios row-timer'>
                         {shownTimer && timer}
                     </IonRow>
 
                     <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
-                        <IonButton className="ios btn-criar" onClick={() => setShowModal(true)} >Criar</IonButton>
+                        <a href="#" className="ios back-answer">
+                            <img className="href-back" src={backAnswer} alt="back" />
+                        </a>
+                        <IonCard className="ios bar-result-answers" color="light">
+                            <IonLabel id="answer-certas">Certas: 0 </IonLabel>
+                            <IonLabel id="answer-total">Total: 0 </IonLabel>
+                            <IonLabel id="answer-erradas">Erradas: 0 </IonLabel>
+                        </IonCard>
+
+                        <a href="#" className="ios back-answer">
+                            <img className="href-next" src={nextAnswer} alt="next" />
+                        </a>
                     </IonRow>
                 </IonContent>
 
@@ -313,5 +268,4 @@ const Timer: React.FC = () => {
     );
 }
 
-
-export default QuestaoAlternativa;
+export default AnswerDissertativa;
