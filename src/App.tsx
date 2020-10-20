@@ -30,8 +30,7 @@ import questaoAlternativa from './pages/Flash-cards/Alternativa/questaoAlternati
 import questaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDisertativa'
 import CardRed from './components/CardRed/cardRed';
 import CardGreen from './components/CardGreen/cardGreen';
-import swiperSlide from './components/Swiper/swiperSlide';
-import AnswerDissertativa from './components/AnswerQuestion/AnserDissertativa';
+//import swiperSlide from './components/Swiper/swiperSlide';
 const App: React.FC = () => {
   return (
    <IonApp>
@@ -47,8 +46,7 @@ const App: React.FC = () => {
         <Route path="/questaoDissertativa" component={questaoDissertativa} exact={true} />
         <Route path="/CardRed" component={CardRed} exact={true} />
         <Route path="/CardGreen" component={CardGreen} exact={true} />
-        <Route path="/swiperSlide" component={swiperSlide} exact={true} />
-        <Route path="/AnswerDissertativa" component={AnswerDissertativa} exact={true} />
+        
 
 
 
@@ -61,3 +59,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+/**<Route path="/swiperSlide" component={swiperSlide} exact={true} /> */

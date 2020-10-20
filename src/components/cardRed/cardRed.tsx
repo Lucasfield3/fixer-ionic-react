@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { IonCard, IonCardHeader, IonIcon, IonLabel, IonRow } from '@ionic/react'
+import React from 'react';
+import {  IonCard, IonCardHeader, IonIcon, IonLabel, IonRow} from '@ionic/react'
+//import { pin, walk, warning, wifi, wine } from 'ionicons/icons';
 import cardClose from '../../Assets/images/cardClose.svg'
 import './styles.css'
 
