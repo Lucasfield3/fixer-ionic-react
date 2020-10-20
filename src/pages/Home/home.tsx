@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+
 
 import {
   IonButton,
@@ -25,14 +25,14 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
 import imgAvatar from '../../Assets/images/avatar.svg'
 import smallLogo from '../../Assets/icons/logo-small.svg'
-import 'swiper/swiper-bundle.css';
+//import 'swiper/swiper-bundle.css';
 
 
 const Home: React.FC = () => {
 
-  const slides = []
+  //const slides = []
 
-  for (let i = 0; i < 5; i += 1) {
+  /*for (let i = 0; i < 5; i += 1) {
     slides.push(
       <SwiperSlide key={`slide-${i}`} tag="li">
         <img
@@ -41,7 +41,7 @@ const Home: React.FC = () => {
           alt={`slide-${i}`} />
       </SwiperSlide>
     )
-  }
+  }*/
 
 
 
@@ -225,22 +225,7 @@ const Home: React.FC = () => {
 
             <IonCard className="card-menu-content">
               <IonCardContent className="card-title-menu">
-                <Swiper
-                  spaceBetween={50}
-                  slidesPerView={3}
-                  navigation
-                  pagination={{ clickable: true }}
-                  height={100}
-                  width={100}
-                  onSlideChange={() => console.log('slide change')}
-                  onSwiper={(swiper) => console.log(swiper)}
-                >
-                  <SwiperSlide>Slide 1</SwiperSlide>
-                  <SwiperSlide>Slide 2</SwiperSlide>
-                  <SwiperSlide>Slide 3</SwiperSlide>
-                  <SwiperSlide>Slide 4</SwiperSlide>
-                  <SwiperSlide>Slide 4</SwiperSlide>
-                </Swiper>
+               
               </IonCardContent>
             </IonCard>
 
@@ -297,3 +282,19 @@ const BackDrop: React.FC<{ changeBack: () => void }> = props => {
 }
 
 export default Home;
+/** <Swiper
+                  spaceBetween={50}
+                  slidesPerView={3}
+                  navigation
+                  pagination={{ clickable: true }}
+                  height={100}
+                  width={100}
+                  onSlideChange={() => console.log('slide change')}
+                  onSwiper={(~) => console.log(Swiper)}
+                >
+                  <SwiperSlide>Slide 1</SwiperSlide>
+                  <SwiperSlide>Slide 2</SwiperSlide>
+                  <SwiperSlide>Slide 3</SwiperSlide>
+                  <SwiperSlide>Slide 4</SwiperSlide>
+                  <SwiperSlide>Slide 4</SwiperSlide>
+                </Swiper> */
