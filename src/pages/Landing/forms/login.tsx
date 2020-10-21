@@ -1,4 +1,4 @@
-import React,{ FormEvent, useState} from 'react';
+import React,{ useState} from 'react';
 import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem } from '@ionic/react';
 import Button from '../styles/Button'
 import { useHistory } from 'react-router-dom'
@@ -29,6 +29,8 @@ const login = ()=> {
         .then(res => {
             window.localStorage.setItem('access_token', res.data.access_token)
             history.push('/Home')
+            menuController.enable(true)
+            setTimeout(()=>{props.handleClickLogin()}, 1000)
             console.log(res.data)            
         })
         //    storeToken(res.data as AccessToken)     
@@ -62,15 +64,7 @@ const clickHandler= ()=>{
     setInput('')
 }
 
-const Props = ()=>{
-    /*if(handleFormSubmit){
-        history.push('/Home')
-        menuController.enable(true)
-        setTimeout(()=>{props.handleClickLogin()}, 1000)
-    }else{
-        menuController.enable(false)
-    }*/
-}
+
 
 
 
