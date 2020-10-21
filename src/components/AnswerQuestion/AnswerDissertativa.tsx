@@ -84,7 +84,7 @@ const AnswerDissertativa: React.FC = (props) => {
             <IonPage>
                 <IonHeader className='custom-header'>
                 <a href="#" className="ios btnSair-answer">
-                        <img className="href-next" src={btnSair} alt="next" />
+                        <img className="href-next" src={btnSair} alt="btnSair" />
                     </a>
                     <IonHeader className="header-answer">
                         <IonRow className='row-label'>
