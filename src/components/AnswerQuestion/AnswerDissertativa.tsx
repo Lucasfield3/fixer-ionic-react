@@ -9,7 +9,7 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle
+    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle, IonProgressBar
 } from '@ionic/react'
 import { add, menuOutline, arrowUndoSharp, text, timerOutline, remove } from 'ionicons/icons';
 import './styles.css'
@@ -18,6 +18,7 @@ import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import backAnswer from '../../Assets/images/back.svg';
 import nextAnswer from '../../Assets/images/next.svg';
+import btnSair from '../../Assets/images/btnSair.svg';
 import { textChangeRangeIsUnchanged } from 'typescript';
 
 
@@ -82,9 +83,14 @@ const AnswerDissertativa: React.FC = (props) => {
         <>
             <IonPage>
                 <IonHeader className='custom-header'>
-                    <IonToolbar>
+                <a href="#" className="ios btnSair-answer">
+                        <img className="href-next" src={btnSair} alt="next" />
+                    </a>
+                    <IonHeader className="header-answer">
                         <IonRow className='row-label'>
-                            <IonLabel className="label-menu-fixer-dissertativa">FIXER</IonLabel>
+                            <IonLabel className="label-lvl">Level</IonLabel>
+                            <IonLabel className="start-lvl"> 0</IonLabel>
+                            <IonProgressBar value={0.5}></IonProgressBar>
                         </IonRow>
                         <IonFabButton
                             onClick={() => {
@@ -104,7 +110,7 @@ const AnswerDissertativa: React.FC = (props) => {
                                 <IonMenuButton></IonMenuButton>
                             </IonButton>
                         </IonFabButton>
-                    </IonToolbar>
+                    </IonHeader>
                 </IonHeader>
 
 

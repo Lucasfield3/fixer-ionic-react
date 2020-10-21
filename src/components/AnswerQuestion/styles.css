@@ -8,8 +8,46 @@
   font-family: Poppins;
 }
 
+.header-answer{
+  margin: 1rem;
+  margin-left: 14vw;
+  width: 70%;
+}
+
+.label-lvl{
+  color: #000000;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'Archivo Narrow', sans-serif;
+  margin: 5px 0;
+}
+
+.btnSair-answer{
+  display: flex;
+  justify-content: flex-end;
+  height: 1rem;
+}
+
+
+.start-lvl{
+  float: left;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  margin-top: 1vh;
+  background: var(--ion-color-dark);
+  color: var(--light);
+  border-radius: 1rem;
+  font-weight: bold;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.6rem;
+}
 
 .item-input-dissertativa{
+
   --background: #fdfdfd;
   border-radius: 2rem;
   margin: 1rem;
@@ -369,5 +407,24 @@ ion-item{
 }
 
 #answer-certas{
-
+  color: #2EC4B6;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
 }
+
+#answer-total{
+  color: #011627;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+#answer-erradas{
+  color: #FF206E;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+

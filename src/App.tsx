@@ -30,6 +30,7 @@ import questaoAlternativa from './pages/Flash-cards/Alternativa/questaoAlternati
 import questaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDisertativa'
 import CardRed from './components/CardRed/cardRed';
 import CardGreen from './components/CardGreen/cardGreen';
+import AnswerDissertativa from './components/AnswerQuestion/AnswerDissertativa';
 //import swiperSlide from './components/Swiper/swiperSlide';
 const App: React.FC = () => {
   return (
@@ -46,6 +47,8 @@ const App: React.FC = () => {
         <Route path="/questaoDissertativa" component={questaoDissertativa} exact={true} />
         <Route path="/CardRed" component={CardRed} exact={true} />
         <Route path="/CardGreen" component={CardGreen} exact={true} />
+        <Route path="/AnswerDissertativa" component={AnswerDissertativa} exact={true} />
+
         
 
 
