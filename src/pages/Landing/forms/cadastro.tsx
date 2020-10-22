@@ -2,13 +2,31 @@ import React, { useState } from 'react';
 import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem, IonAlert } from '@ionic/react';
 import Button from '../styles/Button'
 import '../style.css'
+import { cadastro } from '../../../services/User.service';
 
 const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
 
-    const [input, setInput] = useState<string>('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
     const [showAlert1, setShowAlert1] = useState<boolean>(false);
-    const Props = () => {
+
+    const  handleClickAuth = async () => {
+
+        try{
+            await cadastro({
+                email:email, 
+                name:name, 
+                password:password, 
+                confirmPassword:confirmPassword
+            })
+            
+        }catch(err){
+            console.log(err)
+        }
         props.handleClickCad();
+
     }
     /*const [showAlert2, setShowAlert2] = useState(false);
     const [showAlert3, setShowAlert3] = useState(false);
@@ -24,7 +42,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>E-mail:</IonLabel>
-                            <IonInput value={input} onChange={e => setInput.bind(e.target)} color='dark' type='text'></IonInput>
+                            <IonInput value={email} onIonChange={e => setEmail(e.detail.value!.trim())} color='dark' type='text'></IonInput>
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -33,7 +51,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Nome:</IonLabel>
-                            <IonInput value={input} onChange={e => setInput.bind(e.target)} color='dark' type='text'></IonInput>
+                            <IonInput value={name} onIonChange={e => setName(e.detail.value!.trim())} color='dark' type='text'></IonInput>
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -42,7 +60,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Senha:</IonLabel>
-                            <IonInput value={input} onChange={e => setInput.bind(e.target)} color='dark' type='password'></IonInput>
+                            <IonInput value={password} onIonChange={e => setPassword(e.detail.value!.trim())} color='dark' type='password'></IonInput>
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -51,7 +69,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Confirmar senha:</IonLabel>
-                            <IonInput value={input} onChange={e => setInput.bind(e.target)} color='dark' type='password'></IonInput>
+                            <IonInput value={confirmPassword} onIonChange={e => setConfirmPassword(e.detail.value!.trim())} color='dark' type='password'></IonInput>
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -59,7 +77,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                 <IonRow className="ion-align-items-center row-btn-cadastro">
                     <IonCol>
                         <IonButton
-                            onClick={() => setShowAlert1(true)}
+                            onClick={handleClickAuth}
                             size="small"
                             color='dark'
                             type='submit'

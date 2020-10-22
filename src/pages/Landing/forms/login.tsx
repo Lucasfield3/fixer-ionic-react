@@ -5,60 +5,38 @@ import { useHistory } from 'react-router-dom'
 import '../style.css'
 import { menuController } from '@ionic/core';
 import https from '../../../utils/https'
+import { login, storeToken} from '../../../services/Authentication.service';
 
 
 const Login: React.FC<{handleClickLogin:()=> void}> = props=>{
 const [input, setInput] = useState<string>('')
 //const [credentials, setCredentials] = useState({ email: '', password: '' })
 const [email, setEmail] = useState('')
-const [pass, setPass] = useState('')
-
-
-interface Credentials {
-    email:string;
-    password:string;
-}
-interface AccessToken{
-    access_token:string;
-}
-const history = useHistory()
-const login = ()=> {
-
-    https
-        .post('auth/login', {email:email, password:pass})
-        .then(res => {
-            window.localStorage.setItem('access_token', res.data.access_token)
-            history.push('/Home')
-            menuController.enable(true)
-            setTimeout(()=>{props.handleClickLogin()}, 1000)
-            console.log(res.data)            
-        })
-        //    storeToken(res.data as AccessToken)     
-
-    }
-    
-const storeToken = (access_token:AccessToken)=>{
-    window.localStorage.setItem('access_token', access_token.access_token)
-}
-    const getToken = ()=>{
-    return window.localStorage.getItem('access_token')
-}
+const [password, setPassword] = useState('')
+//type AccessToken = string
+//const [access_token, setAccess_token] = useState<AccessToken>('')
+ const history = useHistory()
 
  
-
-const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>)=>{
-    e.preventDefault();
-    try{
-        const access_token = await login()
-       
-    }catch(err){
-        console.log(err)
-        console.log('Deu errado')
-    }
+ interface AccessToken {
+    access_token:string
 }
-const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    
-  }
+
+    const handleClickAuth = async () =>{
+        try{
+           const access_token = await login({ email: email, password: password })
+          storeToken(access_token)
+        
+        }catch (err){
+           console.log('Deu ruim')
+        }
+        history.push('/Home')
+        menuController.enable(true)
+        setTimeout(()=>{props.handleClickLogin()}, 1000)
+        setEmail('')
+        setPassword('')
+    }
+
 
 const clickHandler= ()=>{
     setInput('')
@@ -76,7 +54,7 @@ const clickHandler= ()=>{
                 <IonCol>
                     <IonItem color='light'>
                         <IonLabel color='primary' position='floating'>Login:</IonLabel>  
-                        <IonInput value={email} name='email' required onIonChange={(e)=>setEmail(e.detail.value!)} color='dark'type='text'></IonInput>
+                        <IonInput value={email} name='email' required onIonChange={e=>setEmail(e.detail.value!.trim())} color='dark'type='text'></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -84,14 +62,14 @@ const clickHandler= ()=>{
                 <IonCol>
                     <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Senha:</IonLabel>  
-                            <IonInput type='password' required name='password' value={pass} onIonChange={e=>setPass(e.detail.value!)} color='dark'></IonInput>
+                            <IonInput type='password' required name='password' value={password} onIonChange={e=>setPassword(e.detail.value!.trim())} color='dark'></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
                 <IonRow className="ion-align-items-center login-row">
                     <IonCol className='col-login'>
                         <IonButton
-                        onClick={login}
+                        onClick={handleClickAuth}
                         size="small"
                         color='dark'
                         expand="block"
