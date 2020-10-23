@@ -1,0 +1,101 @@
+.card-stats{
+  border-radius: 21px;
+  width: auto;
+}
+
+.card-stats-header{
+  border-bottom: 2px var(--ion-color-dark) solid;
+  padding: 0!important;
+  height: 2.5rem;
+  background: #011627;
+}
+
+.stats_answer_correct{
+  color: #011627;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Archivo Narrow', sans-serif;
+}
+
+.label_result{
+  color: #fdfdfd;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: 'Popins', sans-serif;
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.icon-acertou{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 104px;
+  height: 104px;
+  left: 111px;
+  top: 19px;
+}
+
+.msg-acertou{
+  margin: auto;
+  margin-top: 20px;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+
+}
+
+.stats_answer_exp{
+  color: #011627;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Archivo Narrow', sans-serif;
+  
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.row-stats{
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem; 
+}
+
+.stats_conquista{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #011627;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Archivo Narrow', sans-serif;
+   
+  margin: auto;
+  margin-top: 20px;
+}
+
+.row-acertou-exp{
+  margin: auto;
+  float: left;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin-top: 1vh;
+  background: var(--ion-color-dark);
+  color: var(--light);
+  border-radius: 1rem;
+  font-weight: bold;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.6rem;
+}

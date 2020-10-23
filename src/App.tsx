@@ -30,7 +30,9 @@ import questaoAlternativa from './pages/Flash-cards/Alternativa/questaoAlternati
 import questaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDisertativa'
 import CardRed from './components/CardRed/cardRed';
 import CardGreen from './components/CardGreen/cardGreen';
-import AnswerDissertativa from './components/AnswerQuestion/AnswerDissertativa';
+import AnswerDissertativa from './components/AnswerDissertativa/AnswerDissertativa';
+import AnswerAlternativa from './components/AnswerAlternativa/AnswerAlternativa';
+import StatsDissertativa from './components/Card_stats_dissertativa/statsDissertativa';
 //import swiperSlide from './components/Swiper/swiperSlide';
 const App: React.FC = () => {
   return (
@@ -48,6 +50,8 @@ const App: React.FC = () => {
         <Route path="/CardRed" component={CardRed} exact={true} />
         <Route path="/CardGreen" component={CardGreen} exact={true} />
         <Route path="/AnswerDissertativa" component={AnswerDissertativa} exact={true} />
+        <Route path="/AnswerAlternativa" component={AnswerAlternativa} exact={true} />
+        <Route path="/StatsDissertativa" component={StatsDissertativa} exact={true} />
 
         
 

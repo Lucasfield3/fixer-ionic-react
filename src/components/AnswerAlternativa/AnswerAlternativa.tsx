@@ -23,7 +23,7 @@ import { textChangeRangeIsUnchanged } from 'typescript';
 
 
 
-const AnswerDissertativa: React.FC = (props) => {
+const AnswerAlternativa: React.FC = (props) => {
 
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -43,6 +43,7 @@ const AnswerDissertativa: React.FC = (props) => {
         id: -1,
         textPop: ''
     }
+
     const [items, setItems] = useState([temas]);
     const popOverSave = () => {
         setShownPopsave(true);
@@ -88,8 +89,8 @@ const AnswerDissertativa: React.FC = (props) => {
                     </a>
                     <IonHeader className="header-answer">
                         <IonRow className='row-label'>
-                            <IonLabel className="label-lvl">Level</IonLabel>
-                            <IonLabel className="start-lvl"> 0</IonLabel>
+                            <IonLabel className="label-lvl-alternativa">Level</IonLabel>
+                            <IonLabel className="start-lvl-alternativa"> 0</IonLabel>
                             <IonProgressBar value={0.5}></IonProgressBar>
                         </IonRow>
                         <IonFabButton
@@ -226,9 +227,9 @@ const AnswerDissertativa: React.FC = (props) => {
                             <img className="href-back" src={backAnswer} alt="back" />
                         </a>
                         <IonCard className="ios bar-result-answers" color="light">
-                            <IonLabel id="answer-certas">Certas: 0 </IonLabel>
-                            <IonLabel id="answer-total">Total: 0 </IonLabel>
-                            <IonLabel id="answer-erradas">Erradas: 0 </IonLabel>
+                            <IonLabel id="answer-certas-alternativa">Certas: 0 </IonLabel>
+                            <IonLabel id="answer-total-alternativa">Total: 0 </IonLabel>
+                            <IonLabel id="answer-erradas-alternativa">Erradas: 0 </IonLabel>
                         </IonCard>
 
                         <a href="#" className="ios back-answer">
@@ -274,4 +275,4 @@ const Timer: React.FC = () => {
     );
 }
 
-export default AnswerDissertativa;
+export default AnswerAlternativa;

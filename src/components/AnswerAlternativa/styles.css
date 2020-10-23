@@ -14,7 +14,7 @@
   width: 70%;
 }
 
-.label-lvl{
+.label-lvl-alternativa{
   color: #000000;
   font-weight: bold;
   font-size: 20px;
@@ -29,7 +29,7 @@
 }
 
 
-.start-lvl{
+.start-lvl-alternativa{
   float: left;
   flex-direction: row;
   justify-content: space-between;
@@ -406,14 +406,14 @@ ion-item{
   margin: .6rem 0;
 }
 
-#answer-certas{
+#answer-certas-alternativa{
   color: #2EC4B6;
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 16px;
   font-weight: bold;
 }
 
-#answer-total{
+#answer-total-alternativa{
   color: #011627;
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 16px;
@@ -421,7 +421,7 @@ ion-item{
 }
 
 
-#answer-erradas{
+#answer-erradas-alternativa{
   color: #FF206E;
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 16px;
