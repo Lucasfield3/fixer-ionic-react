@@ -29,6 +29,7 @@ const QuestaoDissertativa: React.FC = (props) => {
     const [textTitle, setTextTitle] = useState<string>('')
     const [textMat, setTextMat] = useState<string>('')
     const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
+    const textAreaQuestionValue = textAreaQuestion
     const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
     const [timer, setTimer] = useState<{}>(<Timer/>)
     const [checked, setChecked] = useState<boolean>(false);
@@ -258,3 +259,5 @@ const Timer: React.FC = () => {
 }
 
 export default QuestaoDissertativa;
+
+

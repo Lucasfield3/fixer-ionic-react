@@ -163,6 +163,11 @@ ion-label div:only-child{
   align-items: center;
   line-height: 1.6rem;
 }
+.row-level{
+  color:var(--ion-color-light);
+  background-color: var(--ion-color-dark);
+  font-size: 17px;
+}
 .label-level{
   position: absolute;
   margin-right: 0rem;

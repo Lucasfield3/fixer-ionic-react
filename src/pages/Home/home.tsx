@@ -119,7 +119,8 @@ const Home: React.FC = () => {
             <IonRow style={{
               opasity: isShown ? 1 : 0,
               cursor: 'default',
-              width: isShown ? '5rem' : '1.5rem',
+              width: isShown ? '3.8rem' : '1.3rem',
+              paddingLeft: isShown ? '0.3rem': '5.6px', 
               borderRadius: '1rem'
             }} onClick={() => {
               setIsShown(!isShown)

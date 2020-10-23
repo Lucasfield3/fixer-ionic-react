@@ -9,43 +9,64 @@
 }
 
 .header-answer{
-  margin: 1rem;
+  margin-top: -2rem;
   margin-left: 14vw;
   width: 70%;
 }
+<<<<<<< HEAD:src/components/AnswerAlternativa/styles.css
 
 .label-lvl-alternativa{
   color: #000000;
+=======
+.row-level-progress{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: -2rem;
+}
+.label-lvl{
+  color: var(--ion-color-dark);
+>>>>>>> 2b5645bce51aa6217d5ea61cc7ef73c2d03baae0:src/components/AnswerQuestion/styles.css
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
   font-family: 'Archivo Narrow', sans-serif;
-  margin: 5px 0;
 }
 
 .btnSair-answer{
-  display: flex;
-  justify-content: flex-end;
-  height: 1rem;
+  height: 2rem!important;
+  width: 2rem !important;
 }
 
 
+<<<<<<< HEAD:src/components/AnswerAlternativa/styles.css
 .start-lvl-alternativa{
   float: left;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: nowrap;
   margin-top: 1vh;
+=======
+.start-lvl{
+>>>>>>> 2b5645bce51aa6217d5ea61cc7ef73c2d03baae0:src/components/AnswerQuestion/styles.css
   background: var(--ion-color-dark);
   color: var(--light);
   border-radius: 1rem;
   font-weight: bold;
-  width: 1.5rem;
-  height: 1.5rem;
-  font-size: 18px;
+  width: 1rem;
+  height: 1rem;
+  font-size: 13px;
   text-align: center;
-  line-height: 1.6rem;
+  padding: 1px;
+  line-height: 0.9rem;
 }
-
+.progress-bar {
+  height: 0.4rem;
+  border-radius: 8rem;
+  margin-top: 0.3rem;
+  width: 65%;
+  border: 1px var(--ion-color-dark) solid;
+}
 .item-input-dissertativa{
 
   --background: #fdfdfd;
@@ -54,11 +75,16 @@
   height: 2.3rem;
 }
 
-.input-dissertativa{
+.titulo{
   justify-content: center;
   text-align: center;
   --padding-top: 0px;
   --padding-bottom: 7px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 0.4rem;
+  color: var(--ion-color-dark);
+  height: 2rem;
 }
 ion-item{
   --highlight-color-focused: none;
@@ -146,6 +172,7 @@ ion-item{
 .row-header{
   border-bottom: 1px var(--ion-color-dark) solid;
   height: 2.9rem;
+  --ion-color-light-contrast: var(--ioncolor-dark)!important
 }
 .row-footer{
   border-bottom: 1px var(--ion-color-dark) solid;
@@ -309,6 +336,7 @@ ion-item{
   margin-right: 5px;
   background: var(--ion-color-light);
   box-shadow: var(--box-shadow);
+  text-align: center;
 }
 .ios .temas-inputs{
   border-radius: 1.7rem;
@@ -316,6 +344,7 @@ ion-item{
   margin-right: 5px;
   background: var(--ion-color-light);
   border: 0.65px rgb(199, 199, 199) solid;
+  text-align: center;
 }
 .btn-save{
   width: 4rem;
@@ -427,4 +456,28 @@ ion-item{
   font-size: 16px;
   font-weight: bold;
 }
-
+.btn-sair{
+  height:2rem;
+  width: 2rem;
+  margin-inline-end: 8px;
+}
+.row-timer{
+  display: flex !important;
+    justify-content: center!important;
+    width: 100%;
+    padding-inline-start: 42%;
+    padding-inline-end: 42%;
+}
+.timer-flashcard{
+  border-radius: 5rem;
+  height: 1.6rem;
+  background-color: var(--light);
+  margin-top: 1.5rem;
+  font-weight: bold;
+  font-size: 17px;
+  text-align: center;
+  line-height: 1.1rem;
+  margin-bottom: -0.4rem;
+  --ion-grid-column-padding: 0px;
+  padding-top: 5px;
+}

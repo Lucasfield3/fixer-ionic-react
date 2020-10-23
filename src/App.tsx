@@ -50,6 +50,7 @@ const App: React.FC = () => {
         <Route path="/CardRed" component={CardRed} exact={true} />
         <Route path="/CardGreen" component={CardGreen} exact={true} />
         <Route path="/AnswerDissertativa" component={AnswerDissertativa} exact={true} />
+<<<<<<< HEAD
         <Route path="/AnswerAlternativa" component={AnswerAlternativa} exact={true} />
         <Route path="/StatsDissertativa" component={StatsDissertativa} exact={true} />
 
@@ -58,6 +59,8 @@ const App: React.FC = () => {
 
 
 
+=======
+>>>>>>> 2b5645bce51aa6217d5ea61cc7ef73c2d03baae0
         <Route exact path="/" render={() => <Redirect to="/Landing" />} />
       </IonRouterOutlet>
     </IonReactRouter>
