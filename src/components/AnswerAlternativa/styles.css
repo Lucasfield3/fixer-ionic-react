@@ -13,11 +13,6 @@
   margin-left: 14vw;
   width: 70%;
 }
-<<<<<<< HEAD:src/components/AnswerAlternativa/styles.css
-
-.label-lvl-alternativa{
-  color: #000000;
-=======
 .row-level-progress{
   display: flex;
   flex-direction: column;
@@ -27,7 +22,6 @@
 }
 .label-lvl{
   color: var(--ion-color-dark);
->>>>>>> 2b5645bce51aa6217d5ea61cc7ef73c2d03baae0:src/components/AnswerQuestion/styles.css
   font-weight: bold;
   font-size: 15px;
   font-family: 'Archivo Narrow', sans-serif;
@@ -39,16 +33,7 @@
 }
 
 
-<<<<<<< HEAD:src/components/AnswerAlternativa/styles.css
-.start-lvl-alternativa{
-  float: left;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  margin-top: 1vh;
-=======
 .start-lvl{
->>>>>>> 2b5645bce51aa6217d5ea61cc7ef73c2d03baae0:src/components/AnswerQuestion/styles.css
   background: var(--ion-color-dark);
   color: var(--light);
   border-radius: 1rem;

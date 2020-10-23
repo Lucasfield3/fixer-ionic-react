@@ -21,11 +21,7 @@ import btnSair from '../../Assets/images/btnSair.svg';
 
 
 
-<<<<<<< HEAD:src/components/AnswerAlternativa/AnswerAlternativa.tsx
-const AnswerAlternativa: React.FC = (props) => {
-=======
-const AnswerDissertativa: React.FC = () => {
->>>>>>> 2b5645bce51aa6217d5ea61cc7ef73c2d03baae0:src/components/AnswerQuestion/AnswerDissertativa.tsx
+const AnswerAlternativa: React.FC = () => {
 
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -86,16 +82,6 @@ const AnswerDissertativa: React.FC = () => {
         <>
             <IonPage>
                 <IonHeader className='custom-header'>
-<<<<<<< HEAD:src/components/AnswerAlternativa/AnswerAlternativa.tsx
-                <a href="#" className="ios btnSair-answer">
-                        <img className="href-next" src={btnSair} alt="btnSair" />
-                    </a>
-                    <IonHeader className="header-answer">
-                        <IonRow className='row-label'>
-                            <IonLabel className="label-lvl-alternativa">Level</IonLabel>
-                            <IonLabel className="start-lvl-alternativa"> 0</IonLabel>
-                            <IonProgressBar value={0.5}></IonProgressBar>
-=======
                 <IonToolbar>
                     <IonFabButton className='btn-sair' color='light' slot='end' size='small'>
                         Sair
@@ -104,7 +90,6 @@ const AnswerDissertativa: React.FC = () => {
                     <IonRow className='row-level-progress'>
                         <IonRow className='ion-justify-content-center'>
                             <IonLabel className="label-lvl">LV</IonLabel>
->>>>>>> 2b5645bce51aa6217d5ea61cc7ef73c2d03baae0:src/components/AnswerQuestion/AnswerDissertativa.tsx
                         </IonRow>
                         <IonRow style={{height:'1rem'}} className='ion-justify-content-center row-progress'>                       
                             <IonLabel className="start-lvl">0</IonLabel>

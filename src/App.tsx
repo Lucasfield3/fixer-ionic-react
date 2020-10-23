@@ -32,7 +32,7 @@ import CardRed from './components/CardRed/cardRed';
 import CardGreen from './components/CardGreen/cardGreen';
 import AnswerDissertativa from './components/AnswerDissertativa/AnswerDissertativa';
 import AnswerAlternativa from './components/AnswerAlternativa/AnswerAlternativa';
-import StatsDissertativa from './components/Card_stats_dissertativa/statsDissertativa';
+import CardStats from './components/Card_stats_result/cardStats';
 //import swiperSlide from './components/Swiper/swiperSlide';
 const App: React.FC = () => {
   return (
@@ -50,17 +50,9 @@ const App: React.FC = () => {
         <Route path="/CardRed" component={CardRed} exact={true} />
         <Route path="/CardGreen" component={CardGreen} exact={true} />
         <Route path="/AnswerDissertativa" component={AnswerDissertativa} exact={true} />
-<<<<<<< HEAD
         <Route path="/AnswerAlternativa" component={AnswerAlternativa} exact={true} />
-        <Route path="/StatsDissertativa" component={StatsDissertativa} exact={true} />
+        <Route path="/CardStats" component={CardStats} exact={true} />
 
-        
-
-
-
-
-=======
->>>>>>> 2b5645bce51aa6217d5ea61cc7ef73c2d03baae0
         <Route exact path="/" render={() => <Redirect to="/Landing" />} />
       </IonRouterOutlet>
     </IonReactRouter>
