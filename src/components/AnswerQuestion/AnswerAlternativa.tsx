@@ -4,20 +4,14 @@ import {
     IonPage,
     IonRow,
     IonFabButton,
-    IonIcon,
     IonHeader,
-    IonMenuButton,
     IonLabel,
-    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar
+    IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar
 } from '@ionic/react'
-import { add,  arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
 import './styles.css'
-import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
-import styled from 'styled-components';
 import backAnswer from '../../Assets/images/back.svg';
 import nextAnswer from '../../Assets/images/next.svg';
-import btnSair from '../../Assets/images/btnSair.svg';
 
 
 
@@ -30,17 +24,25 @@ const AnswerDissertativa: React.FC = () => {
     const [textMat, setTextMat] = useState<string>('')
     const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
     const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
-    const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave] = useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
-
+    const [textRightAnswer, setTextRightAnswer] = useState<string>('')
+    const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
+    const answer =
+    {
+        id: 0,
+        textAreaAlternative: ''
+    }
     const temas = {
         id: -1,
         textPop: ''
     }
+    const letras = ['a', 'b', 'c', 'd', 'e'] 
+    const [letra, setLetra] = useState([letras])
     const [items, setItems] = useState([temas]);
+    const [alternatives, setAlternatives] = useState([answer]);
     const popOverSave = () => {
         setShownPopsave(true);
         setTimeout(() => {
@@ -58,23 +60,15 @@ const AnswerDissertativa: React.FC = () => {
             ])
         }
     }
-    const DeleteTema = (id: number) => {
-        const itemToBedeleted = items.filter(item => item.id !== id);
-        setItems(itemToBedeleted)
-    }
 
     useEffect(() => {
 
-        setItems([])
+        setAlternatives([...alternatives, {
+            id:1,
+            textAreaAlternative:'alternativas'
+        }])
 
     }, [])
-    const CleanInputs = () => {
-        setTextPop('')
-        setTextAreaAnswer('')
-        setTextAreaQuestion('')
-        setTextMat('')
-        setTextTitle('')
-    }
 
     return (
         <>
@@ -163,27 +157,14 @@ const AnswerDissertativa: React.FC = () => {
                     </IonCard >
 
 
-                    <IonCard className='card-dissertativa-secundary' color='light'>
-                        <IonCardHeader style={{ padding: 0 }}>
-                            <IonRow color='light' className='row-header-resposta'></IonRow>
-                        </IonCardHeader>
-                        <IonCardContent style={{ height: '9rem' }} className="content-background">
-                            <IonRow className="ios row-dissertativa">
-                                <IonTextarea
-                                    overflow-scroll="true"
-                                    className='ios answer'
-                                    required
-                                    value={textAreaAnswer}
-                                    rows={4}
-                                    cols={20}
-                                    color='dark'
-                                    onIonChange={e => setTextAreaAnswer(e.detail.value!)}
-                                    placeholder="Digite ou cole a resposta">
-                                </IonTextarea>
-                            </IonRow>
-                        </IonCardContent>
-                        <IonRow color='light' className='row-footer-resposta'></IonRow>
-                    </IonCard >
+                    <IonGrid className='array-div'>                
+                            {alternatives.map((alternative, index)=>(
+                                <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
+                                    <IonCol color='dark' size='1' className='letras-alternativas'> {letras[index]}</IonCol>
+                                    <IonCol style={{height:'auto', width:'10rem'}} key={alternative.id} className='alternativas' color='dark'>Alternativas</IonCol>
+                                </IonRow>
+                            ))}                       
+                    </IonGrid>
 
                     <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
                         <a href="#" className="ios back-answer">
@@ -206,5 +187,6 @@ const AnswerDissertativa: React.FC = () => {
     );
 
 }
+
 
 export default AnswerDissertativa;
