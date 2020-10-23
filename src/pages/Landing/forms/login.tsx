@@ -18,17 +18,13 @@ const [password, setPassword] = useState('')
  const history = useHistory()
 
  
- interface AccessToken {
-    access_token:string
-}
-
     const handleClickAuth = async () =>{
         try{
-           const access_token = await login({ email: email, password: password })
+           const access_token = await login({email: email, password: password})
           storeToken(access_token)
         
         }catch (err){
-           console.log('Deu ruim')
+           console.log(err)
         }
         history.push('/Home')
         menuController.enable(true)

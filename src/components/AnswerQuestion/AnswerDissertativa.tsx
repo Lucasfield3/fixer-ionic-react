@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     IonButton,
     IonPage,
@@ -7,11 +7,10 @@ import {
     IonIcon,
     IonHeader,
     IonMenuButton,
-    IonToolbar,
     IonLabel,
-    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle, IonProgressBar
+    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar
 } from '@ionic/react'
-import { add, menuOutline, arrowUndoSharp, text, timerOutline, remove } from 'ionicons/icons';
+import { add,  arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
 import './styles.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
@@ -19,11 +18,10 @@ import styled from 'styled-components';
 import backAnswer from '../../Assets/images/back.svg';
 import nextAnswer from '../../Assets/images/next.svg';
 import btnSair from '../../Assets/images/btnSair.svg';
-import { textChangeRangeIsUnchanged } from 'typescript';
 
 
 
-const AnswerDissertativa: React.FC = (props) => {
+const AnswerDissertativa: React.FC = () => {
 
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -83,42 +81,28 @@ const AnswerDissertativa: React.FC = (props) => {
         <>
             <IonPage>
                 <IonHeader className='custom-header'>
-                <a href="#" className="ios btnSair-answer">
-                        <img className="href-next" src={btnSair} alt="btnSair" />
-                    </a>
-                    <IonHeader className="header-answer">
-                        <IonRow className='row-label'>
-                            <IonLabel className="label-lvl">Level</IonLabel>
-                            <IonLabel className="start-lvl"> 0</IonLabel>
-                            <IonProgressBar value={0.5}></IonProgressBar>
+                <IonToolbar>
+                    <IonFabButton className='btn-sair' color='light' slot='end' size='small'>
+                        Sair
+                    </IonFabButton>
+                </IonToolbar>
+                    <IonRow className='row-level-progress'>
+                        <IonRow className='ion-justify-content-center'>
+                            <IonLabel className="label-lvl">LV</IonLabel>
                         </IonRow>
-                        <IonFabButton
-                            onClick={() => {
-                                history.push('/Flash-cards')
-                                menuController.enable(true);
-                                setItems([])
-                                CleanInputs()
-                                setChecked(false)
-                                setShownTimer(false)
-                            }}
-                            slot='start'
-                            className="ios icon-fab-button light"
-                            size="small"
-                            color="light">
-                            <IonIcon icon={arrowUndoSharp} />
-                            <IonButton slot='start'>
-                                <IonMenuButton></IonMenuButton>
-                            </IonButton>
-                        </IonFabButton>
-                    </IonHeader>
+                        <IonRow style={{height:'1rem'}} className='ion-justify-content-center row-progress'>                       
+                            <IonLabel className="start-lvl">0</IonLabel>
+                            <IonProgressBar className='progress-bar' value={0.5}></IonProgressBar>
+                            <IonLabel className="start-lvl">1</IonLabel>
+                        </IonRow>
+                    </IonRow>
                 </IonHeader>
 
 
                 <IonContent>
-                    <IonItem style={{ borderRadius: '6px' }} className="item-input-dissertativa">
-                        <IonInput value={textTitle} type="text" required className="input-dissertativa" onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Flashcard"></IonInput>
-                    </IonItem>
-
+                    <IonRow className='row-timer'>
+                        <IonCol  className='timer-flashcard' color='dark'>00:00</IonCol>
+                    </IonRow>
                     <IonCard className='card-dissertativa' color='light'>
                         <IonCardHeader style={{ padding: 0 }}>
                             <IonRow className='ios ion-justify-content-space-between row-header'>
@@ -129,30 +113,23 @@ const AnswerDissertativa: React.FC = (props) => {
                                     onDidDismiss={e => setShowPopover(false)}
                                 >
                                     <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
-                                        <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Adicione um tema</IonLabel>
+                                        <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Temas</IonLabel>
                                     </IonRow>
                                     <IonGrid className='back-temas'>
                                         <IonRow className='ion-justify-content-center'>
-                                            <IonInput className='ios add-temas' placeholder='Tema' color='dark' onIonChange={e => setTextPop(e.detail.value!)} value={textPop} type='text'></IonInput>
-                                            <IonFabButton className='add-btn' onClick={() => {
-                                                AddTema()
-                                                setTextPop('')
-                                            }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
+                                            <IonCol  className='ios temas-inputs' color='dark'>Engenharia</IonCol>
                                         </IonRow>
                                         {items.map(item => (
                                             <IonRow style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                                                <IonCol key={item.id} className='ios temas-inputs' color='dark'>{item.textPop}</IonCol>
-                                                <IonFabButton onClick={() => DeleteTema(item.id)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
+                                                <IonCol key={item.id} className='ios temas-inputs' placeholder='Temas' color='dark'>{item.textPop}</IonCol>                                               
                                             </IonRow>
                                         ))}
                                     </IonGrid>
                                     <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center row-btn'>
-                                        <IonButton className='btn-save' color='light' onClick={() => popOverSave()}>Salvar</IonButton>
                                         <IonButton onClick={() => {
                                             setShowPopover(false)
-                                            setItems([])
                                             setTextPop('')
-                                        }} color='light' className='btn-cancel'>Limpar</IonButton>
+                                        }} color='light' className='btn-cancel'>Fechar</IonButton>
                                     </IonRow>
                                 </IonPopover>
                                 <IonPopover
@@ -164,11 +141,11 @@ const AnswerDissertativa: React.FC = (props) => {
                                     }}
                                 >
                                     <IonRow className='ion-justify-content-center ion-text-align-center'>
-                                        <IonLabel style={{ fontWeight: 'bold', fontSize: '18px', lineHeight: '8rem' }} color='success'>Temas salvos!</IonLabel>
+                                        <IonLabel style={{ fontWeight: 'bold', fontSize: '18px', lineHeight: '8rem' }} color='success'>Temas</IonLabel>
                                     </IonRow>
                                 </IonPopover>
 
-                                <IonInput value={textMat} className="input-tema" placeholder="Insira a matéria" onIonChange={e => setTextMat(e.detail.value!)}></IonInput>
+                                <IonCol  className="titulo" >Título do Flashcard</IonCol>
                             </IonRow>
                         </IonCardHeader>
                         <IonCardContent className="content-background">
@@ -179,10 +156,7 @@ const AnswerDissertativa: React.FC = (props) => {
                                     cols={20}
                                     required
                                     className='ios question'
-                                    color='dark'
-                                    onIonChange={e => setTextAreaQuestion(e.detail.value!)}
-                                    value={textAreaQuestion}
-                                    placeholder="Digite ou cole o enunciado do flash-card">
+                                    color='dark'>                                       
                                 </IonTextarea>
                             </IonRow>
                         </IonCardContent>
@@ -211,15 +185,6 @@ const AnswerDissertativa: React.FC = (props) => {
                         </IonCardContent>
                         <IonRow color='light' className='row-footer-resposta'></IonRow>
                     </IonCard >
-
-                    <IonRow className='row-toggle'>
-                        <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>
-                        <IonToggle checked={checked} onIonChange={(e) => setChecked(e.detail.checked)} className='ios toggle' onClick={() => setShownTimer(!shownTimer)} />
-                        <IonLabel className='tooltip-text'>Opcional</IonLabel>
-                    </IonRow>
-                    <IonRow className='ios row-timer'>
-                        {shownTimer && timer}
-                    </IonRow>
 
                     <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
                         <a href="#" className="ios back-answer">

@@ -48,12 +48,6 @@ const App: React.FC = () => {
         <Route path="/CardRed" component={CardRed} exact={true} />
         <Route path="/CardGreen" component={CardGreen} exact={true} />
         <Route path="/AnswerDissertativa" component={AnswerDissertativa} exact={true} />
-
-        
-
-
-
-
         <Route exact path="/" render={() => <Redirect to="/Landing" />} />
       </IonRouterOutlet>
     </IonReactRouter>
