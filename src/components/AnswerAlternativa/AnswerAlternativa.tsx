@@ -15,7 +15,7 @@ import nextAnswer from '../../Assets/images/next.svg';
 
 
 
-const AnswerDissertativa: React.FC = () => {
+const AnswerAlternativa: React.FC = () => {
 
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -171,9 +171,9 @@ const AnswerDissertativa: React.FC = () => {
                             <img className="href-back" src={backAnswer} alt="back" />
                         </a>
                         <IonCard className="ios bar-result-answers" color="light">
-                            <IonLabel id="answer-certas">Certas: 0 </IonLabel>
-                            <IonLabel id="answer-total">Total: 0 </IonLabel>
-                            <IonLabel id="answer-erradas">Erradas: 0 </IonLabel>
+                            <IonLabel id="answer-certas-alternativa">Certas: 0 </IonLabel>
+                            <IonLabel id="answer-total-alternativa">Total: 0 </IonLabel>
+                            <IonLabel id="answer-erradas-alternativa">Erradas: 0 </IonLabel>
                         </IonCard>
 
                         <a href="#" className="ios back-answer">
@@ -187,6 +187,4 @@ const AnswerDissertativa: React.FC = () => {
     );
 
 }
-
-
-export default AnswerDissertativa;
+ export default AnswerAlternativa

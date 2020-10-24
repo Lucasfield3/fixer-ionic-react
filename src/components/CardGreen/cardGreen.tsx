@@ -22,10 +22,6 @@ const CardGreen: React.FC = () => {
           </IonRow>
 
           <IonRow>
-            <IonLabel className="msg-acertou">A resposta está incorreta, verifique novamente. </IonLabel>
-          </IonRow>
-
-          <IonRow>
             <IonLabel className="msg-exp">EXP ADQUIRIDO</IonLabel>
           </IonRow>
 
