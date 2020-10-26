@@ -10,20 +10,20 @@
   align-items: center;
 }
 
-.label-msg-notification{
+.label-msg-create{
   font-family: 'Archivo Narrow'sans-serif;
-    color: var(--ion-text-color, #ffabc8);
+    color: var(--ion-text-color, #C2F3EE);
     font-size: 30px;
-    -webkit-text-stroke:0.5px #FF206E;
+    -webkit-text-stroke:0.5px #C2F3EE;
     text-shadow:
-      1px 1px 0 #FF206E,
-      -1px -1px 0 #FF206E,
-      1px -1px 0 #FF206E,
-      -1px 1px 0 #FF206E,
-      1px 1px 0 #FF206E;
+      1px 1px 0 #2EC4B6,
+      -1px -1px 0 #2EC4B6,  
+      1px -1px 0 #2EC4B6,
+      -1px 1px 0 #2EC4B6,
+      1px 1px 0 #2EC4B6;
 }
 
-.btn_msg_notification{
+.btn_msg_create{
   width: 6.6rem !important;
   height: 2.3rem !important;
   font-size: 11px!important;
@@ -33,7 +33,7 @@
 
   text-align: center;
   justify-content: center;
-  color:#FF206E;
+  color:#2EC4B6;
   background-color:var(--ion-color-light);
 
 }
