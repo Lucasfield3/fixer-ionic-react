@@ -33,6 +33,11 @@ import CardGreen from './components/CardGreen/cardGreen';
 import AnswerDissertativa from './components/AnswerDissertativa/AnswerDissertativa';
 import AnswerAlternativa from './components/AnswerAlternativa/AnswerAlternativa';
 import CardStats from './components/Card_stats_result/cardStats';
+import Emailcadastrado from './components/CardMessages/msg_email_cadastrado';
+import Emailinvalid from './components/CardMessages/msg_email_invalid';
+import Userexists from './components/CardMessages/msg_user_exists';
+import DiferentPassword from './components/CardMessages/msg_diferent_password';
+import DivergentPassword from './components/CardMessages/msg_divergent_password';
 //import swiperSlide from './components/Swiper/swiperSlide';
 const App: React.FC = () => {
   return (
@@ -52,6 +57,12 @@ const App: React.FC = () => {
         <Route path="/AnswerDissertativa" component={AnswerDissertativa} exact={true} />
         <Route path="/AnswerAlternativa" component={AnswerAlternativa} exact={true} />
         <Route path="/CardStats" component={CardStats} exact={true} />
+        <Route path="/Emailcadastrado" component={Emailcadastrado} exact={true} />
+        <Route path="/Emailinvalid" component={Emailinvalid} exact={true} />
+        <Route path="/Userexists" component={Userexists} exact={true} />
+        <Route path="/DiferentPassword" component={DiferentPassword} exact={true} />
+        <Route path="/DivergentPassword" component={DivergentPassword} exact={true} />
+
 
         <Route exact path="/" render={() => <Redirect to="/Landing" />} />
       </IonRouterOutlet>
