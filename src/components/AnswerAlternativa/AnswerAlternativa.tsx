@@ -68,7 +68,7 @@ const AnswerAlternativa: React.FC = () => {
             textAreaAlternative:'alternativas'
         }])
 
-    }, [])
+    }, [alternatives])
 
     return (
         <>
