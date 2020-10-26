@@ -409,6 +409,12 @@ ion-item{
   justify-content: space-between;
   align-items: center;
 }
+.ios .bar-result-answers > #answer-certas, 
+.ios .bar-result-answers > #answer-total,
+.ios .bar-result-answers ~ #answer-erradas{
+  border-right: 1px var(--ion-color-dark) solid;
+  padding-right: 5px;
+}
 
 .ios .href-back{
   height: 3rem;
@@ -465,4 +471,14 @@ ion-item{
   margin-bottom: -0.4rem;
   --ion-grid-column-padding: 0px;
   padding-top: 5px;
+}
+.letras-alternativas{
+  height:1.9rem;
+  border-radius: 5rem;
+  text-align: center;
+  background-color: var(--light);
+  margin-right: 0.3rem;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.2rem;
 }
