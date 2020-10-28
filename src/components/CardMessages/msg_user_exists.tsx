@@ -1,7 +1,5 @@
 import React from 'react';
 import { IonButton, IonCard, IonCardHeader, IonIcon, IonLabel, IonRow } from '@ionic/react'
-//import { pin, walk, warning, wifi, wine } from 'ionicons/icons';
-import cardPositive from '../../Assets/images/cardPositive.svg'
 import './styles.css'
 
 const Userexists: React.FC = () => {

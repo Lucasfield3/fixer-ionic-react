@@ -7,7 +7,7 @@ const Alteracaosucess: React.FC = () => {
 
   return (
     <>
-      <IonCard className='card-msg' color='light'>
+      <IonCard className='ios card-msg' color='light'>
         <IonCardHeader color="light">
             <IonLabel className="ios label-msg-create">Alterações salvas com sucesso ! </IonLabel>
         </IonCardHeader>
