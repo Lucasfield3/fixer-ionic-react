@@ -232,7 +232,7 @@ ion-item{
   background: var(--ion-color-light);
   border-radius: 3rem;
 }
-.row-timer{
+.row-timer-alternativa{
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
@@ -469,8 +469,11 @@ ion-item{
   text-align: center;
   line-height: 1.1rem;
   margin-bottom: -0.4rem;
-  --ion-grid-column-padding: 0px;
+  --ion-grid-column-padding: 5px;
   padding-top: 5px;
+  margin-left: 25vh;
+  width: 5rem;
+
 }
 .letras-alternativas{
   height:1.9rem;

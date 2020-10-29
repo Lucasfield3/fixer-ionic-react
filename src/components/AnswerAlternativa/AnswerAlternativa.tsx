@@ -93,7 +93,7 @@ const AnswerAlternativa: React.FC = () => {
 
 
                 <IonContent>
-                    <IonRow className='row-timer'>
+                    <IonRow className='row-timer-alternativa'>
                         <IonCol  className='timer-flashcard' color='dark'>00:00</IonCol>
                     </IonRow>
                     <IonCard className='card-dissertativa' color='light'>

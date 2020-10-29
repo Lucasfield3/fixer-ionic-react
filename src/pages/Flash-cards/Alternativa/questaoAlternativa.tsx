@@ -175,7 +175,7 @@ const QuestaoAlternativa: React.FC = () => {
                                             }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                                         </IonRow>
                                         {items.map(item => (
-                                            <IonRow style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
+                                            <IonRow key={item.id} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
                                                 <IonCol key={item.id} className='ios temas-inputs' color='dark'>{item.textPop}</IonCol>
                                                 <IonFabButton onClick={() => DeleteTema(item.id)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
                                             </IonRow>
