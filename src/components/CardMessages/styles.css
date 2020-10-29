@@ -1,0 +1,45 @@
+.card-msg{
+  border-radius: 21px;
+  width: auto;
+  height: 12rem;
+  margin-top: 35vh;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label-msg-notification{
+  font-family: 'Archivo Narrow'sans-serif;
+    color: var(--ion-text-color, #ffabc8);
+    font-size: 30px;
+    -webkit-text-stroke:0.5px #FF206E;
+    text-shadow:
+      1px 1px 0 #FF206E,
+      -1px -1px 0 #FF206E,
+      1px -1px 0 #FF206E,
+      -1px 1px 0 #FF206E,
+      1px 1px 0 #FF206E;
+}
+
+.btn_msg_notification{
+  width: 6.6rem !important;
+  height: 2.3rem !important;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+
+  text-align: center;
+  justify-content: center;
+  color:#FF206E;
+  background-color:var(--ion-color-light);
+
+}
+
+.row-msg_notification{
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem; 
+}
