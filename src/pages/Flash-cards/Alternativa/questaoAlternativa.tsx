@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
     IonButton,
     IonPage,
-
     IonRow,
     IonFabButton,
     IonIcon,
@@ -10,14 +9,29 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle, IonCardSubtitle, IonCardTitle, IonModal, IonText
+    IonContent, 
+    IonItem, 
+    IonInput, 
+    IonCard, 
+    IonCardContent, 
+    IonTextarea, 
+    IonCardHeader, 
+    IonToggle, 
+    IonCol,  
+    IonGrid, 
+    IonPopover,  
+    IonCardSubtitle, 
+    IonCardTitle,
+    IonModal, 
+    IonText
 } from '@ionic/react'
 import { add, arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { stringify } from 'querystring';
+import { createFlashCard } from '../../../services/flashCard.service';
+
 
 
 const QuestaoAlternativa: React.FC = () => {
@@ -26,7 +40,7 @@ const QuestaoAlternativa: React.FC = () => {
     const history = useHistory()
     const [textTitle, setTextTitle] = useState<string>('')
     const [textMat, setTextMat] = useState<string>('')
-    const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
+    const [enunciated, setEnunciated] = useState<string>('')
     const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
     const [timer, setTimer] = useState<{}>(<Timer />)
     const [checked, setChecked] = useState<boolean>(false);
@@ -39,7 +53,7 @@ const QuestaoAlternativa: React.FC = () => {
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
 
     
-
+   
   
     const temas = {
         id: 0,
@@ -112,11 +126,22 @@ const QuestaoAlternativa: React.FC = () => {
     const CleanInputs = () => {
         setTextPop('')
         setTextAreaAlternative('')
-        setTextAreaQuestion('')
+        setEnunciated('')
         setTextMat('')
         setTextTitle('')
     }
+    const handleCreateButton = async ()=>{
+        try{
+            await createFlashCard({
+                creator:creator,
+                enunciated:enunciated,
+                answerFlashCard:textRightAnswer,
+            })
+        }catch(err){
+            console.log(err)
+        }
 
+    }
 
     return (
         <>
@@ -215,8 +240,8 @@ const QuestaoAlternativa: React.FC = () => {
                                     required
                                     className='ios question'
                                     color='dark'
-                                    onIonChange={e => setTextAreaQuestion(e.detail.value!)}
-                                    value={textAreaQuestion}
+                                    onIonChange={e => setEnunciated(e.detail.value!)}
+                                    value={enunciated}
                                     placeholder="Digite ou cole o enunciado do flash-card">
                                 </IonTextarea>
                             </IonRow>
@@ -267,7 +292,7 @@ const QuestaoAlternativa: React.FC = () => {
                         <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>
                         <IonLabel className='tooltip-text'>Opcional</IonLabel>                    
                     </IonRow>
-                    <IonRow className='ios row-timer'>
+                    <IonRow className='ios row-timer-alternativa'>
                         {shownTimer && timer}
                     </IonRow>
 

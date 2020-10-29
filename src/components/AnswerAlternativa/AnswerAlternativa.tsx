@@ -9,7 +9,6 @@ import {
     IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar
 } from '@ionic/react'
 import './styles.css'
-import { useHistory } from 'react-router';
 import backAnswer from '../../Assets/images/back.svg';
 import nextAnswer from '../../Assets/images/next.svg';
 
@@ -19,17 +18,17 @@ const AnswerAlternativa: React.FC = () => {
 
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const history = useHistory()
-    const [textTitle, setTextTitle] = useState<string>('')
-    const [textMat, setTextMat] = useState<string>('')
-    const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
-    const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
-    const [shownTimer, setShownTimer] = useState<boolean>(false);
+    //const history = useHistory()
+    //onst [textTitle, setTextTitle] = useState<string>('')
+    //const [textMat, setTextMat] = useState<string>('')
+    //const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
+    //const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
+    //const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave] = useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
-    const [textRightAnswer, setTextRightAnswer] = useState<string>('')
-    const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
+    //const [textRightAnswer, setTextRightAnswer] = useState<string>('')
+    //const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
     const answer =
     {
         id: 0,
@@ -40,7 +39,7 @@ const AnswerAlternativa: React.FC = () => {
         textPop: ''
     }
     const letras = ['a', 'b', 'c', 'd', 'e'] 
-    const [letra, setLetra] = useState([letras])
+    //const [letra, setLetra] = useState([letras])
     const [items, setItems] = useState([temas]);
     const [alternatives, setAlternatives] = useState([answer]);
     const popOverSave = () => {

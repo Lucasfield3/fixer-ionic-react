@@ -4,7 +4,6 @@ import Button from '../styles/Button'
 import { useHistory } from 'react-router-dom'
 import '../style.css'
 import { menuController } from '@ionic/core';
-import https from '../../../utils/https'
 import { login, storeToken} from '../../../services/Authentication.service';
 
 

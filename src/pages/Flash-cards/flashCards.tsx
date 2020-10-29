@@ -15,7 +15,7 @@ import {
     IonFab,
     IonFabList, IonButton, IonCardContent
 } from '@ionic/react'
-import { add, menu, menuOutline } from 'ionicons/icons';
+import { add, menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
