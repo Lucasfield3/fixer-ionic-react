@@ -6,6 +6,7 @@ interface NewFlashCard{
     subject?:string;
     time?:string;
     answerFlashCard:string;
+    alternatives?:Alternatives[]
 }
 
 interface FlashCard {
@@ -36,14 +37,23 @@ interface Status{
     questionnairesAnswered:number;
     questionnairesFullRight:number;
 }
+export interface Payload {
+    id:string;
+    email:string;
+    iat:number;
+    exp:number;
 
+}
+export interface Alternatives{
+    answer:string;
+}
 export async function createFlashCard(newFlashCard:NewFlashCard){
-
+    console.log(newFlashCard)
     https
         .post<FlashCard>('flash-cards', newFlashCard)
         .then(async (res) => {
             console.log(res.data)
-            return await console.log(res.data)
+            return await res.data
         })
 
 }

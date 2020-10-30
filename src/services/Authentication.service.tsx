@@ -1,5 +1,5 @@
 import https from '../utils/https'
-
+import jwt_decode from 'jwt-decode'
 interface Credentials {
     email:string;
     password:string;
@@ -21,4 +21,7 @@ export const storeToken = (access_token:AccessToken)=>{
 export   const getToken = ()=>{
     return window.localStorage.getItem('access_token')
 }
-    
+export const getPayload = ()=>{
+    const token = window.localStorage.getItem('access_token')!
+    return jwt_decode(token)
+}   

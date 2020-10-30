@@ -30,7 +30,8 @@ import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { createFlashCard } from '../../../services/flashCard.service';
+import { createFlashCard, Payload, Alternatives } from '../../../services/flashCard.service';
+import { getPayload} from '../../../services/Authentication.service';
 
 
 
@@ -74,6 +75,7 @@ const QuestaoAlternativa: React.FC = () => {
             setShowPopover(false);
         }, 1000)
     }
+
     const AddTema = () => {
         if (textPop !== '') {
             setItems([...items, {
@@ -130,12 +132,21 @@ const QuestaoAlternativa: React.FC = () => {
         setTextMat('')
         setTextTitle('')
     }
+    
     const handleCreateButton = async ()=>{
+        const payLoad = getPayload() as Payload
+        let alternativesSend:Alternatives[] = []
+        alternatives.map((a)=>{
+            alternativesSend.push({answer:a.textAreaAlternative})
+        })
+        alternativesSend.push({answer:textRightAnswer})
         try{
             await createFlashCard({
-                creator:creator,
+                creator:payLoad.id,
                 enunciated:enunciated,
                 answerFlashCard:textRightAnswer,
+                subject:textMat,
+                alternatives:alternativesSend
             })
         }catch(err){
             console.log(err)
@@ -297,7 +308,10 @@ const QuestaoAlternativa: React.FC = () => {
                     </IonRow>
 
                     <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
-                        <IonButton className="ios btn-criar" onClick={() => setShowModal(true)} >Criar</IonButton>
+                        <IonButton className="ios btn-criar" onClick={() => {
+                            setShowModal(true)
+                            handleCreateButton()
+                            }} >Criar</IonButton>
                     </IonRow>
                 </IonContent>
 
