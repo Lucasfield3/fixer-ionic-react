@@ -12,6 +12,7 @@ import './styles.css'
 import { useHistory } from 'react-router';
 import backAnswer from '../../Assets/images/back.svg';
 import nextAnswer from '../../Assets/images/next.svg';
+import { forEachChild } from 'typescript';
 
 
 
@@ -39,7 +40,7 @@ const AnswerAlternativa: React.FC = () => {
         id: -1,
         textPop: ''
     }
-    const letras = ['a', 'b', 'c', 'd', 'e'] 
+    const letras = ['a', 'b', 'c', 'd', 'e']
     const [letra, setLetra] = useState([letras])
     const [items, setItems] = useState([temas]);
     const [alternatives, setAlternatives] = useState([answer]);
