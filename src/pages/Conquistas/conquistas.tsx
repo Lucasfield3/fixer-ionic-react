@@ -19,13 +19,9 @@ import {
     IonSearchbar, IonCardTitle, IonCardContent, IonCol
 } from '@ionic/react';
 import { menuOutline } from 'ionicons/icons';
-import message from '../../Assets/icons/message.svg'
 import planet from '../../Assets/icons/planet.svg'
-import crystal from '../../Assets/icons/crystal.svg'
 import resume from '../../Assets/icons/resume.svg'
-import disco from '../../Assets/icons/disco.svg'
 import diamond from '../../Assets/icons/diamond.svg'
-import winner from '../../Assets/icons/winner.svg'
 import cadeado from '../../Assets/icons/padlock.svg'
 import criador from '../../Assets/icons/criador.svg'
 import aficionado from '../../Assets/icons/aficionado.svg'

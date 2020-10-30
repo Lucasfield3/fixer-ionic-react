@@ -220,7 +220,7 @@ ion-item{
   background: var(--ion-color-light);
   border-radius: 3rem;
 }
-.row-timer{
+.row-timer-dissertativa{
   display: flex;
   justify-content: flex-start;
   flex-direction: row;

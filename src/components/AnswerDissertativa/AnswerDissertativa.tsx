@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState} from 'react';
 import {
     IonButton,
     IonPage,
@@ -11,7 +11,7 @@ import {
     IonLabel,
     IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle, IonProgressBar
 } from '@ionic/react'
-import { add, menuOutline, arrowUndoSharp, text, timerOutline, remove } from 'ionicons/icons';
+import { add, arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
 import './styles.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
@@ -19,11 +19,11 @@ import styled from 'styled-components';
 import backAnswer from '../../Assets/images/back.svg';
 import nextAnswer from '../../Assets/images/next.svg';
 import btnSair from '../../Assets/images/btnSair.svg';
-import { textChangeRangeIsUnchanged } from 'typescript';
 
 
 
-const AnswerDissertativa: React.FC = (props) => {
+
+const AnswerDissertativa: React.FC = () => {
 
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -218,7 +218,7 @@ const AnswerDissertativa: React.FC = (props) => {
                         <IonToggle checked={checked} onIonChange={(e) => setChecked(e.detail.checked)} className='ios toggle' onClick={() => setShownTimer(!shownTimer)} />
                         <IonLabel className='tooltip-text'>Opcional</IonLabel>
                     </IonRow>
-                    <IonRow className='ios row-timer'>
+                    <IonRow className='ios row-timer-dissertativa'>
                         {shownTimer && timer}
                     </IonRow>
 

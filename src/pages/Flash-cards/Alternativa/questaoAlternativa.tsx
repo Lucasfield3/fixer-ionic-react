@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
     IonButton,
     IonPage,
-
     IonRow,
     IonFabButton,
     IonIcon,
@@ -10,14 +9,30 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle, IonCardSubtitle, IonCardTitle, IonModal, IonText
+    IonContent, 
+    IonItem, 
+    IonInput, 
+    IonCard, 
+    IonCardContent, 
+    IonTextarea, 
+    IonCardHeader, 
+    IonToggle, 
+    IonCol,  
+    IonGrid, 
+    IonPopover,  
+    IonCardSubtitle, 
+    IonCardTitle,
+    IonModal, 
+    IonText
 } from '@ionic/react'
 import { add, arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { stringify } from 'querystring';
+import { createFlashCard, Payload, Alternatives } from '../../../services/flashCard.service';
+import { getPayload} from '../../../services/Authentication.service';
+
 
 
 const QuestaoAlternativa: React.FC = () => {
@@ -26,7 +41,7 @@ const QuestaoAlternativa: React.FC = () => {
     const history = useHistory()
     const [textTitle, setTextTitle] = useState<string>('')
     const [textMat, setTextMat] = useState<string>('')
-    const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
+    const [enunciated, setEnunciated] = useState<string>('')
     const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
     const [timer, setTimer] = useState<{}>(<Timer />)
     const [checked, setChecked] = useState<boolean>(false);
@@ -39,7 +54,7 @@ const QuestaoAlternativa: React.FC = () => {
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
 
     
-
+   
   
     const temas = {
         id: 0,
@@ -60,6 +75,7 @@ const QuestaoAlternativa: React.FC = () => {
             setShowPopover(false);
         }, 1000)
     }
+
     const AddTema = () => {
         if (textPop !== '') {
             setItems([...items, {
@@ -112,11 +128,31 @@ const QuestaoAlternativa: React.FC = () => {
     const CleanInputs = () => {
         setTextPop('')
         setTextAreaAlternative('')
-        setTextAreaQuestion('')
+        setEnunciated('')
         setTextMat('')
         setTextTitle('')
     }
+    
+    const handleCreateButton = async ()=>{
+        const payLoad = getPayload() as Payload
+        let alternativesSend:Alternatives[] = []
+        alternatives.map((a)=>{
+            alternativesSend.push({answer:a.textAreaAlternative})
+        })
+        alternativesSend.push({answer:textRightAnswer})
+        try{
+            await createFlashCard({
+                creator:payLoad.id,
+                enunciated:enunciated,
+                answerFlashCard:textRightAnswer,
+                subject:textMat,
+                alternatives:alternativesSend
+            })
+        }catch(err){
+            console.log(err)
+        }
 
+    }
 
     return (
         <>
@@ -175,7 +211,7 @@ const QuestaoAlternativa: React.FC = () => {
                                             }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                                         </IonRow>
                                         {items.map(item => (
-                                            <IonRow style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
+                                            <IonRow key={item.id} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
                                                 <IonCol key={item.id} className='ios temas-inputs' color='dark'>{item.textPop}</IonCol>
                                                 <IonFabButton onClick={() => DeleteTema(item.id)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
                                             </IonRow>
@@ -215,8 +251,8 @@ const QuestaoAlternativa: React.FC = () => {
                                     required
                                     className='ios question'
                                     color='dark'
-                                    onIonChange={e => setTextAreaQuestion(e.detail.value!)}
-                                    value={textAreaQuestion}
+                                    onIonChange={e => setEnunciated(e.detail.value!)}
+                                    value={enunciated}
                                     placeholder="Digite ou cole o enunciado do flash-card">
                                 </IonTextarea>
                             </IonRow>
@@ -267,12 +303,15 @@ const QuestaoAlternativa: React.FC = () => {
                         <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>
                         <IonLabel className='tooltip-text'>Opcional</IonLabel>                    
                     </IonRow>
-                    <IonRow className='ios row-timer'>
+                    <IonRow className='ios row-timer-alternativa'>
                         {shownTimer && timer}
                     </IonRow>
 
                     <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
-                        <IonButton className="ios btn-criar" onClick={() => setShowModal(true)} >Criar</IonButton>
+                        <IonButton className="ios btn-criar" onClick={() => {
+                            setShowModal(true)
+                            handleCreateButton()
+                            }} >Criar</IonButton>
                     </IonRow>
                 </IonContent>
 
