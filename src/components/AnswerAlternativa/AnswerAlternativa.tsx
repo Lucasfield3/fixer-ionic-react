@@ -11,13 +11,9 @@ import {
 import './styles.css'
 import backAnswer from '../../Assets/images/back.svg';
 import nextAnswer from '../../Assets/images/next.svg';
-<<<<<<< HEAD
-import { forEachChild } from 'typescript';
-=======
 import { arrowForward } from 'ionicons/icons';
 import ReactCardFlip from 'react-card-flip';
 import CardGreen from '../CardGreen/cardGreen';
->>>>>>> cc43549e0199cd4e340e20533bf0aa6a0cf6cd4b
 
 
 
@@ -79,7 +75,7 @@ const AnswerAlternativa: React.FC = () => {
             textAreaAlternative:'alternativas'
         }])
 
-    }, [])
+    }, [alternatives])
 
     const handleSelectAlternative = (index:number)=>{
        const newClass = className.class === 'alternativas-respostas' ? 'active' : 'alternativas-respostas'
@@ -183,7 +179,7 @@ const AnswerAlternativa: React.FC = () => {
                     </ReactCardFlip>
 
 
-                    <IonGrid className='array-div'>                
+                    <IonGrid className='array-div'>           
                             {alternatives.map((alternative, i)=>(
                                 <IonRow key={i} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
                                     <IonCol onClick={()=>handleSelectAlternative(i)}  size='1' className='letras-alternativas'> {letras[i]}</IonCol>

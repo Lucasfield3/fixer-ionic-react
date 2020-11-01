@@ -13,7 +13,7 @@ import {
     IonLabel,
     IonContent,
     IonFab,
-    IonFabList, IonButton, IonCardContent
+    IonFabList, IonButton, IonCardContent, IonCardTitle, IonCardHeader, IonCardSubtitle, IonCol
 } from '@ionic/react'
 import { add, menuOutline } from 'ionicons/icons';
 import './style.css'
@@ -62,9 +62,31 @@ const FlashCards: React.FC = () => {
                     <IonCard className='container-flashcards'>
                         <IonGrid className='align-conquistas'>
                             <IonCardContent className="card-title-menu">
-                                <IonLabel className='card-vazio'>
-                                    VAZIO
-                                </IonLabel>
+
+                                <IonRow>
+                                    <IonCol>
+                                        <IonCard onClick={() => {
+                                            history.push('/AnswerAlternativa')
+                                        }} className="card-teste" color="ligth">
+                                            <IonCardHeader>
+                                                <IonCardTitle>Card Title</IonCardTitle>
+                                            </IonCardHeader>
+                                            <IonCardContent>
+                                                Keep close to Nature's heart... and break clear away, once in awhile,
+                                                and climb a mountain or spend a week in the woods. Wash your spirit clean....
+                                    </IonCardContent>
+                                        </IonCard>
+                                    </IonCol>
+                                </IonRow>
+
+                                
+
+
+
+
+
+
+
                             </IonCardContent>
                         </IonGrid>
                     </IonCard>
