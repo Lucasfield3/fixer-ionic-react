@@ -26,8 +26,8 @@ import FlashCards from './pages/Flash-cards/flashCards';
 import Questionarios from './pages/Questionarios/questionarios';
 import Conquistas from './pages/Conquistas/conquistas';
 import Classes from './pages/Classes/classes'
-import questaoAlternativa from './pages/Flash-cards/Alternativa/questaoAlternativa'
-import questaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDisertativa'
+import QuestaoAlternativa from './pages/Flash-cards/Alternativa/questaoAlternativa'
+import QuestaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDisertativa'
 import CardRed from './components/CardRed/cardRed';
 import CardGreen from './components/CardGreen/cardGreen';
 import AnswerDissertativa from './components/AnswerDissertativa/AnswerDissertativa';
@@ -57,8 +57,8 @@ const App: React.FC = () => {
         <Route path="/Flash-cards" component={FlashCards} exact={true} />
         <Route path="/Classes" component={Classes} exact={true} />
         <Route path="/Conquistas" component={Conquistas} exact={true} />
-        <Route path="/questaoAlternativa" component={questaoAlternativa} exact={true} />
-        <Route path="/questaoDissertativa" component={questaoDissertativa} exact={true} />
+        <Route path="/QuestaoAlternativa" component={QuestaoAlternativa} exact={true} />
+        <Route path="/QuestaoDissertativa" component={QuestaoDissertativa} exact={true} />
         <Route path="/CardRed" component={CardRed} exact={true} />
         <Route path="/CardGreen" component={CardGreen} exact={true} />
         <Route path="/AnswerDissertativa" component={AnswerDissertativa} exact={true} />

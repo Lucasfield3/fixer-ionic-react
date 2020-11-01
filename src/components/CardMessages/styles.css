@@ -1,15 +1,25 @@
-.card-msg{
+.card-msg-limite{
   border-radius: 21px;
   width: auto;
   height: 12rem;
-  margin-top: 35vh;
+  margin-top: 1vh;
   text-align: center;
   flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+.card-msg{
+  border-radius: 21px;
+  width: auto;
+  height: 12rem;
+  margin-top: 1vh;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .label-msg-notification{
   font-family: 'Archivo Narrow'sans-serif;
     color: var(--ion-text-color, #ffabc8);

@@ -6,12 +6,18 @@ import {
     IonFabButton,
     IonHeader,
     IonLabel,
-    IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar
+    IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar, IonIcon
 } from '@ionic/react'
 import './styles.css'
 import backAnswer from '../../Assets/images/back.svg';
 import nextAnswer from '../../Assets/images/next.svg';
+<<<<<<< HEAD
 import { forEachChild } from 'typescript';
+=======
+import { arrowForward } from 'ionicons/icons';
+import ReactCardFlip from 'react-card-flip';
+import CardGreen from '../CardGreen/cardGreen';
+>>>>>>> cc43549e0199cd4e340e20533bf0aa6a0cf6cd4b
 
 
 
@@ -30,6 +36,11 @@ const AnswerAlternativa: React.FC = () => {
     const [textPop, setTextPop] = useState<string>('')
     //const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     //const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
+    const [isFlipped, setIsflipped] = useState(false);
+    const [className, setClassName] = useState({
+        class:'alternativas',
+        id:0
+    })
     const answer =
     {
         id: 0,
@@ -68,7 +79,16 @@ const AnswerAlternativa: React.FC = () => {
             textAreaAlternative:'alternativas'
         }])
 
-    }, [alternatives])
+    }, [])
+
+    const handleSelectAlternative = (index:number)=>{
+       const newClass = className.class === 'alternativas-respostas' ? 'active' : 'alternativas-respostas'
+       setClassName({
+           class:newClass,
+           id:index
+       })
+      
+    }
 
     return (
         <>
@@ -96,72 +116,82 @@ const AnswerAlternativa: React.FC = () => {
                     <IonRow className='row-timer-alternativa'>
                         <IonCol  className='timer-flashcard' color='dark'>00:00</IonCol>
                     </IonRow>
-                    <IonCard className='card-dissertativa' color='light'>
-                        <IonCardHeader style={{ padding: 0 }}>
-                            <IonRow className='ios ion-justify-content-space-between row-header'>
-                                <IonButton onClick={() => setShowPopover(true)} className="ios btn-tema-dissertativa">Tema</IonButton>
-                                <IonPopover
-                                    isOpen={showPopover}
-                                    cssClass='my-custom-class tema'
-                                    onDidDismiss={e => setShowPopover(false)}
-                                >
-                                    <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
-                                        <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Temas</IonLabel>
-                                    </IonRow>
-                                    <IonGrid className='back-temas'>
-                                        <IonRow className='ion-justify-content-center'>
-                                            <IonCol  className='ios temas-inputs' color='dark'>Engenharia</IonCol>
+                    <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
+                        <IonCard className='card-dissertativa' color='light'>
+                            <IonCardHeader style={{ padding: 0 }}>
+                                <IonRow className='ios ion-justify-content-space-between row-header'>
+                                    <IonButton onClick={() => setShowPopover(true)} className="ios btn-tema-dissertativa">Tema</IonButton>
+                                    <IonPopover
+                                        isOpen={showPopover}
+                                        cssClass='my-custom-class tema'
+                                        onDidDismiss={e => setShowPopover(false)}
+                                    >
+                                        <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
+                                            <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Temas</IonLabel>
                                         </IonRow>
-                                        {items.map(item => (
-                                            <IonRow style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                                                <IonCol key={item.id} className='ios temas-inputs' placeholder='Temas' color='dark'>{item.textPop}</IonCol>                                               
+                                        <IonGrid className='back-temas'>
+                                            <IonRow className='ion-justify-content-center'>
+                                                <IonCol  className='ios temas-inputs' color='dark'>Engenharia</IonCol>
                                             </IonRow>
-                                        ))}
-                                    </IonGrid>
-                                    <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center row-btn'>
-                                        <IonButton onClick={() => {
+                                            {items.map(item => (
+                                                <IonRow key={item.id} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
+                                                    <IonCol key={item.id} className='ios temas-inputs' placeholder='Temas' color='dark'>{item.textPop}</IonCol>                                               
+                                                </IonRow>
+                                            ))}
+                                        </IonGrid>
+                                        <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center row-btn'>
+                                            <IonButton onClick={() => {
+                                                setShowPopover(false)
+                                                setTextPop('')
+                                            }} color='light' className='btn-cancel'>Fechar</IonButton>
+                                        </IonRow>
+                                    </IonPopover>
+                                    <IonPopover
+                                        isOpen={shownPopsave}
+                                        cssClass='my-custom-class save'
+                                        onDidDismiss={() => {
                                             setShowPopover(false)
-                                            setTextPop('')
-                                        }} color='light' className='btn-cancel'>Fechar</IonButton>
-                                    </IonRow>
-                                </IonPopover>
-                                <IonPopover
-                                    isOpen={shownPopsave}
-                                    cssClass='my-custom-class save'
-                                    onDidDismiss={() => {
-                                        setShowPopover(false)
-                                        setShowPopover(false)
-                                    }}
-                                >
-                                    <IonRow className='ion-justify-content-center ion-text-align-center'>
-                                        <IonLabel style={{ fontWeight: 'bold', fontSize: '18px', lineHeight: '8rem' }} color='success'>Temas</IonLabel>
-                                    </IonRow>
-                                </IonPopover>
+                                            setShowPopover(false)
+                                        }}
+                                    >
+                                        <IonRow className='ion-justify-content-center ion-text-align-center'>
+                                            <IonLabel style={{ fontWeight: 'bold', fontSize: '18px', lineHeight: '8rem' }} color='success'>Temas</IonLabel>
+                                        </IonRow>
+                                    </IonPopover>
 
-                                <IonCol  className="titulo" >Título do Flashcard</IonCol>
+                                    <IonCol  className="titulo" >Título do Flashcard</IonCol>
+                                </IonRow>
+                            </IonCardHeader>
+                            <IonCardContent className="content-background">
+                                <IonRow className="ios row-dissertativa">
+                                    <IonTextarea
+                                        overflow-scroll="true"
+                                        rows={5}
+                                        cols={20}
+                                        required
+                                        className='ios question'
+                                        color='dark'>                                       
+                                    </IonTextarea>
+                                </IonRow>
+                            </IonCardContent>
+                            <IonRow className='row-footer' color='light'></IonRow>
+                            <IonRow className='ios ion-justify-content-center'>
+                                <IonIcon onClick={()=> setIsflipped(!isFlipped)} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
-                        </IonCardHeader>
-                        <IonCardContent className="content-background">
-                            <IonRow className="ios row-dissertativa">
-                                <IonTextarea
-                                    overflow-scroll="true"
-                                    rows={5}
-                                    cols={20}
-                                    required
-                                    className='ios question'
-                                    color='dark'>                                       
-                                </IonTextarea>
-                            </IonRow>
-                        </IonCardContent>
-                        <IonRow className='row-footer' color='light'></IonRow>
-                    </IonCard >
+                        </IonCard >
+                        <CardGreen onClick={()=>setIsflipped(!isFlipped)}/>
+                    </ReactCardFlip>
 
 
                     <IonGrid className='array-div'>                
-                            {alternatives.map((alternative, index)=>(
-                                <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
-                                    <IonCol color='dark' size='1' className='letras-alternativas'> {letras[index]}</IonCol>
-                                    <IonCol style={{height:'auto', width:'10rem'}} key={alternative.id} className='alternativas' color='dark'>Alternativas</IonCol>
+                            {alternatives.map((alternative, i)=>(
+                                <IonRow key={i} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
+                                    <IonCol onClick={()=>handleSelectAlternative(i)}  size='1' className='letras-alternativas'> {letras[i]}</IonCol>
+                                    <IonCol  onClick={()=>handleSelectAlternative(i)}  
+                                    style={{height:'auto', width:'10rem'}}  
+                                    key={alternative.id} 
+                                    className={ i === className.id && className.class || 'alternativas-respostas'} 
+                                    color='dark'>Alternativis</IonCol>
                                 </IonRow>
                             ))}                       
                     </IonGrid>

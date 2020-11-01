@@ -1,7 +1,7 @@
 .card-accept{
   border-radius: 21px;
   width: auto;
-  height: 25rem;
+  height: 20.2rem;
   background: #41EAD4;
 }
 
@@ -22,11 +22,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  width: 104px;
-  height: 104px;
-  left: 111px;
-  top: 19px;
+  width: 5rem;
+  height: 5rem;
 }
 
 .msg-acertou{
@@ -50,7 +47,7 @@
 .row-acertou{
   display: flex;
   justify-content: center;
-  margin-top: 1.5rem; 
+  margin-top: 0.5rem;
 }
 
 .msg-exp{
@@ -81,4 +78,9 @@
   font-size: 18px;
   text-align: center;
   line-height: 1.6rem;
+}
+.arrow-backward{
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.3rem;
 }

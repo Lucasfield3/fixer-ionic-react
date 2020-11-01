@@ -23,7 +23,8 @@ import {
     IonCardSubtitle, 
     IonCardTitle,
     IonModal, 
-    IonText
+    IonText,
+    useIonViewWillLeave
 } from '@ionic/react'
 import { add, arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
 import './style.css'
@@ -32,6 +33,7 @@ import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { createFlashCard, Payload, Alternatives } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
+import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
 
 
 
@@ -47,15 +49,13 @@ const QuestaoAlternativa: React.FC = () => {
     const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
+    const [showPopLimit, setShowPopLimit] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave]= useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
     const [showModal, setShowModal] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
 
-    
-   
-  
     const temas = {
         id: 0,
         textPop: ''
@@ -118,19 +118,23 @@ const QuestaoAlternativa: React.FC = () => {
         const itemToBedeleted = items.filter(item => item.id !== id);
         setItems(itemToBedeleted)
     }
-
+ 
     useEffect(() => {
-
         setItems([])
         setAlternatives([])
-
+    }, [])
+    useIonViewWillLeave(()=>{
+        CleanInputs()
     }, [])
     const CleanInputs = () => {
         setTextPop('')
         setTextAreaAlternative('')
         setEnunciated('')
+        setTextRightAnswer('')
         setTextMat('')
         setTextTitle('')
+        setAlternatives([])
+        setItems([])
     }
     
     const handleCreateButton = async ()=>{
@@ -140,16 +144,21 @@ const QuestaoAlternativa: React.FC = () => {
             alternativesSend.push({answer:a.textAreaAlternative})
         })
         alternativesSend.push({answer:textRightAnswer})
-        try{
-            await createFlashCard({
-                creator:payLoad.id,
-                enunciated:enunciated,
-                answerFlashCard:textRightAnswer,
-                subject:textMat,
-                alternatives:alternativesSend
-            })
-        }catch(err){
-            console.log(err)
+        if(enunciated !== '' && textRightAnswer !== '' && alternatives.length > 0){
+            try{
+                await createFlashCard({
+                    creator:payLoad.id,
+                    enunciated:enunciated,
+                    answerFlashCard:textRightAnswer,
+                    subject:textMat,
+                    alternatives:alternativesSend
+                })
+            }catch(err){
+                console.log(err)
+            }
+            setShowModal(true)
+        }else if(alternatives.length == 0){
+            setShowPopLimit(true)
         }
 
     }
@@ -166,8 +175,7 @@ const QuestaoAlternativa: React.FC = () => {
                             onClick={() => {
                                 history.push('/Flash-cards')
                                 menuController.enable(true);
-                                setItems([])
-                                CleanInputs()
+                                setItems([])                              
                                 setChecked(false)
                                 setShownTimer(false)
                             }}
@@ -245,13 +253,17 @@ const QuestaoAlternativa: React.FC = () => {
                         <IonCardContent className="content-background">
                             <IonRow className="ios row-dissertativa">
                                 <IonTextarea
+                                    maxlength={240}
                                     overflow-scroll="true"
                                     rows={5}
                                     cols={20}
                                     required
                                     className='ios question'
                                     color='dark'
-                                    onIonChange={e => setEnunciated(e.detail.value!)}
+                                    onIonChange={e => {
+                                        setEnunciated(e.detail.value!)
+                                        console.log(e.detail.value!.length)
+                                    }}
                                     value={enunciated}
                                     placeholder="Digite ou cole o enunciado do flash-card">
                                 </IonTextarea>
@@ -266,22 +278,47 @@ const QuestaoAlternativa: React.FC = () => {
                                 <h4>Deseja criar mais um flashcard ?</h4>
                             </IonText>
                             <IonCardSubtitle className="header-btn">
-                                <IonButton className="btn-sim" onClick={() => setShowModal2(true)}>Sim</IonButton>
-                                <IonButton className="btn-nao" onClick={() => setShowModal(false)}>Não</IonButton>
+                                <IonButton className="btn-sim" onClick={() => {
+                                    setShowModal2(true)
+                                    }}>Sim</IonButton>
+                                <IonButton className="btn-nao" onClick={() => {
+                                    setShowModal(false)
+                                    history.push('Flash-cards')
+                                    }}>Não</IonButton>
                             </IonCardSubtitle>
                         </IonCardTitle>
                     </IonModal>
 
                     <IonModal isOpen={showModal2} cssClass='my-custom-class'>
-                        <IonButton className="btn-dissertativa" onClick={() => setShowModal2(true)}>Dissertativa</IonButton>
+                        <IonButton className="btn-dissertativa" onClick={() => {
+                            setShowModal2(false)                         
+                            history.push('/questaoDissertativa')                        
+                            }}>Dissertativa</IonButton>
                         <IonLabel className="label-modal">ou</IonLabel>
-                        <IonButton className="btn-alternativa" onClick={() => setShowModal2(true)}>Alternativa</IonButton>
+                        <IonButton className="btn-alternativa" onClick={() => {
+                            setShowModal2(false)
+                            CleanInputs()
+                            history.push('/questaoAlternativa')
+                            }}>Alternativa</IonButton>
                     </IonModal>
 
 
                     <IonGrid className='array-div'>
                     <IonRow style={{marginBottom:'1rem'}} className='ion-justify-content-center'>
-                                <IonTextarea autoGrow={textRightAnswer == '' && false || true} style={{height: textRightAnswer == '' && '4rem' || 'auto'}} className='ios alternativa-correta' placeholder='Insira a alternativa correta' color='dark'  onIonChange={e => setTextRightAnswer(e.detail.value!)} value={textRightAnswer}></IonTextarea>
+                                <IonTextarea 
+                                maxlength={240}
+                                autoGrow={textRightAnswer == '' && false || true} 
+                                style={{height: textRightAnswer == '' && '4rem' || 'auto'}} 
+                                className='ios alternativa-correta' 
+                                placeholder='Insira a alternativa correta' 
+                                color='dark' 
+                                onIonChange={e => {
+                                    setTextRightAnswer(e.detail.value!)
+                                    console.log(e.detail.value!.length)
+                                }} 
+                                value={textRightAnswer}
+                                >    
+                                </IonTextarea>
                     </IonRow>
                         <IonRow  className='ion-justify-content-center'>
                                 <IonTextarea autoGrow={true} className='ios add-alternativas'  placeholder='Insira a/as alternativas' color='dark'  onIonChange={e => setTextAreaAlternative(e.detail.value!)} value={textAreaAlternative}></IonTextarea>
@@ -306,10 +343,12 @@ const QuestaoAlternativa: React.FC = () => {
                     <IonRow className='ios row-timer-alternativa'>
                         {shownTimer && timer}
                     </IonRow>
-
+                    <Limitedalternativa 
+                    onClick={()=> setShowPopLimit(false)} 
+                    isOpen={showPopLimit} 
+                    onDidDismiss={()=>setShowPopLimit(false)} />
                     <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
-                        <IonButton className="ios btn-criar" onClick={() => {
-                            setShowModal(true)
+                        <IonButton id='create-button' className="ios btn-criar" onClick={() => {
                             handleCreateButton()
                             }} >Criar</IonButton>
                     </IonRow>

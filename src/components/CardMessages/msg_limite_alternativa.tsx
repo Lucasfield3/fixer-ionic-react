@@ -1,18 +1,26 @@
 import React from 'react';
-import { IonButton, IonCard, IonCardHeader, IonIcon, IonLabel, IonRow } from '@ionic/react'
+import { IonButton, IonCard, IonCardHeader,  IonLabel, IonPopover} from '@ionic/react'
 //import { pin, walk, warning, wifi, wine } from 'ionicons/icons';
 import './styles.css'
 
-const Limitedalternativa: React.FC = () => {
-
+const Limitedalternativa: React.FC<{onDidDismiss:()=> void; isOpen:boolean; onClick:()=>void}> = props => {
   return (
     <>
+<<<<<<< HEAD
       <IonCard className='ios card-msg' color='light'>
+=======
+    <IonPopover
+    isOpen={props.isOpen}
+    onDidDismiss={props.onDidDismiss}
+    >
+      <IonCard className='card-msg-limite' color='light'>
+>>>>>>> cc43549e0199cd4e340e20533bf0aa6a0cf6cd4b
         <IonCardHeader color="light">
-            <IonLabel className="ios label-msg-notification">Você ultrapassou o limite de 240 caracteres no enunciado da resposta alternativa.</IonLabel>
+            <IonLabel className="ios label-msg-notification">Numero insuficiênte de alternativas.</IonLabel>
         </IonCardHeader>
-        <IonButton className='ios btn_msg_notification'>OK</IonButton>
+        <IonButton onClick={props.onClick} className='ios btn_msg_notification'>OK</IonButton>
       </IonCard >
+    </IonPopover>
     </>
   );
 
