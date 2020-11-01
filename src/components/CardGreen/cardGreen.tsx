@@ -3,16 +3,17 @@ import { IonCard, IonCardHeader, IonIcon, IonLabel, IonRow } from '@ionic/react'
 //import { pin, walk, warning, wifi, wine } from 'ionicons/icons';
 import cardPositive from '../../Assets/images/cardPositive.svg'
 import './styles.css'
+import { arrowBack } from 'ionicons/icons';
 
-const CardGreen: React.FC = () => {
+const CardGreen: React.FC<{onClick:()=>void}> = props => {
 
   return (
     <>
       <IonCard className='card-accept' color='light'>
         <IonRow className='ios ion-justify-content-space-between card-acertou-header'></IonRow>
-        <IonCardHeader color="light" style={{ height: '20rem' }}>
+        <IonCardHeader color="light" style={{ height: '15rem' }}>
 
-          <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
+          <IonRow  className='ion-justify-content-center'>
             <IonIcon className="icon-acertou" icon={cardPositive}></IonIcon>
 
           </IonRow>
@@ -32,6 +33,9 @@ const CardGreen: React.FC = () => {
         </IonCardHeader>
 
         <IonRow className='ios ion-justify-content-space-between card-acertou-footer'></IonRow>
+        <IonRow className='ios ion-justify-content-center'>
+            <IonIcon onClick={props.onClick} color='dark' className='ios arrow-backward' src={arrowBack}></IonIcon>
+        </IonRow>
       </IonCard >
     </>
   );

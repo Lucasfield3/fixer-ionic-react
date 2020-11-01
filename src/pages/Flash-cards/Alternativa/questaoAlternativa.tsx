@@ -56,9 +56,6 @@ const QuestaoAlternativa: React.FC = () => {
     const [showModal2, setShowModal2] = useState(false)
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
 
-    
-   
-  
     const temas = {
         id: 0,
         textPop: ''
@@ -141,8 +138,6 @@ const QuestaoAlternativa: React.FC = () => {
     }
     
     const handleCreateButton = async ()=>{
-        const textQuestion = document.querySelector('.question')! as HTMLIonTextareaElement
-        const righAnswer = document.querySelector('.alternativa-correta')! as HTMLIonTextareaElement
         const payLoad = getPayload() as Payload
         let alternativesSend:Alternatives[] = []
         alternatives.map((a)=>{
