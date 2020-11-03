@@ -67,9 +67,9 @@ const FlashCards: React.FC = () => {
                                     <IonCol>
                                         <IonCard onClick={() => {
                                             history.push('/AnswerAlternativa')
-                                        }} className="card-teste" color="ligth">
+                                        }} className="ios flashcard-description" color="ligth">
                                             <IonCardHeader>
-                                                <IonCardTitle>Card Title</IonCardTitle>
+                                                <IonCardTitle>1º FlashCard</IonCardTitle>
                                             </IonCardHeader>
                                             <IonCardContent>
                                                 Keep close to Nature's heart... and break clear away, once in awhile,
@@ -79,7 +79,7 @@ const FlashCards: React.FC = () => {
                                     </IonCol>
                                 </IonRow>
 
-                                
+
 
 
 
