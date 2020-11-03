@@ -30,6 +30,7 @@
 .btnSair-answer{
   height: 2rem!important;
   width: 2rem !important;
+  --ion-color-light-contrast: var(--ion-color-danger);
 }
 
 
@@ -526,4 +527,12 @@ ion-item{
     padding-top: 6px;
     border: 2px var(--ion-color-primary) solid;
     box-shadow: 0 0 10px var(--light);
+}
+.row-btn-final{
+  position: relative;
+  top: 5.5rem;
+}
+.btn-final{
+  background: var(--ion-color-light);
+  --ion-color-light-contrast: var(--ion-color-dark);
 }

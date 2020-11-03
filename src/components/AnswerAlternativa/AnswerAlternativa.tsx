@@ -91,7 +91,7 @@ const AnswerAlternativa: React.FC = () => {
             <IonPage>
                 <IonHeader className='custom-header'>
                 <IonToolbar>
-                    <IonFabButton className='btn-sair' color='light' slot='end' size='small'>
+                    <IonFabButton className='btnSair-answer' color='light' slot='end' size='small'>
                         Sair
                     </IonFabButton>
                 </IonToolbar>
@@ -191,21 +191,10 @@ const AnswerAlternativa: React.FC = () => {
                                 </IonRow>
                             ))}                       
                     </IonGrid>
-
-                    <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
-                        <a href="#" className="ios back-answer">
-                            <img className="href-back" src={backAnswer} alt="back" />
-                        </a>
-                        <IonCard className="ios bar-result-answers" color="light">
-                            <IonLabel id="answer-certas-alternativa">Certas: 0 </IonLabel>
-                            <IonLabel id="answer-total-alternativa">Total: 0 </IonLabel>
-                            <IonLabel id="answer-erradas-alternativa">Erradas: 0 </IonLabel>
-                        </IonCard>
-
-                        <a href="#" className="ios back-answer">
-                            <img className="href-next" src={nextAnswer} alt="next" />
-                        </a>
+                    <IonRow className='ios ion-justify-content-center row-btn-final'>
+                        <IonButton className='ios btn-final' color='light' size='default' >Finalizar</IonButton>
                     </IonRow>
+                   
                 </IonContent>
 
             </IonPage>
@@ -214,3 +203,18 @@ const AnswerAlternativa: React.FC = () => {
 
 }
  export default AnswerAlternativa
+
+//  <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
+//  <a href="#" className="ios back-answer">
+//      <img className="href-back" src={backAnswer} alt="back" />
+//  </a>
+//  <IonCard className="ios bar-result-answers" color="light">
+//      <IonLabel id="answer-certas-alternativa">Certas: 0 </IonLabel>
+//      <IonLabel id="answer-total-alternativa">Total: 0 </IonLabel>
+//      <IonLabel id="answer-erradas-alternativa">Erradas: 0 </IonLabel>
+//  </IonCard>
+
+//  <a href="#" className="ios back-answer">
+//      <img className="href-next" src={nextAnswer} alt="next" />
+//  </a>
+//</IonRow>
