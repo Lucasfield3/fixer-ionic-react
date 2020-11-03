@@ -46,7 +46,7 @@ const AnswerAlternativa: React.FC = () => {
         id: -1,
         textPop: ''
     }
-    const letras = ['a', 'b', 'c', 'd', 'e'] 
+    const letras = ['a', 'b', 'c', 'd', 'e']
     //const [letra, setLetra] = useState([letras])
     const [items, setItems] = useState([temas]);
     const [alternatives, setAlternatives] = useState([answer]);
@@ -75,7 +75,7 @@ const AnswerAlternativa: React.FC = () => {
             textAreaAlternative:'alternativas'
         }])
 
-    }, [])
+    }, [alternatives])
 
     const handleSelectAlternative = (index:number)=>{
        const newClass = className.class === 'alternativas-respostas' ? 'active' : 'alternativas-respostas'
@@ -179,7 +179,7 @@ const AnswerAlternativa: React.FC = () => {
                     </ReactCardFlip>
 
 
-                    <IonGrid className='array-div'>                
+                    <IonGrid className='array-div'>           
                             {alternatives.map((alternative, i)=>(
                                 <IonRow key={i} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
                                     <IonCol onClick={()=>handleSelectAlternative(i)}  size='1' className='letras-alternativas'> {letras[i]}</IonCol>

@@ -81,6 +81,7 @@ const FlashCards: React.FC = () => {
                                     </IonCol>
                                 )                                         
                             })}                                            
+                        
                         </IonGrid>
                     <IonActionSheet
                     isOpen={showActionSheet}
@@ -175,3 +176,32 @@ const Vazio:React.FC = ()=>{
 }
 
 export default FlashCards;
+
+/* <IonGrid className='align-conquistas'>
+                            <IonCardContent className="card-title-menu">
+
+                                <IonRow>
+                                    <IonCol>
+                                        <IonCard onClick={() => {
+                                            history.push('/AnswerAlternativa')
+                                        }} className="card-teste" color="ligth">
+                                            <IonCardHeader>
+                                                <IonCardTitle>Card Title</IonCardTitle>
+                                            </IonCardHeader>
+                                            <IonCardContent>
+                                                Keep close to Nature's heart... and break clear away, once in awhile,
+                                                and climb a mountain or spend a week in the woods. Wash your spirit clean....
+                                    </IonCardContent>
+                                        </IonCard>
+                                    </IonCol>
+                                </IonRow>
+
+                                
+
+
+
+
+
+
+
+                            </IonCardContent> */
