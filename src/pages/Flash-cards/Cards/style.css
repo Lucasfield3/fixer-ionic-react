@@ -1,0 +1,16 @@
+
+.cards{
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 7rem;
+    height: 7rem;
+    position: relative;
+    background: var(--ion-color-light);
+    overflow: hidden;
+    padding: 0.4rem;
+    margin-left: 1rem;
+    color: var(--ion-color-dark);
+}
+

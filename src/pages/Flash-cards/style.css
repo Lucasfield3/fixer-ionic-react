@@ -6,7 +6,6 @@
   .container-flashcards{
     display: flex;
     justify-content: center;
-    align-items: center;
     background: rgba(1, 22, 39, 0.29);
     width: auto;
     height: 80%;
@@ -41,3 +40,10 @@
   .ion-fab-margin{
     left: 84%;
   }
+  .align-cards{
+    margin-left: 0;
+    margin-right: 0;
+}
+.my-custom-class{
+  --height:41vh!important;
+}

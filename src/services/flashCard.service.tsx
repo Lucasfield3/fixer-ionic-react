@@ -1,4 +1,5 @@
 import https from '../utils/https'
+import { getPayload } from './Authentication.service'
 
 interface NewFlashCard{
     creator:string;
@@ -6,10 +7,12 @@ interface NewFlashCard{
     subject?:string;
     time?:string;
     answerFlashCard:string;
-    alternatives?:Alternatives[]
+    alternatives?:Alternatives[];
+    title:string;
+    themes:string[]
 }
 
-interface FlashCard {
+export interface FlashCard {
     owner:User;
     creator:User;
     creation:string;
@@ -19,6 +22,8 @@ interface FlashCard {
     type:string;
     subject:string;
     time:string;
+    title:string;
+    themes:string[];
 }
 interface User{
     id:string;
@@ -55,5 +60,35 @@ export async function createFlashCard(newFlashCard:NewFlashCard){
             console.log(res.data)
             return await res.data
         })
+        .catch((erro)=>{
+            console.log(erro)
+        })
 
 }
+
+export async function getFlashCard(id:string){
+    const payload =  getPayload() as Payload
+    https
+        .get(`flash-cards/one-flash-card?id-user=${payload.id}&id-flash-card=${id}`)
+        .then(async (res)=>{
+            console.log(res.data)
+            return await res.data
+        })
+        .catch((erro)=>{
+            console.log(erro)
+        })
+}
+export async function getFlashCards():Promise<FlashCard[]>{
+    const payload =  getPayload() as Payload
+    return https
+        .get(`flash-cards/owner/${payload.id}`)
+        .then(async (res)=>{
+            console.log(res.data)
+            return await res.data
+        })
+        .catch((erro)=>{
+            console.log(erro)
+        })
+}
+
+

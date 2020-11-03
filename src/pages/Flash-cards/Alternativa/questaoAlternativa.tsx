@@ -140,6 +140,10 @@ const QuestaoAlternativa: React.FC = () => {
     const handleCreateButton = async ()=>{
         const payLoad = getPayload() as Payload
         let alternativesSend:Alternatives[] = []
+        let temasSend:string[] = []
+        items.map((a)=>{
+            temasSend.push(a.textPop)
+        })
         alternatives.map((a)=>{
             alternativesSend.push({answer:a.textAreaAlternative})
         })
@@ -151,7 +155,9 @@ const QuestaoAlternativa: React.FC = () => {
                     enunciated:enunciated,
                     answerFlashCard:textRightAnswer,
                     subject:textMat,
-                    alternatives:alternativesSend
+                    alternatives:alternativesSend,
+                    title:textTitle,
+                    themes:temasSend
                 })
             }catch(err){
                 console.log(err)
@@ -221,7 +227,7 @@ const QuestaoAlternativa: React.FC = () => {
                                         {items.map(item => (
                                             <IonRow key={item.id} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
                                                 <IonCol key={item.id} className='ios temas-inputs' color='dark'>{item.textPop}</IonCol>
-                                                <IonFabButton onClick={() => DeleteTema(item.id)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
+                                        <IonFabButton onClick={() => DeleteTema(item.id)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
                                             </IonRow>
                                         ))}
                                     </IonGrid>
@@ -262,7 +268,6 @@ const QuestaoAlternativa: React.FC = () => {
                                     color='dark'
                                     onIonChange={e => {
                                         setEnunciated(e.detail.value!)
-                                        console.log(e.detail.value!.length)
                                     }}
                                     value={enunciated}
                                     placeholder="Digite ou cole o enunciado do flash-card">
@@ -314,7 +319,6 @@ const QuestaoAlternativa: React.FC = () => {
                                 color='dark' 
                                 onIonChange={e => {
                                     setTextRightAnswer(e.detail.value!)
-                                    console.log(e.detail.value!.length)
                                 }} 
                                 value={textRightAnswer}
                                 >    
