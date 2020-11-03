@@ -75,7 +75,7 @@ const AnswerAlternativa: React.FC = () => {
             textAreaAlternative:'alternativas'
         }])
 
-    }, [alternatives])
+    }, [])
 
     const handleSelectAlternative = (index:number)=>{
        const newClass = className.class === 'alternativas-respostas' ? 'active' : 'alternativas-respostas'
