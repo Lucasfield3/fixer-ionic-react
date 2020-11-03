@@ -40,31 +40,15 @@
   .ion-fab-margin{
     left: 84%;
   }
-<<<<<<< HEAD
-
-.ios .flashcard-description{
-    padding-top: 13px;
-    font-size: 11px;
-    line-height: 1.3;
-    padding-inline-start: 4px;
-    padding-inline-end: 4px;
-    padding-bottom: 5px;
-    color: var(--ion-color-dark);
-    opacity: 0;
-    transition: opacity 0.2s;
-    font-weight: 600;
-    text-align: center;
-  }
-
-.flashcard-description:hover{
-  opacity: 1;
-}
-=======
   .align-cards{
     margin-left: 0;
     margin-right: 0;
 }
 .my-custom-class{
   --height:41vh!important;
+  --background: #e5e5e5;
 }
->>>>>>> ce00f28b16ac5f99027f863f00cc1aececfdec26
+
+.my-custom-class .action-sheet-group {
+  background: #e5e5e5;
+}

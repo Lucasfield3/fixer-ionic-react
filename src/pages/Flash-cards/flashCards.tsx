@@ -15,7 +15,7 @@ import {
     IonFab,
     IonFabList, IonButton, IonCardContent, IonCardTitle, IonCol, IonActionSheet
 } from '@ionic/react'
-import { add, menuOutline, trash, share, caretForwardCircle, heart} from 'ionicons/icons';
+import { add, menuOutline, trash, share, bookSharp, addSharp, pencilSharp} from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
@@ -81,10 +81,12 @@ const FlashCards: React.FC = () => {
                             })}                                            
                         
                         </IonGrid>
+
+                   
                     <IonActionSheet
                     isOpen={showActionSheet}
                     onDidDismiss={() => setShowActionSheet(false)}
-                    cssClass='my-custom-class'
+                    cssClass='ios my-custom-class'
                     buttons={[{
                     text: 'Delete',
                     role: 'destructive',
@@ -94,19 +96,19 @@ const FlashCards: React.FC = () => {
                     }
                     }, {
                     text: 'Editar',
-                    icon: share,
+                    icon: pencilSharp,
                     handler: () => {
                         console.log('Share clicked');
                     }
                     }, {
                     text: 'Responder',
-                    icon: caretForwardCircle,
+                    icon: bookSharp,
                     handler: () => {
                         history.push('/AnswerAlternativa')
                     }
                     }, {
                     text: 'Adicionar',
-                    icon: heart,
+                    icon: addSharp,
                     handler: () => {
                         console.log('Favorite clicked');
                     }
