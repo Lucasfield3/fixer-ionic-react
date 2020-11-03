@@ -344,3 +344,7 @@ ion-item{
   --padding-bottom:0;
   height:8.5rem;
 }
+.grid-cards{
+  display: flex;
+  flex-wrap: wrap;
+}
