@@ -75,10 +75,8 @@ const FlashCards: React.FC = () => {
                     <IonCard className='container-flashcards'>
                         <IonGrid className='ios grid-cards'> 
                             {cards.map((card: FlashCard, index)=>{
-                                return( 
-                                    <IonCol>
-                                        <Cards title={card.title} key={index} type={card.type} id={card.id} onClick={()=>setShowActionSheet(true)}/>
-                                    </IonCol>
+                                return(                               
+                                  <Cards title={card.title} key={index} type={card.type} id={card.id} onClick={()=>setShowActionSheet(true)}/>
                                 )                                         
                             })}                                            
                         
