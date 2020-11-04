@@ -27,7 +27,7 @@ const CardGreen: React.FC<{onClick:()=>void}> = props => {
           </IonRow>
 
           <IonRow>
-            <IonLabel className="row-acertou-exp"> 0</IonLabel>
+            <IonLabel className="ios row-acertou-exp"> 0</IonLabel>
           </IonRow>
 
         </IonCardHeader>
