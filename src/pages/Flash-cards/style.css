@@ -53,3 +53,6 @@
 .my-custom-class .action-sheet-group {
   background: #e5e5e5;
 }
+.action-sheet-destructive.sc-ion-action-sheet-ios {
+  border-bottom: 0.5px #dad0d0 solid!important;
+}

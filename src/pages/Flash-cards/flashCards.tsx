@@ -20,7 +20,6 @@ import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import Cards from './Cards/Cards';
-import { get } from 'http';
 import { FlashCard, getFlashCards } from '../../services/flashCard.service';
 
 async function openMenu() {
@@ -40,8 +39,7 @@ const FlashCards: React.FC = () => {
         setCards(cardsValues)
     }
     useIonViewWillEnter(()=>{
-
-     getCards()
+        getCards()
 
     },[])
     return (
@@ -52,7 +50,7 @@ const FlashCards: React.FC = () => {
                         <IonRow className='row-label'>
                             <IonLabel className="label-menu-fixer">FIXER</IonLabel>
                         </IonRow>
-                        <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button dark" size="small" color="dark">
+                        <IonFabButton slot='start' onClick={()=>openMenu()} className="icon-fab-button dark" size="small" color="dark">
                             <IonIcon icon={menuOutline} />
                             <IonButton slot='start'>
                                 <IonMenuButton></IonMenuButton>
@@ -88,6 +86,7 @@ const FlashCards: React.FC = () => {
                     onDidDismiss={() => setShowActionSheet(false)}
                     cssClass='ios my-custom-class'
                     buttons={[{
+                    cssClass:'custom-icon-lix',
                     text: 'Delete',
                     role: 'destructive',
                     icon: trash,
@@ -95,24 +94,28 @@ const FlashCards: React.FC = () => {
                         console.log('Delete clicked');
                     }
                     }, {
+                    cssClass:'custom-icon-edit',
                     text: 'Editar',
                     icon: pencilSharp,
                     handler: () => {
                         console.log('Share clicked');
                     }
                     }, {
+                    cssClass:'custom-icon-answer',
                     text: 'Responder',
                     icon: bookSharp,
                     handler: () => {
                         history.push('/AnswerAlternativa')
                     }
                     }, {
+                    cssClass:'custom-icon-add',
                     text: 'Adicionar',
                     icon: addSharp,
                     handler: () => {
                         console.log('Favorite clicked');
                     }
                     }, {
+                    cssClass:'custom-icon-close',                   
                     text: 'Fechar',
                     icon: 'close',
                     role: 'cancel',

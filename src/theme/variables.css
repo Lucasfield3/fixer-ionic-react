@@ -104,3 +104,17 @@ ion-scroll {
 ion-textarea{
  font-size: 16px;
 }
+.custom-icon-edit{
+  font-weight: bolder;
+  border-bottom: 0.5px #e4e0e0 solid!important;
+}
+.custom-icon-add{
+  font-weight: bolder;
+}
+.custom-icon-answer{
+  font-weight: bolder;
+}
+.custom-icon-close{
+  color:var(--ion-color-danger)!important;
+  font-weight: bolder;
+}
