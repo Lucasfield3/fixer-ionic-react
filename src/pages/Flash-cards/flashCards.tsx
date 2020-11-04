@@ -13,7 +13,7 @@ import {
     IonLabel,
     IonContent,
     IonFab,
-    IonFabList, IonButton, IonCardContent, IonCardTitle, IonCol, IonActionSheet
+    IonFabList, IonButton, IonCardContent, IonCardTitle, IonCol, IonActionSheet, useIonViewWillEnter
 } from '@ionic/react'
 import { add, menuOutline, trash, share, bookSharp, addSharp, pencilSharp} from 'ionicons/icons';
 import './style.css'
@@ -39,7 +39,7 @@ const FlashCards: React.FC = () => {
         let cardsValues = await getFlashCards()
         setCards(cardsValues)
     }
-    useEffect(()=>{
+    useIonViewWillEnter(()=>{
 
      getCards()
 
