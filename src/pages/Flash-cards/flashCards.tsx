@@ -78,13 +78,13 @@ const FlashCards: React.FC = () => {
                                 return(                               
                                   <Cards title={card.title} key={index} type={card.type} id={card.id} onClick={()=>setShowActionSheet(true)}/>
                                 )                                         
-                            })}                                            
-                        
+                            })}
                         </IonGrid>
 
                    
                     <IonActionSheet
                     isOpen={showActionSheet}
+                    mode={'ios'}
                     onDidDismiss={() => setShowActionSheet(false)}
                     cssClass='ios my-custom-class'
                     buttons={[{

@@ -45,8 +45,9 @@
     margin-right: 0;
 }
 .my-custom-class{
-  --height:41vh!important;
+  --height:65vh!important;
   --background: #e5e5e5;
+  --button-background-selected: #e5e5e5;
 }
 
 .my-custom-class .action-sheet-group {

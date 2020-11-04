@@ -13,7 +13,7 @@ import {
     IonItem, 
     IonInput, 
     IonCard, 
-    IonCardContent, 
+    IonCardContent,
     IonTextarea, 
     IonCardHeader, 
     IonToggle, 

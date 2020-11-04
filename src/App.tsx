@@ -28,7 +28,7 @@ import Conquistas from './pages/Conquistas/conquistas';
 import Classes from './pages/Classes/classes'
 import QuestaoAlternativa from './pages/Flash-cards/Alternativa/questaoAlternativa'
 import QuestaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDisertativa'
-import CardRed from './components/CardRed/cardRed';
+import CardRed from './components/cardRed/cardRed';
 import CardGreen from './components/CardGreen/cardGreen';
 import AnswerDissertativa from './components/AnswerDissertativa/AnswerDissertativa';
 import AnswerAlternativa from './components/AnswerAlternativa/AnswerAlternativa';
