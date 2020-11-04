@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     IonSearchbar,
     IonCard,
@@ -13,7 +13,7 @@ import {
     IonLabel,
     IonContent,
     IonFab,
-    IonFabList, IonButton, IonCardContent, IonCardTitle, IonCol, IonActionSheet, useIonViewWillEnter
+    IonFabList, IonButton, IonActionSheet, useIonViewWillEnter
 } from '@ionic/react'
 import { add, menuOutline, trash, share, bookSharp, addSharp, pencilSharp} from 'ionicons/icons';
 import './style.css'
