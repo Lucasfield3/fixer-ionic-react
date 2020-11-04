@@ -84,6 +84,7 @@ const FlashCards: React.FC = () => {
                    
                     <IonActionSheet
                     isOpen={showActionSheet}
+                    mode={'ios'}
                     onDidDismiss={() => setShowActionSheet(false)}
                     cssClass='ios my-custom-class'
                     buttons={[{
