@@ -78,8 +78,7 @@ const FlashCards: React.FC = () => {
                                 return(                               
                                   <Cards title={card.title} key={index} type={card.type} id={card.id} onClick={()=>setShowActionSheet(true)}/>
                                 )                                         
-                            })}                                            
-                        
+                            })}
                         </IonGrid>
 
                    
