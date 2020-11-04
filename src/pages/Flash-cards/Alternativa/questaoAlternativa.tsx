@@ -354,6 +354,7 @@ const QuestaoAlternativa: React.FC = () => {
                     <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
                         <IonButton id='create-button' className="ios btn-criar" onClick={() => {
                             handleCreateButton()
+                            setShowModal(true)
                             }} >Criar</IonButton>
                     </IonRow>
                 </IonContent>
