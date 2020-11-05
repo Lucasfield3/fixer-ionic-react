@@ -20,10 +20,9 @@
     transition: all 75ms ease-in;
 }
 ion-img{opacity: 0.5;}
-.ios .cards > ion-img:hover{
+.ios .cards:hover > ion-img{
     opacity: 1;
 }
-
 .ios .cards ion-title{
     margin-bottom: -1rem;
 }
