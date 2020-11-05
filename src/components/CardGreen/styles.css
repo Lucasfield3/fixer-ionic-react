@@ -22,9 +22,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 5rem;
-  height: 5rem;
+
+  width: 84px;
+  height: 84px;
+  left: 111px;
+  top: 19px;
 }
+
 
 .msg-acertou{
   margin: auto;
