@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 7rem;
-    height: 8rem;
+    width: 6rem;
+    height: 7rem;
     position: relative;
     background: var(--ion-color-light);
     overflow: hidden;
@@ -22,4 +22,11 @@
 ion-img{opacity: 0.5;}
 .ios .cards > ion-img:hover{
     opacity: 1;
+}
+
+.ios .cards ion-title{
+    margin-bottom: -1rem;
+}
+.ios .cards ion-label{
+    margin-top: -1rem;
 }
