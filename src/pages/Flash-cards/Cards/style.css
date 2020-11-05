@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: auto;
-    height: 8rem;
+    width: 6rem;
+    height: 7rem;
     position: relative;
     background: var(--ion-color-light);
     overflow: hidden;
@@ -13,7 +13,6 @@
     color: var(--ion-color-dark);
     cursor: pointer;
     transition: all 75ms ease-out;
-
 }
 
 ion-title{
@@ -33,7 +32,13 @@ ion-label{
     box-shadow: 0 0 10px var(--light);
     transition: all 75ms ease-in;
 }
-ion-img{opacity: 0.5;}
-.ios .cards > ion-img:hover{
+.ios .cards ion-img{opacity: 0.5;}
+.ios .cards:hover > ion-img{
     opacity: 1;
+}
+.ios .cards ion-title{
+    margin-bottom: -1rem;
+}
+.ios .cards ion-label{
+    margin-top: -1rem;
 }

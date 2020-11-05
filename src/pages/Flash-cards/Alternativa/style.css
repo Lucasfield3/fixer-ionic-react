@@ -150,11 +150,11 @@ ion-item{
   background: #fdfdfd;
 }
 
-.my-custom-class .modal-wrapper {
+.temas-custom .modal-wrapper {
   background: #fdfdfd;
 }
 
-.my-custom-class {
+.temas-custom {
   --background: #fdfdfd;
   --height: 16vh;
   --width: 40vh;

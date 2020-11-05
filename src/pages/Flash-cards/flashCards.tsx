@@ -86,7 +86,7 @@ const FlashCards: React.FC = () => {
                             isOpen={showActionSheet}
                             mode={'ios'}
                             onDidDismiss={() => setShowActionSheet(false)}
-                            cssClass='ios my-custom-class'
+                            cssClass='ios menu-bottom'
                             buttons={[{
                                 cssClass: 'custom-icon-lix',
                                 text: 'Delete',
