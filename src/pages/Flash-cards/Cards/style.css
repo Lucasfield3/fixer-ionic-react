@@ -19,7 +19,7 @@
     box-shadow: 0 0 10px var(--light);
     transition: all 75ms ease-in;
 }
-ion-img{opacity: 0.5;}
+.ios .cards ion-img{opacity: 0.5;}
 .ios .cards:hover > ion-img{
     opacity: 1;
 }

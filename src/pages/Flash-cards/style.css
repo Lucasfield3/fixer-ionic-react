@@ -44,7 +44,7 @@
     margin-left: 0;
     margin-right: 0;
 }
-.my-custom-class{
+.menu-bottom{
   --height:65vh!important;
   --background: #e5e5e5;
   --button-background-selected: #e5e5e5;
@@ -56,7 +56,7 @@
   padding: 0;
 }
 
-.my-custom-class .action-sheet-group {
+.menu-bottom .action-sheet-group {
   background: #e5e5e5;
 }
 .action-sheet-destructive.sc-ion-action-sheet-ios {

@@ -210,7 +210,7 @@ const QuestaoAlternativa: React.FC = () => {
                                 <IonButton onClick={() => setShowPopover(true)} className="ios btn-tema-dissertativa">Tema</IonButton>
                                 <IonPopover
                                     isOpen={showPopover}
-                                    cssClass='my-custom-class tema'
+                                    cssClass='temas-custom'
                                     onDidDismiss={e => setShowPopover(false)}
                                 >
                                     <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
