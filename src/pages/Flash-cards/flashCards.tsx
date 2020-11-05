@@ -13,7 +13,7 @@ import {
     IonLabel,
     IonContent,
     IonFab,
-    IonFabList, IonButton, IonActionSheet, useIonViewWillEnter
+    IonFabList, IonButton, IonActionSheet, useIonViewWillEnter, IonCol
 } from '@ionic/react'
 import { add, menuOutline, trash, share, bookSharp, addSharp, pencilSharp} from 'ionicons/icons';
 import './style.css'
@@ -71,13 +71,16 @@ const FlashCards: React.FC = () => {
 
                     <IonLabel className="label-menu-title-cards">FlashCards</IonLabel>
                     <IonCard className='container-flashcards'>
-                        <IonGrid className='ios grid-cards'> 
+                        <IonCol>
+                        <IonGrid className='ios grid-flashcards'>                          
                             {cards.map((card: FlashCard, index)=>{
                                 return(                               
                                   <Cards title={card.title} key={index} type={card.type} id={card.id} onClick={()=>setShowActionSheet(true)}/>
                                 )                                         
                             })}
                         </IonGrid>
+
+                        </IonCol>
 
                    
                     <IonActionSheet

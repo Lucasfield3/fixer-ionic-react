@@ -201,7 +201,7 @@ const QuestaoAlternativa: React.FC = () => {
 
                 <IonContent>
                     <IonItem style={{ borderRadius: '6px' }} className="item-input-dissertativa">
-                        <IonInput value={textTitle} type="text" required className="input-dissertativa" onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Flashcard"></IonInput>
+                        <IonInput maxlength={100} value={textTitle} type="text" required className="input-dissertativa" onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Flashcard"></IonInput>
                     </IonItem>
 
                     <IonCard className='card-dissertativa' color='light'>
@@ -218,7 +218,7 @@ const QuestaoAlternativa: React.FC = () => {
                                     </IonRow>
                                     <IonGrid className='back-temas'>
                                         <IonRow className='ion-justify-content-center'>
-                                            <IonInput className='ios add-temas' placeholder='Tema' color='dark' onIonChange={e => setTextPop(e.detail.value!)} value={textPop} type='text'></IonInput>
+                                            <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' onIonChange={e => setTextPop(e.detail.value!)} value={textPop} type='text'></IonInput>
                                             <IonFabButton className='add-btn' onClick={() => {
                                                 AddTema()
                                                 setTextPop('')
@@ -253,7 +253,7 @@ const QuestaoAlternativa: React.FC = () => {
                                     </IonRow>
                                 </IonPopover>
 
-                                <IonInput value={textMat} className="input-tema" placeholder="Insira a matéria" onIonChange={e => setTextMat(e.detail.value!)}></IonInput>
+                                <IonInput maxlength={100} value={textMat} className="input-tema" placeholder="Insira a matéria" onIonChange={e => setTextMat(e.detail.value!)}></IonInput>
                             </IonRow>
                         </IonCardHeader>
                         <IonCardContent className="content-background">
