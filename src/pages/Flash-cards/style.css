@@ -50,6 +50,12 @@
   --button-background-selected: #e5e5e5;
 }
 
+.grid-flashcards{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
 .my-custom-class .action-sheet-group {
   background: #e5e5e5;
 }
