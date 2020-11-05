@@ -51,6 +51,7 @@
 }
 
 .grid-flashcards{
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   padding: 0;

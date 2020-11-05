@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 7rem;
+    width: auto;
     height: 8rem;
     position: relative;
     background: var(--ion-color-light);
@@ -15,6 +15,19 @@
     transition: all 75ms ease-out;
 
 }
+
+ion-title{
+    margin-bottom: -1rem;
+}
+
+ion-img{
+    margin: -5rem 0;
+}
+
+ion-label{
+    margin: -6px 0;
+}
+
 .ios .cards:hover{
     transform: scale(1.1);
     box-shadow: 0 0 10px var(--light);
