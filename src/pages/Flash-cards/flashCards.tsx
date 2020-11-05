@@ -13,9 +13,9 @@ import {
     IonLabel,
     IonContent,
     IonFab,
-    IonFabList, IonButton, IonActionSheet, useIonViewWillEnter
+    IonFabList, IonButton, IonActionSheet, useIonViewWillEnter, IonCol
 } from '@ionic/react'
-import { add, menuOutline, trash, share, bookSharp, addSharp, pencilSharp} from 'ionicons/icons';
+import { add, menuOutline, trash, share, bookSharp, addSharp, pencilSharp } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
@@ -38,19 +38,19 @@ const FlashCards: React.FC = () => {
         let cardsValues = await getFlashCards()
         setCards(cardsValues)
     }
-    useIonViewWillEnter(()=>{
+    useIonViewWillEnter(() => {
         getCards()
 
-    },[])
+    }, [])
     return (
         <>
             <IonPage>
-                <IonHeader className='custom-header'>     
+                <IonHeader className='custom-header'>
                     <IonToolbar>
                         <IonRow className='row-label'>
                             <IonLabel className="label-menu-fixer">FIXER</IonLabel>
                         </IonRow>
-                        <IonFabButton slot='start' onClick={()=>openMenu()} className="icon-fab-button dark" size="small" color="dark">
+                        <IonFabButton slot='start' onClick={() => openMenu()} className="icon-fab-button dark" size="small" color="dark">
                             <IonIcon icon={menuOutline} />
                             <IonButton slot='start'>
                                 <IonMenuButton></IonMenuButton>
@@ -71,63 +71,65 @@ const FlashCards: React.FC = () => {
 
                     <IonLabel className="label-menu-title-cards">FlashCards</IonLabel>
                     <IonCard className='container-flashcards'>
-                        <IonGrid className='ios grid-cards'> 
-                            {cards.map((card: FlashCard, index)=>{
-                                return(                               
-                                  <Cards title={card.title} key={index} type={card.type} id={card.id} onClick={()=>setShowActionSheet(true)}/>
-                                )                                         
-                            })}
-                        </IonGrid>
+                        <IonCol>
+                            <IonGrid className='ios grid-flashcards'>
+                                {cards.map((card: FlashCard, index) => {
+                                    return (
+                                        <Cards title={card.title} key={index} type={card.type} id={card.id} onClick={() => setShowActionSheet(true)} />
+                                    )
+                                })}
+                            </IonGrid>
+                        </IonCol>
 
-                   
-                    <IonActionSheet
-                    isOpen={showActionSheet}
-                    mode={'ios'}
-                    onDidDismiss={() => setShowActionSheet(false)}
-                    cssClass='ios my-custom-class'
-                    buttons={[{
-                    cssClass:'custom-icon-lix',
-                    text: 'Delete',
-                    role: 'destructive',
-                    icon: trash,
-                    handler: () => {
-                        console.log('Delete clicked');
-                    }
-                    }, {
-                    cssClass:'custom-icon-edit',
-                    text: 'Editar',
-                    icon: pencilSharp,
-                    handler: () => {
-                        console.log('Share clicked');
-                    }
-                    }, {
-                    cssClass:'custom-icon-answer',
-                    text: 'Responder',
-                    icon: bookSharp,
-                    handler: () => {
-                        history.push('/AnswerAlternativa')
-                    }
-                    }, {
-                    cssClass:'custom-icon-add',
-                    text: 'Adicionar',
-                    icon: addSharp,
-                    handler: () => {
-                        console.log('Favorite clicked');
-                    }
-                    }, {
-                    cssClass:'custom-icon-close',                   
-                    text: 'Fechar',
-                    icon: 'close',
-                    role: 'cancel',
-                    handler: () => {
-                        console.log('Cancel clicked');
-                    }
-                    }]}
-                    >
-                    </IonActionSheet>
+
+                        <IonActionSheet
+                            isOpen={showActionSheet}
+                            mode={'ios'}
+                            onDidDismiss={() => setShowActionSheet(false)}
+                            cssClass='ios my-custom-class'
+                            buttons={[{
+                                cssClass: 'custom-icon-lix',
+                                text: 'Delete',
+                                role: 'destructive',
+                                icon: trash,
+                                handler: () => {
+                                    console.log('Delete clicked');
+                                }
+                            }, {
+                                cssClass: 'custom-icon-edit',
+                                text: 'Editar',
+                                icon: pencilSharp,
+                                handler: () => {
+                                    console.log('Share clicked');
+                                }
+                            }, {
+                                cssClass: 'custom-icon-answer',
+                                text: 'Responder',
+                                icon: bookSharp,
+                                handler: () => {
+                                    history.push('/AnswerAlternativa')
+                                }
+                            }, {
+                                cssClass: 'custom-icon-add',
+                                text: 'Adicionar',
+                                icon: addSharp,
+                                handler: () => {
+                                    console.log('Favorite clicked');
+                                }
+                            }, {
+                                cssClass: 'custom-icon-close',
+                                text: 'Fechar',
+                                icon: 'close',
+                                role: 'cancel',
+                                handler: () => {
+                                    console.log('Cancel clicked');
+                                }
+                            }]}
+                        >
+                        </IonActionSheet>
                     </IonCard>
 
-                    
+
                     <IonFab style={{ left: '80%' }} vertical="bottom" horizontal="center" slot="fixed" color="dark">
                         <IonFabButton className='custom-fabButton' color="dark">
                             <IonIcon className="add-icon" icon={add} />
@@ -158,7 +160,7 @@ const FlashCards: React.FC = () => {
                             </IonButton>
                         </IonFabList>
                     </IonFab>
-                    
+
                 </IonContent>
             </IonPage>
         </>
@@ -167,13 +169,13 @@ const FlashCards: React.FC = () => {
 }
 
 
-const Vazio:React.FC = ()=>{
+const Vazio: React.FC = () => {
 
-    return(
+    return (
         <>
-        <IonLabel className='card-vazio'>
-            VAZIO
-        </IonLabel>         
+            <IonLabel className='card-vazio'>
+                VAZIO
+        </IonLabel>
         </>
     )
 }
@@ -199,7 +201,7 @@ export default FlashCards;
                                     </IonCol>
                                 </IonRow>
 
-                                
+
 
 
 
