@@ -14,12 +14,14 @@ import nextAnswer from '../../Assets/images/next.svg';
 import { arrowForward } from 'ionicons/icons';
 import ReactCardFlip from 'react-card-flip';
 import CardGreen from '../CardGreen/cardGreen';
+import SairTelaResposta from '../CardMessages/msg_sair_tela_resposta';
+import { useHistory } from 'react-router';
 
 
 
 const AnswerAlternativa: React.FC = () => {
 
-
+    const history = useHistory()
     // eslint-disable-next-line react-hooks/rules-of-hooks
     //const history = useHistory()
     //onst [textTitle, setTextTitle] = useState<string>('')
@@ -29,13 +31,15 @@ const AnswerAlternativa: React.FC = () => {
     //const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave] = useState<boolean>(false);
+    const [shownPopsair, setShownPopsair] = useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
     //const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     //const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
     const [isFlipped, setIsflipped] = useState(false);
+    const [isActive, setActive] = useState(false);
     const [className, setClassName] = useState({
-        class:'alternativas',
-        id:0
+        id:-1,
+        active:false
     })
     const answer =
     {
@@ -77,12 +81,13 @@ const AnswerAlternativa: React.FC = () => {
 
     }, [])
 
-    const handleSelectAlternative = (index:number)=>{
-       const newClass = className.class === 'alternativas-respostas' ? 'active' : 'alternativas-respostas'
-       setClassName({
-           class:newClass,
-           id:index
-       })
+    const handleSelectAlternative = (alternative:number)=>{  
+        alternatives.forEach(()=>{
+            setClassName({
+                id:alternative,
+                active:!className.active
+            })   
+        })
       
     }
 
@@ -91,7 +96,7 @@ const AnswerAlternativa: React.FC = () => {
             <IonPage>
                 <IonHeader className='custom-header'>
                 <IonToolbar>
-                    <IonFabButton className='btnSair-answer' color='light' slot='end' size='small'>
+                    <IonFabButton onClick={()=>setShownPopsair(true)} className='btnSair-answer' color='light' slot='end' size='small'>
                         Sair
                     </IonFabButton>
                 </IonToolbar>
@@ -109,6 +114,16 @@ const AnswerAlternativa: React.FC = () => {
 
 
                 <IonContent>
+                    <SairTelaResposta 
+                    isOpen={shownPopsair} 
+                    onClickSim={()=> {
+                        setShownPopsair(false)
+                        history.push('/Flash-cards')
+                    }}
+                    onClickNao={()=> setShownPopsair(false)} 
+                    onDidDismiss={()=> setShownPopsair(false)}
+
+                    />
                     <IonRow className='row-timer-alternativa'>
                         <IonCol  className='timer-flashcard' color='dark'>00:00</IonCol>
                     </IonRow>
@@ -172,7 +187,7 @@ const AnswerAlternativa: React.FC = () => {
                             </IonCardContent>
                             <IonRow className='row-footer' color='light'></IonRow>
                             <IonRow className='ios ion-justify-content-center'>
-                                <IonIcon onClick={()=> setIsflipped(!isFlipped)} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
+                                <IonIcon style={{display:className.active && 'block' || 'none'}} onClick={()=> setIsflipped(!isFlipped)} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
                         </IonCard >
                         <CardGreen onClick={()=>setIsflipped(!isFlipped)}/>
@@ -182,12 +197,12 @@ const AnswerAlternativa: React.FC = () => {
                     <IonGrid className='array-div'>           
                             {alternatives.map((alternative, i)=>(
                                 <IonRow key={i} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
-                                    <IonCol onClick={()=>handleSelectAlternative(i)}  size='1' className='letras-alternativas'> {letras[i]}</IonCol>
-                                    <IonCol  onClick={()=>handleSelectAlternative(i)}  
+                                    <IonCol onClick={()=>handleSelectAlternative(i)}  size='1' className={(i === className.id  && className.active) && 'active-letras' || 'letras-alternativas'}> {letras[i]}</IonCol>
+                                    <IonCol  onMouseDown={()=>handleSelectAlternative(alternative.id)}  
                                     style={{height:'auto', width:'10rem'}}  
                                     key={alternative.id} 
-                                    className={ i === className.id && className.class || 'alternativas-respostas'} 
-                                    color='dark'>Alternativis</IonCol>
+                                    className={(alternative.id === className.id  && className.active) && 'active' || 'alternativas-respostas'} 
+                                    color='dark'>Alternativas</IonCol>
                                 </IonRow>
                             ))}                       
                     </IonGrid>

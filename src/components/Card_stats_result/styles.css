@@ -61,19 +61,6 @@
   align-items: center;
 }
 
-
-
-.icon-acertou{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 104px;
-  height: 104px;
-  left: 111px;
-  top: 19px;
-}
-
 .msg-acertou{
   margin: auto;
   margin-top: 20px;
