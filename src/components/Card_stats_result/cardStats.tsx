@@ -26,7 +26,7 @@ const CardStats: React.FC<{
         <IonCardContent className='container-result'>
           <IonRow>
             <IonLabel  className="stats_answer_correct">
-              <IonLabel color='dark'>Respostas corretas:</IonLabel><IonLabel color='success'>{props.textCorrect}</IonLabel>/{props.textTotal}
+              <IonLabel color='dark'>Respostas corretas: </IonLabel><IonLabel color='success'>{props.textCorrect}</IonLabel>/{props.textTotal}
             </IonLabel>
           </IonRow>
 
