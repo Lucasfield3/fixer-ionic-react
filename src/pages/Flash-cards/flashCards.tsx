@@ -75,7 +75,7 @@ const FlashCards: React.FC = () => {
                             <IonGrid className='ios grid-flashcards'>
                                 {cards.map((card: FlashCard, index) => {
                                     return (
-                                        <Cards title={card.title} key={index} type={card.type} id={card.id} onClick={() => setShowActionSheet(true)} />
+                                        <Cards title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={() => setShowActionSheet(true)} />
                                     )
                                 })}
                             </IonGrid>
