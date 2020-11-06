@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 6rem;
     height: 7rem;
     position: relative;
     background: var(--ion-color-light);
@@ -29,3 +28,14 @@
 .ios .cards ion-label{
     margin-top: -1rem;
 }
+@media screen and (max-width:360px){
+    .ios .cards{
+      width: 6rem;
+    }
+  }
+  @media screen and (min-width:361px){
+    .ios .cards{
+      width: 8rem;
+    }
+  }
+  

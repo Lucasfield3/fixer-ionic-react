@@ -453,52 +453,51 @@ ion-item{
   width: 2rem;
   margin-inline-end: 8px;
 }
-.row-timer{
-  display: flex !important;
-    justify-content: center!important;
-    width: 100%;
-    padding-inline-start: 42%;
-    padding-inline-end: 42%;
-}
 .timer-flashcard{
+  display: flex;
+  justify-content: center;
   border-radius: 5rem;
   height: 1.6rem;
   background-color: var(--light);
-  margin-top: 1.5rem;
   font-weight: bold;
   font-size: 17px;
   text-align: center;
-  line-height: 1.1rem;
+  line-height: 1rem;
   margin-bottom: -0.4rem;
   --ion-grid-column-padding: 5px;
   padding-top: 5px;
-  margin-left: 25vh;
-  width: 5rem;
+  width: 3.6rem;
+  margin-left: auto;
+  margin-right: auto;
 
 }
 .letras-alternativas{
-  height:1.9rem;
+  height: 1.9rem;
+  padding-right: 1.1rem;
+  padding-left: 0.5rem;
   border-radius: 5rem;
   text-align: center;
   background-color: var(--light);
   margin-right: 0.3rem;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
-  line-height: 1.2rem;
+  line-height: 1.1rem;
   color: var(--ion-color-dark);
 }
 .active-letras{
-  height:1.9rem;
-  border-radius: 5rem;
-  text-align: center;
-  background-color: var(--light);
-  margin-right: 0.3rem;
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 1.2rem;
-  color: var(--ion-color-primary);
-  border: 2px var(--ion-color-primary) solid;
-  box-shadow: 0 0 10px var(--light);
+  height: 1.9rem;
+    padding-right: 1rem;
+    padding-left: 0.4rem;
+    border-radius: 5rem;
+    text-align: center;
+    background-color: var(--light);
+    margin-right: 0.3rem;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1rem;
+    color: var(--ion-color-primary);
+    border: 2px var(--ion-color-primary) solid;
+    box-shadow: 0 0 10px var(--light);
 }
 .arrow-foward{
   width: 2rem;
@@ -529,10 +528,10 @@ ion-item{
     box-shadow: 0 0 10px var(--light);
 }
 .row-btn-final{
-  position: relative;
-  top: 5.5rem;
+  margin-top: 3rem;
 }
 .btn-final{
   background: var(--ion-color-light);
   --ion-color-light-contrast: var(--ion-color-dark);
+  font-weight: bold;
 }

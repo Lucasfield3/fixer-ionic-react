@@ -1,45 +1,55 @@
 import React from 'react';
-import { IonButton, IonCard, IonCardHeader, IonIcon, IonLabel, IonRow } from '@ionic/react'
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonIcon, IonLabel, IonPopover, IonRow } from '@ionic/react'
 //import { pin, walk, warning, wifi, wine } from 'ionicons/icons';
 import './styles.css'
 
-const CardStats: React.FC = () => {
+const CardStats: React.FC<{
+  onClickRedone:()=>void; 
+  onClickSair:()=>void;
+  textCorrect:string;
+  textTotal:string;
+  textExp:string;
+  textConquista:string;
+  isOpen:boolean;
+  backdropDismiss:boolean;
+}> = props => {
 
   return (
     <>
-      <IonCard className='card-stats' color='light'>
+    <IonPopover isOpen={props.isOpen} backdropDismiss={props.backdropDismiss}>
+      <IonCardHeader style={{padding:0}}>
         <IonRow className='ios ion-justify-content-center card-stats-header'>
           <IonLabel className="label_result">Resultado</IonLabel>
         </IonRow>
-        <IonCardHeader color="light" style={{ height: '15rem' }}>
-
-          <IonRow style={{ marginTop: '0.9rem' }} className='ios ion-justify-content-center'>
-            <IonLabel className="stats_answer_correct">
-              Respostas <IonLabel style={{ color: '#2EC4B6' }}>corretas: 0</IonLabel>/0
+      </IonCardHeader>
+        
+        <IonCardContent className='container-result'>
+          <IonRow>
+            <IonLabel  className="stats_answer_correct">
+              <IonLabel color='dark'>Respostas corretas:</IonLabel><IonLabel color='success'>{props.textCorrect}</IonLabel>/{props.textTotal}
             </IonLabel>
           </IonRow>
 
           <IonRow className='ios row-stats'>
-            <IonLabel className="stats_answer_exp">EXP adquirido: <IonLabel style={{ color: '#20A4F3' }}> +000</IonLabel></IonLabel>
+            <IonLabel className="stats_answer_exp">EXP adquirido: <IonLabel style={{ color: '#20A4F3' }}> +{props.textExp}</IonLabel></IonLabel>
           </IonRow>
 
           <IonRow>
-            <IonLabel className="ios stats_conquista">Conquistas: "Nome da conquista"</IonLabel>
+            <IonLabel color='dark' className="ios stats_conquista">Conquistas: {props.textConquista}</IonLabel>
           </IonRow>
 
-          <IonRow className='ios ion-justify-content-center' style={{ margin: '1rem 0' }}>
-            <IonButton className="ios btn_stats_refazer">
+        </IonCardContent>
+
+          <IonRow className='ios ion-justify-content-center'>
+            <IonButton color='light'onClick={props.onClickRedone} className="ios btn_stats_refazer">
               Refazer
             </IonButton>
 
-            <IonButton className="ios btn_stats_sair">
+            <IonButton color='light' onClick={props.onClickSair}className="ios btn_stats_sair">
               Sair
             </IonButton>
           </IonRow>
-
-        </IonCardHeader>
-
-      </IonCard >
+    </IonPopover>
     </>
   );
 

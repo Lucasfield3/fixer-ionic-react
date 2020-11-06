@@ -18,35 +18,24 @@
 }
 
 .btn_stats_refazer{
-  margin-right: 16px;
-  width: 6.6rem !important;
-  height: 2.3rem !important;
-  font-size: 12px!important;
-  --background: #fdfdfd !important;
-  font-weight: bold !important;
-
-  text-align: center;
-  justify-content: center;
-  color:#011627;
-  background-color:var(--ion-color-light);
+  width: 5rem;
+  height: 2rem;
+  --ion-color-light-contrast: var(--ion-color-dark)!important;
+  border: 1px solid var(--ion-color-dark);
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 0.2rem;
+  margin: 5px;
 }
 
 .btn_stats_sair{
-  margin-right: 16px;
-  width: 6.6rem !important;
-  height: 2.3rem !important;
-  font-size: 12px!important;
-  --background: #fdfdfd !important;
-  font-weight: bold !important;
-
-  text-align: center;
-  justify-content: center;
-  color:#FF206E;
-  background-color:var(--ion-color-light);
-}
-
-.row_button_stats{
-  margin: 2rem 0 ;
+  width: 5rem;
+  height: 2rem;
+  border: 1px solid rgba(255, 32, 110, 0.31);
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 0.2rem;
+  margin: 5px;
 }
 
 .label_result{
@@ -72,33 +61,20 @@
 
 .stats_answer_exp{
   color: #011627;
-  font-size: 20px;
-  font-weight: bold;
-  font-family: 'Archivo Narrow', sans-serif;
-  
-  display: flex;
-  justify-content: center;
-  text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Archivo Narrow', sans-serif;
 }
 
 .row-stats{
-  display: flex;
-  justify-content: center;
-  margin-top: 1.5rem; 
+  margin-top: 0.5rem;
 }
 
 .stats_conquista{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: #011627;
-  font-size: 20px;
-  font-weight: bold;
-  font-family: 'Archivo Narrow', sans-serif;
-   
-  margin: auto;
-  margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Archivo Narrow', sans-serif;
+    margin-top: 0.5rem;
 }
 
 .row-acertou-exp{
@@ -117,4 +93,13 @@
   font-size: 18px;
   text-align: center;
   line-height: 1.6rem;
+}
+.row-buttons{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.container-result > ion-row{
+  border-bottom: 0.5px rgb(211, 209, 209) solid;
 }

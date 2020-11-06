@@ -16,6 +16,7 @@ import ReactCardFlip from 'react-card-flip';
 import CardGreen from '../CardGreen/cardGreen';
 import SairTelaResposta from '../CardMessages/msg_sair_tela_resposta';
 import { useHistory } from 'react-router';
+import CardStats from '../Card_stats_result/cardStats';
 
 
 
@@ -32,6 +33,7 @@ const AnswerAlternativa: React.FC = () => {
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave] = useState<boolean>(false);
     const [shownPopsair, setShownPopsair] = useState<boolean>(false);
+    const [shownPopResult, setShownPopResult] = useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
     //const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     //const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
@@ -123,10 +125,8 @@ const AnswerAlternativa: React.FC = () => {
                     onClickNao={()=> setShownPopsair(false)} 
                     onDidDismiss={()=> setShownPopsair(false)}
 
-                    />
-                    <IonRow className='row-timer-alternativa'>
+                    />                  
                         <IonCol  className='timer-flashcard' color='dark'>00:00</IonCol>
-                    </IonRow>
                     <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
                         <IonCard className='card-dissertativa' color='light'>
                             <IonCardHeader style={{ padding: 0 }}>
@@ -207,9 +207,24 @@ const AnswerAlternativa: React.FC = () => {
                             ))}                       
                     </IonGrid>
                     <IonRow className='ios ion-justify-content-center row-btn-final'>
-                        <IonButton className='ios btn-final' color='light' size='default' >Finalizar</IonButton>
+                        <IonButton onClick={()=>setShownPopResult(true)} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>
                     </IonRow>
-                   
+                   <CardStats
+                    backdropDismiss={false}
+                    isOpen={shownPopResult}
+                    onClickRedone={()=>{
+                        setShownPopResult(false)
+                        history.push('/AnswerAlternativa')
+                    }}
+                    onClickSair={()=>{
+                        setShownPopResult(false)
+                        history.push('/Flash-cards')
+                    }}
+                    textConquista='Nome conquista'
+                    textCorrect='0'
+                    textExp='000'
+                    textTotal='0'
+                   />
                 </IonContent>
 
             </IonPage>
