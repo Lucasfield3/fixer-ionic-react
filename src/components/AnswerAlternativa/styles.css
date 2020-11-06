@@ -18,12 +18,13 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  margin-top: -2rem;
+  margin-top: -0.8rem;
 }
 .label-lvl{
   color: var(--ion-color-dark);
   font-weight: bold;
   font-size: 15px;
+  margin-bottom: -0.2rem;
   font-family: 'Archivo Narrow', sans-serif;
 }
 
@@ -51,7 +52,7 @@
   border-radius: 8rem;
   margin-top: 0.3rem;
   width: 65%;
-  border: 1px var(--ion-color-dark) solid;
+  border: 0.5px var(--ion-color-dark) solid;
 }
 .item-input-dissertativa{
 
@@ -528,7 +529,7 @@ ion-item{
     box-shadow: 0 0 10px var(--light);
 }
 .row-btn-final{
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 .btn-final{
   background: var(--ion-color-light);

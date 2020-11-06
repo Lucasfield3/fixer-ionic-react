@@ -74,7 +74,6 @@
     font-size: 20px;
     font-weight: bold;
     font-family: 'Archivo Narrow', sans-serif;
-    margin-top: 0.5rem;
 }
 
 .row-acertou-exp{
@@ -102,4 +101,5 @@
 }
 .container-result > ion-row{
   border-bottom: 0.5px rgb(211, 209, 209) solid;
+  margin-top: 0.8rem;
 }

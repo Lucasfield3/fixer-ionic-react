@@ -1,10 +1,9 @@
 import React from 'react';
 import './style.css';
 import { 
-IonCard, IonIcon, IonImg, IonLabel, IonTitle
+IonCard,  IonImg, IonLabel, IonTitle
 } from '@ionic/react';
 import imgCardIcon from '../../../Assets/images/cardicon.png'
-import { card } from 'ionicons/icons';
 
 
 const Cards: React.FC<{onClick:()=>void;id:string;title:string;type:string}> = props=>{
