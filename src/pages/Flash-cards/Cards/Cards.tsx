@@ -10,10 +10,10 @@ const Cards: React.FC<{onClick:()=>void;id:string;title:string;type:string}> = p
 
     return(
         <>
-         <IonCard key={props.id} onClick={props.onClick} color='dark' className='ios cards'>
+         <IonCard  key={props.id} onClick={props.onClick} color='dark' className='ios cards'>
             <IonTitle>{props.title}</IonTitle>
             <IonImg src={imgCardIcon}></IonImg>
-            <IonLabel>{props.type}</IonLabel>
+            <IonLabel >{props.type}</IonLabel>
          </IonCard>
         </>
     );

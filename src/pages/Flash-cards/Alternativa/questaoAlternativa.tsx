@@ -289,6 +289,7 @@ const QuestaoAlternativa: React.FC = () => {
                                 <IonButton className="btn-nao" onClick={() => {
                                     setShowModal(false)
                                     history.push('Flash-cards')
+                                    menuController.enable(true)
                                     }}>Não</IonButton>
                             </IonCardSubtitle>
                         </IonCardTitle>

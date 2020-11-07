@@ -42,6 +42,14 @@ const FlashCards: React.FC = () => {
         getCards()
 
     }, [])
+    const handleResponderButton = (card:FlashCard)=>{
+        if(card.type === 'alternative'){
+            history.push('AnswerAlternativa')          
+        }else if(card.type === 'dissertative'){
+        history.push('AnswerDissertativa')               
+        }
+
+    }
     return (
         <>
             <IonPage>
@@ -75,7 +83,7 @@ const FlashCards: React.FC = () => {
                             <IonGrid className='ios grid-flashcards'>
                                 {cards.map((card: FlashCard, index) => {
                                     return (
-                                        <Cards title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={() => setShowActionSheet(true)} />
+                                        <Cards  title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={() => setShowActionSheet(true)} />
                                     )
                                 })}
                             </IonGrid>
@@ -83,6 +91,7 @@ const FlashCards: React.FC = () => {
 
 
                         <IonActionSheet
+
                             isOpen={showActionSheet}
                             mode={'ios'}
                             onDidDismiss={() => setShowActionSheet(false)}
@@ -106,8 +115,8 @@ const FlashCards: React.FC = () => {
                                 cssClass: 'custom-icon-answer',
                                 text: 'Responder',
                                 icon: bookSharp,
-                                handler: () => {
-                                    history.push('/AnswerAlternativa')
+                                handler: () => { 
+                                  history.push('')
                                 }
                             }, {
                                 cssClass: 'custom-icon-add',

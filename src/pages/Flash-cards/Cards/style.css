@@ -1,17 +1,18 @@
 
 .ios .cards{
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 7rem;
-    position: relative;
-    background: var(--ion-color-light);
-    overflow: hidden;
-    padding: 0.4rem;
-    color: var(--ion-color-dark);
-    cursor: pointer;
-    transition: all 75ms ease-out;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 7rem;
+  position: relative;
+  background: var(--ion-color-light);
+  overflow: hidden;
+  padding: 0.4rem;
+  color: var(--ion-color-dark);
+  cursor: pointer;
+  transition: all 75ms ease-out;
+  margin: 0.5rem;
 }
 
 .ios .cards:hover{
