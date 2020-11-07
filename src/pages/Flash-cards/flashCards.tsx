@@ -81,7 +81,6 @@ const FlashCards: React.FC = () => {
                             </IonGrid>
                         </IonCol>
 
-
                         <IonActionSheet
                             isOpen={showActionSheet}
                             mode={'ios'}
