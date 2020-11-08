@@ -6,7 +6,7 @@ import {
     IonFabButton,
     IonHeader,
     IonLabel,
-    IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar, IonIcon
+    IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar, IonIcon, useIonViewWillEnter
 } from '@ionic/react'
 import './styles.css'
 import backAnswer from '../../Assets/images/back.svg';
@@ -17,6 +17,7 @@ import CardGreen from '../CardGreen/cardGreen';
 import SairTelaResposta from '../CardMessages/msg_sair_tela_resposta';
 import { useHistory } from 'react-router';
 import CardStats from '../Card_stats_result/cardStats';
+import { FlashCard } from '../../services/flashCard.service';
 
 
 
@@ -24,10 +25,9 @@ const AnswerAlternativa: React.FC = () => {
 
     const history = useHistory()
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    //const history = useHistory()
-    //onst [textTitle, setTextTitle] = useState<string>('')
-    //const [textMat, setTextMat] = useState<string>('')
-    //const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
+    const [textTitle, setTextTitle] = useState<string>('')
+    const [textMat, setTextMat] = useState<string>('')
+    const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
     //const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
     //const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
@@ -74,12 +74,12 @@ const AnswerAlternativa: React.FC = () => {
         }
     }
 
-    useEffect(() => {
-
-        setAlternatives([...alternatives, {
-            id:1,
-            textAreaAlternative:'alternativas'
-        }])
+    useIonViewWillEnter(() => {
+        if(history.location.state){
+            const card = history.location.state as FlashCard
+            console.log(card) 
+            
+        }
 
     }, [])
 

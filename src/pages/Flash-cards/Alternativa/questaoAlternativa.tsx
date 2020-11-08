@@ -24,14 +24,15 @@ import {
     IonCardTitle,
     IonModal, 
     IonText,
-    useIonViewWillLeave
+    useIonViewWillLeave,
+    useIonViewWillEnter
 } from '@ionic/react'
 import { add, arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { createFlashCard, Payload, Alternatives } from '../../../services/flashCard.service';
+import { createFlashCard, Payload, Alternative, NewAlternative } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
 
@@ -55,19 +56,14 @@ const QuestaoAlternativa: React.FC = () => {
     const [showModal, setShowModal] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
-
+    //let newAlternative:NewAlternative[] = []
     const temas = {
         id: 0,
         textPop: ''
     }
-    const answer =
-    {
-        id: 0,
-        textAreaAlternative: ''
-    }
-
+    const [answer, setAnswer] = useState<string>('')
     const [items, setItems] = useState([temas]);
-    const [alternatives, setAlternatives] = useState([answer]);
+    const [alternatives, setAlternatives] = useState<NewAlternative[]>([]);
     const popOverSave = () => {
         setShownPopsave(true);
         setTimeout(() => {
@@ -86,45 +82,33 @@ const QuestaoAlternativa: React.FC = () => {
         }
     }
     const AddAlternative = () => {
-
-        if (textAreaAlternative !== '') {
-            setAlternatives([...alternatives, {
-                id: alternatives.length + 1,
-                textAreaAlternative: textAreaAlternative
-            }
-            ])
-        }
-
+        setAlternatives([...alternatives, {answer:answer}])
         console.log(alternatives)
-        
         if(alternatives.length == 4){
             setAlternatives(alternatives)
-
+      
         }
-
-
+        setAnswer('')
     }
 
 
 
-    const DeleteAlternatives = (id: number) => {
-        const alternativeToBedeleted = alternatives.filter(alternative => alternative.id !== id);
+    const DeleteAlternatives = (answer:string) => {
+        let alternativeToBedeleted = alternatives.filter(alternative => alternative.answer !== answer);
         setAlternatives(alternativeToBedeleted)
-
-
+        console.log(alternativeToBedeleted)
     }
 
     const DeleteTema = (id: number) => {
         const itemToBedeleted = items.filter(item => item.id !== id);
         setItems(itemToBedeleted)
     }
- 
-    useEffect(() => {
+    useIonViewWillEnter(()=>{
         setItems([])
         setAlternatives([])
-    }, [])
+    },[])
     useIonViewWillLeave(()=>{
-        CleanInputs()
+        CleanInputs()      
     }, [])
     const CleanInputs = () => {
         setTextPop('')
@@ -139,16 +123,16 @@ const QuestaoAlternativa: React.FC = () => {
     
     const handleCreateButton = async ()=>{
         const payLoad = getPayload() as Payload
-        let alternativesSend:Alternatives[] = []
+        let alternativesSend:NewAlternative[] = []
         let temasSend:string[] = []
         items.map((a)=>{
             temasSend.push(a.textPop)
         })
-        alternatives.map((a)=>{
-            alternativesSend.push({answer:a.textAreaAlternative})
+        alternatives?.map((a)=>{
+            alternativesSend.push({answer:a.answer})
         })
         alternativesSend.push({answer:textRightAnswer})
-        if(enunciated !== '' && textRightAnswer !== '' && alternatives.length > 0){
+        if(enunciated !== '' && textRightAnswer !== '' && alternatives!.length > 0){
             try{
                 await createFlashCard({
                     creator:payLoad.id,
@@ -163,7 +147,7 @@ const QuestaoAlternativa: React.FC = () => {
                 console.log(err)
             }
             setShowModal(true)
-        }else if(alternatives.length == 0){
+        }else if(alternatives?.length == 0){
             setShowPopLimit(true)
         }
 
@@ -326,16 +310,15 @@ const QuestaoAlternativa: React.FC = () => {
                                 </IonTextarea>
                     </IonRow>
                         <IonRow  className='ion-justify-content-center'>
-                                <IonTextarea autoGrow={true} className='ios add-alternativas'  placeholder='Insira a/as alternativas' color='dark'  onIonChange={e => setTextAreaAlternative(e.detail.value!)} value={textAreaAlternative}></IonTextarea>
-                                <IonFabButton id='add-alternative' className='add-btn'  onClick={()=> {
-                                    AddAlternative()
-                                    setTextAreaAlternative('')
+                                <IonTextarea autoGrow={true} className='ios add-alternativas'  placeholder='Insira a/as alternativas' color='dark'  onIonChange={e => setAnswer(e.detail.value!)} value={answer}></IonTextarea>
+                                <IonFabButton id='add-alternative' className='add-btn'  onClick={()=> {            
+                                    AddAlternative()                                 
                                     }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                         </IonRow>                       
-                            {alternatives.map((alternative, index)=>(
+                            {alternatives.map((alternative:Alternative, index)=>(
                                 <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
-                                    <IonCol style={{height:'auto', width:'10rem'}} key={alternative.id} className='alternativas' color='dark' placeholder='alternativas'>{alternative.textAreaAlternative}</IonCol>
-                                    <IonFabButton  onClick={()=>DeleteAlternatives(alternative.id)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
+                                    <IonCol style={{height:'auto', width:'10rem'}} key={index} className='alternativas' color='dark' placeholder='alternativas'>{alternative.answer}</IonCol>
+                                    <IonFabButton  onClick={()=>DeleteAlternatives(alternative.answer)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
                                 </IonRow>
                             ))}                       
                     </IonGrid>

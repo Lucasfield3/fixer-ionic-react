@@ -7,11 +7,13 @@ interface NewFlashCard{
     subject?:string;
     time?:string;
     answerFlashCard:string;
-    alternatives?:Alternatives[];
+    alternatives?:Alternative[];
     title:string;
     themes:string[]
 }
-
+export interface NewAlternative{
+    answer:string
+}
 export interface FlashCard {
     owner:User;
     creator:User;
@@ -24,6 +26,7 @@ export interface FlashCard {
     time:string;
     title:string;
     themes:string[];
+    alternatives?:Alternative[];
 }
 interface User{
     id:string;
@@ -49,8 +52,9 @@ export interface Payload {
     exp:number;
 
 }
-export interface Alternatives{
+export interface Alternative{
     answer:string;
+    id?:string;
 }
 export async function createFlashCard(newFlashCard:NewFlashCard){
     console.log(newFlashCard)

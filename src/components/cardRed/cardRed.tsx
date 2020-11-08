@@ -3,8 +3,9 @@ import {  IonCard, IonCardHeader, IonIcon, IonLabel, IonRow} from '@ionic/react'
 //import { pin, walk, warning, wifi, wine } from 'ionicons/icons';
 import cardClose from '../../Assets/images/cardClose.svg'
 import './styles.css'
+import { arrowBack } from 'ionicons/icons';
 
-const CardRed: React.FC = () => {
+const CardRed: React.FC<{onClick:()=>void}> = props => {
 
   return (
     <>
@@ -36,6 +37,9 @@ const CardRed: React.FC = () => {
         </IonCardHeader>
 
         <IonRow className='ios ion-justify-content-space-between card-invalid-footer'></IonRow>
+        <IonRow className='ios ion-justify-content-center'>
+            <IonIcon onClick={props.onClick} color='dark' className='ios arrow-backward' src={arrowBack}></IonIcon>
+        </IonRow>
       </IonCard >
     </>
   );

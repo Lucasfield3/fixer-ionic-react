@@ -32,7 +32,7 @@ const FlashCards: React.FC = () => {
     const [searchText, setSearchText] = useState('');
     const history = useHistory();
     const [showActionSheet, setShowActionSheet] = useState(false);
-
+    const [activeCard, setActiveCard] = useState<FlashCard>()
     const [cards, setCards] = useState<FlashCard[]>([])
     async function getCards() {
         let cardsValues = await getFlashCards()
@@ -42,13 +42,18 @@ const FlashCards: React.FC = () => {
         getCards()
 
     }, [])
-    const handleResponderButton = (card:FlashCard)=>{
-        if(card.type === 'alternative'){
-            history.push('AnswerAlternativa')          
-        }else if(card.type === 'dissertative'){
-        history.push('AnswerDissertativa')               
+    const handleResponderButton = ()=>{
+        if(activeCard?.type === 'alternative'){
+            history.push('AnswerAlternativa', activeCard)          
+        }else if(activeCard?.type === 'dissertative'){
+            history.push('AnswerDissertativa', activeCard)               
         }
 
+    }
+
+    const handleMenu = (card:FlashCard)=>{
+        setActiveCard(card)
+        setShowActionSheet(true)
     }
     return (
         <>
@@ -83,7 +88,7 @@ const FlashCards: React.FC = () => {
                             <IonGrid className='ios grid-flashcards'>
                                 {cards.map((card: FlashCard, index) => {
                                     return (
-                                        <Cards  title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={() => setShowActionSheet(true)} />
+                                        <Cards  title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={() => handleMenu(card)} />
                                     )
                                 })}
                             </IonGrid>
@@ -116,7 +121,7 @@ const FlashCards: React.FC = () => {
                                 text: 'Responder',
                                 icon: bookSharp,
                                 handler: () => { 
-                                  history.push('')
+                                    handleResponderButton()
                                 }
                             }, {
                                 cssClass: 'custom-icon-add',
