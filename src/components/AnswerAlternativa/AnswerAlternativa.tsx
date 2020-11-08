@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     IonButton,
     IonPage,
@@ -9,15 +9,14 @@ import {
     IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar, IonIcon, useIonViewWillEnter
 } from '@ionic/react'
 import './styles.css'
-import backAnswer from '../../Assets/images/back.svg';
-import nextAnswer from '../../Assets/images/next.svg';
 import { arrowForward } from 'ionicons/icons';
 import ReactCardFlip from 'react-card-flip';
-import CardGreen from '../CardGreen/cardGreen';
 import SairTelaResposta from '../CardMessages/msg_sair_tela_resposta';
 import { useHistory } from 'react-router';
 import CardStats from '../Card_stats_result/cardStats';
-import { FlashCard } from '../../services/flashCard.service';
+import { Alternative, Checker, FlashCard, getCheck } from '../../services/flashCard.service';
+import CardRed from '../CardRed/cardRed';
+import CardGreen from '../CardGreen/cardGreen';
 
 
 
@@ -34,28 +33,28 @@ const AnswerAlternativa: React.FC = () => {
     const [shownPopsave, setShownPopsave] = useState<boolean>(false);
     const [shownPopsair, setShownPopsair] = useState<boolean>(false);
     const [shownPopResult, setShownPopResult] = useState<boolean>(false);
-    const [textPop, setTextPop] = useState<string>('')
+
     //const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     //const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
     const [isFlipped, setIsflipped] = useState(false);
-    const [isActive, setActive] = useState(false);
+    const [alternatives, setAlternatives] = useState<Alternative[]>()
+    const [idFlashCard, setIdFlashCard] = useState<string>('')
+    const [check, setCheck] = useState<Checker>({
+        answer:'resposta-certa',
+        correct:false
+    })
+    const [cardRed, setCardRed] = useState<{}>(<CardRed textRightAnswer={check!.answer} onClick={()=> setIsflipped(!isFlipped)}/>)
+    const [activeAlternative, setActiveAlternative] = useState<Alternative>({
+        id:'123',
+        answer:'alternativa-ativada'
+    })
     const [className, setClassName] = useState({
         id:-1,
-        active:false
+        active:false,
     })
-    const answer =
-    {
-        id: 0,
-        textAreaAlternative: ''
-    }
-    const temas = {
-        id: -1,
-        textPop: ''
-    }
     const letras = ['a', 'b', 'c', 'd', 'e']
     //const [letra, setLetra] = useState([letras])
-    const [items, setItems] = useState([temas]);
-    const [alternatives, setAlternatives] = useState([answer]);
+    const [themes, setThemes] = useState<string[]>([]);
     const popOverSave = () => {
         setShownPopsave(true);
         setTimeout(() => {
@@ -63,36 +62,39 @@ const AnswerAlternativa: React.FC = () => {
             setShowPopover(false);
         }, 1000)
     }
-    const AddTema = () => {
-
-        if (textPop !== '') {
-            setItems([...items, {
-                id: items.length,
-                textPop: textPop
-            }
-            ])
-        }
-    }
 
     useIonViewWillEnter(() => {
         if(history.location.state){
             const card = history.location.state as FlashCard
             console.log(card) 
-            
-        }
+            setTextMat(card.subject)
+            setThemes(card.themes)
+            setTextAreaQuestion(card.enunciated)
+            setAlternatives(card.alternatives)
+            setIdFlashCard(card.id)
+        }else {
+            console.log('Não tem nada');
+          }
 
     }, [])
 
-    const handleSelectAlternative = (alternative:number)=>{  
-        alternatives.forEach(()=>{
+    const handleSelectAlternative = (alternative:Alternative, index:number)=>{  
+        alternatives?.forEach(()=>{
             setClassName({
-                id:alternative,
+                id:index,
                 active:!className.active
             })   
         })
-      
+        setActiveAlternative(alternative)
+        
     }
+    const handleFlipAnswer = async ()=>{
+        let checker = await getCheck(idFlashCard, activeAlternative.answer)
+        console.log(checker)
+    
+        setCheck(checker)
 
+    }
     return (
         <>
             <IonPage>
@@ -141,19 +143,15 @@ const AnswerAlternativa: React.FC = () => {
                                             <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Temas</IonLabel>
                                         </IonRow>
                                         <IonGrid className='back-temas'>
-                                            <IonRow className='ion-justify-content-center'>
-                                                <IonCol  className='ios temas-inputs' color='dark'>Engenharia</IonCol>
-                                            </IonRow>
-                                            {items.map(item => (
-                                                <IonRow key={item.id} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                                                    <IonCol key={item.id} className='ios temas-inputs' placeholder='Temas' color='dark'>{item.textPop}</IonCol>                                               
+                                            {themes.map((theme:string, index)=> (
+                                                <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
+                                                    <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>                                               
                                                 </IonRow>
                                             ))}
                                         </IonGrid>
                                         <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center row-btn'>
                                             <IonButton onClick={() => {
                                                 setShowPopover(false)
-                                                setTextPop('')
                                             }} color='light' className='btn-cancel'>Fechar</IonButton>
                                         </IonRow>
                                     </IonPopover>
@@ -170,7 +168,7 @@ const AnswerAlternativa: React.FC = () => {
                                         </IonRow>
                                     </IonPopover>
 
-                                    <IonCol  className="titulo" >Título do Flashcard</IonCol>
+                                    <IonCol  className="titulo" >{textMat}</IonCol>
                                 </IonRow>
                             </IonCardHeader>
                             <IonCardContent className="content-background">
@@ -181,28 +179,33 @@ const AnswerAlternativa: React.FC = () => {
                                         cols={20}
                                         required
                                         className='ios question'
-                                        color='dark'>                                       
+                                        color='dark'> 
+                                        {textAreaQuestion}                                      
                                     </IonTextarea>
                                 </IonRow>
                             </IonCardContent>
                             <IonRow className='row-footer' color='light'></IonRow>
                             <IonRow className='ios ion-justify-content-center'>
-                                <IonIcon style={{display:className.active && 'block' || 'none'}} onClick={()=> setIsflipped(!isFlipped)} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
+                                <IonIcon style={{display:className.active && 'block' || 'none'}} onClick={()=> {
+                                    setIsflipped(!isFlipped)
+                                    handleFlipAnswer()
+                                    }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
                         </IonCard >
-                        <CardGreen onClick={()=>setIsflipped(!isFlipped)}/>
+                        {check!.correct &&  <CardGreen textRightAnswer={check!.answer} onClick={()=> setIsflipped(!isFlipped)}/> ||  cardRed}
+
                     </ReactCardFlip>
 
 
-                    <IonGrid className='array-div'>           
-                            {alternatives.map((alternative, i)=>(
-                                <IonRow key={i} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
-                                    <IonCol onClick={()=>handleSelectAlternative(i)}  size='1' className={(i === className.id  && className.active) && 'active-letras' || 'letras-alternativas'}> {letras[i]}</IonCol>
-                                    <IonCol  onMouseDown={()=>handleSelectAlternative(alternative.id)}  
+                    <IonGrid key={alternatives?.length} className='array-div'>           
+                            {alternatives?.map((alternative:Alternative, i)=>(
+                                <IonRow key={i + 1} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
+                                    <IonCol key={i}  onClick={()=>handleSelectAlternative(alternative ,i)}  size='1' className={(i === className.id  && className.active) && 'active-letras' || 'letras-alternativas'}> {letras[i]}</IonCol>
+                                    <IonCol onMouseDown={()=>handleSelectAlternative(alternative  ,i)}  
                                     style={{height:'auto', width:'10rem'}}  
                                     key={alternative.id} 
-                                    className={(alternative.id === className.id  && className.active) && 'active' || 'alternativas-respostas'} 
-                                    color='dark'>Alternativas</IonCol>
+                                    className={(i === className.id  && className.active) && 'active' || 'alternativas-respostas'} 
+                                    color='dark'>{alternative.answer}</IonCol>
                                 </IonRow>
                             ))}                       
                     </IonGrid>

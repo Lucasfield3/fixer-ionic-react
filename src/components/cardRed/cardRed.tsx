@@ -5,7 +5,7 @@ import cardClose from '../../Assets/images/cardClose.svg'
 import './styles.css'
 import { arrowBack } from 'ionicons/icons';
 
-const CardRed: React.FC<{onClick:()=>void}> = props => {
+const CardRed: React.FC<{onClick:()=>void;textRightAnswer:string}> = props => {
 
   return (
     <>
@@ -31,7 +31,7 @@ const CardRed: React.FC<{onClick:()=>void}> = props => {
           </IonRow>
 
           <IonRow>
-            <IonLabel className="row-invalid-exp"> 0</IonLabel>
+  <IonLabel className="row-invalid-exp">{props.textRightAnswer}</IonLabel>
           </IonRow>
 
         </IonCardHeader>

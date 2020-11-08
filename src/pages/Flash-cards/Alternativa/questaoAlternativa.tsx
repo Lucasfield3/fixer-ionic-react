@@ -62,7 +62,7 @@ const QuestaoAlternativa: React.FC = () => {
         textPop: ''
     }
     const [answer, setAnswer] = useState<string>('')
-    const [items, setItems] = useState([temas]);
+    const [themes, setThemes] = useState([temas]);
     const [alternatives, setAlternatives] = useState<NewAlternative[]>([]);
     const popOverSave = () => {
         setShownPopsave(true);
@@ -74,8 +74,8 @@ const QuestaoAlternativa: React.FC = () => {
 
     const AddTema = () => {
         if (textPop !== '') {
-            setItems([...items, {
-                id: items.length + 1,
+            setThemes([...themes, {
+                id: themes.length + 1,
                 textPop: textPop
             }
             ])
@@ -100,11 +100,11 @@ const QuestaoAlternativa: React.FC = () => {
     }
 
     const DeleteTema = (id: number) => {
-        const itemToBedeleted = items.filter(item => item.id !== id);
-        setItems(itemToBedeleted)
+        const themeToBedeleted = themes.filter(theme => theme.id !== id);
+        setThemes(themeToBedeleted)
     }
     useIonViewWillEnter(()=>{
-        setItems([])
+        setThemes([])
         setAlternatives([])
     },[])
     useIonViewWillLeave(()=>{
@@ -118,14 +118,14 @@ const QuestaoAlternativa: React.FC = () => {
         setTextMat('')
         setTextTitle('')
         setAlternatives([])
-        setItems([])
+        setThemes([])
     }
     
     const handleCreateButton = async ()=>{
         const payLoad = getPayload() as Payload
         let alternativesSend:NewAlternative[] = []
         let temasSend:string[] = []
-        items.map((a)=>{
+        themes.map((a)=>{
             temasSend.push(a.textPop)
         })
         alternatives?.map((a)=>{
@@ -165,7 +165,7 @@ const QuestaoAlternativa: React.FC = () => {
                             onClick={() => {
                                 history.push('/Flash-cards')
                                 menuController.enable(true);
-                                setItems([])                              
+                                setThemes([])                              
                                 setChecked(false)
                                 setShownTimer(false)
                             }}
@@ -208,10 +208,10 @@ const QuestaoAlternativa: React.FC = () => {
                                                 setTextPop('')
                                             }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                                         </IonRow>
-                                        {items.map(item => (
-                                            <IonRow key={item.id} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                                                <IonCol key={item.id} className='ios temas-inputs' color='dark'>{item.textPop}</IonCol>
-                                        <IonFabButton onClick={() => DeleteTema(item.id)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
+                                        {themes.map(theme => (
+                                            <IonRow key={theme.id} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
+                                                <IonCol key={theme.id} className='ios temas-inputs' color='dark'>{theme.textPop}</IonCol>
+                                        <IonFabButton onClick={() => DeleteTema(theme.id)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
                                             </IonRow>
                                         ))}
                                     </IonGrid>
@@ -219,7 +219,7 @@ const QuestaoAlternativa: React.FC = () => {
                                         <IonButton className='btn-save' color='light' onClick={() => popOverSave()}>Salvar</IonButton>
                                         <IonButton onClick={() => {
                                             setShowPopover(false)
-                                            setItems([])
+                                            setThemes([])
                                             setTextPop('')
                                         }} color='light' className='btn-cancel'>Limpar</IonButton>
                                     </IonRow>

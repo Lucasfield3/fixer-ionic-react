@@ -5,7 +5,7 @@ import cardPositive from '../../Assets/images/cardPositive.svg'
 import './styles.css'
 import { arrowBack } from 'ionicons/icons';
 
-const CardGreen: React.FC<{onClick:()=>void}> = props => {
+const CardGreen: React.FC<{onClick:()=>void;textRightAnswer:string}> = props => {
 
   return (
     <>
@@ -29,7 +29,9 @@ const CardGreen: React.FC<{onClick:()=>void}> = props => {
           <IonRow>
             <IonLabel className="ios row-acertou-exp"> 0</IonLabel>
           </IonRow>
-
+          <IonRow>
+            <IonLabel className="ios row-correct-alternative">{props.textRightAnswer}</IonLabel>
+          </IonRow>
         </IonCardHeader>
 
         <IonRow className='ios ion-justify-content-space-between card-acertou-footer'></IonRow>
