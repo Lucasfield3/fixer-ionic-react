@@ -1,7 +1,7 @@
 .card-error{
   border-radius: 21px;
   width: auto;
-  height: 25rem;
+  height: 20.2rem;
   background: #FF206E;
 }
 
@@ -30,11 +30,14 @@
 }
 
 .msg-invalid{
+
   margin: auto;
-  margin-top: 20px;
+  margin-top: 2px;
   color: black;
   font-weight: bold;
   font-size: 16px;
+  text-align: center;
+
 
 }
 
@@ -49,7 +52,7 @@
 .row-invalid{
   display: flex;
   justify-content: center;
-  margin-top: 1.5rem; 
+  margin-top: 0.6rem;
 }
 
 .msg-exp{
