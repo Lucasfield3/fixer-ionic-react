@@ -42,7 +42,7 @@
 .label-acertou{
   color: #41EAD4;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 23px;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -58,9 +58,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-   
   margin: auto;
-  margin-top: 20px;
+  margin-top: 2px;
   color: black;
   font-weight: bold;
   font-size: 16px;
@@ -87,4 +86,14 @@
   width: 2rem;
   height: 2rem;
   margin-top: 0.3rem;
+}
+.right-answer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 0px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
 }

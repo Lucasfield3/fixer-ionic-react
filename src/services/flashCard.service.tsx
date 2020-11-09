@@ -7,11 +7,13 @@ interface NewFlashCard{
     subject?:string;
     time?:string;
     answerFlashCard:string;
-    alternatives?:Alternatives[];
+    alternatives?:Alternative[];
     title:string;
     themes:string[]
 }
-
+export interface NewAlternative{
+    answer:string
+}
 export interface FlashCard {
     owner:User;
     creator:User;
@@ -24,6 +26,7 @@ export interface FlashCard {
     time:string;
     title:string;
     themes:string[];
+    alternatives?:Alternative[];
 }
 interface User{
     id:string;
@@ -49,8 +52,13 @@ export interface Payload {
     exp:number;
 
 }
-export interface Alternatives{
+export interface Alternative{
     answer:string;
+    id?:string;
+}
+export interface Checker {
+    answer:string;
+    correct:boolean
 }
 export async function createFlashCard(newFlashCard:NewFlashCard){
     console.log(newFlashCard)
@@ -82,6 +90,18 @@ export async function getFlashCards():Promise<FlashCard[]>{
     const payload =  getPayload() as Payload
     return https
         .get(`flash-cards/owner/${payload.id}`)
+        .then(async (res)=>{
+            console.log(res.data)
+            return await res.data
+        })
+        .catch((erro)=>{
+            console.log(erro)
+        })
+}
+export async function getCheck(idFlashCard:string, answer:string):Promise<Checker>{
+    const  payload = getPayload() as Payload
+    return https
+        .get(`/flash-cards/check?answer=${answer}&flash-card-id=${idFlashCard}&user-id=${payload.id}`)
         .then(async (res)=>{
             console.log(res.data)
             return await res.data

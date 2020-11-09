@@ -12,7 +12,7 @@
   color: var(--ion-color-dark);
   cursor: pointer;
   transition: all 75ms ease-out;
-  margin: 0.5rem;
+  margin: 0.3rem;
 }
 
 .ios .cards:hover{

@@ -32,7 +32,7 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { getPayload } from '../../../services/Authentication.service';
-import { Payload, Alternatives, createFlashCard } from '../../../services/flashCard.service';
+import { Payload, Alternative, createFlashCard } from '../../../services/flashCard.service';
 
 
 

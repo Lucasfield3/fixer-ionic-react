@@ -4,7 +4,6 @@ import { IonButton, IonCard, IonCardContent, IonCardHeader, IonIcon, IonLabel, I
 import './styles.css'
 
 const CardStats: React.FC<{
-  onClickRedone:()=>void; 
   onClickSair:()=>void;
   textCorrect:string;
   textTotal:string;
@@ -40,12 +39,9 @@ const CardStats: React.FC<{
 
         </IonCardContent>
 
-          <IonRow className='ios ion-justify-content-center'>
-            <IonButton color='light'onClick={props.onClickRedone} className="ios btn_stats_refazer">
-              Refazer
-            </IonButton>
-
-            <IonButton color='light' onClick={props.onClickSair}className="ios btn_stats_sair">
+          <IonRow className='ios ion-justify-content-center'>           
+              {props.children}
+            <IonButton color='light'onClick={props.onClickSair}className="ios btn_stats_sair">
               Sair
             </IonButton>
           </IonRow>
