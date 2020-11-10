@@ -11,7 +11,7 @@ const CardGreen: React.FC<{textRightAnswer:string}> = props => {
     <>
       <IonCard className='card-accept' color='light'>
         <IonRow className='ios ion-justify-content-space-between card-acertou-header'></IonRow>
-        <IonCardHeader color="light" style={{ height: '15rem' }}>
+        <IonCardHeader color="light" style={{ height: '15.2rem' }}>
 
           <IonRow  className='ion-justify-content-center'>
             <IonIcon className="icon-acertou" icon={cardPositive}></IonIcon>
