@@ -58,6 +58,7 @@ const AnswerAlternativa: React.FC = () => {
             setShowLoading(false);
             setIsflipped(!isFlipped)
             enableButton()
+            disableAlternatives()  
           }, 1500);
     }
     const popOverSave = () => {
