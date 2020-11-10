@@ -15,7 +15,7 @@ import SairTelaResposta from '../CardMessages/msg_sair_tela_resposta';
 import { useHistory } from 'react-router';
 import CardStats from '../Card_stats_result/cardStats';
 import { Alternative, Checker, FlashCard, getCheck } from '../../services/flashCard.service';
-import CardRed from '../CardRed/cardRed';
+import CardRed from '../cardRed/cardRed';
 import CardGreen from '../CardGreen/cardGreen';
 
 
@@ -159,7 +159,7 @@ const AnswerAlternativa: React.FC = () => {
                         removeActive()
                         enableAlternatives()
                     }}
-                    onClickNao={()=> setShownPopsair(false)} 
+                    onClickNao={()=> setShownPopsair(false)}
                     onDidDismiss={()=> setShownPopsair(false)}
 
                     />                  
