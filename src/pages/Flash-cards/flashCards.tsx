@@ -203,7 +203,7 @@ const Vazio: React.FC = () => {
 
     return (
         <>
-            <IonLabel className='card-vazio-cards'>
+        <IonLabel className='card-vazio-cards'>
                 VAZIO
         </IonLabel>
         </>

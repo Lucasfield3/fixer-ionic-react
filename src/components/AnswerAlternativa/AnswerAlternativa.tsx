@@ -6,7 +6,7 @@ import {
     IonFabButton,
     IonHeader,
     IonLabel,
-    IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar, IonIcon, useIonViewWillEnter, useIonViewWillLeave, IonLoading
+    IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol, IonGrid, IonPopover, IonProgressBar, IonToolbar, IonIcon, useIonViewWillEnter, useIonViewWillLeave, IonLoading
 } from '@ionic/react'
 import './styles.css'
 import { arrowForward } from 'ionicons/icons';
@@ -36,30 +36,30 @@ const AnswerAlternativa: React.FC = () => {
     const [alternatives, setAlternatives] = useState<Alternative[]>()
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [check, setCheck] = useState<Checker>({
-        answer:'resposta-certa',
-        correct:false
+        answer: 'resposta-certa',
+        correct: false
     })
-    
+
     const [activeAlternative, setActiveAlternative] = useState<Alternative>({
-        id:'123',
-        answer:'alternativa-ativada'
+        id: '123',
+        answer: 'alternativa-ativada'
     })
     const [className, setClassName] = useState({
-        id:-1,
-        active:false,
+        id: -1,
+        active: false,
     })
     const letras = ['a', 'b', 'c', 'd', 'e']
     //const [letra, setLetra] = useState([letras])
     const [themes, setThemes] = useState<string[]>([]);
-    const[cardRed, setCardRed] = useState(<CardRed/>)
+    const [cardRed, setCardRed] = useState(<CardRed />)
     const [showLoading, setShowLoading] = useState(true);
-    const settingLoading = ()=>{
+    const settingLoading = () => {
         setTimeout(() => {
             setShowLoading(false);
             setIsflipped(!isFlipped)
             enableButton()
-            disableAlternatives()  
-          }, 1500);
+            disableAlternatives()
+        }, 1500);
     }
     const popOverSave = () => {
         setShownPopsave(true);
@@ -68,67 +68,67 @@ const AnswerAlternativa: React.FC = () => {
             setShowPopover(false);
         }, 1000)
     }
-    useIonViewWillLeave(()=>{
+    useIonViewWillLeave(() => {
         menuController.enable(true)
-    },[])
+    }, [])
     useIonViewWillEnter(() => {
         setClassName({
-            id:-1,
-            active:false
+            id: -1,
+            active: false
         })
         setShowLoading(false)
         setIsflipped(false)
-        if(history.location.state){
+        if (history.location.state) {
             const card = history.location.state as FlashCard
-            console.log(card) 
+            console.log(card)
             setTextMat(card.subject)
             setThemes(card.themes)
             setTextAreaQuestion(card.enunciated)
             setAlternatives(card.alternatives)
             setIdFlashCard(card.id)
-        }else {
+        } else {
             console.log('Não tem nada');
-          }
+        }
     }, [])
-    const removeActive = ()=>{
+    const removeActive = () => {
         setClassName({
-            id:-1,
-            active:false
+            id: -1,
+            active: false
         })
     }
 
-    const handleSelectAlternative = (alternative:Alternative, index:number)=>{ 
-        alternatives?.forEach(()=>{
+    const handleSelectAlternative = (alternative: Alternative, index: number) => {
+        alternatives?.forEach(() => {
             setClassName({
-                id:index,
-                active:!className.active
-            })   
+                id: index,
+                active: !className.active
+            })
         })
         setShownIcon(true)
         setActiveAlternative(alternative)
-        
+
     }
-    const enableButton = ()=>{
-        const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement 
+    const enableButton = () => {
+        const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
         btnFinal.removeAttribute("disabled")
     }
-    const handleFlipAnswer = async ()=>{    
+    const handleFlipAnswer = async () => {
         let checker = await getCheck(idFlashCard, activeAlternative.answer)
-        console.log(checker)  
-        setCheck(checker)            
-        disableAlternatives()              
+        console.log(checker)
+        setCheck(checker)
+        disableAlternatives()
     }
-   
-     const disableAlternatives = ()=>{
+
+    const disableAlternatives = () => {
         const eventAlternativas = document.querySelector('.array-div') as HTMLIonGridElement
-        eventAlternativas.style.pointerEvents = 'none'      
-     }
-     const enableAlternatives = ()=>{
+        eventAlternativas.style.pointerEvents = 'none'
+    }
+    const enableAlternatives = () => {
         const eventAlternativas = document.querySelector('.array-div') as HTMLIonGridElement
-        eventAlternativas.style.pointerEvents = 'auto'      
-     }
-     const mystyle = {
-        display:check!.correct && 'none' || 'block'
+        eventAlternativas.style.pointerEvents = 'auto'
+    }
+    const mystyle = {
+        display: check!.correct && 'none' || 'block'
     }
     return (
         <>
@@ -153,19 +153,19 @@ const AnswerAlternativa: React.FC = () => {
 
 
                 <IonContent>
-                    <SairTelaResposta 
-                    isOpen={shownPopsair} 
-                    onClickSim={()=> {
-                        setShownPopsair(false)
-                        history.push('/Flash-cards')
-                        removeActive()
-                        enableAlternatives()
-                    }}
-                    onClickNao={()=> setShownPopsair(false)}
-                    onDidDismiss={()=> setShownPopsair(false)}
+                    <SairTelaResposta
+                        isOpen={shownPopsair}
+                        onClickSim={() => {
+                            setShownPopsair(false)
+                            history.push('/Flash-cards')
+                            removeActive()
+                            enableAlternatives()
+                        }}
+                        onClickNao={() => setShownPopsair(false)}
+                        onDidDismiss={() => setShownPopsair(false)}
 
-                    />                  
-                        <IonCol  className='timer-flashcard' color='dark'>00:00</IonCol>
+                    />
+                    <IonCol className='timer-flashcard' color='dark'>00:00</IonCol>
                     <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
                         <IonCard className='card-dissertativa' color='light'>
                             <IonCardHeader style={{ padding: 0 }}>
@@ -180,9 +180,9 @@ const AnswerAlternativa: React.FC = () => {
                                             <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Temas</IonLabel>
                                         </IonRow>
                                         <IonGrid className='back-temas'>
-                                            {themes.map((theme:string, index)=> (
+                                            {themes.map((theme: string, index) => (
                                                 <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                                                    <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>                                               
+                                                    <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>
                                                 </IonRow>
                                             ))}
                                         </IonGrid>
@@ -205,7 +205,7 @@ const AnswerAlternativa: React.FC = () => {
                                         </IonRow>
                                     </IonPopover>
 
-                                    <IonCol  className="titulo" >{textMat}</IonCol>
+                                    <IonCol className="titulo" >{textMat}</IonCol>
                                 </IonRow>
                             </IonCardHeader>
                             <IonCardContent className="content-background">
@@ -216,71 +216,72 @@ const AnswerAlternativa: React.FC = () => {
                                         cols={20}
                                         required
                                         className='ios question'
-                                        color='dark'> 
-                                        {textAreaQuestion}                                      
+                                        color='dark'>
+                                        {textAreaQuestion}
                                     </IonTextarea>
                                 </IonRow>
                             </IonCardContent>
                             <IonRow className='row-footer' color='light'></IonRow>
                             <IonRow className='ios ion-justify-content-center'>
-                                <IonIcon style={{display:className.active && 'block' || 'none', opacity:showLoading == true && 0}} onClick={()=> {
+                                <IonIcon style={{ display: className.active && 'block' || 'none', opacity: showLoading == true && 0 }} onClick={() => {
                                     setShowLoading(!showLoading)
                                     handleFlipAnswer()
                                     settingLoading()
-                                    }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
+                                    disableAlternatives()
+                                }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
                             <IonLoading
                                 showBackdrop={false}
                                 cssClass='loading-custom'
                                 isOpen={showLoading}
-                               duration={600}
+                                duration={600}
                             />
                         </IonCard >
-                        {check!.correct && <CardGreen textRightAnswer={check.answer}/> || cardRed}
+                        {check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}
 
                     </ReactCardFlip>
 
 
-                    <IonGrid key={alternatives?.length} style={{pointerEvent:isFlipped && 'none' || 'auto'}} className='array-div'>           
-                            {alternatives?.map((alternative:Alternative, i)=>(
-                                <IonRow key={i + 1} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
-                                    <IonCol  key={i}  onClick={()=>handleSelectAlternative(alternative ,i)}  size='1' className={(i === className.id  && className.active) && 'active-letras' || 'letras-alternativas'}> {letras[i]}</IonCol>
-                                    <IonCol onClick={()=>handleSelectAlternative(alternative  ,i)}  
-                                    style={{height:'auto', width:'10rem'}}  
-                                    key={alternative.id} 
-                                    className={(i === className.id  && className.active) && 'active' || 'alternativas-respostas'} 
+                    <IonGrid key={alternatives?.length} style={{ pointerEvent: isFlipped && 'none' || 'auto' }} className='array-div'>
+                        {alternatives?.map((alternative: Alternative, i) => (
+                            <IonRow key={i + 1} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center colunas'>
+                                <IonCol key={i} onClick={() => handleSelectAlternative(alternative, i)} size='1' className={(i === className.id && className.active) && 'active-letras' || 'letras-alternativas'}> {letras[i]}</IonCol>
+                                <IonCol onClick={() => handleSelectAlternative(alternative, i)}
+                                    style={{ height: 'auto', width: '10rem' }}
+                                    key={alternative.id}
+                                    className={(i === className.id && className.active) && 'active' || 'alternativas-respostas'}
                                     color='dark'>{alternative.answer}</IonCol>
-                                </IonRow>
-                            ))}                       
+                            </IonRow>
+                        ))}
                     </IonGrid>
                     <IonRow className='ios ion-justify-content-center row-btn-final'>
-                        <IonButton disabled onClick={()=>{
+                        <IonButton disabled onClick={() => {
                             setShownPopResult(true)
                             enableAlternatives()
-                            }} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>
+                        }} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>
                     </IonRow>
-                   <CardStats                
-                    backdropDismiss={false}
-                    isOpen={shownPopResult}
-                    onClickSair={()=>{
-                        removeActive()
-                        setShownPopResult(false)
-                        history.push('/Flash-cards')
-                        setIsflipped(!isFlipped)
-                    }}
-                    textConquista='Nome conquista'
-                    textCorrect='0'
-                    textExp='000'
-                    textTotal='0'
-                   >
-                       <Redone style={mystyle} onClick={()=>{
-                           enableAlternatives()
+                    <CardStats
+                        backdropDismiss={false}
+                        isOpen={shownPopResult}
+                        onClickSair={() => {
+                            removeActive()
+                            setShownPopResult(false)
+                            history.push('/Flash-cards')
+                            setIsflipped(!isFlipped)
+                        }}
+                        textConquista='Nome conquista'
+                        textCorrect='0'
+                        textExp='000'
+                        textTotal='0'
+                    >
+                        <Redone style={mystyle} onClick={() => {
+                            enableAlternatives()
                             removeActive()
                             setShownPopResult(false)
                             setIsflipped(false)
                             history.push('/AnswerAlternativa')
-                        }}/>
-                   </CardStats>
+                        }} />
+                    </CardStats>
                 </IonContent>
 
             </IonPage>
@@ -288,15 +289,15 @@ const AnswerAlternativa: React.FC = () => {
     );
 
 }
-const Redone:React.FC<{onClick:()=>void;style:React.CSSProperties}> = props =>{
+const Redone: React.FC<{ onClick: () => void; style: React.CSSProperties }> = props => {
 
-    return(
+    return (
         <>
-        <IonButton color='light'onClick={props.onClick} style={props.style} className="ios btn_stats_refazer">
-            Refazer
+            <IonButton color='light' onClick={props.onClick} style={props.style} className="ios btn_stats_refazer">
+                Refazer
         </IonButton>
         </>
     );
-  }
- export default AnswerAlternativa
+}
+export default AnswerAlternativa
 
