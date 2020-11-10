@@ -6,7 +6,7 @@ import {
     IonFabButton,
     IonHeader,
     IonLabel,
-    IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar, IonIcon, useIonViewWillEnter, useIonViewWillLeave
+    IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol,  IonGrid, IonPopover, IonProgressBar, IonToolbar, IonIcon, useIonViewWillEnter, useIonViewWillLeave, IonLoading
 } from '@ionic/react'
 import './styles.css'
 import { arrowForward } from 'ionicons/icons';
@@ -24,20 +24,13 @@ const AnswerAlternativa: React.FC = () => {
 
     const history = useHistory()
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [textTitle, setTextTitle] = useState<string>('')
     const [textMat, setTextMat] = useState<string>('')
     const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
-    //const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
-    //const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave] = useState<boolean>(false);
     const [shownPopsair, setShownPopsair] = useState<boolean>(false);
     const [shownPopResult, setShownPopResult] = useState<boolean>(false);
     const [shownIcon, setShownIcon] = useState(false)
-    
-
-    //const [textRightAnswer, setTextRightAnswer] = useState<string>('')
-    //const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
     const [isFlipped, setIsflipped] = useState(false);
     const [alternatives, setAlternatives] = useState<Alternative[]>()
     const [idFlashCard, setIdFlashCard] = useState<string>('')
@@ -45,6 +38,7 @@ const AnswerAlternativa: React.FC = () => {
         answer:'resposta-certa',
         correct:false
     })
+    
     const [activeAlternative, setActiveAlternative] = useState<Alternative>({
         id:'123',
         answer:'alternativa-ativada'
@@ -56,9 +50,15 @@ const AnswerAlternativa: React.FC = () => {
     const letras = ['a', 'b', 'c', 'd', 'e']
     //const [letra, setLetra] = useState([letras])
     const [themes, setThemes] = useState<string[]>([]);
-    const[cardGreen, setCardGreen] = useState()
     const[cardRed, setCardRed] = useState(<CardRed/>)
-    const [redone, setRedone] = useState<{}>()
+    const [showLoading, setShowLoading] = useState(true);
+    const settingLoading = ()=>{
+        setTimeout(() => {
+            setShowLoading(false);
+            setIsflipped(!isFlipped)
+            enableButton()
+          }, 1500);
+    }
     const popOverSave = () => {
         setShownPopsave(true);
         setTimeout(() => {
@@ -72,6 +72,7 @@ const AnswerAlternativa: React.FC = () => {
             id:-1,
             active:false
         })
+        setShowLoading(false)
         setIsflipped(false)
         if(history.location.state){
             const card = history.location.state as FlashCard
@@ -91,9 +92,6 @@ const AnswerAlternativa: React.FC = () => {
             active:false
         })
     }
-    useIonViewWillLeave(()=>{
-       
-    },[])
 
     const handleSelectAlternative = (alternative:Alternative, index:number)=>{ 
         alternatives?.forEach(()=>{
@@ -106,15 +104,15 @@ const AnswerAlternativa: React.FC = () => {
         setActiveAlternative(alternative)
         
     }
-    const handleFlipAnswer = async ()=>{
+    const enableButton = ()=>{
         const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement 
+        btnFinal.removeAttribute("disabled")
+    }
+    const handleFlipAnswer = async ()=>{    
         let checker = await getCheck(idFlashCard, activeAlternative.answer)
         console.log(checker)  
-        setCheck(checker)
-            btnFinal.removeAttribute("disabled")
-            disableAlternatives()    
-           
-
+        setCheck(checker)            
+        disableAlternatives()              
     }
    
      const disableAlternatives = ()=>{
@@ -221,11 +219,18 @@ const AnswerAlternativa: React.FC = () => {
                             </IonCardContent>
                             <IonRow className='row-footer' color='light'></IonRow>
                             <IonRow className='ios ion-justify-content-center'>
-                                <IonIcon style={{display:className.active && 'block' || 'none'}} onClick={()=> {
-                                    setIsflipped(!isFlipped)
+                                <IonIcon style={{display:className.active && 'block' || 'none', opacity:showLoading == true && 0}} onClick={()=> {
+                                    setShowLoading(!showLoading)
                                     handleFlipAnswer()
+                                    settingLoading()
                                     }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
+                            <IonLoading
+                                showBackdrop={false}
+                                cssClass='loading-custom'
+                                isOpen={showLoading}
+                               duration={600}
+                            />
                         </IonCard >
                         {check!.correct && <CardGreen textRightAnswer={check.answer}/> || cardRed}
 
