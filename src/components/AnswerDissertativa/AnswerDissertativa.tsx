@@ -9,7 +9,7 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle, IonProgressBar
+    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle, IonProgressBar, useIonViewWillLeave, useIonViewWillEnter
 } from '@ionic/react'
 import { add, arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
 import './styles.css'
@@ -65,12 +65,11 @@ const AnswerDissertativa: React.FC = () => {
         const itemToBedeleted = items.filter(item => item.id !== id);
         setItems(itemToBedeleted)
     }
-
-    useEffect(() => {
-
+    useIonViewWillLeave(()=>{
+        menuController.enable(true);
+    },[])
+    useIonViewWillEnter(() => {
         setItems([])
-
-
     }, [])
     const CleanInputs = () => {
         setTextPop('')

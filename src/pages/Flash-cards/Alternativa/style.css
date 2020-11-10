@@ -162,30 +162,20 @@ ion-item{
 }
 
 .btn-sim{
-  margin-right: 16px;
-  width: 6.6rem !important;
-  height: 2.3rem !important;
-  font-size: 11px!important;
-  --background: #fdfdfd !important;
-  font-weight: bold !important;
-
-  text-align: center;
-  justify-content: center;
-  color:#2EC4B6;
-  background-color:var(--ion-color-light);
+  width: 4rem;
+  height: 1.7rem;
+  --ion-color-light-contrast: var(--ion-color-success)!important;
+  border: 1px solid var(--ion-color-success);
+  font-size: 13px;
+  border-radius: 0.2rem;
 }
 
 .btn-nao{
-  width: 6.6rem !important;
-  height: 2.3rem !important;
-  font-size: 11px!important;
-  --background: #fdfdfd !important;
-  font-weight: bold !important;
-
-  text-align: center;
-  justify-content: center;
-  color:#FF206E;
-  background-color:var(--ion-color-light);
+  width: 4rem;
+  height: 1.7rem;
+  border: 1px solid rgba(255, 32, 110, 0.31);
+  font-size: 13px;
+  border-radius: 0.2rem;
 }
 
 .div-modal-alternativa{
@@ -204,25 +194,35 @@ ion-item{
 
 .modal-text{
   text-align: center;
-  margin: 50px 0;
+  color: var(--ion-color-dark);
 }
+.modal-text > ion-label{
+  font-weight:bold;
+  font-size: 20px;
+} 
 
 .btn-dissertativa{
   margin: auto;
-  width: 10rem !important;
-  height: 3rem !important;
-  font-size: 11px!important;
-  --background: #fdfdfd !important;
-  font-weight: bold !important;
+    font-weight: bold;
+    width: 7.9rem;
+    height: 2.3rem;
+    --ion-color-light-contrast: var(--ion-color-dark)!important;
+    border: 1px solid var(--ion-color-dark);
+    font-size: 14.2px;
+    border-radius: 0.2rem;
+    margin-bottom: 0rem;
 }
 
 .btn-alternativa{
   margin: auto;
-  width: 10rem !important;
-  height: 3rem !important;
-  font-size: 11px!important;
-  --background: #fdfdfd !important;
-  font-weight: bold !important;
+    font-weight: bold;
+    width: 7.9rem;
+    height: 2.3rem;
+    --ion-color-light-contrast: var(--ion-color-dark)!important;
+    border: 1px solid var(--ion-color-dark);
+    font-size: 14.2px;
+    border-radius: 0.2rem;
+    margin-top: 0rem;
 }
 
 .btn-modal{
@@ -249,7 +249,7 @@ ion-item{
 
 .header-btn{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 .alternativas{
@@ -305,4 +305,14 @@ ion-item{
   height:10rem;
   
 }
-
+.modal-criar{
+  --height: 20%;
+}
+.modal-choose{
+  --height: 20%;
+}
+.modal-wrapper {
+  background: var(--ion-color-light)!important;
+  --border-radius: 21px;
+  --max-width: 16.4rem;
+}

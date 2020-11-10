@@ -76,4 +76,11 @@
   flex-wrap: wrap;
   padding:0;
 }
-
+.card-vazio-cards{
+  font-size: 30px;
+    font-weight: bold;
+    color: var(--ion-color-dark);
+    opacity: 0.7;
+    display: flex;
+    justify-content: center;
+}

@@ -110,5 +110,17 @@ export async function getCheck(idFlashCard:string, answer:string):Promise<Checke
             console.log(erro)
         })
 }
-
+export async function deleteFlashCard(idFlashCard:string){
+    const  payload = getPayload() as Payload
+    console.log(idFlashCard)
+    return https
+        .delete(`/flash-cards/owner/${payload.id}?flash-card-id=${idFlashCard}`)
+        .then(async (res)=>{
+            console.log(res.data)
+            return await res.data
+        })
+        .catch((erro)=>{
+            console.log(erro)
+        })
+}
 

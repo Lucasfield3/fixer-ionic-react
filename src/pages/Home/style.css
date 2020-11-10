@@ -239,7 +239,7 @@ ion-label div:only-child{
   border-radius: 20%;
   margin-left: 3rem;
 }
-.card-vazio{
+.card-vazio-home{
   font-size: 30px;
   font-weight: bold;
   color: var(--ion-color-dark);

@@ -13,14 +13,15 @@ import {
     IonLabel,
     IonContent,
     IonFab,
-    IonFabList, IonButton, IonActionSheet, useIonViewWillEnter, IonCol
+    IonFabList, IonButton, IonActionSheet, useIonViewWillEnter, IonCol, useIonViewWillLeave, useIonViewDidLeave, useIonViewDidEnter
 } from '@ionic/react'
-import { add, menuOutline, trash, share, bookSharp, addSharp, pencilSharp } from 'ionicons/icons';
+import { add, menuOutline, trash, share, bookSharp, addSharp, pencilSharp, card } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import Cards from './Cards/Cards';
-import { FlashCard, getFlashCards } from '../../services/flashCard.service';
+import { deleteFlashCard, FlashCard, getFlashCards } from '../../services/flashCard.service';
+import { parse } from 'url';
 
 async function openMenu() {
     await menuController.open();
@@ -40,8 +41,8 @@ const FlashCards: React.FC = () => {
         setCards(cardsValues)
     }
     useIonViewWillEnter(() => {
+        menuController.enable(true);
         getCards()
-
     }, [])
     const handleResponderButton = ()=>{
         if(activeCard?.type === 'alternative'){
@@ -57,8 +58,11 @@ const FlashCards: React.FC = () => {
         setActiveCard(card)
         setShowActionSheet(true)
     }
-
-
+    const handleDelete = ()=>{
+        deleteFlashCard(activeCard!.id)
+        cards.splice(parseInt(activeCard!.id), 1) 
+        getCards()
+    }
     return (
         <>
             <IonPage>
@@ -87,8 +91,8 @@ const FlashCards: React.FC = () => {
                     </IonRow>
 
                     <IonLabel className="label-menu-title-cards">FlashCards</IonLabel>
-                    <IonCard className='container-flashcards'>
-                        <IonCol>
+                    <IonCard style={{alignItems:cards.length == 0 && 'center' || 'unset'}} className='container-flashcards'>
+                        <IonCol >
                             <IonGrid className='ios grid-flashcards'>
                                 {cards.map((card: FlashCard, index) => {
                                     return (
@@ -96,13 +100,17 @@ const FlashCards: React.FC = () => {
                                     )
                                 })}
                             </IonGrid>
+                            {cards.length == 0 && <Vazio/>|| '' }
                         </IonCol>
 
                         <IonActionSheet
 
                             isOpen={showActionSheet}
                             mode={'ios'}
-                            onDidDismiss={() => setShowActionSheet(false)}
+                            onDidDismiss={() => {
+                                setShowActionSheet(false)
+                                menuController.enable(true);
+                            }}
                             cssClass='ios menu-bottom'
                             buttons={[{
                                 cssClass: 'custom-icon-lix',
@@ -110,7 +118,8 @@ const FlashCards: React.FC = () => {
                                 role: 'destructive',
                                 icon: trash,
                                 handler: () => {
-                                    console.log('Delete clicked');
+                                    handleDelete()
+                                    menuController.enable(true);
                                 }
                             }, {
                                 cssClass: 'custom-icon-edit',
@@ -118,6 +127,7 @@ const FlashCards: React.FC = () => {
                                 icon: pencilSharp,
                                 handler: () => {
                                     console.log('Share clicked');
+                                    menuController.enable(true);
                                 }
                             }, {
                                 cssClass: 'custom-icon-answer',
@@ -140,6 +150,7 @@ const FlashCards: React.FC = () => {
                                 role: 'cancel',
                                 handler: () => {
                                     console.log('Cancel clicked');
+                                    menuController.enable(true);
                                 }
                             }]}
                         >
@@ -190,7 +201,7 @@ const Vazio: React.FC = () => {
 
     return (
         <>
-        <IonLabel className='card-vazio'>
+            <IonLabel className='card-vazio-cards'>
                 VAZIO
         </IonLabel>
         </>

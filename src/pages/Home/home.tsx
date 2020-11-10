@@ -235,8 +235,8 @@ const Home: React.FC = () => {
             <IonCard className="card-menu-content">
 
               <IonCardContent className="card-title-menu">
-                <IonLabel className='card-vazio'>
-                  <IonLabel className='card-vazio'>
+                <IonLabel className='card-vazio-home'>
+                  <IonLabel className='card-vazio-home'>
                     VAZIO
                 </IonLabel>
                 </IonLabel>
@@ -249,7 +249,7 @@ const Home: React.FC = () => {
             <IonCard className="card-menu-content">
 
               <IonCardContent className="card-title-menu">
-                <IonLabel className='card-vazio'>
+                <IonLabel className='card-vazio-home'>
                   VAZIO
                 </IonLabel>
               </IonCardContent>
