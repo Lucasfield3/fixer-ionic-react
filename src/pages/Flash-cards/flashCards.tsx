@@ -42,6 +42,7 @@ const FlashCards: React.FC = () => {
     useIonViewWillEnter(() => {
         menuController.enable(true);
         getCards()
+        
     }, [])
     const handleResponderButton = ()=>{
         if(activeCard?.type === 'alternative'){
@@ -56,10 +57,11 @@ const FlashCards: React.FC = () => {
         setActiveCard(card)
         setShowActionSheet(true)
     }
-    const handleDelete = ()=>{
-        deleteFlashCard(activeCard!.id)
-        cards.splice(parseInt(activeCard!.id), 1) 
-        getCards()
+    const handleDelete = (card:FlashCard)=>{
+        const flashCardDeleted = cards.filter((cardDeleted)=> cardDeleted.id !== card.id )
+        deleteFlashCard(card.id)
+        setCards(flashCardDeleted)
+        console.log(cards)
     }
     return (
         <>
@@ -117,7 +119,7 @@ const FlashCards: React.FC = () => {
                                 role: 'destructive',
                                 icon: trash,
                                 handler: () => {
-                                    handleDelete()
+                                    handleDelete(activeCard!)
                                     menuController.enable(true);
                                 }
                             }, {
