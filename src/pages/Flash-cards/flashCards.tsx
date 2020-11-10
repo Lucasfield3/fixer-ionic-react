@@ -39,6 +39,7 @@ const FlashCards: React.FC = () => {
         setCards(cardsValues)
     }
     useIonViewWillEnter(() => {
+        menuController.enable(true);
         getCards()
 
     }, [])

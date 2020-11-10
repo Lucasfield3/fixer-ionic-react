@@ -21,30 +21,19 @@
   align-items: center;
 }
 .label-msg-notification{
-  font-family: 'Archivo Narrow'sans-serif;
-    color: var(--ion-text-color, #ffabc8);
-    font-size: 30px;
-    -webkit-text-stroke:0.5px #FF206E;
-    text-shadow:
-      1px 1px 0 #FF206E,
-      -1px -1px 0 #FF206E,
-      1px -1px 0 #FF206E,
-      -1px 1px 0 #FF206E,
-      1px 1px 0 #FF206E;
+  color: var(--ion-color-danger);
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .btn_msg_notification{
-  width: 6.6rem !important;
-  height: 2.3rem !important;
-  font-size: 11px!important;
+  width: 4.6rem;
+  height: 2.3rem;
   --background: #fdfdfd !important;
-  font-weight: bold !important;
-  font-size: 14px !important;
-
-  text-align: center;
-  justify-content: center;
-  color:#FF206E;
-  background-color:var(--ion-color-light);
+  font-weight: bold;
+  border: 1px solid rgba(255, 32, 110, 0.31);
+  font-size: 16px;
+  border-radius: 0.2rem;
 
 }
 

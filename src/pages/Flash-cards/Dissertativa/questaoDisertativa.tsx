@@ -24,7 +24,8 @@ import {
     IonCardSubtitle,
     IonCardTitle,
     IonModal,
-    IonText
+    IonText,
+    useIonViewWillEnter
 } from '@ionic/react'
 import { add,  arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
 import './style.css'
@@ -82,7 +83,7 @@ const QuestaoDissertativa: React.FC = () => {
         setItems(itemToBedeleted)
     }
 
-    useEffect(() => {
+    useIonViewWillEnter(() => {
 
         setItems([])
 
@@ -96,8 +97,9 @@ const QuestaoDissertativa: React.FC = () => {
     }
     useIonViewWillLeave(()=>{
         CleanInputs()
+        menuController.enable(true)
     }, [])
-    const handleCreateButton = async ()=>{
+    const handleCreateButton = async ()=>{     
         const payLoad = getPayload() as Payload
         let temasSend:string[] = []
         items.map((a)=>{
@@ -117,10 +119,12 @@ const QuestaoDissertativa: React.FC = () => {
             }catch(err){
                 console.log(err)
             }
+           
             setShowModal(true)
         }
 
     }
+
    
     return (
         <>
@@ -228,16 +232,16 @@ const QuestaoDissertativa: React.FC = () => {
                         </IonCardContent>
                         <IonRow className='row-footer' color='light'></IonRow>
                     </IonCard >
-                    <IonModal isOpen={showModal} cssClass='my-custom-class'>
+                    <IonModal backdropDismiss={false} isOpen={showModal} cssClass='modal-criar'>
                         <IonCardTitle className="div-modal-alternativa">
                             <IonText className="modal-text" color="dark">
-                                <h4>Deseja criar mais um flashcard ?</h4>
+                                <IonLabel>Deseja criar mais um flashcard ?</IonLabel>
                             </IonText>
                             <IonCardSubtitle className="header-btn">
-                                <IonButton className="btn-sim" onClick={() => {
+                                <IonButton color='light' className="btn-sim" onClick={() => {
                                     setShowModal2(true)
                                     }}>Sim</IonButton>
-                                <IonButton className="btn-nao" onClick={() => {
+                                <IonButton color='light' className="btn-nao" onClick={() => {
                                     setShowModal(false)
                                     history.push('Flash-cards')
                                     menuController.enable(true)
@@ -246,14 +250,17 @@ const QuestaoDissertativa: React.FC = () => {
                         </IonCardTitle>
                     </IonModal>
 
-                    <IonModal isOpen={showModal2} cssClass='my-custom-class'>
-                        <IonButton className="btn-dissertativa" onClick={() => {
-                            setShowModal2(false)                         
+                    <IonModal backdropDismiss={false} isOpen={showModal2} cssClass='modal-choose'>
+                        <IonButton color='light' className="btn-dissertativa" onClick={() => {
+                            setShowModal2(false)
+                            setShowModal(false) 
+                            CleanInputs()                        
                             history.push('/questaoDissertativa')                        
                             }}>Dissertativa</IonButton>
                         <IonLabel className="label-modal">ou</IonLabel>
-                        <IonButton className="btn-alternativa" onClick={() => {
+                        <IonButton color='light' className="btn-alternativa" onClick={() => {
                             setShowModal2(false)
+                            setShowModal(false)   
                             CleanInputs()
                             history.push('/questaoAlternativa')
                             }}>Alternativa</IonButton>

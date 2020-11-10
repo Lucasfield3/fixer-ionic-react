@@ -17,6 +17,7 @@ import CardStats from '../Card_stats_result/cardStats';
 import { Alternative, Checker, FlashCard, getCheck } from '../../services/flashCard.service';
 import CardRed from '../CardRed/cardRed';
 import CardGreen from '../CardGreen/cardGreen';
+import { menuController } from '@ionic/core';
 
 
 
@@ -66,7 +67,9 @@ const AnswerAlternativa: React.FC = () => {
             setShowPopover(false);
         }, 1000)
     }
-
+    useIonViewWillLeave(()=>{
+        menuController.enable(true)
+    },[])
     useIonViewWillEnter(() => {
         setClassName({
             id:-1,
