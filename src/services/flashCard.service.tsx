@@ -123,4 +123,15 @@ export async function deleteFlashCard(idFlashCard:string){
             console.log(erro)
         })
 }
-
+export async function putFlashCard(){
+    const  payload = getPayload() as Payload
+    return https
+        .put(`/flash-cards/owner/${payload.id}`)
+        .then(async(res)=>{
+            console.log(res.data)
+            return await res.data
+        })
+        .catch((erro)=>{
+            console.log(erro)
+        })
+}

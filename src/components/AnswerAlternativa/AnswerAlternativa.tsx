@@ -49,7 +49,6 @@ const AnswerAlternativa: React.FC = () => {
         active: false,
     })
     const letras = ['a', 'b', 'c', 'd', 'e']
-    //const [letra, setLetra] = useState([letras])
     const [themes, setThemes] = useState<string[]>([]);
     const [cardRed, setCardRed] = useState(<CardRed />)
     const [showLoading, setShowLoading] = useState(true);

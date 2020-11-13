@@ -27,7 +27,9 @@ import Questionarios from './pages/Questionarios/questionarios';
 import Conquistas from './pages/Conquistas/conquistas';
 import Classes from './pages/Classes/classes'
 import QuestaoAlternativa from './pages/Flash-cards/Alternativa/questaoAlternativa'
+import EditAlternativa from './pages/Flash-cards/Alternativa/editAlternativa'
 import QuestaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDisertativa'
+import EditDissertativa from './pages/Flash-cards/Dissertativa/editDissertativa'
 import CardRed from './components/cardRed/cardRed';
 import CardGreen from './components/CardGreen/cardGreen';
 import AnswerDissertativa from './components/AnswerDissertativa/AnswerDissertativa';
@@ -58,7 +60,9 @@ const App: React.FC = () => {
         <Route path="/Classes" component={Classes} exact={true} />
         <Route path="/Conquistas" component={Conquistas} exact={true} />
         <Route path="/QuestaoAlternativa" component={QuestaoAlternativa} exact={true} />
+        <Route path="/EditAlternativa" component={EditAlternativa} exact={true} />
         <Route path="/QuestaoDissertativa" component={QuestaoDissertativa} exact={true} />
+        <Route path="/EditDissertativa" component={EditDissertativa} exact={true} />
         <Route path="/CardRed" component={CardRed} exact={true} />
         <Route path="/CardGreen" component={CardGreen} exact={true} />
         <Route path="/AnswerDissertativa" component={AnswerDissertativa} exact={true} />

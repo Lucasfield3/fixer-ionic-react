@@ -53,6 +53,13 @@ const FlashCards: React.FC = () => {
         }
 
     }
+    const handleEditFlashCard = ()=>{
+        if(activeCard?.type === 'alternative'){
+            history.push('EditAlternativa', activeCard)         
+        }else if(activeCard?.type === 'dissertative'){
+            history.push('EditDissertativa', activeCard)             
+        }
+    }
 
 
     const handleMenu = (card:FlashCard)=>{
@@ -93,7 +100,7 @@ const FlashCards: React.FC = () => {
                     </IonRow>
 
                     <IonLabel className="label-menu-title-cards">FlashCards</IonLabel>
-                    <IonCard style={{alignItems:cards.length == 0 && 'center' || 'unset'}} className='container-flashcards'>
+                    <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards'>
                         <IonCol >
                             <IonGrid className='ios grid-flashcards'>
                                 {cards.map((card: FlashCard, index) => {
@@ -128,8 +135,7 @@ const FlashCards: React.FC = () => {
                                 text: 'Editar',
                                 icon: pencilSharp,
                                 handler: () => {
-                                    console.log('Share clicked');
-                                    menuController.enable(true);
+                                    handleEditFlashCard()
                                 }
                             }, {
                                 cssClass: 'custom-icon-answer',
