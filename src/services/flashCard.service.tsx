@@ -15,15 +15,15 @@ export interface NewAlternative{
     answer:string
 }
 export interface FlashCard {
-    owner:User;
+    owner?:User;
     creator:User;
-    creation:string;
-    modification:string;
+    creation?:string;
+    modification?:string;
     id:string;
     enunciated:string;
-    type:string;
+    type?:string;
     subject:string;
-    time:string;
+    time?:string;
     title:string;
     themes:string[];
     alternatives?:Alternative[];
@@ -123,10 +123,11 @@ export async function deleteFlashCard(idFlashCard:string){
             console.log(erro)
         })
 }
-export async function putFlashCard(){
+export async function putFlashCard(flashCard:FlashCard){
+    console.log(flashCard)
     const  payload = getPayload() as Payload
     return https
-        .put(`/flash-cards/owner/${payload.id}`)
+        .put<FlashCard>(`/flash-cards/owner/${payload.id}`, flashCard)
         .then(async(res)=>{
             console.log(res.data)
             return await res.data

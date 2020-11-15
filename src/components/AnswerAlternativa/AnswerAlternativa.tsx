@@ -56,7 +56,6 @@ const AnswerAlternativa: React.FC = () => {
         setTimeout(() => {
             setShowLoading(false);
             setIsflipped(!isFlipped)
-            enableButton()
             disableAlternatives()
         }, 1500);
     }
@@ -115,7 +114,6 @@ const AnswerAlternativa: React.FC = () => {
         let checker = await getCheck(idFlashCard, activeAlternative.answer)
         console.log(checker)
         setCheck(checker)
-        disableAlternatives()
     }
 
     const disableAlternatives = () => {
@@ -226,7 +224,6 @@ const AnswerAlternativa: React.FC = () => {
                                     setShowLoading(!showLoading)
                                     handleFlipAnswer()
                                     settingLoading()
-                                    disableAlternatives()
                                 }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
                             <IonLoading
@@ -254,7 +251,7 @@ const AnswerAlternativa: React.FC = () => {
                         ))}
                     </IonGrid>
                     <IonRow className='ios ion-justify-content-center row-btn-final'>
-                        <IonButton disabled onClick={() => {
+                        <IonButton disabled={isFlipped == false && true} onClick={() => {
                             setShownPopResult(true)
                             enableAlternatives()
                         }} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>

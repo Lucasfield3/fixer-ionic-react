@@ -244,6 +244,7 @@ const QuestaoAlternativa: React.FC = () => {
                         <IonCardContent className="content-background">
                             <IonRow className="ios row-dissertativa">
                                 <IonTextarea
+                                    autoCapitalize='on'
                                     maxlength={240}
                                     overflow-scroll="true"
                                     rows={5}

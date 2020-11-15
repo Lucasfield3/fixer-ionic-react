@@ -25,7 +25,12 @@
     opacity: 1;
 }
 .ios .cards ion-title{
-    margin-bottom: -1rem;
+  margin-bottom: -1rem;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-size: 15px;
+  width: 5.9rem;
+  text-align: center;
 }
 .ios .cards ion-label{
     margin-top: -1rem;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
     IonButton,
     IonPage,
@@ -6,24 +6,33 @@ import {
     IonFabButton,
     IonIcon,
     IonHeader,
-    IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent, IonItem, IonInput, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonToggle, IonCol, IonImg, IonGrid, IonPopover, IonButtons, IonTitle, IonProgressBar, useIonViewWillLeave, useIonViewWillEnter, IonLoading
+    IonContent, 
+    IonInput, 
+    IonCard, 
+    IonCardContent,
+    IonTextarea, 
+    IonCardHeader, 
+    IonCol, 
+    IonGrid, 
+    IonPopover, 
+    IonProgressBar, 
+    useIonViewWillLeave, 
+    useIonViewWillEnter, 
+    IonLoading
 } from '@ionic/react'
-import { add, arrowUndoSharp, timerOutline, remove, arrowForward } from 'ionicons/icons';
+import { timerOutline, arrowForward } from 'ionicons/icons';
 import './styles.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import backAnswer from '../../Assets/images/back.svg';
-import nextAnswer from '../../Assets/images/next.svg';
-import btnSair from '../../Assets/images/btnSair.svg';
 import CardStats from '../Card_stats_result/cardStats';
 import ReactCardFlip from 'react-card-flip';
 import CardGreen from '../CardGreen/cardGreen';
 import SairTelaResposta from '../CardMessages/msg_sair_tela_resposta';
-import { Alternative, Checker, FlashCard, getCheck } from '../../services/flashCard.service';
+import { Checker, FlashCard, getCheck } from '../../services/flashCard.service';
+import CardRed from '../cardRed/cardRed';
 
 
 
@@ -33,7 +42,6 @@ const AnswerDissertativa: React.FC = () => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
-    const [textTitle, setTextTitle] = useState<string>('')
     const [textMat, setTextMat] = useState<string>('')
     const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
     const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
@@ -46,8 +54,8 @@ const AnswerDissertativa: React.FC = () => {
     const [showLoading, setShowLoading] = useState(true);
     const [shownIcon, setShownIcon] = useState(false)
     const [idFlashCard, setIdFlashCard] = useState<string>('')
+    const [cardRed, setCardRed] = useState(<CardRed />)
     const [themes, setThemes] = useState<string[]>([]);
-    const [alternatives, setAlternatives] = useState<Alternative[]>()
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
         correct: false
@@ -75,7 +83,7 @@ const AnswerDissertativa: React.FC = () => {
     useIonViewWillEnter(() => {
         enableAnswer()
         setShownIcon(false)
-       setShownButton(!shownButton)
+        setShownButton(!shownButton)
         setShowLoading(false)
         setIsflipped(false)
         if (history.location.state) {
@@ -210,21 +218,21 @@ const AnswerDissertativa: React.FC = () => {
                         <IonRow className='row-footer' color='light'></IonRow>
                         <IonRow className='ios ion-justify-content-center'>
                             <IonIcon style={{ display: shownIcon && 'block' || 'none', opacity: showLoading == true && 0 }} onClick={() => {
-                                setShowLoading(!showLoading)
+                                setShowLoading(true)
                                 handleFlipAnswer()
                                 settingLoading()
                                 disableAnswer()
                                 setShownButton(!shownButton)
                             }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
-                        </IonRow>
+                        </IonRow>                   
                         <IonLoading
                             showBackdrop={false}
-                            cssClass='loading-custom'
+                            cssClass='loading-custom-dissertative'
                             isOpen={showLoading}
                             duration={600}
                         />
                     </IonCard >
-                    <CardGreen textRightAnswer={check.answer} />
+                    {check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}
                 </ReactCardFlip>
 
 

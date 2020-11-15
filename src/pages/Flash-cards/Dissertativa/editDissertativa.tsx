@@ -33,7 +33,8 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { getPayload } from '../../../services/Authentication.service';
-import { Payload,  createFlashCard } from '../../../services/flashCard.service';
+import { Payload, putFlashCard, FlashCard } from '../../../services/flashCard.service';
+import { getUser } from '../../../services/User.service';
 
 
 
@@ -47,6 +48,7 @@ const EditDissertativa: React.FC = () => {
     const [textMat, setTextMat] = useState<string>('')
     const [enunciated, setEnunciated] = useState<string>('')
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
+    const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
     const [timer, setTimer] = useState<{}>(<Timer/>)
     const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
@@ -55,12 +57,8 @@ const EditDissertativa: React.FC = () => {
     const [showModal, setShowModal] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
     const [textPop, setTextPop] = useState<string>('')
-    
-    const temas = {
-        id: -1,
-        textPop: ''
-    }
-    const [items, setItems] = useState([temas]);
+    const [idFlashCard, setIdFlashCard] = useState<string>('')
+    const [themes, setThemes] = useState<string[]>([]);
     const popOverSave = () => {
         setShownPopsave(true);
         setTimeout(() => {
@@ -69,60 +67,54 @@ const EditDissertativa: React.FC = () => {
         }, 1000)
     }
     const AddTema = () => {
-
         if (textPop !== '') {
-            setItems([...items, {
-                id: items.length,
-                textPop: textPop
-            }
-            ])
+            setThemes([...themes, textPop])
         }
     }
-    const DeleteTema = (id: number) => {
-        const itemToBedeleted = items.filter(item => item.id !== id);
-        setItems(itemToBedeleted)
-    }
+    const DeleteTema = (id:string) => {
+        const themeDeleted =  themes.filter((theme)=> id !== theme)
+        setThemes(themeDeleted)
+     }
 
     useIonViewWillEnter(() => {
-
-        setItems([])
+        if (history.location.state) {
+            const card = history.location.state as FlashCard
+            console.log(card)
+            setTextTitle(card.title)
+            setTextMat(card.subject)
+            setThemes(card.themes)
+            setTextAreaQuestion(card.enunciated)
+            setIdFlashCard(card.id)
+        } else {
+            console.log('Não tem nada');
+        }
 
     }, [])
-    const CleanInputs = ()=>{
-        setTextPop('')
-        setTextRightAnswer('')
-        setEnunciated('')
-        setTextMat('')
-        setTextTitle('')
-    }
     useIonViewWillLeave(()=>{
-        CleanInputs()
         menuController.enable(true)
     }, [])
-    const handleCreateButton = async ()=>{     
+    const handleSaveButton = async ()=>{     
         const payLoad = getPayload() as Payload
         let temasSend:string[] = []
-        items.map((a)=>{
-            temasSend.push(a.textPop)
+        themes.map((t:string)=>{
+            temasSend.push(t)
         })
-        if(enunciated !== '' && textRightAnswer !== ''){
+        const user = await getUser(payLoad.id)
+        
             try{
-                await createFlashCard({
-                    creator:payLoad.id,
-                    enunciated:enunciated,
-                    answerFlashCard:textRightAnswer,
+                await putFlashCard({
+                    creator:user,
+                    enunciated:textAreaQuestion,
                     subject:textMat,
                     alternatives:[],
                     title:textTitle,
-                    themes:temasSend
+                    themes:temasSend,
+                    id:idFlashCard
                 })
             }catch(err){
                 console.log(err)
-            }
-           
+            }      
             setShowModal(true)
-        }
-
     }
 
    
@@ -138,8 +130,7 @@ const EditDissertativa: React.FC = () => {
                             onClick={() => {
                                 history.push('/Flash-cards')
                                 menuController.enable(true);
-                                setItems([])
-                                CleanInputs()
+                                setThemes([])
                                 setChecked(false)
                                 setShownTimer(false)
                             }}
@@ -182,10 +173,10 @@ const EditDissertativa: React.FC = () => {
                                                 setTextPop('')
                                             }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                                         </IonRow>
-                                        {items.map(item => (
-                                            <IonRow key={item.id} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                                                <IonCol key={item.id} className='ios temas-inputs' color='dark'>{item.textPop}</IonCol>
-                                                <IonFabButton onClick={() => DeleteTema(item.id)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
+                                        {themes.map((theme, index)=> (
+                                            <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
+                                                <IonCol key={index} className='ios temas-inputs' color='dark'>{theme}</IonCol>
+                                        <IonFabButton onClick={() => DeleteTema(theme)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
                                             </IonRow>
                                         ))}
                                     </IonGrid>
@@ -193,7 +184,7 @@ const EditDissertativa: React.FC = () => {
                                         <IonButton className='btn-save' color='light' onClick={() => popOverSave()}>Salvar</IonButton>
                                         <IonButton onClick={() => {
                                             setShowPopover(false)
-                                            setItems([])
+                                            setThemes([])
                                             setTextPop('')
                                             }} color='light' className='btn-cancel'>Limpar</IonButton>
                                     </IonRow>
@@ -211,7 +202,7 @@ const EditDissertativa: React.FC = () => {
                                     </IonRow>
                                 </IonPopover>
 
-                                <IonInput value={textMat} className="input-tema" placeholder="Insira a matéria" onIonChange={e => setTextMat(e.detail.value!)}>{textMat}</IonInput>
+                                <IonInput maxlength={100} value={textMat} className="input-tema" placeholder="Insira a matéria" onIonChange={e => setTextMat(e.detail.value!)}></IonInput>
                             </IonRow>
                         </IonCardHeader>
                         <IonCardContent className="content-background">
@@ -224,8 +215,10 @@ const EditDissertativa: React.FC = () => {
                                     required
                                     className='ios question'
                                     color='dark'
-                                    onIonChange={e => setEnunciated(e.detail.value!)}
-                                    value={enunciated}
+                                    onIonChange={e => {
+                                        setTextAreaQuestion(e.detail.value!)
+                                    }}
+                                    value={textAreaQuestion}
                                     placeholder="Digite ou cole o enunciado do flash-card">
                                 </IonTextarea>
                             </IonRow>
@@ -235,35 +228,13 @@ const EditDissertativa: React.FC = () => {
                     <IonModal backdropDismiss={false} isOpen={showModal} cssClass='modal-criar'>
                         <IonCardTitle className="div-modal-alternativa">
                             <IonText className="modal-text" color="dark">
-                                <IonLabel>Deseja criar mais um flashcard ?</IonLabel>
+                                <IonLabel>Alterações salvas</IonLabel>
                             </IonText>
-                            <IonCardSubtitle className="header-btn">
-                                <IonButton color='light' className="btn-sim" onClick={() => {
-                                    setShowModal2(true)
-                                    }}>Sim</IonButton>
-                                <IonButton color='light' className="btn-nao" onClick={() => {
-                                    setShowModal(false)
-                                    history.push('Flash-cards')
-                                    menuController.enable(true)
-                                    }}>Não</IonButton>
-                            </IonCardSubtitle>
+                            <IonButton color='light' className="btn-dissertativa" onClick={() => {
+                            setShowModal(false)                        
+                            history.push('/Flash-cards')                        
+                            }}>Ok</IonButton>
                         </IonCardTitle>
-                    </IonModal>
-
-                    <IonModal backdropDismiss={false} isOpen={showModal2} cssClass='modal-choose'>
-                        <IonButton color='light' className="btn-dissertativa" onClick={() => {
-                            setShowModal2(false)
-                            setShowModal(false) 
-                            CleanInputs()                        
-                            history.push('/questaoDissertativa')                        
-                            }}>Dissertativa</IonButton>
-                        <IonLabel className="label-modal">ou</IonLabel>
-                        <IonButton color='light' className="btn-alternativa" onClick={() => {
-                            setShowModal2(false)
-                            setShowModal(false)   
-                            CleanInputs()
-                            history.push('/questaoAlternativa')
-                            }}>Alternativa</IonButton>
                     </IonModal>
 
                     <IonCard className='card-dissertativa-secundary' color='light'>
@@ -299,7 +270,7 @@ const EditDissertativa: React.FC = () => {
                     </IonRow>
                 
                     <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
-                        <IonButton onClick={()=> handleCreateButton()} className="ios btn-criar">Criar</IonButton>
+                        <IonButton onClick={()=> handleSaveButton()} className="ios btn-criar">Salvar</IonButton>
                     </IonRow>
                 </IonContent>
 

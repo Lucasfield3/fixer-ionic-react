@@ -549,9 +549,13 @@ ion-item{
   color: var(--ion-color-step-850, #262626);
   font-size: 14px;
   --height: 3.1rem;
+  top:25%;
+  left: -8%;
+  margin: auto;
 }
-.loading-wrapper.sc-ion-loading-md{
+.loading-custom .loading-wrapper.sc-ion-loading-md{
   box-shadow:none;
+  margin-top: 0px;
 }
 .loading-wrapper.sc-ion-loading-md{
 --background:transparent;

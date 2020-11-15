@@ -100,12 +100,12 @@ const FlashCards: React.FC = () => {
                     </IonRow>
 
                     <IonLabel className="label-menu-title-cards">FlashCards</IonLabel>
-                    <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards'>
+                    <IonCard style={{alignItems:cards?.length == 0 && 'center' || 'unset'}} className='container-flashcards'>
                         <IonCol >
                             <IonGrid className='ios grid-flashcards'>
                                 {cards.map((card: FlashCard, index) => {
                                     return (
-                                        <Cards  title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={() => handleMenu(card)} />
+                                        <Cards text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={() => handleMenu(card)} />
                                     )
                                 })}
                             </IonGrid>

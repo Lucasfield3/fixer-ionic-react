@@ -35,6 +35,7 @@ import styled from 'styled-components';
 import { createFlashCard, Payload, Alternative, NewAlternative, FlashCard, putFlashCard } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
+import { getUser } from '../../../services/User.service';
 
 
 
@@ -116,12 +117,31 @@ const EditAlternativa: React.FC = () => {
     }, [])
     
     const handleSaveButton = async ()=>{
-        if(enunciated !== '' && textRightAnswer !== '' && alternatives!.length > 0){
-            putFlashCard()
+        const payLoad = getPayload() as Payload
+        let alternativesSend:NewAlternative[] = []
+        let temasSend:string[] = []
+        themes.map((t:string)=>{
+            temasSend.push(t)
+        })
+        alternatives?.map((a)=>{
+            alternativesSend.push({answer:a.answer})
+        })
+        alternativesSend.push({answer:textRightAnswer})
+        
+            const user = await getUser(payLoad.id)
+            await putFlashCard(
+               { creator:user,
+                enunciated:textAreaQuestion,
+                subject:textMat,
+                alternatives:alternativesSend,
+                title:textTitle,
+                themes:temasSend,
+                id:idFlashCard
+                }
+            )
             setShowModal(true)
-        }else if(alternatives?.length == 0){
-            setShowPopLimit(true)
-        }
+
+        
 
     }
 
@@ -223,7 +243,7 @@ const EditAlternativa: React.FC = () => {
                                     className='ios question'
                                     color='dark'
                                     onIonChange={e => {
-                                        setEnunciated(e.detail.value!)
+                                        setTextAreaQuestion(e.detail.value!)
                                     }}
                                     value={textAreaQuestion}
                                     placeholder="Digite ou cole o enunciado do flash-card">
@@ -245,22 +265,6 @@ const EditAlternativa: React.FC = () => {
                         </IonCardTitle>
                     </IonModal>
 
-
-                    <IonModal backdropDismiss={false} isOpen={showModal2} cssClass='modal-choose'>
-                        <IonButton color='light' className="btn-dissertativa" onClick={() => {
-                            setShowModal2(false)
-                            setShowModal(false)                        
-                            history.push('/questaoDissertativa')                        
-                            }}>Dissertativa</IonButton>
-                        <IonLabel className="label-modal">ou</IonLabel>
-                        <IonButton color='light' className="btn-alternativa" onClick={() => {
-                            setShowModal2(false)
-                            setShowModal(false)                        
-                            history.push('/questaoAlternativa')
-                            }}>Alternativa</IonButton>
-                    </IonModal>
-
-
                     <IonGrid className='array-div'>
                     <IonRow style={{marginBottom:'1rem'}} className='ion-justify-content-center'>
                                 <IonTextarea 
@@ -273,7 +277,7 @@ const EditAlternativa: React.FC = () => {
                                 onIonChange={e => {
                                     setTextRightAnswer(e.detail.value!)
                                 }} 
-                                value={textAreaQuestion}
+                                value={textRightAnswer}
                                 >
                                 </IonTextarea>
                     </IonRow>

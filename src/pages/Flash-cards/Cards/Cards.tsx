@@ -6,12 +6,12 @@ IonCard,  IonImg, IonLabel, IonTitle
 import imgCardIcon from '../../../Assets/images/cardicon.png'
 
 
-const Cards: React.FC<{onClick:()=>void;id:string;title:string;type:string}> = props=>{
+const Cards: React.FC<{onClick:()=>void;id:string;title:string;type:string;text:string}> = props=>{
 
     return(
         <>
          <IonCard  key={props.id} onClick={props.onClick} color='dark' className='ios cards'>
-            <IonTitle>{props.title}</IonTitle>
+            <IonTitle title={props.text}>{props.title}</IonTitle>
             <IonImg src={imgCardIcon}></IonImg>
             <IonLabel >{props.type}</IonLabel>
          </IonCard>

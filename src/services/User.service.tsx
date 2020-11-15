@@ -27,12 +27,22 @@ interface Status{
 }
 
 export async function cadastro(newUser:NewUser){
-
+    console.log(newUser)
     https
         .post<User>('users', newUser)
         .then(async (res) => {
             console.log(res.data)
-            return await console.log(res.data)
+            return await res.data
         })
 
+}
+
+export async function getUser(user:string):Promise<User>{
+    console.log(user)
+    return https
+        .get(`users/${user}`)
+        .then(async(res)=>{
+            console.log(res.data)
+            return await res.data
+        })
 }
