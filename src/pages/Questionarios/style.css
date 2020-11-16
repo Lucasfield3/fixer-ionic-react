@@ -2,3 +2,126 @@
     z-index: 0;
     background: transparent;
   }
+  .container-questionarios{
+    display: flex;
+    justify-content: center;
+    background: rgba(1, 22, 39, 0.29);
+    width: auto;
+    height: 80%;
+    border-radius: 5px;
+    overflow: auto;
+    margin-inline-start: 5px;
+    margin-inline-end: 5px;
+    margin-bottom: 1.3rem;
+    margin-top: 1rem;
+  }
+  .card-buttons{
+    border-radius: 21px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 15rem;
+    min-height: 9rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+  }
+  .buttons-dark{
+    --ion-color-dark-contrast:var(--ion-color-light)!important;
+    font-weight: bold;
+    --border-radius: 7px;
+  }
+  .back-list{
+    background: #C8F9F3;
+    border-radius: 6px;
+    border:0.65px #41EAD4 solid;
+    height: 8.3rem;
+    margin: 0rem 1rem 1rem 1rem;
+    overflow-y: auto;
+  }
+  .back-list > ion-input{
+    background-color: var(--ion-color-light)!important;
+    margin-right: 2px;
+  }
+  .back-list::-webkit-scrollbar{
+    width: 7px;
+    padding-left: 2px;
+  }
+  .back-list::-webkit-scrollbar-thumb{
+    background: #4a5a66;
+    border-radius: 8px;
+  }
+  .back-list::-webkit-scrollbar-thumb:hover{
+    background: var(--ion-color-dark);
+  }
+  .back-list-remove{
+    background: #C8F9F3;
+    border-radius: 6px;
+    border:0.65px #41EAD4 solid;
+    height: 8.3rem;
+    margin: 0rem 1rem 1rem 1rem;
+    overflow-y: auto;
+  }
+  .back-list-remove > ion-input{
+    background-color: var(--ion-color-light)!important;
+    margin-right: 2px;
+  }
+  .back-list-remove::-webkit-scrollbar{
+    width: 7px;
+    padding-left: 2px;
+  }
+  .back-list-remove::-webkit-scrollbar-thumb{
+    background: #4a5a66;
+    border-radius: 8px;
+  }
+  .back-list-remove::-webkit-scrollbar-thumb:hover{
+    background: var(--ion-color-dark);
+  }
+  .row-timer-questionario{
+    display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-top: -0.7rem;
+  width: 5.6rem;
+  }
+  .card-list{
+    border-radius: 21px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 15rem;
+    min-height: 9rem;
+    padding-top: 0.7rem;
+  }
+  .flash-cards{
+    border-radius: 1.7rem;
+    margin-right: 5px;
+    background: var(--ion-color-light);
+    margin-top: 0;
+    padding-bottom: 6px;
+    box-shadow: var(--box-shadow);
+    padding-inline-end: 9px;
+    padding-inline-start: 9px;
+    padding-top: 6px;
+    color:var(--ion-color-dark);
+  }
+  .row-label-remove{
+    color: #808080c2;
+    font-size: 15px;
+    border-bottom: 0.5px #80808059 solid;
+    margin-bottom: 4px;
+  }
+  .btn-criar-questionario{
+    margin: 12px 12px!important;
+    width: 4.6rem;
+    height: 1.8rem;
+    font-size: 12px!important;
+    --background: #fdfdfd !important;
+    font-weight: bold;
+    --background-activated: #f1f1f1;
+    --background-focused: #f1f1f1;
+    --background-hover: #f1f1f1;
+  }

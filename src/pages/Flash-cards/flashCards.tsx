@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     IonSearchbar,
     IonCard,
@@ -13,15 +13,18 @@ import {
     IonLabel,
     IonContent,
     IonFab,
-    IonFabList, IonButton, IonActionSheet, useIonViewWillEnter, IonCol, useIonViewWillLeave, useIonViewDidLeave, useIonViewDidEnter
+    IonFabList, 
+    IonButton, 
+    IonActionSheet, 
+    useIonViewWillEnter, 
+    IonCol
 } from '@ionic/react'
-import { add, menuOutline, trash, share, bookSharp, addSharp, pencilSharp, card } from 'ionicons/icons';
+import { add, menuOutline, trash, bookSharp, addSharp, pencilSharp} from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import Cards from './Cards/Cards';
 import { deleteFlashCard, FlashCard, getFlashCards } from '../../services/flashCard.service';
-import { parse } from 'url';
 
 async function openMenu() {
     await menuController.open();
@@ -91,7 +94,6 @@ const FlashCards: React.FC = () => {
 
                 <IonContent>
                     <IonRow>
-
                         <IonSearchbar placeholder='Buscar' color='light' className="search-bar"
                             value={searchText}
                             onIonChange={e => setSearchText(e.detail.value!)}>

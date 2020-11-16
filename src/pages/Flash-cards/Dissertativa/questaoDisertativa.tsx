@@ -328,7 +328,7 @@ const Timertext = styled(IonInput)`
     --padding-start: 3px;
     --padding-end: 3px;
 `;
-const Timer: React.FC = () => {
+export const Timer: React.FC = () => {
 
     return (
         <>

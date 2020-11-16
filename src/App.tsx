@@ -24,6 +24,7 @@ import './theme/variables.css';
 import Home from './pages/Home/home';
 import FlashCards from './pages/Flash-cards/flashCards';
 import Questionarios from './pages/Questionarios/questionarios';
+import CriarQuestionario from './pages/Questionarios/CriarQuestionario';
 import Conquistas from './pages/Conquistas/conquistas';
 import Classes from './pages/Classes/classes'
 import QuestaoAlternativa from './pages/Flash-cards/Alternativa/questaoAlternativa'
@@ -47,6 +48,7 @@ import Alteracaosucess from './components/CardMessages_Create/msg_alteracao_suce
 import Limitedissertativa from './components/CardMessages/msg_limite_dissertativa';
 import Limitedalternativa from './components/CardMessages/msg_limite_alternativa';
 import Limitedenunciado from './components/CardMessages/msg_limite_enunciado';
+
 //import swiperSlide from './components/Swiper/swiperSlide';
 const App: React.FC = () => {
   return (
@@ -56,6 +58,7 @@ const App: React.FC = () => {
         <Route path="/Landing" component={Landing} exact={true} />
         <Route path="/Home" component={Home} exact={true} />
         <Route path="/Questionarios" component={Questionarios} exact={true} />
+        <Route path="/CriarQuestionario" component={CriarQuestionario} exact={true} />
         <Route path="/Flash-cards" component={FlashCards} exact={true} />
         <Route path="/Classes" component={Classes} exact={true} />
         <Route path="/Conquistas" component={Conquistas} exact={true} />
