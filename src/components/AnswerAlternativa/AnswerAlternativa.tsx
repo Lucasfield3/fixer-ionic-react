@@ -36,16 +36,13 @@ const AnswerAlternativa: React.FC = () => {
     const [isFlipped, setIsflipped] = useState(false);
     const [alternatives, setAlternatives] = useState<Alternative[]>()
     const [idFlashCard, setIdFlashCard] = useState<string>('')
-    const [progress, setProgress] = useState(0.1)
+    const [progress, setProgress] = useState<number>(0)
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
         correct: false
     })
-    const ProgressBar = (progress:number)=>{
-        if(check.correct!){
-            return setProgress(progress =+ 0.30)
-        }           
-    }
+ 
+  
     const [activeAlternative, setActiveAlternative] = useState<Alternative>({
         id: '123',
         answer: 'alternativa-ativada'
@@ -58,7 +55,6 @@ const AnswerAlternativa: React.FC = () => {
     const [themes, setThemes] = useState<string[]>([]);
     const [cardRed, setCardRed] = useState(<CardRed />)
     const [showLoading, setShowLoading] = useState(true);
-    const [reverse, setReverse] = useState(false)
 
     const settingLoading = () => {
         setTimeout(() => {
@@ -78,7 +74,7 @@ const AnswerAlternativa: React.FC = () => {
         menuController.enable(true)
     }, [])
     useIonViewWillEnter(() => {
-        setProgress(progress)
+        setProgress(0)
         setClassName({
             id: -1,
             active: false
@@ -135,6 +131,19 @@ const AnswerAlternativa: React.FC = () => {
     }
     const mystyle = {
         display: check!.correct && 'none' || 'block'
+    }
+    const ProgressBar = ()=>{
+        if(!check!.correct && progress >= 0){
+            setProgress(progress + 0.30)
+            console.log(progress)       
+        }else if(check!.correct == false && progress >= 0.30){
+            setProgress(progress - 0.15)
+            console.log(progress)
+        }else if(check!.correct == false && progress == 0){
+            setProgress(0)
+            console.log(progress)
+        }
+        
     }
     return (
         <>
@@ -233,7 +242,7 @@ const AnswerAlternativa: React.FC = () => {
                                     setShowLoading(!showLoading)
                                     handleFlipAnswer()
                                     settingLoading()
-                                    ProgressBar(progress)
+                                    ProgressBar()
                                 }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
                             <IonLoading
