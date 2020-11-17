@@ -21,6 +21,7 @@ import { menuController } from '@ionic/core';
 
 
 
+
 const AnswerAlternativa: React.FC = () => {
 
     const history = useHistory()
@@ -35,11 +36,16 @@ const AnswerAlternativa: React.FC = () => {
     const [isFlipped, setIsflipped] = useState(false);
     const [alternatives, setAlternatives] = useState<Alternative[]>()
     const [idFlashCard, setIdFlashCard] = useState<string>('')
+    const [progress, setProgress] = useState(0.1)
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
         correct: false
     })
-
+    const ProgressBar = (progress:number)=>{
+        if(check.correct!){
+            return setProgress(progress =+ 0.30)
+        }           
+    }
     const [activeAlternative, setActiveAlternative] = useState<Alternative>({
         id: '123',
         answer: 'alternativa-ativada'
@@ -52,6 +58,8 @@ const AnswerAlternativa: React.FC = () => {
     const [themes, setThemes] = useState<string[]>([]);
     const [cardRed, setCardRed] = useState(<CardRed />)
     const [showLoading, setShowLoading] = useState(true);
+    const [reverse, setReverse] = useState(false)
+
     const settingLoading = () => {
         setTimeout(() => {
             setShowLoading(false);
@@ -70,6 +78,7 @@ const AnswerAlternativa: React.FC = () => {
         menuController.enable(true)
     }, [])
     useIonViewWillEnter(() => {
+        setProgress(progress)
         setClassName({
             id: -1,
             active: false
@@ -142,7 +151,7 @@ const AnswerAlternativa: React.FC = () => {
                         </IonRow>
                         <IonRow style={{ height: '1rem' }} className='ion-justify-content-center row-progress'>
                             <IonLabel className="start-lvl">0</IonLabel>
-                            <IonProgressBar className='progress-bar' value={0.5}></IonProgressBar>
+                            <IonProgressBar className='progress-bar' value={progress}></IonProgressBar>
                             <IonLabel className="start-lvl">1</IonLabel>
                         </IonRow>
                     </IonRow>
@@ -224,6 +233,7 @@ const AnswerAlternativa: React.FC = () => {
                                     setShowLoading(!showLoading)
                                     handleFlipAnswer()
                                     settingLoading()
+                                    ProgressBar(progress)
                                 }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
                             <IonLoading

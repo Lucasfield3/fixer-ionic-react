@@ -78,7 +78,7 @@ const CriarQuestionario:React.FC = ()=>{
                 </IonHeader>
                 <IonContent>
                     <IonItem style={{borderRadius:'6px'}} className="item-input-dissertativa">
-                        <IonInput  value={textTitle} type="text" required className="input-dissertativa"  onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Flashcard"></IonInput>
+                        <IonInput  value={textTitle} type="text" required className="input-dissertativa" title='insira o título do Questionário' onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Questionário"></IonInput>
                     </IonItem>
                     <IonCard color='light' className='card-buttons'>
                         <IonButton onClick={()=> setShowModal2(true)}  style={{marginBottom:'1.5rem', marginTop:'0.5rem'}} className='buttons-dark' color='dark'>Criar flashcards</IonButton>
@@ -96,8 +96,8 @@ const CriarQuestionario:React.FC = ()=>{
                             }}>Alternativa</IonButton>
                     </IonModal>
                     <IonModal isOpen={showModal} cssClass='modal-list' onDidDismiss={()=> setShowModal(false)}>
-                        <IonRow>
-                            <IonLabel>Selecione um flashcard</IonLabel>
+                        <IonRow className='ion-justify-content-center'>
+                            <IonLabel className='title-select'>Selecione um flashcard</IonLabel>
                         </IonRow>
                         <IonRow>
                             <IonSearchbar placeholder='Buscar' color='light' className="search-bar"

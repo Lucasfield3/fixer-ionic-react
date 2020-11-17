@@ -23,15 +23,16 @@
     justify-content: center;
     max-height: 15rem;
     min-height: 9rem;
-    padding-left: 1.4rem;
-    padding-right: 1.4rem;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
     padding-top: 0.7rem;
     padding-bottom: 0.7rem;
   }
   .buttons-dark{
-    --ion-color-dark-contrast:var(--ion-color-light)!important;
+    --ion-color-dark-contrast: var(--ion-color-light)!important;
     font-weight: bold;
-    --border-radius: 7px;
+    --border-radius: 12px;
+    height: 2rem;
   }
   .back-list{
     background: #C8F9F3;
@@ -95,6 +96,8 @@
     max-height: 15rem;
     min-height: 9rem;
     padding-top: 0.7rem;
+    margin-top: 3rem;
+
   }
   .flash-cards{
     border-radius: 1.7rem;
@@ -124,4 +127,12 @@
     --background-activated: #f1f1f1;
     --background-focused: #f1f1f1;
     --background-hover: #f1f1f1;
+  }
+  .modal-list{
+    --height:34%
+  }
+  .title-select{
+    font-weight: bold;
+    margin-top: 1rem;
+    font-size: 18px;
   }
