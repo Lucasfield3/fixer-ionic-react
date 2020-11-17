@@ -186,12 +186,6 @@ ion-item{
 .native-textarea.sc-ion-textarea-ios{
   word-spacing:-1px;
 }
-.row-toggle{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  transition: visibility ease-in-out 7ms;
-}
 .toggle {
   --background: var(--ion-color-light);
   --background-checked: var(--ion-color-dark);

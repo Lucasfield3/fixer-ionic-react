@@ -134,7 +134,7 @@ const CriarQuestionario:React.FC = ()=>{
                     <IonRow className='row-toggle'>
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>
                         <IonToggle checked={checked} onIonChange={(e) => setChecked(e.detail.checked)} className='ios toggle' onClick={() => setShownTimer(!shownTimer)} />
-                        <IonLabel className='tooltip-text'>Opcional</IonLabel>
+                        
                     </IonRow>
                     <IonRow className='ios row-timer-questionario'>
                         {shownTimer && timer}

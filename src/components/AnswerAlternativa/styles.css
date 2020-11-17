@@ -205,6 +205,7 @@ ion-item{
   display: flex;
   align-items: center;
   transition: visibility ease-in-out 7ms;
+  margin-bottom: 0.3rem;
 }
 .toggle {
   --background: var(--ion-color-light);
