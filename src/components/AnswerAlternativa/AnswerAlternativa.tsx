@@ -74,7 +74,6 @@ const AnswerAlternativa: React.FC = () => {
         menuController.enable(true)
     }, [])
     useIonViewWillEnter(() => {
-        setProgress(0)
         setClassName({
             id: -1,
             active: false
@@ -118,7 +117,9 @@ const AnswerAlternativa: React.FC = () => {
     const handleFlipAnswer = async () => {
         let checker = await getCheck(idFlashCard, activeAlternative.answer)
         console.log(checker)
+        ProgressBar(checker)
         setCheck(checker)
+        
     }
 
     const disableAlternatives = () => {
@@ -132,17 +133,17 @@ const AnswerAlternativa: React.FC = () => {
     const mystyle = {
         display: check!.correct && 'none' || 'block'
     }
-    const ProgressBar = ()=>{
-        if(!check!.correct && progress >= 0){
+    const ProgressBar = (validator:Checker)=>{
+       if(validator.correct == true && progress >= 0){
             setProgress(progress + 0.30)
-            console.log(progress)       
-        }else if(check!.correct == false && progress >= 0.30){
-            setProgress(progress - 0.15)
             console.log(progress)
-        }else if(check!.correct == false && progress == 0){
+       }else if(validator.correct == false && progress == 0){
             setProgress(0)
             console.log(progress)
-        }
+       }else if(validator.correct == false && progress >= 0.30 || progress <= 0.30){
+            setProgress(progress - 0.15)
+            console.log(progress)
+       }
         
     }
     return (
@@ -242,7 +243,6 @@ const AnswerAlternativa: React.FC = () => {
                                     setShowLoading(!showLoading)
                                     handleFlipAnswer()
                                     settingLoading()
-                                    ProgressBar()
                                 }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
                             <IonLoading
