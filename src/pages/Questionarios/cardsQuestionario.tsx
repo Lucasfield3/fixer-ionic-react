@@ -3,10 +3,10 @@ import './style.css';
 import { 
 IonCard,  IonImg, IonLabel, IonTitle
 } from '@ionic/react';
-import imgCardIcon from '../../../Assets/images/cardicon.png'
+import imgCardIcon from '../../Assets/images/cardicon.png'
 
 
-const Cards: React.FC<{onClick:()=>void;id:string;title:string;type:string;text:string}> = props=>{
+const CardsQuestionarios: React.FC<{onClick:()=>void;id:string;title:string;type:string;text:string}> = props=>{
 
     return(
         <>
@@ -20,4 +20,4 @@ const Cards: React.FC<{onClick:()=>void;id:string;title:string;type:string;text:
 
 };
 
-export default Cards;
+export default CardsQuestionarios;

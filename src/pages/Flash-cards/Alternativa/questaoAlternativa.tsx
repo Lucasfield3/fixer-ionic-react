@@ -244,6 +244,7 @@ const QuestaoAlternativa: React.FC = () => {
                         <IonCardContent className="content-background">
                             <IonRow className="ios row-dissertativa">
                                 <IonTextarea
+                                    autoCapitalize='on'
                                     maxlength={240}
                                     overflow-scroll="true"
                                     rows={5}
@@ -330,8 +331,7 @@ const QuestaoAlternativa: React.FC = () => {
                        
                     <IonRow className='row-toggle'>                                            
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>                        
-                        <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>
-                        <IonLabel className='tooltip-text'>Opcional</IonLabel>                    
+                        <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>                   
                     </IonRow>
                     <IonRow className='ios row-timer-alternativa'>
                         {shownTimer && timer}

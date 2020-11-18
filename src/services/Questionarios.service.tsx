@@ -1,32 +1,12 @@
 import https from '../utils/https'
 import { getPayload } from './Authentication.service'
 
-interface NewFlashCard{
-    creator:string;
-    enunciated:string;
-    subject?:string;
-    time?:string;
-    answerFlashCard:string;
-    alternatives?:Alternative[];
-    title:string;
-    themes:string[]
-}
-export interface NewAlternative{
-    answer:string
-}
-export interface FlashCard {
-    owner?:User;
+
+export interface Questionario {
+    owner:User;
     creator:User;
     creation?:string;
     modification?:string;
-    id:string;
-    enunciated:string;
-    type?:string;
-    subject:string;
-    time?:string;
-    title:string;
-    themes:string[];
-    alternatives?:Alternative[];
 }
 interface User{
     id:string;
@@ -60,10 +40,10 @@ export interface Checker {
     answer:string;
     correct:boolean
 }
-export async function createFlashCard(newFlashCard:NewFlashCard){
-    console.log(newFlashCard)
+export async function createQuest(newQuest:Questionario){
+    console.log(newQuest)
     https
-        .post<FlashCard>('flash-cards', newFlashCard)
+        .post<Questionario>('/questionnaires', newQuest)
         .then(async (res) => {
             console.log(res.data)
             return await res.data
@@ -74,10 +54,10 @@ export async function createFlashCard(newFlashCard:NewFlashCard){
 
 }
 
-export async function getFlashCard(id:string){
+export async function getQuest(id:string){
     const payload =  getPayload() as Payload
     https
-        .get(`flash-cards/one-flash-card?id-user=${payload.id}&id-flash-card=${id}`)
+        .get(`questionnaires/one-questionnaire?id-user=${payload.id}&id-questionnaire=${id}`)
         .then(async (res)=>{
             console.log(res.data)
             return await res.data
@@ -86,10 +66,10 @@ export async function getFlashCard(id:string){
             console.log(erro)
         })
 }
-export async function getFlashCards():Promise<FlashCard[]>{
+export async function getQuestionarios():Promise<Questionario[]>{
     const payload =  getPayload() as Payload
     return https
-        .get(`flash-cards/owner/${payload.id}`)
+        .get(`questionnaires/owner/${payload.id}`)
         .then(async (res)=>{
             console.log(res.data)
             return await res.data
@@ -98,10 +78,12 @@ export async function getFlashCards():Promise<FlashCard[]>{
             console.log(erro)
         })
 }
-export async function getCheck(idFlashCard:string, answer:string):Promise<Checker>{
+
+export async function deleteQuest(idQuest:string){
     const  payload = getPayload() as Payload
+    console.log(idQuest)
     return https
-        .get(`/flash-cards/check?answer=${answer}&flash-card-id=${idFlashCard}&user-id=${payload.id}`)
+        .delete(`/questionnaires/owner/${payload.id}?questionnaires-id=${idQuest}`)
         .then(async (res)=>{
             console.log(res.data)
             return await res.data
@@ -110,24 +92,11 @@ export async function getCheck(idFlashCard:string, answer:string):Promise<Checke
             console.log(erro)
         })
 }
-export async function deleteFlashCard(idFlashCard:string){
-    const  payload = getPayload() as Payload
-    console.log(idFlashCard)
-    return https
-        .delete(`/flash-cards/owner/${payload.id}?flash-card-id=${idFlashCard}`)
-        .then(async (res)=>{
-            console.log(res.data)
-            return await res.data
-        })
-        .catch((erro)=>{
-            console.log(erro)
-        })
-}
-export async function putFlashCard(flashCard:FlashCard){
-    console.log(flashCard)
+export async function putQuest(questionario:Questionario){
+    console.log(questionario)
     const  payload = getPayload() as Payload
     return https
-        .put<FlashCard>(`/flash-cards/owner/${payload.id}`, flashCard)
+        .put<Questionario>(`/flash-cards/owner/${payload.id}`, questionario)
         .then(async(res)=>{
             console.log(res.data)
             return await res.data

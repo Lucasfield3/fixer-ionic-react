@@ -186,12 +186,6 @@ ion-item{
 .native-textarea.sc-ion-textarea-ios{
   word-spacing:-1px;
 }
-.row-toggle{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  transition: visibility ease-in-out 7ms;
-}
 .toggle {
   --background: var(--ion-color-light);
   --background-checked: var(--ion-color-dark);
@@ -428,3 +422,23 @@ ion-item{
   font-weight: bold;
 }
 
+.sc-ion-loading-md-h{
+  --background: var(--ion-color-step-50, #f2f2f2);
+  --max-width: 280px;
+  --max-height: 90%;
+  --spinner-color: var(--ion-color-primary, #3880ff);
+  --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+  color: var(--ion-color-step-850, #262626);
+  font-size: 14px;
+  --height: 3.1rem;
+  top:-6%;
+  left: -8%;
+}
+.loading-custom-dissertative .loading-wrapper.sc-ion-loading-md{
+  box-shadow:none;
+  margin-top: -11.3rem;
+}
+.loading-wrapper.sc-ion-loading-md{
+--background:transparent;
+
+}

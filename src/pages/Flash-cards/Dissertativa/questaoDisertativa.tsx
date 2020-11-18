@@ -292,7 +292,6 @@ const QuestaoDissertativa: React.FC = () => {
                     <IonRow className='row-toggle'>
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>
                         <IonToggle checked={checked} onIonChange={(e) => setChecked(e.detail.checked)} className='ios toggle' onClick={() => setShownTimer(!shownTimer)} />
-                        <IonLabel className='tooltip-text'>Opcional</IonLabel>
                     </IonRow>
                     <IonRow className='ios row-timer-dissertativa'>
                         {shownTimer && timer}
@@ -328,7 +327,7 @@ const Timertext = styled(IonInput)`
     --padding-start: 3px;
     --padding-end: 3px;
 `;
-const Timer: React.FC = () => {
+export const Timer: React.FC = () => {
 
     return (
         <>

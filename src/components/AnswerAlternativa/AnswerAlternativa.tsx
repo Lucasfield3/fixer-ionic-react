@@ -21,6 +21,7 @@ import { menuController } from '@ionic/core';
 
 
 
+
 const AnswerAlternativa: React.FC = () => {
 
     const history = useHistory()
@@ -35,11 +36,13 @@ const AnswerAlternativa: React.FC = () => {
     const [isFlipped, setIsflipped] = useState(false);
     const [alternatives, setAlternatives] = useState<Alternative[]>()
     const [idFlashCard, setIdFlashCard] = useState<string>('')
+    const [progress, setProgress] = useState<number>(0)
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
         correct: false
     })
-
+ 
+  
     const [activeAlternative, setActiveAlternative] = useState<Alternative>({
         id: '123',
         answer: 'alternativa-ativada'
@@ -52,11 +55,11 @@ const AnswerAlternativa: React.FC = () => {
     const [themes, setThemes] = useState<string[]>([]);
     const [cardRed, setCardRed] = useState(<CardRed />)
     const [showLoading, setShowLoading] = useState(true);
+
     const settingLoading = () => {
         setTimeout(() => {
             setShowLoading(false);
             setIsflipped(!isFlipped)
-            enableButton()
             disableAlternatives()
         }, 1500);
     }
@@ -114,8 +117,9 @@ const AnswerAlternativa: React.FC = () => {
     const handleFlipAnswer = async () => {
         let checker = await getCheck(idFlashCard, activeAlternative.answer)
         console.log(checker)
+        ProgressBar(checker)
         setCheck(checker)
-        disableAlternatives()
+        
     }
 
     const disableAlternatives = () => {
@@ -128,6 +132,19 @@ const AnswerAlternativa: React.FC = () => {
     }
     const mystyle = {
         display: check!.correct && 'none' || 'block'
+    }
+    const ProgressBar = (validator:Checker)=>{
+       if(validator.correct == true && progress >= 0){
+            setProgress(progress + 0.30)
+            console.log(progress)
+       }else if(validator.correct == false && progress == 0){
+            setProgress(0)
+            console.log(progress)
+       }else if(validator.correct == false && progress >= 0.30 || progress <= 0.30){
+            setProgress(progress - 0.15)
+            console.log(progress)
+       }
+        
     }
     return (
         <>
@@ -144,7 +161,7 @@ const AnswerAlternativa: React.FC = () => {
                         </IonRow>
                         <IonRow style={{ height: '1rem' }} className='ion-justify-content-center row-progress'>
                             <IonLabel className="start-lvl">0</IonLabel>
-                            <IonProgressBar className='progress-bar' value={0.5}></IonProgressBar>
+                            <IonProgressBar className='progress-bar' value={progress}></IonProgressBar>
                             <IonLabel className="start-lvl">1</IonLabel>
                         </IonRow>
                     </IonRow>
@@ -226,7 +243,6 @@ const AnswerAlternativa: React.FC = () => {
                                     setShowLoading(!showLoading)
                                     handleFlipAnswer()
                                     settingLoading()
-                                    disableAlternatives()
                                 }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
                             <IonLoading
@@ -254,7 +270,7 @@ const AnswerAlternativa: React.FC = () => {
                         ))}
                     </IonGrid>
                     <IonRow className='ios ion-justify-content-center row-btn-final'>
-                        <IonButton disabled onClick={() => {
+                        <IonButton disabled={isFlipped == false && true} onClick={() => {
                             setShownPopResult(true)
                             enableAlternatives()
                         }} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>
