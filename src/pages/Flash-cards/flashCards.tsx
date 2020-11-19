@@ -102,7 +102,7 @@ const FlashCards: React.FC = () => {
                     </IonRow>
 
                     <IonLabel className="label-menu-title-cards">FlashCards</IonLabel>
-                    <IonCard style={{alignItems:cards?.length == 0 && 'center' || 'unset'}} className='container-flashcards'>
+                    <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards'>
                         <IonCol >
                             <IonGrid className='ios grid-flashcards'>
                                 {cards.map((card: FlashCard, index) => {
