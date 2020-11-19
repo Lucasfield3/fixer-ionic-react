@@ -61,7 +61,7 @@ const CriarQuestionario:React.FC = ()=>{
                         </IonRow>
                         <IonFabButton
                             onClick={() => {
-                                history.push('/Flash-cards')
+                                history.push('/Questionarios')
                                 menuController.enable(true);
                             }}
                             slot='start'

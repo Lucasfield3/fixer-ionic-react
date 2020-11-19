@@ -37,6 +37,9 @@ const AnswerAlternativa: React.FC = () => {
     const [alternatives, setAlternatives] = useState<Alternative[]>()
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [progress, setProgress] = useState<number>(0)
+    const [repeat, setRepeat] = useState({
+        count:0
+    })
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
         correct: false
@@ -73,7 +76,13 @@ const AnswerAlternativa: React.FC = () => {
     useIonViewWillLeave(() => {
         menuController.enable(true)
     }, [])
+    const handleCount =()=>{
+        
+        setRepeat(prev=>({count:prev.count + 1}))
+        console.log(repeat.count)
+    }
     useIonViewWillEnter(() => {
+        console.log(repeat.count)
         setClassName({
             id: -1,
             active: false
@@ -119,7 +128,6 @@ const AnswerAlternativa: React.FC = () => {
         console.log(checker)
         ProgressBar(checker)
         setCheck(checker)
-        
     }
 
     const disableAlternatives = () => {
@@ -135,16 +143,12 @@ const AnswerAlternativa: React.FC = () => {
     }
     const ProgressBar = (validator:Checker)=>{
        if(validator.correct == true && progress >= 0){
-            setProgress(progress + 0.30)
-            console.log(progress)
+            setProgress(progress + 0.30)    
        }else if(validator.correct == false && progress == 0){
-            setProgress(0)
-            console.log(progress)
+            setProgress(0)       
        }else if(validator.correct == false && progress >= 0.30 || progress <= 0.30){
             setProgress(progress - 0.15)
-            console.log(progress)
        }
-        
     }
     return (
         <>
@@ -176,6 +180,7 @@ const AnswerAlternativa: React.FC = () => {
                             history.push('/Flash-cards')
                             removeActive()
                             enableAlternatives()
+                            handleCount()
                         }}
                         onClickNao={() => setShownPopsair(false)}
                         onDidDismiss={() => setShownPopsair(false)}
@@ -243,6 +248,7 @@ const AnswerAlternativa: React.FC = () => {
                                     setShowLoading(!showLoading)
                                     handleFlipAnswer()
                                     settingLoading()
+                                   
                                 }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
                             <IonLoading
@@ -283,6 +289,7 @@ const AnswerAlternativa: React.FC = () => {
                             setShownPopResult(false)
                             history.push('/Flash-cards')
                             setIsflipped(!isFlipped)
+                            handleCount()
                         }}
                         textConquista='Nome conquista'
                         textCorrect='0'

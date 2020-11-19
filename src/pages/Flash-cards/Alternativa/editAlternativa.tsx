@@ -32,7 +32,7 @@ import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { createFlashCard, Payload, Alternative, NewAlternative, FlashCard, putFlashCard } from '../../../services/flashCard.service';
+import { createFlashCard, Payload, Alternative, NewAlternative, FlashCard, putFlashCard, getRightAnswer } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
 import { getUser } from '../../../services/User.service';
@@ -78,7 +78,6 @@ const EditAlternativa: React.FC = () => {
     }
     const AddAlternative = () => {
         setAlternatives([...alternatives, {answer:answer}])
-        console.log(alternatives)
         if(alternatives.length == 4){
             setAlternatives(alternatives)
       
@@ -91,12 +90,22 @@ const EditAlternativa: React.FC = () => {
     const DeleteAlternatives = (answer:string) => {
         let alternativeToBedeleted = alternatives.filter(alternative => alternative.answer !== answer);
         setAlternatives(alternativeToBedeleted)
-        console.log(alternativeToBedeleted)
     }
+    const removeRightAnswerOfAlternative = (answer:string) =>{ 
+        const card = history.location.state as FlashCard         
+        console.log(card.alternatives!)
+        let alternativeDeleted = card.alternatives!.filter(alternative => alternative.answer !== answer)
+        setAlternatives(alternativeDeleted)
 
+    }
     const DeleteTema = (id:string) => {
        const themeDeleted =  themes.filter((theme)=> id !== theme)
        setThemes(themeDeleted)
+    }
+    async function getAnswer(id:string){
+        const rightAnswer = await getRightAnswer(id) as string     
+        setTextRightAnswer(rightAnswer)
+        removeRightAnswerOfAlternative(rightAnswer)
     }
     useIonViewWillEnter(()=>{
         if (history.location.state) {
@@ -108,6 +117,7 @@ const EditAlternativa: React.FC = () => {
             setTextAreaQuestion(card.enunciated)
             setAlternatives(card.alternatives!)
             setIdFlashCard(card.id)
+            getAnswer(card.id)
         } else {
             console.log('Não tem nada');
         }
@@ -127,21 +137,21 @@ const EditAlternativa: React.FC = () => {
             alternativesSend.push({answer:a.answer})
         })
         alternativesSend.push({answer:textRightAnswer})
-        
-            const user = await getUser(payLoad.id)
+        if(textAreaQuestion !== '' && textTitle !== ''){
             await putFlashCard(
-               { creator:user,
+               { creator:payLoad.id,
                 enunciated:textAreaQuestion,
                 subject:textMat,
                 alternatives:alternativesSend,
                 title:textTitle,
                 themes:temasSend,
-                id:idFlashCard
+                id:idFlashCard,
+                answerFlashCard:textRightAnswer
                 }
             )
-            setShowModal(true)
 
-        
+        }
+            setShowModal(true)
 
     }
 
@@ -186,7 +196,7 @@ const EditAlternativa: React.FC = () => {
                                 <IonButton onClick={() => setShowPopover(true)} className="ios btn-tema-dissertativa">Tema</IonButton>
                                 <IonPopover
                                     isOpen={showPopover}
-                                    cssClass='temas-custom'
+                                    cssClass='temas-custom-edit'
                                     onDidDismiss={e => setShowPopover(false)}
                                 >
                                     <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>

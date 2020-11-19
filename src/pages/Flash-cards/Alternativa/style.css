@@ -150,13 +150,13 @@ ion-item{
   background: #fdfdfd;
 }
 
-.temas-custom .modal-wrapper {
+.temas-custom-edit .modal-wrapper {
   background: #fdfdfd;
 }
 
-.temas-custom {
+.temas-custom-edit {
   --background: #fdfdfd;
-  --height: 16vh;
+  --height: 35vh;
   --width: 40vh;
   --border-radius: 15px;
 }

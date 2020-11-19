@@ -33,7 +33,7 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { getPayload } from '../../../services/Authentication.service';
-import { Payload, putFlashCard, FlashCard } from '../../../services/flashCard.service';
+import { Payload, putFlashCard, FlashCard, getRightAnswer } from '../../../services/flashCard.service';
 import { getUser } from '../../../services/User.service';
 
 
@@ -75,7 +75,11 @@ const EditDissertativa: React.FC = () => {
         const themeDeleted =  themes.filter((theme)=> id !== theme)
         setThemes(themeDeleted)
      }
-
+     async function getAnswer(id:string){
+        const rightAnswer = await getRightAnswer(id) as string
+        console.log(rightAnswer)
+        setTextRightAnswer(rightAnswer)
+    }
     useIonViewWillEnter(() => {
         if (history.location.state) {
             const card = history.location.state as FlashCard
@@ -85,6 +89,7 @@ const EditDissertativa: React.FC = () => {
             setThemes(card.themes)
             setTextAreaQuestion(card.enunciated)
             setIdFlashCard(card.id)
+            getAnswer(card.id)
         } else {
             console.log('Não tem nada');
         }
@@ -99,17 +104,16 @@ const EditDissertativa: React.FC = () => {
         themes.map((t:string)=>{
             temasSend.push(t)
         })
-        const user = await getUser(payLoad.id)
-        
             try{
                 await putFlashCard({
-                    creator:user,
+                    creator:payLoad.id,
                     enunciated:textAreaQuestion,
                     subject:textMat,
                     alternatives:[],
                     title:textTitle,
                     themes:temasSend,
-                    id:idFlashCard
+                    id:idFlashCard,
+                    answerFlashCard:textRightAnswer
                 })
             }catch(err){
                 console.log(err)
