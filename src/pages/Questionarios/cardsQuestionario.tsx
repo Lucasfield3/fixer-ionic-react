@@ -3,7 +3,7 @@ import './style.css';
 import { 
 IonCard,  IonImg, IonLabel, IonTitle
 } from '@ionic/react';
-import imgCardIcon from '../../Assets/images/cardicon.png'
+import IconDissertativa from '../../Assets/images/CardIconDissertativa.png'
 
 
 const CardsQuestionarios: React.FC<{onClick:()=>void;id:string;title:string;type:string;text:string}> = props=>{
@@ -12,7 +12,7 @@ const CardsQuestionarios: React.FC<{onClick:()=>void;id:string;title:string;type
         <>
          <IonCard  key={props.id} onClick={props.onClick} color='dark' className='ios cards'>
             <IonTitle title={props.text}>{props.title}</IonTitle>
-            <IonImg src={imgCardIcon}></IonImg>
+            <IonImg src={IconDissertativa}></IonImg>
             <IonLabel >{props.type}</IonLabel>
          </IonCard>
         </>
