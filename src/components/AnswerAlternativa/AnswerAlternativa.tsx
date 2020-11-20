@@ -9,7 +9,7 @@ import {
     IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol, IonGrid, IonPopover, IonProgressBar, IonToolbar, IonIcon, useIonViewWillEnter, useIonViewWillLeave, IonLoading
 } from '@ionic/react'
 import './styles.css'
-import { arrowForward } from 'ionicons/icons';
+import { arrowForward, card, time } from 'ionicons/icons';
 import ReactCardFlip from 'react-card-flip';
 import SairTelaResposta from '../CardMessages/msg_sair_tela_resposta';
 import { useHistory } from 'react-router';
@@ -18,6 +18,7 @@ import { Alternative, Checker, FlashCard, getCheck } from '../../services/flashC
 import CardRed from '../cardRed/cardRed';
 import CardGreen from '../CardGreen/cardGreen';
 import { menuController } from '@ionic/core';
+import CardTime from '../CardTime/cardTime';
 
 
 
@@ -37,6 +38,11 @@ const AnswerAlternativa: React.FC = () => {
     const [alternatives, setAlternatives] = useState<Alternative[]>()
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [progress, setProgress] = useState<number>(0)
+    const [time, setTime] = useState<number>();
+    const [seconds, setSeconds] = useState('')
+    const [minutes, setMinutes] = useState('')
+    const [cards, setCards] = useState<{}>()
+    const card = history.location.state as FlashCard
     const [repeat, setRepeat] = useState({
         count:0
     })
@@ -75,6 +81,8 @@ const AnswerAlternativa: React.FC = () => {
     }
     useIonViewWillLeave(() => {
         menuController.enable(true)
+        
+
     }, [])
     const handleCount =()=>{
         
@@ -82,6 +90,7 @@ const AnswerAlternativa: React.FC = () => {
         console.log(repeat.count)
     }
     useIonViewWillEnter(() => {
+        cronometro()
         console.log(repeat.count)
         setClassName({
             id: -1,
@@ -97,6 +106,7 @@ const AnswerAlternativa: React.FC = () => {
             setTextAreaQuestion(card.enunciated)
             setAlternatives(card.alternatives)
             setIdFlashCard(card.id)
+            setTime(card.time!)
         } else {
             console.log('Não tem nada');
         }
@@ -128,6 +138,11 @@ const AnswerAlternativa: React.FC = () => {
         console.log(checker)
         ProgressBar(checker)
         setCheck(checker)
+        if(checker.correct){
+            setCards(<CardGreen textRightAnswer={check.answer}/>)
+        }else{
+            setCards(<CardRed/>)
+        }
     }
 
     const disableAlternatives = () => {
@@ -149,6 +164,39 @@ const AnswerAlternativa: React.FC = () => {
        }else if(validator.correct == false && progress >= 0.30 || progress <= 0.30){
             setProgress(progress - 0.15)
        }
+    }
+    const cronometro = ()=>{
+        const card = history.location.state as FlashCard
+        if(card.time !== 0){
+            const timeToSeconds = (card.time!)/1000 
+            let minutes =  Math.trunc(timeToSeconds/60)
+            let seconds = timeToSeconds % 60
+            console.log(minutes)
+            console.log(seconds)
+            var interval = setInterval(()=>{
+                if(minutes > 10){
+                    setMinutes(('0'+ minutes).toString())            
+                }
+                if(seconds > 10){
+                    setSeconds(('0'+ seconds).toString())
+                }
+                setMinutes((minutes).toString())
+                if(seconds === 0 && minutes !== 0 ){
+                    setMinutes((minutes--).toString())
+                    setSeconds((seconds = 60).toString())
+                }
+                setSeconds((seconds--).toString())
+                if(seconds === 0 && minutes === 0){
+                    clearInterval(interval)
+                    setSeconds('0')
+                    setMinutes('0')
+                    setCards(<CardTime/>)
+                    setIsflipped(!isFlipped)
+                }
+                }, 1000)
+                
+        }
+        
     }
     return (
         <>
@@ -186,9 +234,12 @@ const AnswerAlternativa: React.FC = () => {
                         onDidDismiss={() => setShownPopsair(false)}
 
                     />
-                    <IonCol className='timer-flashcard' color='dark'>00:00</IonCol>
+                     
+                        <IonCol style={{display: time === 0 && 'none' || 'block'}} className='timer-flashcard' >
+                            {parseInt(minutes) < 10 && '0'}{minutes}:{parseInt(seconds) < 10 && '0'}{seconds}
+                        </IonCol> 
                     <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
-                        <IonCard className='card-dissertativa' color='light'>
+                        <IonCard  className='card-dissertativa' color='light'>
                             <IonCardHeader style={{ padding: 0 }}>
                                 <IonRow className='ios ion-justify-content-space-between row-header'>
                                     <IonButton onClick={() => setShowPopover(true)} className="ios btn-tema-dissertativa">Tema</IonButton>
@@ -258,8 +309,8 @@ const AnswerAlternativa: React.FC = () => {
                                 duration={600}
                             />
                         </IonCard >
-                        {check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}
-
+                        {cards}
+                        
                     </ReactCardFlip>
 
 
@@ -317,7 +368,7 @@ const Redone: React.FC<{ onClick: () => void; style: React.CSSProperties }> = pr
         <>
             <IonButton color='light' onClick={props.onClick} style={props.style} className="ios btn_stats_refazer">
                 Refazer
-        </IonButton>
+            </IonButton>
         </>
     );
 }

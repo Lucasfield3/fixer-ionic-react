@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import {
     IonButton,
     IonPage,
@@ -25,7 +25,7 @@ import {
     IonModal, 
     IonText,
     useIonViewWillLeave,
-    useIonViewWillEnter
+    useIonViewWillEnter,
 } from '@ionic/react'
 import { add, arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
 import './style.css'
@@ -35,6 +35,7 @@ import styled from 'styled-components';
 import { createFlashCard, Payload, Alternative, NewAlternative } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
+import TimeField from 'react-simple-timefield';
 
 
 
@@ -45,8 +46,7 @@ const QuestaoAlternativa: React.FC = () => {
     const [textTitle, setTextTitle] = useState<string>('')
     const [textMat, setTextMat] = useState<string>('')
     const [enunciated, setEnunciated] = useState<string>('')
-    const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
-    const [timer, setTimer] = useState<{}>(<Timer />)
+    const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')  
     const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
@@ -56,7 +56,8 @@ const QuestaoAlternativa: React.FC = () => {
     const [showModal, setShowModal] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
-    //let newAlternative:NewAlternative[] = []
+    const [time, setTime] = useState<string>(':');
+    const [timer, setTimer] = useState<{}>()
     const temas = {
         id: 0,
         textPop: ''
@@ -71,7 +72,10 @@ const QuestaoAlternativa: React.FC = () => {
             setShowPopover(false);
         }, 1000)
     }
-
+    const onTimeChange = (time:string)=>{
+        console.log(time)
+        setTime(time)
+    }
     const AddTema = () => {
         if (textPop !== '') {
             setThemes([...themes, {
@@ -109,7 +113,8 @@ const QuestaoAlternativa: React.FC = () => {
     },[])
     useIonViewWillLeave(()=>{
         menuController.enable(true)
-        CleanInputs()      
+        CleanInputs()
+        setChecked(false)      
     }, [])
     const CleanInputs = () => {
         setTextPop('')
@@ -120,8 +125,16 @@ const QuestaoAlternativa: React.FC = () => {
         setTextTitle('')
         setAlternatives([])
         setThemes([])
+        setTime('')
     }
-    
+    const convertTime = ()=>{
+        const[minutes, seconds] = time.split(':').map(Number)
+        const timeInSeconds = (minutes * 60) + seconds
+        console.log(time)
+        console.log(timeInSeconds * 1000)
+        return timeInSeconds * 1000
+
+    }
     const handleCreateButton = async ()=>{
         const payLoad = getPayload() as Payload
         let alternativesSend:NewAlternative[] = []
@@ -142,7 +155,8 @@ const QuestaoAlternativa: React.FC = () => {
                     subject:textMat,
                     alternatives:alternativesSend,
                     title:textTitle,
-                    themes:temasSend
+                    themes:temasSend,
+                    time:convertTime()
                 })
             }catch(err){
                 console.log(err)
@@ -331,10 +345,13 @@ const QuestaoAlternativa: React.FC = () => {
                        
                     <IonRow className='row-toggle'>                                            
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>                        
-                        <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>                   
+                        <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>{
+                            setShownTimer(!shownTimer)
+                            setTime('')
+                            }}/>                   
                     </IonRow>
                     <IonRow className='ios row-timer-alternativa'>
-                        {shownTimer && timer}
+                        {shownTimer && <Timer value={time} onChange={(event)=> setTime(event.target.value!)}/>}
                     </IonRow>
                     <Limitedalternativa 
                     onClick={()=> setShowPopLimit(false)} 
@@ -353,7 +370,7 @@ const QuestaoAlternativa: React.FC = () => {
 
 }
 
-const StyledTimer = styled(IonCol)`
+export const StyledTimer = styled(IonCol)`
     display:flex;
     flex-direction:row;
     width:auto;
@@ -361,24 +378,13 @@ const StyledTimer = styled(IonCol)`
     align-items: center;
     position:absolute;
 `;
-const Timertext = styled(IonInput)`
-    text-align:center;
-    color:var(--ion-color-dark);
-    border-radius:16px;
-    background:var(--ion-color-light);
-    font-weight:bold;
-    width: 3rem;
-    height: -webkit-fill-available;
-    --padding-start: 3px;
-    --padding-end: 3px;
-`;
-const Timer: React.FC = () => {
+const Timer: React.FC<{value:string; onChange:(event: ChangeEvent<HTMLInputElement>)=>void}> = props => {
 
     return (
         <>
-            <StyledTimer>
+            <StyledTimer >
                 <IonIcon className='icon-styled' icon={timerOutline} />
-                <Timertext placeholder='00:00'></Timertext>
+                    <TimeField colon=':' value={props.value} onChange={props.onChange}  input={<input className='input-time'></input>} ></TimeField> 
             </StyledTimer>
         </>
     );

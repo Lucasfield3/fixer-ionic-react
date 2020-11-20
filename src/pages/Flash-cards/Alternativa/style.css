@@ -316,3 +316,12 @@ ion-item{
   --border-radius: 21px;
   --max-width: 16.4rem;
 }
+.input-time{
+  text-align:center;
+    color:var(--ion-color-dark);
+    border-radius:16px;
+    background:var(--ion-color-light);
+    font-weight:bold;
+    width:4.6rem;
+    height:2rem;
+}

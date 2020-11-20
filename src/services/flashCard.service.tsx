@@ -5,7 +5,7 @@ interface NewFlashCard{
     creator:string;
     enunciated:string;
     subject?:string;
-    time?:string;
+    time?:number;
     answerFlashCard:string;
     alternatives?:Alternative[];
     title:string;
@@ -24,7 +24,7 @@ export interface FlashCard {
     enunciated:string;
     type?:string;
     subject:string;
-    time?:string;
+    time?:number;
     title:string;
     themes:string[];
     alternatives?:Alternative[];
