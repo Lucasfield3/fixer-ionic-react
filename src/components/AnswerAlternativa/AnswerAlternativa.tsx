@@ -81,7 +81,7 @@ const AnswerAlternativa: React.FC = () => {
     }
     useIonViewWillLeave(() => {
         menuController.enable(true)
-        
+        clearInterval(interval)
 
     }, [])
     const handleCount =()=>{
@@ -165,6 +165,7 @@ const AnswerAlternativa: React.FC = () => {
             setProgress(progress - 0.15)
        }
     }
+    var interval = 0
     const cronometro = ()=>{
         const card = history.location.state as FlashCard
         if(card.time !== 0){
@@ -173,25 +174,19 @@ const AnswerAlternativa: React.FC = () => {
             let seconds = timeToSeconds % 60
             console.log(minutes)
             console.log(seconds)
-            var interval = setInterval(()=>{
-                if(minutes > 10){
-                    setMinutes(('0'+ minutes).toString())            
-                }
-                if(seconds > 10){
-                    setSeconds(('0'+ seconds).toString())
-                }
+           interval = setInterval(()=>{
                 setMinutes((minutes).toString())
                 if(seconds === 0 && minutes !== 0 ){
                     setMinutes((minutes--).toString())
                     setSeconds((seconds = 60).toString())
                 }
                 setSeconds((seconds--).toString())
-                if(seconds === 0 && minutes === 0){
+                if(seconds === -1 && minutes === 0){
                     clearInterval(interval)
                     setSeconds('0')
                     setMinutes('0')
                     setCards(<CardTime/>)
-                    setIsflipped(!isFlipped)
+                    setIsflipped(true)
                 }
                 }, 1000)
                 
@@ -352,7 +347,7 @@ const AnswerAlternativa: React.FC = () => {
                             removeActive()
                             setShownPopResult(false)
                             setIsflipped(false)
-                            history.push('/AnswerAlternativa')
+                            cronometro()
                         }} />
                     </CardStats>
                 </IonContent>
