@@ -19,6 +19,7 @@ import CardRed from '../cardRed/cardRed';
 import CardGreen from '../CardGreen/cardGreen';
 import { menuController } from '@ionic/core';
 import CardTime from '../CardTime/cardTime';
+import { loadavg } from 'os';
 
 
 
@@ -34,7 +35,7 @@ const AnswerAlternativa: React.FC = () => {
     const [shownPopsair, setShownPopsair] = useState<boolean>(false);
     const [shownPopResult, setShownPopResult] = useState<boolean>(false);
     const [shownIcon, setShownIcon] = useState(false)
-    const [isFlipped, setIsflipped] = useState(false);
+    const [isFlipped, setIsFlipped] = useState<boolean>(false);
     const [alternatives, setAlternatives] = useState<Alternative[]>()
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [progress, setProgress] = useState<number>(0)
@@ -42,6 +43,7 @@ const AnswerAlternativa: React.FC = () => {
     const [seconds, setSeconds] = useState('')
     const [minutes, setMinutes] = useState('')
     const [cards, setCards] = useState<{}>()
+    
     const card = history.location.state as FlashCard
     const [repeat, setRepeat] = useState({
         count:0
@@ -50,7 +52,7 @@ const AnswerAlternativa: React.FC = () => {
         answer: 'resposta-certa',
         correct: false
     })
- 
+
   
     const [activeAlternative, setActiveAlternative] = useState<Alternative>({
         id: '123',
@@ -60,6 +62,7 @@ const AnswerAlternativa: React.FC = () => {
         id: -1,
         active: false,
     })
+    const [validFlipped, setValidFlipped] = useState<number>(activeAlternative.answer !== 'alternativa-ativada'   && 1 || 0)
     const letras = ['a', 'b', 'c', 'd', 'e']
     const [themes, setThemes] = useState<string[]>([]);
     const [cardRed, setCardRed] = useState(<CardRed />)
@@ -68,7 +71,7 @@ const AnswerAlternativa: React.FC = () => {
     const settingLoading = () => {
         setTimeout(() => {
             setShowLoading(false);
-            setIsflipped(!isFlipped)
+            setIsFlipped(true)
             disableAlternatives()
         }, 1500);
     }
@@ -81,8 +84,7 @@ const AnswerAlternativa: React.FC = () => {
     }
     useIonViewWillLeave(() => {
         menuController.enable(true)
-        
-
+        clearInterval(interValIntern)
     }, [])
     const handleCount =()=>{
         
@@ -90,6 +92,7 @@ const AnswerAlternativa: React.FC = () => {
         console.log(repeat.count)
     }
     useIonViewWillEnter(() => {
+         
         cronometro()
         console.log(repeat.count)
         setClassName({
@@ -97,7 +100,7 @@ const AnswerAlternativa: React.FC = () => {
             active: false
         })
         setShowLoading(false)
-        setIsflipped(false)
+        setIsFlipped(false)
         if (history.location.state) {
             const card = history.location.state as FlashCard
             console.log(card)
@@ -138,7 +141,8 @@ const AnswerAlternativa: React.FC = () => {
         console.log(checker)
         ProgressBar(checker)
         setCheck(checker)
-        if(checker.correct){
+
+        if(checker.correct){    
             setCards(<CardGreen textRightAnswer={check.answer}/>)
         }else{
             setCards(<CardRed/>)
@@ -158,46 +162,52 @@ const AnswerAlternativa: React.FC = () => {
     }
     const ProgressBar = (validator:Checker)=>{
        if(validator.correct == true && progress >= 0){
-            setProgress(progress + 0.30)    
+            setProgress(progress + 0.30) 
        }else if(validator.correct == false && progress == 0){
-            setProgress(0)       
+            setProgress(0)  
        }else if(validator.correct == false && progress >= 0.30 || progress <= 0.30){
             setProgress(progress - 0.15)
        }
     }
-    const cronometro = ()=>{
+    var i = 0
+    var interValIntern = 0
+    function cronometro(){
+        const cardTime = <CardTime/>
         const card = history.location.state as FlashCard
         if(card.time !== 0){
-            const timeToSeconds = (card.time!)/1000 
-            let minutes =  Math.trunc(timeToSeconds/60)
-            let seconds = timeToSeconds % 60
-            console.log(minutes)
-            console.log(seconds)
-            var interval = setInterval(()=>{
-                if(minutes > 10){
-                    setMinutes(('0'+ minutes).toString())         
-                }
-                if(seconds > 10){
-                    setSeconds(('0'+ seconds).toString())
-                }
-                setMinutes((minutes).toString())
-                if(seconds === 0 && minutes !== 0 ){
-                    setMinutes((minutes--).toString())
-                    setSeconds((seconds = 60).toString())
-                }
-                setSeconds((seconds--).toString())
-                if(seconds === 0 && minutes === 0){
-                    clearInterval(interval)
-                    setSeconds('0')
-                    setMinutes('0')
-                    setCards(<CardTime/>)
-                    setIsflipped(!isFlipped)
-                }
-                }, 1000)
+                const timeToSeconds = (card.time!)/1000 
+                let minutesVar =  Math.trunc(timeToSeconds/60)
+                let secondsVar = timeToSeconds % 60
+                    console.log(interValIntern)
+                    interValIntern  = setInterval(()=>{
+                        console.log(i++)
+                        setMinutes((minutesVar).toString())
+                            if(secondsVar === 0 && minutesVar !== 0 ){
+                                setMinutes((minutesVar--).toString())
+                                setSeconds((secondsVar = 60).toString())
+                            }
+                            if(i === 1){
+                                clearInterval(interValIntern)
+                                console.log(i)
+                            }else{
+                                setSeconds((secondsVar--).toString()) 
+                                console.log(i)
+                            }
+           
+                            if(secondsVar === -1 && minutesVar === 0){
+                                clearInterval(interValIntern)
+                                setSeconds((secondsVar + 1).toString())
+                                setMinutes((minutesVar).toString())
+                                setCards(cardTime)
+                                setIsFlipped(true)
+                                console.log(isFlipped)
+                            }                            
+                        }, 1000)
+
                 
-        }
-        
+        }      
     }
+ 
     return (
         <>
             <IonPage>
@@ -299,7 +309,9 @@ const AnswerAlternativa: React.FC = () => {
                                     setShowLoading(!showLoading)
                                     handleFlipAnswer()
                                     settingLoading()
-                                   
+                                    i = 1
+                                    cronometro()
+                                    console.log(interValIntern)
                                 }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
                             </IonRow>
                             <IonLoading
@@ -339,7 +351,7 @@ const AnswerAlternativa: React.FC = () => {
                             removeActive()
                             setShownPopResult(false)
                             history.push('/Flash-cards')
-                            setIsflipped(!isFlipped)
+                            setIsFlipped(true)
                             handleCount()
                         }}
                         textConquista='Nome conquista'
@@ -351,8 +363,9 @@ const AnswerAlternativa: React.FC = () => {
                             enableAlternatives()
                             removeActive()
                             setShownPopResult(false)
-                            setIsflipped(false)
-                            history.push('/AnswerAlternativa')
+                            setIsFlipped(false)
+                            i = 0
+                            cronometro()
                         }} />
                     </CardStats>
                 </IonContent>

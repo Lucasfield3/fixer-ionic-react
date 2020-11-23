@@ -16,6 +16,7 @@ export interface NewAlternative{
     answer:string
 }
 export interface FlashCard {
+    [x: string]: any
     owner?:User;
     creator:User;
     creation?:string;
@@ -29,7 +30,7 @@ export interface FlashCard {
     themes:string[];
     alternatives?:Alternative[];
 }
-interface User{
+export interface User{
     id:string;
     name:string;
     email:string;

@@ -93,6 +93,7 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 /**<Route path="/swiperSlide" component={swiperSlide} exact={true} /> */
 
 //<Route path="/CardRed" component={CardRed} exact={true} />

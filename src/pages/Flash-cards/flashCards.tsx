@@ -19,12 +19,14 @@ import {
     useIonViewWillEnter, 
     IonCol
 } from '@ionic/react'
-import { add, menuOutline, trash, bookSharp, addSharp, pencilSharp} from 'ionicons/icons';
+import { add, menuOutline, trash, bookSharp, addSharp, pencilSharp, card} from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import Cards from './Cards/Cards';
 import { deleteFlashCard, FlashCard, getFlashCards } from '../../services/flashCard.service';
+
+
 
 async function openMenu() {
     await menuController.open();
@@ -38,7 +40,7 @@ const FlashCards: React.FC = () => {
     const [showActionSheet, setShowActionSheet] = useState(false);
     const [activeCard, setActiveCard] = useState<FlashCard>()
     const [cards, setCards] = useState<FlashCard[]>([])
-
+    const status:FlashCard[] = []
     async function getCards() {
         let cardsValues = await getFlashCards()
         setCards(cardsValues)
@@ -46,7 +48,6 @@ const FlashCards: React.FC = () => {
     useIonViewWillEnter(() => {
         menuController.enable(true);
         getCards()
-        
     }, [])
     const handleResponderButton = ()=>{
         if(activeCard?.type === 'alternative'){
@@ -63,8 +64,15 @@ const FlashCards: React.FC = () => {
             history.push('EditDissertativa', activeCard)             
         }
     }
+   
 
+        const filteredCards = status.filter(card=>{
+        card.title.toLowerCase().includes(searchText.toLowerCase())
+    })
 
+    
+
+    const cardTitle = cards.filter((card)=> card.title)
     const handleMenu = (card:FlashCard)=>{
         setActiveCard(card)
         setShowActionSheet(true)
@@ -75,6 +83,13 @@ const FlashCards: React.FC = () => {
         setCards(flashCardDeleted)
         console.log(cards)
     }
+
+    let cardsFiltered = cards.filter(card =>{
+       if(cards){
+            return card.title.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
+        }
+    })
+
     return (
         <>
             <IonPage>
@@ -105,15 +120,14 @@ const FlashCards: React.FC = () => {
                     <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards'>
                         <IonCol >
                             <IonGrid className='ios grid-flashcards'>
-                                {cards.map((card: FlashCard, index) => {
+                                {cardsFiltered.map((card: FlashCard, index) => {
                                     return (
-                                        <Cards text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={() => handleMenu(card)} />
+                                    <Cards status={filteredCards} text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={() => handleMenu(card)}>{filteredCards}</Cards>
                                     )
                                 })}
                             </IonGrid>
                             {cards.length == 0 && <Vazio/>|| '' }
                         </IonCol>
-
                         <IonActionSheet
 
                             isOpen={showActionSheet}
@@ -207,7 +221,7 @@ const FlashCards: React.FC = () => {
 }
 
 
-const Vazio: React.FC = () => {
+export const Vazio: React.FC = () => {
 
     return (
         <>

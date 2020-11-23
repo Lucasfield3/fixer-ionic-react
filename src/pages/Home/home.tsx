@@ -17,7 +17,7 @@ import {
   IonLabel,
   IonCard,
   IonCardContent,
-  IonSearchbar, IonBackdrop
+  IonSearchbar, IonBackdrop, IonCol, useIonViewWillEnter
 } from '@ionic/react'
 import { menuOutline } from 'ionicons/icons';
 import './style.css'
@@ -25,26 +25,13 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
 import imgAvatar from '../../Assets/images/avatar.svg'
 import smallLogo from '../../Assets/icons/logo-small.svg'
-//import 'swiper/swiper-bundle.css';
+import { FlashCard, getFlashCards } from '../../services/flashCard.service';
+import Cards from '../Flash-cards/Cards/Cards';
+import { Vazio } from '../Flash-cards/flashCards';
+import Carousel from 'react-elastic-carousel';
 
 
 const Home: React.FC = () => {
-
-  //const slides = []
-
-  /*for (let i = 0; i < 5; i += 1) {
-    slides.push(
-      <SwiperSlide key={`slide-${i}`} tag="li">
-        <img
-          src="https://miro.medium.com/max/700/1*jCMOLE3GeLi4cksKyTHvPQ.jpeg"
-          style={{ listStyle: 'none' }}
-          alt={`slide-${i}`} />
-      </SwiperSlide>
-    )
-  }*/
-
-
-
 
 
   async function openMenu() {
@@ -60,7 +47,23 @@ const Home: React.FC = () => {
   const [backDrop, setBackDrop] = useState<{}>('');
   const [isShown, setIsShown] = useState<boolean>(false);
   const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
-
+  const [cards, setCards] = useState<FlashCard[]>([])
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1
+  };
+  async function getCards() {
+    let cardsValues = await getFlashCards()
+    setCards(cardsValues)
+}
+  useIonViewWillEnter(() => {
+    menuController.enable(true);
+    getCards()
+    
+}, [])
   const changeBtn = () => {
     setTimeout(() => {
       setHome(<BtnHome backHome={() => {
@@ -80,7 +83,9 @@ const Home: React.FC = () => {
       setIsPhoto(false)
     }} />)
   }
-
+const breakPoints = [
+  {width: 1, itemsToShow:2}
+]
   return (
     <>
       <IonMenu onIonDidClose={() => {
@@ -224,10 +229,18 @@ const Home: React.FC = () => {
           <IonGrid className="menu-grid">
             <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel>
 
-            <IonCard className="card-menu-content">
-              <IonCardContent className="card-title-menu">
-               
-              </IonCardContent>
+            <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards-slide'>
+                  <IonGrid className='ios grid-flashcards'>
+                  <Carousel breakPoints={breakPoints}>
+                      {cards.map((card: FlashCard, index) => {
+                          return (        
+                              <Cards status={[]} text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={()=> console.log('clicked')} />
+                          )
+                      })}
+                      </Carousel>
+                  </IonGrid>
+                  {cards.length == 0 && <Vazio/>|| '' }
+
             </IonCard>
 
             <IonLabel className="label-menu-title-cards">Mais respondidos</IonLabel>
