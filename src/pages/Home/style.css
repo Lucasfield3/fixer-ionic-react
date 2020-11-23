@@ -263,3 +263,27 @@ ion-button{
 .espacamento{
   margin-top: 1px;
 }
+.container-flashcards-slide {
+  display: flex;
+    justify-content: center;
+    background: rgba(1, 22, 39, 0.29);
+    width: 96%;
+    height: 25vh;
+    border-radius: 5px;
+    overflow: auto;
+    margin-inline-start: 5px;
+    margin-inline-end: 5px;
+    margin-bottom: 1.3rem;
+    margin-top: 1rem;
+}
+
+.rec-dot{
+  background-color: rgba(33, 52, 116, 0.5)!important;
+  box-shadow: 0 0 1px 3px var(--ion-color-dark)!important;
+}
+.rec .rec-arrow-right{
+  display: none;
+}
+.rec .rec-arrow-left{
+  display: none;
+}

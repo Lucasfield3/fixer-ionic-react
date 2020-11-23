@@ -51,6 +51,13 @@ const CriarQuestionario:React.FC = ()=>{
     useIonViewWillEnter(()=>{
         setCards(cards)
     },[])
+
+    const AddFlashCards = ()=>{
+
+    }
+    const getAllFlashCards = ()=>{
+        
+    }
     return(
         <>
             <IonPage>
@@ -109,7 +116,7 @@ const CriarQuestionario:React.FC = ()=>{
                         <IonGrid className='back-list'>
                             {listCards.map((card:FlashCard, index)=>{
                                 return(
-                                    <IonRow key={index}>Titulo Flashcard</IonRow>
+                                    <IonRow key={index}>{card.title}</IonRow>
                                 )
                             })}
                         </IonGrid>
@@ -140,9 +147,13 @@ const CriarQuestionario:React.FC = ()=>{
                         {shownTimer && timer}
                     </IonRow>
                     <IonCard color='light' className='card-list'>
-                        <IonRow className='ion-justify-content-center'>
-                            <IonLabel style={{fontWeight:'bold', fontSize:'18px'}} color='dark'>Flash Cards</IonLabel>
-                        </IonRow>
+                        {cards.map((card:FlashCard, index)=>{
+                            return(
+                            <IonRow key={index} className='ion-justify-content-center'>
+                                <IonLabel key={card.id} style={{fontWeight:'bold', fontSize:'18px'}} color='dark'>{card.title}</IonLabel>
+                            </IonRow>
+                            )
+                        })}
                         <IonRow>
                             <IonGrid className='back-list-remove'>
                                <IonRow className='ion-justify-content-center row-label-remove'>Remover</IonRow>

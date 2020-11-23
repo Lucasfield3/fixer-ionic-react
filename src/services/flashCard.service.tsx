@@ -29,7 +29,7 @@ export interface FlashCard {
     themes:string[];
     alternatives?:Alternative[];
 }
-interface User{
+export interface User{
     id:string;
     name:string;
     email:string;

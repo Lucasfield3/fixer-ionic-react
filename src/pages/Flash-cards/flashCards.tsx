@@ -207,7 +207,7 @@ const FlashCards: React.FC = () => {
 }
 
 
-const Vazio: React.FC = () => {
+export const Vazio: React.FC = () => {
 
     return (
         <>
