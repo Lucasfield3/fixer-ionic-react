@@ -175,7 +175,7 @@ const AnswerAlternativa: React.FC = () => {
             console.log(seconds)
             var interval = setInterval(()=>{
                 if(minutes > 10){
-                    setMinutes(('0'+ minutes).toString())            
+                    setMinutes(('0'+ minutes).toString())         
                 }
                 if(seconds > 10){
                     setSeconds(('0'+ seconds).toString())
