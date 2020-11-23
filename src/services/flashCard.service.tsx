@@ -16,6 +16,7 @@ export interface NewAlternative{
     answer:string
 }
 export interface FlashCard {
+    [x: string]: any
     owner?:User;
     creator:User;
     creation?:string;

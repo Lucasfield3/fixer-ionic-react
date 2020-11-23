@@ -234,7 +234,7 @@ const breakPoints = [
                   <Carousel breakPoints={breakPoints}>
                       {cards.map((card: FlashCard, index) => {
                           return (        
-                              <Cards text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={()=> console.log('clicked')} />
+                              <Cards status={[]} text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={()=> console.log('clicked')} />
                           )
                       })}
                       </Carousel>

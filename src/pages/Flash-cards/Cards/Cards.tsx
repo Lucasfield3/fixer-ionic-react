@@ -4,9 +4,10 @@ import {
 IonCard,  IonImg, IonLabel, IonTitle
 } from '@ionic/react';
 import imgCardIcon from '../../../Assets/images/cardicon.png'
+import { FlashCard } from '../../../services/flashCard.service';
 
 
-const Cards: React.FC<{onClick:()=>void;id:string;title:string;type:string;text:string}> = props=>{
+const Cards: React.FC<{onClick:()=>void;id:string;title:string;type:string;text:string;status:FlashCard[]}> = props=>{
 
     return(
         <>
