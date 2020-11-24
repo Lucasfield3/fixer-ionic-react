@@ -201,8 +201,9 @@ ion-item{
   font-size: 20px;
 } 
 
-.btn-dissertativa{
-  margin: auto;
+.btn-dissertativa-edit{
+    
+    margin: 1rem;
     font-weight: bold;
     width: 7.9rem;
     height: 2.3rem;
@@ -211,6 +212,9 @@ ion-item{
     font-size: 14.2px;
     border-radius: 0.2rem;
     margin-bottom: 0rem;
+
+    display: flex;
+
 }
 
 .btn-alternativa{
