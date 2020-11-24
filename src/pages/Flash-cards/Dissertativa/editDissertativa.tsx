@@ -104,6 +104,7 @@ const EditDissertativa: React.FC = () => {
         themes.map((t:string)=>{
             temasSend.push(t)
         })
+        if(textAreaQuestion !== '' && textRightAnswer !== ''){
             try{
                 await putFlashCard({
                     creator:payLoad.id,
@@ -119,6 +120,7 @@ const EditDissertativa: React.FC = () => {
                 console.log(err)
             }      
             setShowModal(true)
+        }
     }
 
    
@@ -234,10 +236,12 @@ const EditDissertativa: React.FC = () => {
                             <IonText className="modal-text" color="dark">
                                 <IonLabel>Alterações salvas</IonLabel>
                             </IonText>
-                            <IonButton color='light' className="btn-dissertativa" onClick={() => {
-                            setShowModal(false)                        
-                            history.push('/Flash-cards')                        
-                            }}>Ok</IonButton>
+                            <IonRow className='ion-justify-content-center'>
+                                <IonButton color='light' className="btn-edit" onClick={() => {
+                                setShowModal(false)                        
+                                history.push('/Flash-cards')                        
+                                }}>Ok</IonButton>
+                            </IonRow>
                         </IonCardTitle>
                     </IonModal>
 

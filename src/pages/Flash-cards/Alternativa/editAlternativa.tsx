@@ -268,10 +268,12 @@ const EditAlternativa: React.FC = () => {
                             <IonText className="modal-text" color="dark">
                                 <IonLabel>Alterações salvas</IonLabel>
                             </IonText>
-                            <IonButton color='light' className="btn-dissertativa-edit" onClick={() => {
-                            setShowModal(false)                        
-                            history.push('/Flash-cards')                        
-                            }}>Ok</IonButton>
+                            <IonRow className='ion-justify-content-center'>
+                                <IonButton color='light' className="btn-edit" onClick={() => {
+                                setShowModal(false)                        
+                                history.push('/Flash-cards')                        
+                                }}>Ok</IonButton>
+                            </IonRow>
                         </IonCardTitle>
                     </IonModal>
 

@@ -43,7 +43,7 @@ const AnswerAlternativa: React.FC = () => {
     const [seconds, setSeconds] = useState('')
     const [minutes, setMinutes] = useState('')
     const [cards, setCards] = useState<{}>()
-    
+    const [title, setTitle] = useState('')
     const card = history.location.state as FlashCard
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
@@ -71,17 +71,11 @@ const AnswerAlternativa: React.FC = () => {
             disableAlternatives()
         }, 1500);
     }
-    const popOverSave = () => {
-        setShownPopsave(true);
-        setTimeout(() => {
-            setShownPopsave(false);
-            setShowPopover(false);
-        }, 1000)
-    }
     useIonViewWillLeave(() => {
         menuController.enable(true)
     }, [])
     useIonViewWillEnter(() => {
+        enableAlternatives()
         setClassName({
             id: -1,
             active: false
@@ -97,6 +91,7 @@ const AnswerAlternativa: React.FC = () => {
             setAlternatives(card.alternatives)
             setIdFlashCard(card.id)
             setTime(card.time!)
+            setTitle(card.title)
         } else {
             console.log('Não tem nada');
         }
@@ -204,7 +199,7 @@ const AnswerAlternativa: React.FC = () => {
                             Sair
                     </IonFabButton>
                     </IonToolbar>
-                    <IonRow className='row-level-progress'>
+                    {/* <IonRow className='row-level-progress'>
                         <IonRow className='ion-justify-content-center'>
                             <IonLabel className="label-lvl">LV</IonLabel>
                         </IonRow>
@@ -213,7 +208,8 @@ const AnswerAlternativa: React.FC = () => {
                             <IonProgressBar className='progress-bar' value={progress}></IonProgressBar>
                             <IonLabel className="start-lvl">1</IonLabel>
                         </IonRow>
-                    </IonRow>
+                    </IonRow> */}
+                    <IonRow className='ion-justify-content-center flashcard-title'>{title}</IonRow>
                 </IonHeader>
 
 
@@ -324,8 +320,14 @@ const AnswerAlternativa: React.FC = () => {
                     </IonGrid>
                     <IonRow className='ios ion-justify-content-center row-btn-final'>
                         <IonButton disabled={isFlipped == false && true} onClick={() => {
-                            setShownPopResult(true)
-                            enableAlternatives()
+                            if(check!.correct){
+                                removeActive()
+                                setShownPopResult(false)
+                                history.push('/Flash-cards')
+                                setIsFlipped(!isFlipped)
+                            }else{
+                                setShownPopResult(true)
+                            }
                         }} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>
                     </IonRow>
                     <CardStats
@@ -337,10 +339,10 @@ const AnswerAlternativa: React.FC = () => {
                             history.push('/Flash-cards')
                             setIsFlipped(true)
                         }}
-                        textConquista='Nome conquista'
-                        textCorrect='0'
-                        textExp='000'
-                        textTotal='0'
+                        textConquista=''
+                        textCorrect=''
+                        textExp=''
+                        textTotal=''
                     >
                         <Redone style={mystyle} onClick={() => {
                             enableAlternatives()

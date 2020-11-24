@@ -56,13 +56,12 @@ const AnswerDissertativa: React.FC = () => {
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [cardRed, setCardRed] = useState(<CardRed />)
     const [themes, setThemes] = useState<string[]>([]);
+    const [title, setTitle] = useState('')
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
         correct: false
     })
-    const [buttonFinal, setButtoFinal] = useState<{}>(<IonButton onClick={() => {
-        setShownPopResult(true)
-    }} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>)
+    const [buttonFinal, setButtoFinal] = useState<{}>()
     const [buttonAnswer, setButtonAnswer] = useState<{}>(<IonButton disabled onClick={() => {
         setShownIcon(true)
         disableAnswer()
@@ -93,6 +92,7 @@ const AnswerDissertativa: React.FC = () => {
             setThemes(card.themes)
             setTextAreaQuestion(card.enunciated)
             setIdFlashCard(card.id)
+            setTitle(card.title)
         } else {
             console.log('Não tem nada');
         }
@@ -114,7 +114,7 @@ const AnswerDissertativa: React.FC = () => {
         eventAlternativas.style.pointerEvents = 'auto'
     }
     const mystyle = {
-        display: check!.correct && 'none' || 'block'
+        display: check.correct! && 'none' || 'block'
     }
     const handleFlipAnswer = async () => {
         let checker = await getCheck(idFlashCard, textAreaAnswer)
@@ -134,7 +134,7 @@ const AnswerDissertativa: React.FC = () => {
                             Sair
                     </IonFabButton>
                     </IonToolbar>
-                    <IonRow className='row-level-progress'>
+                    {/* <IonRow className='row-level-progress'>
                         <IonRow className='ion-justify-content-center'>
                             <IonLabel className="label-lvl">LV</IonLabel>
                         </IonRow>
@@ -143,7 +143,8 @@ const AnswerDissertativa: React.FC = () => {
                             <IonProgressBar className='progress-bar' value={0.5}></IonProgressBar>
                             <IonLabel className="start-lvl">1</IonLabel>
                         </IonRow>
-                    </IonRow>
+                    </IonRow> */}
+                     <IonRow className='ion-justify-content-center flashcard-title'>{title}</IonRow>
                 </IonHeader>
 
 
@@ -266,7 +267,15 @@ const AnswerDissertativa: React.FC = () => {
                         <IonRow color='light' className='row-footer-resposta'></IonRow>
                     </IonCard >
                     <IonRow className='ios ion-justify-content-center row-btn-final'>
-                        {shownButton && buttonAnswer || buttonFinal}
+                        {shownButton && buttonAnswer || <IonButton onClick={() => {
+                            if(check!.correct){
+                                history.push('Flash-cards')
+                                setIsflipped(!isFlipped)
+                                setTextAreaAnswer('')
+                            }else{
+                                setShownPopResult(true)
+                            }
+                        }} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>}
                     </IonRow>
                     <CardStats
                         backdropDismiss={false}
@@ -277,10 +286,10 @@ const AnswerDissertativa: React.FC = () => {
                             setIsflipped(!isFlipped)
                             setTextAreaAnswer('')
                         }}
-                        textConquista='Nome conquista'
-                        textCorrect='0'
-                        textExp='000'
-                        textTotal='0'
+                        textConquista=''
+                        textCorrect=''
+                        textExp=''
+                        textTotal=''
                     >
                     <Redone style={mystyle} onClick={() => {
                             enableAnswer()

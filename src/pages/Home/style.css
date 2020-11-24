@@ -115,7 +115,7 @@ ion-button{
   border: 2.5px var(--ion-color-dark) solid;
   opacity: 1;
   transition: opacity ease-in 100ms;
-  cursor: pointer;
+  cursor: default;
 }
 
 .background-photo{
@@ -125,7 +125,7 @@ ion-button{
   width: 6.6rem;
   margin-bottom: 0rem;
   position: absolute;
-  cursor: pointer;
+  /* cursor: pointer; */
   font-weight: bold;
   color: rgb(6, 6, 43);
   background-color: rgb(247, 247, 247);
@@ -133,6 +133,7 @@ ion-button{
   padding-top: 33px;
   border-radius: 50%;
   margin-left: 0.2rem;
+  display: none;
 }
 .text-photo{
   font-weight: bold;
@@ -194,7 +195,7 @@ ion-label div:only-child{
   justify-content: center;
   color: #011627;
   font-family: 'Archivo Narrow', sans-serif;
-  margin-top: .2rem;
+  margin-top: 0.7rem;
 }
 .display{
  opacity: 0;
@@ -274,7 +275,7 @@ ion-button{
     margin-inline-start: 5px;
     margin-inline-end: 5px;
     margin-bottom: 1.3rem;
-    margin-top: 1rem;
+    margin-top: 0.4rem;
 }
 
 .rec-dot{
@@ -286,4 +287,19 @@ ion-button{
 }
 .rec .rec-arrow-left{
   display: none;
+}
+.slides-presentation{
+  height: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 21px;
+  width: 100%;
+  font-size: 19px;
+  text-align: center;
+  font-weight: bold;
+  padding: 2px;
+}
+.row-carousel > .rec-pagination{
+  margin-top:0.3rem !important;
 }

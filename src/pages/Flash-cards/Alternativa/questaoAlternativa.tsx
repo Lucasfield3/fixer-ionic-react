@@ -343,7 +343,7 @@ const QuestaoAlternativa: React.FC = () => {
                         ))}
                     </IonGrid>
 
-                    <IonRow className='row-toggle'>
+                    {/* <IonRow className='row-toggle'>
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>
                         <IonToggle checked={checked} onIonChange={(e) => setChecked(e.detail.checked)} className='ios toggle' onClick={() => {
                             setShownTimer(!shownTimer)
@@ -352,7 +352,7 @@ const QuestaoAlternativa: React.FC = () => {
                     </IonRow>
                     <IonRow className='ios row-timer-alternativa'>
                         {shownTimer && <Timer value={time} onChange={(event) => setTime(event.target.value!)} />}
-                    </IonRow>
+                    </IonRow> */}
                     <Limitedalternativa
                         onClick={() => setShowPopLimit(false)}
                         isOpen={showPopLimit}

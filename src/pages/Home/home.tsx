@@ -86,6 +86,12 @@ const Home: React.FC = () => {
 const breakPoints = [
   {width: 1, itemsToShow:2}
 ]
+const breakPointPresentation = [
+  {width: 1, itemsToShow:1},
+  {width: 1, itemsToShow:1},
+  {width: 1, itemsToShow:1}
+]
+
   return (
     <>
       <IonMenu onIonDidClose={() => {
@@ -112,16 +118,17 @@ const breakPoints = [
             {backDrop}
             <IonAvatar onClick={() => {
               setIsPhoto(!isShownPhoto)
-              changeBackDrop()
+              //changeBackDrop()
             }} className="img-avatar-perfil">
-              <IonLabel className='background-photo' style={{ opacity: isShownPhoto ? 0.6 : 0 }}>
-                <div className='text-photo' >
+              <IonLabel className='background-photo'// style={{ opacity: isShownPhoto ? 0.6 : 0 }}
+              >
+                {/* <div className='text-photo' >
                   {isShownPhoto && 'Mudar foto de perfil'}
-                </div>
+                </div> */}
               </IonLabel>
               <img alt='Avatar' src={imgAvatar} />
             </IonAvatar>
-            <IonRow style={{
+            {/* <IonRow style={{
               opasity: isShown ? 1 : 0,
               cursor: 'default',
               width: isShown ? '3.8rem' : '1.3rem',
@@ -134,7 +141,7 @@ const breakPoints = [
               {isShown && (
                 'level: '
               )}0
-            </IonRow>
+            </IonRow> */}
 
 
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
@@ -149,7 +156,7 @@ const breakPoints = [
                 }} className='btn-side-menu' color="light">Flashcards</IonButton>
 
               </IonRow>
-              <IonRow >
+              {/* <IonRow >
 
                 <IonButton fill='solid' onClick={() => {
                   closeMenu();
@@ -158,8 +165,8 @@ const breakPoints = [
 
                 }} className='btn-side-menu' color="light">Questionarios</IonButton>
 
-              </IonRow >
-              <IonRow >
+              </IonRow > */}
+              {/* <IonRow >
 
                 <IonButton fill='solid' onClick={() => {
                   closeMenu();
@@ -168,8 +175,8 @@ const breakPoints = [
                 }}
                   className='btn-side-menu' color="light">Classes</IonButton>
 
-              </IonRow >
-              <IonRow >
+              </IonRow > */}
+              {/* <IonRow >
 
                 <IonButton fill='solid' onClick={() => {
                   closeMenu();
@@ -178,7 +185,7 @@ const breakPoints = [
                 }}
                   className='btn-side-menu' color="light">Conquistas</IonButton>
 
-              </IonRow >
+              </IonRow > */}
               <IonRow >
 
                 <IonButton className='sair' onClick={() => {
@@ -217,34 +224,48 @@ const breakPoints = [
 
 
         <IonContent className="menu-apresentacao-content">
-          <IonRow>
+          {/* <IonRow>
 
             <IonSearchbar placeholder='Buscar' color='light' className="search-bar"
               value={searchText}
               onIonChange={e => setSearchText(e.detail.value!)}>
               <div className='line'></div>
             </IonSearchbar>
-          </IonRow>
+          </IonRow> */}
 
           <IonGrid className="menu-grid">
+           <IonRow style={{width:'100%'}} className='row-carousel'>
+            <Carousel breakPoints={breakPointPresentation}>
+              <IonCard className="slides-presentation" color='light'>
+                <IonLabel color='dark'>Seja bem-vindo ao FIXER!</IonLabel>
+              </IonCard>
+              <IonCard className="slides-presentation" color='light'>
+                <IonLabel color='dark' >Aqui você vai criar seu próprio conteúdo e usar no momento que você mais precisar.</IonLabel>
+              </IonCard>
+              <IonCard className="slides-presentation" color='light'>
+                <IonLabel color='dark'>Aprenda de uma maneira dinâmica e que se encaixe na sua agenda.</IonLabel>
+              </IonCard>
+            </Carousel>
+             </IonRow>     
             <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel>
 
             <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards-slide'>
                   <IonGrid className='ios grid-flashcards'>
-                  <Carousel breakPoints={breakPoints}>
+                  <Carousel  breakPoints={breakPoints}>
                       {cards.map((card: FlashCard, index) => {
                           return (        
                               <Cards status={[]} text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={()=> console.log('clicked')} />
                           )
                       })}
+                       {cards.length == 0 && <Vazio/>|| '' }
                       </Carousel>
                   </IonGrid>
-                  {cards.length == 0 && <Vazio/>|| '' }
+                  {/* {cards.length == 0 && <Vazio/>|| '' } */}
 
             </IonCard>
 
-            <IonLabel className="label-menu-title-cards">Mais respondidos</IonLabel>
-
+            {/* <IonLabel className="label-menu-title-cards">Mais respondidos</IonLabel> */}
+{/* 
             <IonCard className="card-menu-content">
 
               <IonCardContent className="card-title-menu">
@@ -255,9 +276,9 @@ const breakPoints = [
                 </IonLabel>
               </IonCardContent>
 
-            </IonCard>
+            </IonCard> */}
 
-            <IonLabel className="label-menu-title-cards">Conquistas próximas</IonLabel>
+            {/* <IonLabel className="label-menu-title-cards">Conquistas próximas</IonLabel>
 
             <IonCard className="card-menu-content">
 
@@ -266,7 +287,7 @@ const breakPoints = [
                   VAZIO
                 </IonLabel>
               </IonCardContent>
-            </IonCard>
+            </IonCard> */}
           </IonGrid>
 
 

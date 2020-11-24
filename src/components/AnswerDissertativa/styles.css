@@ -442,3 +442,8 @@ ion-item{
 --background:transparent;
 
 }
+.flashcard-title{
+  color: var(--ion-color-dark);
+  font-size: 20px;
+  font-weight: bold;
+}

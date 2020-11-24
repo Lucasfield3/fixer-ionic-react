@@ -289,13 +289,13 @@ const QuestaoDissertativa: React.FC = () => {
                         <IonRow color='light' className='row-footer-resposta'></IonRow>
                     </IonCard >
 
-                    <IonRow className='row-toggle'>
+                    {/* <IonRow className='row-toggle'>
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>
                         <IonToggle checked={checked} onIonChange={(e) => setChecked(e.detail.checked)} className='ios toggle' onClick={() => setShownTimer(!shownTimer)} />
                     </IonRow>
                     <IonRow className='ios row-timer-dissertativa'>
                         {shownTimer && timer}
-                    </IonRow>
+                    </IonRow> */}
                 
                     <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
                         <IonButton onClick={()=> handleCreateButton()} className="ios btn-criar">Criar</IonButton>

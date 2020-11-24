@@ -11,7 +11,7 @@ const CardRed: React.FC = () => {
     <>
       <IonCard className='card-error' color='light'>
         <IonRow className='ios ion-justify-content-space-between card-invalid-header'></IonRow>
-        <IonCardHeader color="light" style={{height:'15rem'}}>
+        <IonCardHeader color="light" style={{height:'11.2rem'}}>
 
           <IonRow className='ion-justify-content-center'>
             <IonIcon className="icon-invalid" icon={cardClose}></IonIcon>
@@ -23,7 +23,7 @@ const CardRed: React.FC = () => {
           </IonRow>
 
           <IonRow>
-            <IonLabel className="msg-invalid">A resposta está incorreta, verifique novamente. </IonLabel>
+            <IonLabel className="msg-invalid">A resposta está incorreta.</IonLabel>
           </IonRow>
 
  
