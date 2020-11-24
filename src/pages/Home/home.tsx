@@ -241,7 +241,7 @@ const breakPointPresentation = [
               </IonCard>
             </Carousel>
              </IonRow>     
-            {/* <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel> */}
+            {/* <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel>
 
             {/* <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards-slide'>
                   <IonGrid className='ios grid-flashcards'>
@@ -254,7 +254,9 @@ const breakPointPresentation = [
                        {cards.length == 0 && <Vazio/>|| '' }
                       </Carousel>
                   </IonGrid>
-            </IonCard> */}
+                  {/* {cards.length == 0 && <Vazio/>|| '' } */}
+
+           {/* </IonCard> */}
 
             {/* <IonLabel className="label-menu-title-cards">Mais respondidos</IonLabel> */}
 {/* 
