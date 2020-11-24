@@ -72,7 +72,7 @@ const FlashCards: React.FC = () => {
 
     
 
-    const cardTitle = cards.filter((card)=> card.title)
+   
     const handleMenu = (card:FlashCard)=>{
         setActiveCard(card)
         setShowActionSheet(true)

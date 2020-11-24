@@ -13,8 +13,9 @@
 
 .menu-grid{
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 74%;
 }
 .dark{
   position: absolute!important;
@@ -299,7 +300,4 @@ ion-button{
   text-align: center;
   font-weight: bold;
   padding: 2px;
-}
-.row-carousel > .rec-pagination{
-  margin-top:0.3rem !important;
 }

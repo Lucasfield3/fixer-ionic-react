@@ -31,23 +31,8 @@ import QuestaoAlternativa from './pages/Flash-cards/Alternativa/questaoAlternati
 import EditAlternativa from './pages/Flash-cards/Alternativa/editAlternativa'
 import QuestaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDisertativa'
 import EditDissertativa from './pages/Flash-cards/Dissertativa/editDissertativa'
-import CardRed from './components/cardRed/cardRed';
-import CardGreen from './components/CardGreen/cardGreen';
 import AnswerDissertativa from './components/AnswerDissertativa/AnswerDissertativa';
 import AnswerAlternativa from './components/AnswerAlternativa/AnswerAlternativa';
-import CardStats from './components/Card_stats_result/cardStats';
-import Emailcadastrado from './components/CardMessages/msg_email_cadastrado';
-import Emailinvalid from './components/CardMessages/msg_email_invalid';
-import Userexists from './components/CardMessages/msg_user_exists';
-import DiferentPassword from './components/CardMessages/msg_diferent_password';
-import DivergentPassword from './components/CardMessages/msg_divergent_password';
-import Passwordlimited from './components/CardMessages/msg_password_limited';
-import Passwordcaracteres from './components/CardMessages/msg_password_caracteres';
-import Classcreate from './components/CardMessages_Create/msg_class_create';
-import Alteracaosucess from './components/CardMessages_Create/msg_alteracao_sucess';
-import Limitedissertativa from './components/CardMessages/msg_limite_dissertativa';
-import Limitedalternativa from './components/CardMessages/msg_limite_alternativa';
-import Limitedenunciado from './components/CardMessages/msg_limite_enunciado';
 
 //import swiperSlide from './components/Swiper/swiperSlide';
 const App: React.FC = () => {
@@ -66,25 +51,8 @@ const App: React.FC = () => {
         <Route path="/EditAlternativa" component={EditAlternativa} exact={true} />
         <Route path="/QuestaoDissertativa" component={QuestaoDissertativa} exact={true} />
         <Route path="/EditDissertativa" component={EditDissertativa} exact={true} />
-        <Route path="/CardRed" component={CardRed} exact={true} />
-        <Route path="/CardGreen" component={CardGreen} exact={true} />
         <Route path="/AnswerDissertativa" component={AnswerDissertativa} exact={true} />
         <Route path="/AnswerAlternativa" component={AnswerAlternativa} exact={true} />
-        <Route path="/CardStats" component={CardStats} exact={true} />
-        <Route path="/Emailcadastrado" component={Emailcadastrado} exact={true} />
-        <Route path="/Emailinvalid" component={Emailinvalid} exact={true} />
-        <Route path="/Userexists" component={Userexists} exact={true} />
-        <Route path="/DiferentPassword" component={DiferentPassword} exact={true} />
-        <Route path="/DivergentPassword" component={DivergentPassword} exact={true} />
-        <Route path="/Passwordlimited" component={Passwordlimited} exact={true} />
-        <Route path="/Passwordcaracteres" component={Passwordcaracteres} exact={true} />
-        <Route path="/Classcreate" component={Classcreate} exact={true} />
-        <Route path="/Alteracaosucess" component={Alteracaosucess} exact={true} />
-        <Route path="/Limitedissertativa" component={Limitedissertativa} exact={true} />
-        <Route path="/Limitedalternativa" component={Limitedalternativa} exact={true} />
-        <Route path="/Limitedenunciado" component={Limitedenunciado} exact={true} />
-
-
         <Route exact path="/" render={() => <Redirect to="/Landing" />} />
       </IonRouterOutlet>
     </IonReactRouter>

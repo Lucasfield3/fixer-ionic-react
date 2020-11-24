@@ -19,7 +19,7 @@ import {
   IonCardContent,
   IonSearchbar, IonBackdrop, IonCol, useIonViewWillEnter
 } from '@ionic/react'
-import { menuOutline } from 'ionicons/icons';
+import { card, menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
@@ -27,7 +27,7 @@ import imgAvatar from '../../Assets/images/avatar.svg'
 import smallLogo from '../../Assets/icons/logo-small.svg'
 import { FlashCard, getFlashCards } from '../../services/flashCard.service';
 import Cards from '../Flash-cards/Cards/Cards';
-import { Vazio } from '../Flash-cards/flashCards';
+import Vazio from '../Flash-cards/flashCards';
 import Carousel from 'react-elastic-carousel';
 
 
@@ -48,21 +48,15 @@ const Home: React.FC = () => {
   const [isShown, setIsShown] = useState<boolean>(false);
   const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
   const [cards, setCards] = useState<FlashCard[]>([])
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 1
-  };
+
   async function getCards() {
     let cardsValues = await getFlashCards()
+    console.log(cardsValues)
     setCards(cardsValues)
 }
   useIonViewWillEnter(() => {
-    menuController.enable(true);
-    getCards()
-    
+    menuController.enable(true);      
+   
 }, [])
   const changeBtn = () => {
     setTimeout(() => {
@@ -76,13 +70,13 @@ const Home: React.FC = () => {
     }, 500)
   }
 
-  const changeBackDrop = () => {
-    setBackDrop(<BackDrop changeBack={() => {
-      setBackDrop('')
-      setIsShown(false)
-      setIsPhoto(false)
-    }} />)
-  }
+  // const changeBackDrop = () => {
+  //   setBackDrop(<BackDrop changeBack={() => {
+  //     setBackDrop('')
+  //     setIsShown(false)
+  //     setIsPhoto(false)
+  //   }} />)
+  // }
 const breakPoints = [
   {width: 1, itemsToShow:2}
 ]
@@ -247,22 +241,20 @@ const breakPointPresentation = [
               </IonCard>
             </Carousel>
              </IonRow>     
-            <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel>
+            {/* <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel> */}
 
-            <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards-slide'>
+            {/* <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards-slide'>
                   <IonGrid className='ios grid-flashcards'>
                   <Carousel  breakPoints={breakPoints}>
                       {cards.map((card: FlashCard, index) => {
                           return (        
-                              <Cards status={[]} text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={()=> console.log('clicked')} />
+                              <Cards status={[card]} text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={()=> console.log('clicked')} />
                           )
                       })}
                        {cards.length == 0 && <Vazio/>|| '' }
                       </Carousel>
                   </IonGrid>
-                  {/* {cards.length == 0 && <Vazio/>|| '' } */}
-
-            </IonCard>
+            </IonCard> */}
 
             {/* <IonLabel className="label-menu-title-cards">Mais respondidos</IonLabel> */}
 {/* 
@@ -317,19 +309,3 @@ const BackDrop: React.FC<{ changeBack: () => void }> = props => {
 }
 
 export default Home;
-/** <Swiper
-                  spaceBetween={50}
-                  slidesPerView={3}
-                  navigation
-                  pagination={{ clickable: true }}
-                  height={100}
-                  width={100}
-                  onSlideChange={() => console.log('slide change')}
-                  onSwiper={(~) => console.log(Swiper)}
-                >
-                  <SwiperSlide>Slide 1</SwiperSlide>
-                  <SwiperSlide>Slide 2</SwiperSlide>
-                  <SwiperSlide>Slide 3</SwiperSlide>
-                  <SwiperSlide>Slide 4</SwiperSlide>
-                  <SwiperSlide>Slide 4</SwiperSlide>
-                </Swiper> */
