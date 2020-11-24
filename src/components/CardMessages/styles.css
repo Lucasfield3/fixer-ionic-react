@@ -43,8 +43,10 @@
   margin-top: 1.5rem; 
 }
 .ios .btn_msg_sim, .btn_msg_sim{
+  margin-bottom: 1rem;
+  
   width: 4rem;
-  height: 1.7rem;
+  height: 2rem;
   --ion-color-light-contrast: var(--ion-color-success)!important;
   border: 1px solid var(--ion-color-success);
   font-size: 13px;
@@ -52,7 +54,7 @@
 }
 .ios .btn_msg_nao, .btn_msg_nao{
   width: 4rem;
-  height: 1.7rem;
+  height: 2rem;
   border: 1px solid rgba(255, 32, 110, 0.31);
   font-size: 13px;
   border-radius: 0.2rem;

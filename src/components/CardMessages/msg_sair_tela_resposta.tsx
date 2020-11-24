@@ -9,7 +9,7 @@ const SairTelaResposta: React.FC<{onDidDismiss:()=> void; isOpen:boolean; onClic
     isOpen={props.isOpen}
     onDidDismiss={props.onDidDismiss}
     >
-      <IonCardHeader>
+      <IonCardHeader className="ios sairTelaResposta">
             <IonLabel className="ios label-msg-notification-sair">Deseja mesmo sair?</IonLabel>
         </IonCardHeader>
         <IonRow className='ion-justify-content-center' style={{display:'flex'}}>

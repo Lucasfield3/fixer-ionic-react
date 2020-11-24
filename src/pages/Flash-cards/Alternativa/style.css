@@ -310,7 +310,8 @@ ion-item{
   
 }
 .modal-criar{
-  --height: 20%;
+  --height: 16%;
+  --width: 100%;
 }
 .modal-choose{
   --height: 20%;
