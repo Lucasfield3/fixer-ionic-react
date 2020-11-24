@@ -93,7 +93,6 @@ const AnswerAlternativa: React.FC = () => {
     }
     useIonViewWillEnter(() => {
          
-        cronometro()
         console.log(repeat.count)
         setClassName({
             id: -1,
@@ -245,9 +244,9 @@ const AnswerAlternativa: React.FC = () => {
 
                     />
                      
-                        <IonCol style={{display: time === 0 && 'none' || 'block'}} className='timer-flashcard' >
+                        {/* <IonCol style={{display: time === 0 && 'none' || 'block'}} className='timer-flashcard' >
                             {parseInt(minutes) < 10 && '0'}{minutes}:{parseInt(seconds) < 10 && '0'}{seconds}
-                        </IonCol> 
+                        </IonCol>  */}
                     <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
                         <IonCard  className='card-dissertativa' color='light'>
                             <IonCardHeader style={{ padding: 0 }}>
@@ -364,8 +363,6 @@ const AnswerAlternativa: React.FC = () => {
                             removeActive()
                             setShownPopResult(false)
                             setIsFlipped(false)
-                            i = 0
-                            cronometro()
                         }} />
                     </CardStats>
                 </IonContent>
