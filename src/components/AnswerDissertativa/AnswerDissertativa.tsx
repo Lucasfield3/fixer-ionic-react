@@ -122,7 +122,15 @@ const AnswerDissertativa: React.FC = () => {
         setCheck(checker)
         disableAnswer()
     }
-
+    const handleHabilit = ()=>{
+        if(check!.correct){
+            history.push('Flash-cards')
+            setIsflipped(!isFlipped)
+            setTextAreaAnswer('')
+        }else{
+            setShownPopResult(true)
+        }
+    }
     return (
         <>
             <IonPage>
@@ -267,15 +275,7 @@ const AnswerDissertativa: React.FC = () => {
                         <IonRow color='light' className='row-footer-resposta'></IonRow>
                     </IonCard >
                     <IonRow className='ios ion-justify-content-center row-btn-final'>
-                        {shownButton && buttonAnswer || <IonButton onClick={() => {
-                            if(check!.correct){
-                                history.push('Flash-cards')
-                                setIsflipped(!isFlipped)
-                                setTextAreaAnswer('')
-                            }else{
-                                setShownPopResult(true)
-                            }
-                        }} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>}
+                        {shownButton && buttonAnswer || <IonButton onClick={() => handleHabilit()} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>}
                     </IonRow>
                     <CardStats
                         backdropDismiss={false}
