@@ -1,6 +1,6 @@
 import React,{ useState} from 'react';
 import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem } from '@ionic/react';
-import Button from '../styles/Button'
+import {ButtonRed, ButtonDark} from '../styles/Buttons'
 import { useHistory } from 'react-router-dom'
 import '../style.css'
 import { menuController } from '@ionic/core';
@@ -63,21 +63,21 @@ const clickHandler= ()=>{
             </IonRow>
                 <IonRow className="ion-align-items-center login-row">
                     <IonCol className='col-login'>
-                        <IonButton
-                        onClick={handleClickAuth}
+                        <ButtonDark
                         size="small"
-                        color='dark'
-                        expand="block"
-                        className='ion-margin btn-style-dark'
-                        >Entrar</IonButton>
+                        type='submit'
+                        className='ios btn-dark'
+                        onClick={handleClickAuth}
+                        >Entrar</ButtonDark>
                     </IonCol>
             
                     <IonCol>
-                        <Button
-                        onClick={props.handleClickLogin} 
+                        <ButtonRed
                         color='light'
-                        size="small"  
-                        >Voltar</Button>
+                        size='small'
+                        className='ios btn-danger'
+                        onClick={props.handleClickLogin} 
+                        >Voltar</ButtonRed>
                     </IonCol>
                 </IonRow>
             </IonCardContent>

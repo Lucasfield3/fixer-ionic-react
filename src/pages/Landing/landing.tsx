@@ -17,6 +17,8 @@ import gif from '../../Assets/icons/giphy.gif'
 import Login from '../Landing/forms/login'
 import Cadastro from '../Landing/forms/cadastro'
 import ReactCardFlip from 'react-card-flip';
+import { ButtonDark, ButtonPrimary } from './styles/Buttons';
+
 
 
 
@@ -84,19 +86,19 @@ const InitCard: React.FC<{onClickLogin:()=>void; onClickCad:()=>void}> = props=>
             <IonCardContent>
                 <IonRow className="ion-align-items-center row">
                     <IonCol className='col-btn'>
-                        <IonButton
+                        <ButtonDark
                             onClick={props.onClickLogin}
                             size="small" color='dark'
-                            className='ios ion-margin btn-style-dark'
-                        >Entrar</IonButton>
+                            className='ios btn-dark'
+                        >Entrar</ButtonDark>
                     </IonCol>
                     <IonCol>
-                        <IonButton
+                        <ButtonPrimary
                             onClick={props.onClickCad}
                             size="small"
                             color='primary'
-                            className='ios ion-margin btn-style-light'
-                        >Cadastro</IonButton>
+                            className='ios ion-margin btn-primary'
+                        >Cadastro</ButtonPrimary>
                     </IonCol>
                 </IonRow>
             </IonCardContent>

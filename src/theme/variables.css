@@ -118,3 +118,13 @@ ion-textarea{
   color:var(--ion-color-danger)!important;
   font-weight: bolder;
 }
+.ios .btn-dark{
+  font-size: medium;
+}
+.ios .btn-primary{
+  font-size: medium;
+  margin-right: 1vh !important;
+}
+.ios .btn-danger{
+  font-size:medium;
+}

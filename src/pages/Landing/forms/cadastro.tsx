@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem, IonAlert } from '@ionic/react';
-import Button from '../styles/Button'
+import {ButtonRed, ButtonDark} from '../styles/Buttons'
 import '../style.css'
 import { cadastro } from '../../../services/User.service';
 
@@ -76,13 +76,12 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
 
                 <IonRow className="ion-align-items-center row-btn-cadastro">
                     <IonCol>
-                        <IonButton
+                        <ButtonDark
                             onClick={handleClickAuth}
                             size="small"
-                            color='dark'
                             type='submit'
-                            className='ion-margin btn-style-dark btn-cadastro'
-                        >Cadastrar</IonButton>
+                            className='ios btn-dark'
+                        >Cadastrar</ButtonDark>
                         <IonAlert
                             isOpen={showAlert1}
                             onDidDismiss={() => {
@@ -106,12 +105,12 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
 
                     </IonCol>
                     <IonCol>
-                        <Button
+                        <ButtonRed
                             onClick={() => props.handleClickCad()}
                             size="small"
                             color='light'
-                            className='ion-margin btn-style-cadastro-light'
-                        >Cancelar</Button>
+                            className='ios btn-danger'
+                        >Cancelar</ButtonRed>
                     </IonCol>
                 </IonRow>
             </IonCardContent>
