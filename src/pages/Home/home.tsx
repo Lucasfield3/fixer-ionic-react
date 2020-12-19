@@ -29,7 +29,8 @@ import { FlashCard, getFlashCards } from '../../services/flashCard.service';
 import Cards from '../Flash-cards/Cards/Cards';
 import Vazio from '../Flash-cards/flashCards';
 import Carousel from 'react-elastic-carousel';
-
+import {ButtonRed} from '../styles/Page-default/Home-style/Home-styled'
+ 
 
 const Home: React.FC = () => {
 
@@ -70,13 +71,13 @@ const Home: React.FC = () => {
     }, 500)
   }
 
-  // const changeBackDrop = () => {
-  //   setBackDrop(<BackDrop changeBack={() => {
-  //     setBackDrop('')
-  //     setIsShown(false)
-  //     setIsPhoto(false)
-  //   }} />)
-  // }
+  const changeBackDrop = () => {
+    setBackDrop(<BackDrop changeBack={() => {
+      setBackDrop('')
+      setIsShown(false)
+      setIsPhoto(false)
+    }} />)
+  }
 const breakPoints = [
   {width: 1, itemsToShow:2}
 ]
@@ -112,17 +113,17 @@ const breakPointPresentation = [
             {backDrop}
             <IonAvatar onClick={() => {
               setIsPhoto(!isShownPhoto)
-              //changeBackDrop()
+              changeBackDrop()
             }} className="img-avatar-perfil">
-              <IonLabel className='background-photo'// style={{ opacity: isShownPhoto ? 0.6 : 0 }}
+              <IonLabel className='background-photo'style={{ opacity: isShownPhoto ? 0.6 : 0 }}
               >
-                {/* <div className='text-photo' >
+                <div className='text-photo' >
                   {isShownPhoto && 'Mudar foto de perfil'}
-                </div> */}
+                </div>
               </IonLabel>
               <img alt='Avatar' src={imgAvatar} />
             </IonAvatar>
-            {/* <IonRow style={{
+             <IonRow style={{
               opasity: isShown ? 1 : 0,
               cursor: 'default',
               width: isShown ? '3.8rem' : '1.3rem',
@@ -135,7 +136,7 @@ const breakPointPresentation = [
               {isShown && (
                 'level: '
               )}0
-            </IonRow> */}
+            </IonRow> 
 
 
             <IonRow className='ion-justify-content-center ion-margin menu-items'>
@@ -150,7 +151,7 @@ const breakPointPresentation = [
                 }} className='btn-side-menu' color="light">Flashcards</IonButton>
 
               </IonRow>
-              {/* <IonRow >
+              <IonRow >
 
                 <IonButton fill='solid' onClick={() => {
                   closeMenu();
@@ -159,8 +160,8 @@ const breakPointPresentation = [
 
                 }} className='btn-side-menu' color="light">Questionarios</IonButton>
 
-              </IonRow > */}
-              {/* <IonRow >
+              </IonRow >
+              <IonRow >
 
                 <IonButton fill='solid' onClick={() => {
                   closeMenu();
@@ -169,8 +170,8 @@ const breakPointPresentation = [
                 }}
                   className='btn-side-menu' color="light">Classes</IonButton>
 
-              </IonRow > */}
-              {/* <IonRow >
+              </IonRow >
+              <IonRow >
 
                 <IonButton fill='solid' onClick={() => {
                   closeMenu();
@@ -179,7 +180,7 @@ const breakPointPresentation = [
                 }}
                   className='btn-side-menu' color="light">Conquistas</IonButton>
 
-              </IonRow > */}
+              </IonRow >
               <IonRow >
 
                 <IonButton className='sair' onClick={() => {
@@ -218,34 +219,21 @@ const breakPointPresentation = [
 
 
         <IonContent className="menu-apresentacao-content">
-          {/* <IonRow>
+          <IonRow>
 
             <IonSearchbar placeholder='Buscar' color='light' className="search-bar"
               value={searchText}
               onIonChange={e => setSearchText(e.detail.value!)}>
               <div className='line'></div>
             </IonSearchbar>
-          </IonRow> */}
+          </IonRow>
 
           <IonGrid className="menu-grid">
-           <IonRow style={{width:'100%'}} className='row-carousel'>
-            <Carousel breakPoints={breakPointPresentation}>
-              <IonCard className="slides-presentation" color='light'>
-                <IonLabel color='dark'>Seja bem-vindo ao FIXER!</IonLabel>
-              </IonCard>
-              <IonCard className="slides-presentation" color='light'>
-                <IonLabel color='dark' >Aqui você vai criar seu próprio conteúdo e usar no momento que você mais precisar.</IonLabel>
-              </IonCard>
-              <IonCard className="slides-presentation" color='light'>
-                <IonLabel color='dark'>Aprenda de uma maneira dinâmica e que se encaixe na sua agenda.</IonLabel>
-              </IonCard>
-            </Carousel>
-             </IonRow>     
-            {/* <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel>
+            <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel>
 
-            {/* <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards-slide'>
-                  <IonGrid className='ios grid-flashcards'>
-                  <Carousel  breakPoints={breakPoints}>
+            <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards-slide'>
+                  <IonGrid style={{display:cards.length == 0 && 'none' || 'block'}} className='ios grid-flashcards'>
+                  <Carousel breakPoints={breakPoints}>
                       {cards.map((card: FlashCard, index) => {
                           return (        
                               <Cards status={[card]} text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={()=> console.log('clicked')} />
@@ -254,12 +242,12 @@ const breakPointPresentation = [
                        {cards.length == 0 && <Vazio/>|| '' }
                       </Carousel>
                   </IonGrid>
-                  {/* {cards.length == 0 && <Vazio/>|| '' } */}
+                  {cards.length == 0 && <Vazio/>|| '' }
 
-           {/* </IonCard> */}
+           </IonCard>
 
-            {/* <IonLabel className="label-menu-title-cards">Mais respondidos</IonLabel> */}
-{/* 
+            <IonLabel className="label-menu-title-cards">Mais respondidos</IonLabel>
+
             <IonCard className="card-menu-content">
 
               <IonCardContent className="card-title-menu">
@@ -270,9 +258,9 @@ const breakPointPresentation = [
                 </IonLabel>
               </IonCardContent>
 
-            </IonCard> */}
+            </IonCard>
 
-            {/* <IonLabel className="label-menu-title-cards">Conquistas próximas</IonLabel>
+            <IonLabel className="label-menu-title-cards">Conquistas próximas</IonLabel>
 
             <IonCard className="card-menu-content">
 
@@ -281,7 +269,7 @@ const breakPointPresentation = [
                   VAZIO
                 </IonLabel>
               </IonCardContent>
-            </IonCard> */}
+            </IonCard>
           </IonGrid>
 
 

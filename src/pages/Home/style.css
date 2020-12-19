@@ -15,7 +15,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 74%;
+  height: auto;
+  flex-direction: column;
 }
 .dark{
   position: absolute!important;
@@ -110,6 +111,7 @@ ion-button{
   background-color: rgb(121, 118, 118);
   border-radius: 50%;
   cursor: pointer;
+  margin-bottom: 6px;
 }
 
 .img-avatar-perfil img{

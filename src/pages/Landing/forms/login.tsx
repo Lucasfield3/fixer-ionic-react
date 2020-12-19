@@ -1,6 +1,6 @@
 import React,{ useState} from 'react';
-import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem } from '@ionic/react';
-import {ButtonRed, ButtonDark} from '../styles/Buttons'
+import { IonCardContent, IonRow, IonCol, IonLabel, IonInput, IonItem } from '@ionic/react';
+import {ButtonRed, ButtonDark} from '../../styles/Page-default/Landing-style/Landing-styled'
 import { useHistory } from 'react-router-dom'
 import '../style.css'
 import { menuController } from '@ionic/core';
@@ -9,11 +9,9 @@ import { login, storeToken} from '../../../services/Authentication.service';
 
 const Login: React.FC<{handleClickLogin:()=> void}> = props=>{
 const [input, setInput] = useState<string>('')
-//const [credentials, setCredentials] = useState({ email: '', password: '' })
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
-//type AccessToken = string
-//const [access_token, setAccess_token] = useState<AccessToken>('')
+
  const history = useHistory()
 
  
