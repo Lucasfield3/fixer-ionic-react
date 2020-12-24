@@ -17,7 +17,7 @@ import gif from '../../Assets/icons/giphy.gif'
 import Login from '../Landing/forms/login'
 import Cadastro from '../Landing/forms/cadastro'
 import ReactCardFlip from 'react-card-flip';
-import {ButtonDark, ButtonPrimary} from '../styles/Page-default/Landing-style/Landing-styled'
+import {ButtonDark, ButtonPrimary} from './Landing-style/Landing-styled'
 
 
 

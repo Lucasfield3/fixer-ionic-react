@@ -140,7 +140,7 @@ const AnswerAlternativa: React.FC = () => {
         eventAlternativas.style.pointerEvents = 'auto'
     }
     const mystyle = {
-        display: check!.correct && 'none' || 'block'
+        display: check!.correct && 'none' || 'block',
     }
     const ProgressBar = (validator:Checker)=>{
        if(validator.correct == true && progress >= 0){

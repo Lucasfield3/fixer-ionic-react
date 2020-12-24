@@ -191,15 +191,6 @@ ion-label div:only-child{
   font-family: Poppins;
 }
 
-.label-menu-title-cards{
-  display: flex;
-  font-size: 20px;
-  font-weight: bold;
-  justify-content: center;
-  color: #011627;
-  font-family: 'Archivo Narrow', sans-serif;
-  margin-top: 0.7rem;
-}
 .display{
  opacity: 0;
 }
@@ -209,23 +200,7 @@ ion-label div:only-child{
   position: relative;
   margin-right: 2.5rem;
 }
-.card-menu-content{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background:rgba(1, 22, 39, 0.29);;
-  width: 95%;
-  height: 25vh;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-  border-radius: 5px;
-}
 
-.card-title-menu{
-  display: flex;
-  text-align: center;
-  justify-content: center;
-}
 
 .search-bar{
   --border-radius: 6px;
@@ -266,19 +241,6 @@ ion-button{
 }
 .espacamento{
   margin-top: 1px;
-}
-.container-flashcards-slide {
-  display: flex;
-    justify-content: center;
-    background: rgba(1, 22, 39, 0.29);
-    width: 96%;
-    height: 25vh;
-    border-radius: 5px;
-    overflow: auto;
-    margin-inline-start: 5px;
-    margin-inline-end: 5px;
-    margin-bottom: 1.3rem;
-    margin-top: 0.4rem;
 }
 
 .rec-dot{

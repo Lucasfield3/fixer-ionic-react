@@ -15,11 +15,9 @@ import {
   IonToolbar,
   IonAvatar,
   IonLabel,
-  IonCard,
-  IonCardContent,
-  IonSearchbar, IonBackdrop, IonCol, useIonViewWillEnter
+  IonSearchbar, useIonViewWillEnter
 } from '@ionic/react'
-import { card, menuOutline } from 'ionicons/icons';
+import { menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
@@ -27,9 +25,8 @@ import imgAvatar from '../../Assets/images/avatar.svg'
 import smallLogo from '../../Assets/icons/logo-small.svg'
 import { FlashCard, getFlashCards } from '../../services/flashCard.service';
 import Cards from '../Flash-cards/Cards/Cards';
-import Vazio from '../Flash-cards/flashCards';
 import Carousel from 'react-elastic-carousel';
-import {ButtonRed} from '../styles/Page-default/Home-style/Home-styled'
+import {BackDrop, BtnHome, ContainersHome, TitleCards} from './Home-style/Home-styled'
  
 
 const Home: React.FC = () => {
@@ -86,7 +83,20 @@ const breakPointPresentation = [
   {width: 1, itemsToShow:1},
   {width: 1, itemsToShow:1}
 ]
-
+const styleCarousel = {
+  alignItems:cards!.length == 0 && 'center' || 'unset',
+  display: 'flex',
+    justifyContent: 'center',
+    background: 'rgba(1,22,39,0.29)',
+    width: '96%',
+    height: '25vh',
+    borderRadius:' 5px',
+    overflow: 'auto',
+    marginInlineStart:'5px',
+    marginInlineEnd: '5px',
+    marginBottom: '1.3rem',
+    marginTop: '0.4rem'
+}
   return (
     <>
       <IonMenu onIonDidClose={() => {
@@ -229,9 +239,9 @@ const breakPointPresentation = [
           </IonRow>
 
           <IonGrid className="menu-grid">
-            <IonLabel className="label-menu-title-cards">Últimos criados</IonLabel>
+          <TitleCards>Últimos criados </TitleCards>
 
-            <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards-slide'>
+            <ContainersHome  style={styleCarousel}>
                   <IonGrid style={{display:cards.length == 0 && 'none' || 'block'}} className='ios grid-flashcards'>
                   <Carousel breakPoints={breakPoints}>
                       {cards.map((card: FlashCard, index) => {
@@ -239,37 +249,24 @@ const breakPointPresentation = [
                               <Cards status={[card]} text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={()=> console.log('clicked')} />
                           )
                       })}
-                       {cards.length == 0 && <Vazio/>|| '' }
+                       {cards.length == 0 && <IonLabel className='label-vazio'>VAZIO</IonLabel>|| '' }
                       </Carousel>
                   </IonGrid>
-                  {cards.length == 0 && <Vazio/>|| '' }
+                  {cards.length == 0 && <IonLabel className='label-vazio'>VAZIO</IonLabel>|| '' }
 
-           </IonCard>
+           </ContainersHome>
 
-            <IonLabel className="label-menu-title-cards">Mais respondidos</IonLabel>
+           <TitleCards>Mais Respondidos</TitleCards>
 
-            <IonCard className="card-menu-content">
+           <ContainersHome style={{}}>
+             <IonLabel className='label-vazio'>VAZIO</IonLabel>
+           </ContainersHome>
 
-              <IonCardContent className="card-title-menu">
-                <IonLabel className='card-vazio-home'>
-                  <IonLabel className='card-vazio-home'>
-                    VAZIO
-                </IonLabel>
-                </IonLabel>
-              </IonCardContent>
+            <TitleCards>Conquistas próximas</TitleCards>
 
-            </IonCard>
-
-            <IonLabel className="label-menu-title-cards">Conquistas próximas</IonLabel>
-
-            <IonCard className="card-menu-content">
-
-              <IonCardContent className="card-title-menu">
-                <IonLabel className='card-vazio-home'>
-                  VAZIO
-                </IonLabel>
-              </IonCardContent>
-            </IonCard>
+            <ContainersHome style={{}}>
+            <IonLabel className='label-vazio'>VAZIO</IonLabel>
+            </ContainersHome>
           </IonGrid>
 
 
@@ -277,25 +274,6 @@ const breakPointPresentation = [
       </IonPage>
     </>
   )
-}
-
-const BtnHome: React.FC<{ backHome: () => void }> = props => {
-  return (
-    <>
-      <IonRow >
-        <IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light">Início</IonButton>
-      </IonRow>
-    </>
-  );
-}
-
-const BackDrop: React.FC<{ changeBack: () => void }> = props => {
-  return (
-    <>
-      <IonBackdrop onIonBackdropTap={props.changeBack} visible={true} tappable={true} stopPropagation={true}>
-      </IonBackdrop>
-    </>
-  );
 }
 
 export default Home;

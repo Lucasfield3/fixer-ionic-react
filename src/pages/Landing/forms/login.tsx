@@ -1,6 +1,6 @@
 import React,{ useState} from 'react';
 import { IonCardContent, IonRow, IonCol, IonLabel, IonInput, IonItem } from '@ionic/react';
-import {ButtonRed, ButtonDark} from '../../styles/Page-default/Landing-style/Landing-styled'
+import {ButtonRed, ButtonDark} from '../Landing-style/Landing-styled'
 import { useHistory } from 'react-router-dom'
 import '../style.css'
 import { menuController } from '@ionic/core';

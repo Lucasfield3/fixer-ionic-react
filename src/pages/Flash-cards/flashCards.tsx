@@ -25,6 +25,7 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import Cards from './Cards/Cards';
 import { deleteFlashCard, FlashCard, getFlashCards } from '../../services/flashCard.service';
+import { Vazio } from '../styles/Page-default/Page-default-styled';
 
 
 
@@ -221,44 +222,6 @@ const FlashCards: React.FC = () => {
 }
 
 
-export const Vazio: React.FC = () => {
-
-    return (
-        <>
-        <IonLabel className='card-vazio-cards'>
-                VAZIO
-        </IonLabel>
-        </>
-    )
-}
 
 export default FlashCards;
 
-/* <IonGrid className='align-conquistas'>
-                            <IonCardContent className="card-title-menu">
-
-                                <IonRow>
-                                    <IonCol>
-                                        <IonCard onClick={() => {
-                                            history.push('/AnswerAlternativa')
-                                        }} className="card-teste" color="ligth">
-                                            <IonCardHeader>
-                                                <IonCardTitle>Card Title</IonCardTitle>
-                                            </IonCardHeader>
-                                            <IonCardContent>
-                                                Keep close to Nature's heart... and break clear away, once in awhile,
-                                                and climb a mountain or spend a week in the woods. Wash your spirit clean....
-                                    </IonCardContent>
-                                        </IonCard>
-                                    </IonCol>
-                                </IonRow>
-
-
-
-
-
-
-
-
-
-                            </IonCardContent> */

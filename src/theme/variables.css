@@ -118,6 +118,12 @@ ion-textarea{
   color:var(--ion-color-danger)!important;
   font-weight: bolder;
 }
+.label-vazio{
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--ion-color-dark);
+  opacity: 0.7;
+}
 .ios .btn-dark{
   font-size: medium;
 }

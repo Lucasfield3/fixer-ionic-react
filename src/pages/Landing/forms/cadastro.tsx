@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem, IonAlert } from '@ionic/react';
-import {ButtonRed, ButtonDark} from '../../styles/Page-default/Landing-style/Landing-styled'
+import {ButtonRed, ButtonDark} from '../Landing-style/Landing-styled'
 import '../style.css'
 import { cadastro } from '../../../services/User.service';
 
