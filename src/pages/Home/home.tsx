@@ -10,12 +10,11 @@ import {
   IonFabButton,
   IonIcon,
   IonHeader,
-  IonMenuButton,
   IonMenu,
   IonToolbar,
   IonAvatar,
   IonLabel,
-  IonSearchbar, useIonViewWillEnter
+  useIonViewWillEnter
 } from '@ionic/react'
 import './style.css'
 import { menuController } from '@ionic/core';
