@@ -17,7 +17,6 @@ import {
   IonLabel,
   IonSearchbar, useIonViewWillEnter
 } from '@ionic/react'
-import { menuOutline } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
@@ -26,8 +25,9 @@ import smallLogo from '../../Assets/icons/logo-small.svg'
 import { FlashCard, getFlashCards } from '../../services/flashCard.service';
 import Cards from '../Flash-cards/Cards/Cards';
 import Carousel from 'react-elastic-carousel';
-import {BackDrop, BtnHome, ContainersHome, TitleCards} from './Home-style/Home-styled'
- 
+import {BackDrop, BtnHome, ContainersHome, TitleCards, BtnSideMenu} from './Home-style/Home-styled'
+import { SearchBar, HeaderDefault} from '../styles/Page-default/Page-default-styled';
+import { menuOutline } from 'ionicons/icons'; 
 
 const Home: React.FC = () => {
 
@@ -78,25 +78,7 @@ const Home: React.FC = () => {
 const breakPoints = [
   {width: 1, itemsToShow:2}
 ]
-const breakPointPresentation = [
-  {width: 1, itemsToShow:1},
-  {width: 1, itemsToShow:1},
-  {width: 1, itemsToShow:1}
-]
-const styleCarousel = {
-  alignItems:cards!.length == 0 && 'center' || 'unset',
-  display: 'flex',
-    justifyContent: 'center',
-    background: 'rgba(1,22,39,0.29)',
-    width: '96%',
-    height: '25vh',
-    borderRadius:' 5px',
-    overflow: 'auto',
-    marginInlineStart:'5px',
-    marginInlineEnd: '5px',
-    marginBottom: '1.3rem',
-    marginTop: '0.4rem'
-}
+
   return (
     <>
       <IonMenu onIonDidClose={() => {
@@ -153,42 +135,42 @@ const styleCarousel = {
               {home}
               <IonRow >
 
-                <IonButton fill='solid' onClick={() => {
+                <BtnSideMenu fill='solid' onClick={() => {
                   closeMenu();
                   history.push('/Flash-cards')
                   changeBtn();
 
-                }} className='btn-side-menu' color="light">Flashcards</IonButton>
+                }}  color="light">Flashcards</BtnSideMenu>
 
               </IonRow>
               <IonRow >
 
-                <IonButton fill='solid' onClick={() => {
+                <BtnSideMenu fill='solid' onClick={() => {
                   closeMenu();
                   history.push('/Questionarios')
                   changeBtn();
 
-                }} className='btn-side-menu' color="light">Questionarios</IonButton>
+                }}  color="light">Questionarios</BtnSideMenu>
 
               </IonRow >
               <IonRow >
 
-                <IonButton fill='solid' onClick={() => {
+                <BtnSideMenu fill='solid' onClick={() => {
                   closeMenu();
                   history.push('/Classes')
                   changeBtn();
                 }}
-                  className='btn-side-menu' color="light">Classes</IonButton>
+                   color="light">Classes</BtnSideMenu>
 
               </IonRow >
               <IonRow >
 
-                <IonButton fill='solid' onClick={() => {
+                <BtnSideMenu fill='solid' onClick={() => {
                   closeMenu();
                   history.push('/Conquistas')
                   changeBtn();
                 }}
-                  className='btn-side-menu' color="light">Conquistas</IonButton>
+                   color="light">Conquistas</BtnSideMenu>
 
               </IonRow >
               <IonRow >
@@ -213,35 +195,19 @@ const styleCarousel = {
       </IonMenu>
 
       <IonPage id="main-content" className="page-inicio">
-        <IonHeader className='ios custom-header'>
-          <IonToolbar>
-            <IonRow className='row-label'>
-              <IonLabel className="label-menu-fixer">FIXER</IonLabel>
-            </IonRow>
-            <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button dark" size="small" color="dark">
-              <IonIcon icon={menuOutline} />
-              <IonButton slot='start'>
-                <IonMenuButton></IonMenuButton>
-              </IonButton>
-            </IonFabButton>
-          </IonToolbar>
-        </IonHeader>
-
+        <HeaderDefault openMenu={()=>openMenu()}>
+        </HeaderDefault>
 
         <IonContent className="menu-apresentacao-content">
-          <IonRow>
-
-            <IonSearchbar placeholder='Buscar' color='light' className="search-bar"
+            <SearchBar placeholder='Buscar' color='light' className="search-bar"
               value={searchText}
               onIonChange={e => setSearchText(e.detail.value!)}>
               <div className='line'></div>
-            </IonSearchbar>
-          </IonRow>
-
+            </SearchBar>  
           <IonGrid className="menu-grid">
           <TitleCards>Últimos criados </TitleCards>
 
-            <ContainersHome  style={styleCarousel}>
+            <ContainersHome  style={{alignItems:cards!.length == 0 && 'center' || 'unset'}}>
                   <IonGrid style={{display:cards.length == 0 && 'none' || 'block'}} className='ios grid-flashcards'>
                   <Carousel breakPoints={breakPoints}>
                       {cards.map((card: FlashCard, index) => {

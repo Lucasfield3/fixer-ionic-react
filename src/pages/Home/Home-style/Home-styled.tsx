@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import {IonBackdrop, IonButton, IonCard, IonCardContent, IonLabel, IonRow} from '@ionic/react';
 import React from 'react';
+import '../style.css';
 
 export const ButtonRed = styled(IonButton)`
     background-color: var(--ion-color-light)!important;
@@ -49,11 +50,22 @@ const CardContent = styled(IonCardContent)`
   text-align: center;
   justify-content: center;
 `;
+export const BtnSideMenu = styled(IonButton)`
+   margin:12px!important;
+  width: 6.5rem;
+  height: 1.6rem;
+  --border-radius: 7px;
+  font-size: 11px!important;
+  --ion-color-light-contrast:var(--ion-color-dark);
+  font-weight: bold;
+  box-sizing: border-box;
+  box-shadow: var(--box-shadow);
+`
 export const ContainersHome:React.FC<{style: React.CSSProperties }> = props =>{
 
   return(
     <>
-      <CardContainer style={props.style}>
+      <CardContainer className='style-carousel' style={props.style}>
         <CardContent>
             {props.children}
         </CardContent>
@@ -66,7 +78,7 @@ export const BtnHome: React.FC<{ backHome: () => void }> = props => {
   return (
     <>
       <IonRow >
-        <IonButton fill='solid' onClick={props.backHome} className='btn-side-menu' color="light">Início</IonButton>
+        <BtnSideMenu fill='solid' onClick={props.backHome} color="light">Início</BtnSideMenu>
       </IonRow>
     </>
   );

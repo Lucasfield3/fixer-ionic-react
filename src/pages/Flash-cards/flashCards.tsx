@@ -25,7 +25,7 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import Cards from './Cards/Cards';
 import { deleteFlashCard, FlashCard, getFlashCards } from '../../services/flashCard.service';
-import { Vazio } from '../styles/Page-default/Page-default-styled';
+import { SearchBar, Vazio } from '../styles/Page-default/Page-default-styled';
 
 
 
@@ -110,11 +110,11 @@ const FlashCards: React.FC = () => {
 
                 <IonContent>
                     <IonRow>
-                        <IonSearchbar placeholder='Buscar' color='light' className="search-bar"
+                        <SearchBar placeholder='Buscar' color='light' className="search-bar"
                             value={searchText}
                             onIonChange={e => setSearchText(e.detail.value!)}>
                             <div className='line'></div>
-                        </IonSearchbar>
+                        </SearchBar>
                     </IonRow>
 
                     <IonLabel className="label-menu-title-cards">FlashCards</IonLabel>
