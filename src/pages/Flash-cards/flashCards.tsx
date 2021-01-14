@@ -25,7 +25,7 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import Cards from './Cards/Cards';
 import { deleteFlashCard, FlashCard, getFlashCards } from '../../services/flashCard.service';
-import { SearchBar, Vazio } from '../styles/Page-default/Page-default-styled';
+import { SearchBar, Vazio, TitleCards, CreateButton, ButtonChoice, CardMenu } from '../styles/Page-default/Page-default-styled';
 
 
 
@@ -117,9 +117,9 @@ const FlashCards: React.FC = () => {
                         </SearchBar>
                     </IonRow>
 
-                    <IonLabel className="label-menu-title-cards">FlashCards</IonLabel>
+                    <TitleCards>FlashCards</TitleCards>
                     <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards'>
-                        <IonCol >
+                        <IonCol>
                             <IonGrid className='ios grid-flashcards'>
                                 {cardsFiltered.map((card: FlashCard, index) => {
                                     return (
@@ -129,79 +129,39 @@ const FlashCards: React.FC = () => {
                             </IonGrid>
                             {cards.length == 0 && <Vazio/>|| '' }
                         </IonCol>
-                        <IonActionSheet
-
-                            isOpen={showActionSheet}
-                            mode={'ios'}
-                            onDidDismiss={() => {
+                        <CardMenu onDidDismiss={()=>{       
                                 setShowActionSheet(false)
                                 menuController.enable(true);
-                            }}
-                            cssClass='ios menu-bottom'
-                            buttons={[{
-                                cssClass: 'custom-icon-lix',
-                                text: 'Delete',
-                                role: 'destructive',
-                                icon: trash,
-                                handler: () => {
-                                    handleDelete(activeCard!)
-                                    menuController.enable(true);
-                                }
-                            }, {
-                                cssClass: 'custom-icon-edit',
-                                text: 'Editar',
-                                icon: pencilSharp,
-                                handler: () => {
-                                    handleEditFlashCard()
-                                }
-                            }, {
-                                cssClass: 'custom-icon-answer',
-                                text: 'Responder',
-                                icon: bookSharp,
-                                handler: () => { 
-                                    handleResponderButton()
-                                }
-                            }, {
-                                cssClass: 'custom-icon-add',
-                                text: 'Adicionar',
-                                icon: addSharp,
-                                handler: () => {
-                                    console.log('Favorite clicked');
-                                }
-                            }, {
-                                cssClass: 'custom-icon-close',
-                                text: 'Fechar',
-                                icon: 'close',
-                                role: 'cancel',
-                                handler: () => {
-                                    console.log('Cancel clicked');
-                                    menuController.enable(true);
-                                }
-                            }]}
-                        >
-                        </IonActionSheet>
+                        }} 
+                        isOpen={showActionSheet}
+                        handlerDelete={()=>{
+                            handleDelete(activeCard!)
+                            menuController.enable(true);
+                        }}
+                        handlerEdit={()=>handleEditFlashCard()}
+                        handlerAnswer={()=>handleResponderButton()}
+                        handlerAdd={()=> console.log('Favorite clicked')}
+                        handlerClose={()=>menuController.enable(true)}
+                        />
+                        
                     </IonCard>
 
 
-                    <IonFab style={{ left: '80%' }} vertical="bottom" horizontal="center" slot="fixed" color="dark">
-                        <IonFabButton className='custom-fabButton' color="dark">
-                            <IonIcon className="add-icon" icon={add} />
-                        </IonFabButton>
-                        <IonFabList side="top">
-                            <IonButton
-                                onClick={() => {
+                    <CreateButton onClick={()=>{
+                        history.push('/questaoDissertativa')
+                        menuController.enable(false)}}>                          
+                            <ButtonChoice
+                                onClick={()=>{
                                     history.push('/questaoDissertativa')
                                     menuController.enable(false)
+
                                 }}
-                                className="ButtonChoise"
                                 size="small"
                                 color="dark">
-                                Disertativa
-                            </IonButton>
-
+                                    Dissertativa
+                            </ButtonChoice>
                             <IonLabel className="ion-label-choise">Ou</IonLabel>
-
-                            <IonButton
+                            <ButtonChoice
                                 onClick={() => {
                                     history.push('/questaoAlternativa')
                                     menuController.enable(false)
@@ -210,10 +170,8 @@ const FlashCards: React.FC = () => {
                                 size="small"
                                 color="dark">
                                 Alternativa
-                            </IonButton>
-                        </IonFabList>
-                    </IonFab>
-
+                            </ButtonChoice>
+                    </CreateButton>
                 </IonContent>
             </IonPage>
         </>

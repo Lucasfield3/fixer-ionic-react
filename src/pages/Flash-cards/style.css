@@ -16,27 +16,8 @@
     margin-bottom: 1.3rem;
     margin-top: 1rem;
   }
-  .ButtonChoise{
-    --ion-color-dark-contrast:var(--ion-color-light)!important;
-    margin: 0.2rem -50px !important;
-    font-size: 11px !important;
-    --border-radius: 16px;
-  }
 
-  .add-icon{
-    width: 3rem;
-    height: 3rem;
-  }
-  .add-icon::slotted(ion-icon){
-    color: var(--ion-color-success)!important;
-  }
-  .custom-fabButton .fab-button-close-active {
-    transform: scale(1.9) rotateZ(0deg);
-    opacity: 1;
-  } 
-  .custom-fabButton{
-    --ion-color-dark-contrast:var(--ion-color-success)!important;
-  }
+
  
   @media screen and (max-width:340px){
     .ion-fab-margin{
@@ -52,11 +33,6 @@
     margin-left: 0;
     margin-right: 0;
 }
-.menu-bottom{
-  --height:65vh!important;
-  --background: #e5e5e5;
-  --button-background-selected: #e5e5e5;
-}
 
 .grid-flashcards{
   margin: auto;
@@ -65,12 +41,7 @@
   padding: 0;
 }
 
-.menu-bottom .action-sheet-group {
-  background: #e5e5e5;
-}
-.action-sheet-destructive.sc-ion-action-sheet-ios {
-  border-bottom: 0.5px #dad0d0 solid!important;
-}
+
 .grid-flashcards{
   display: flex;
   flex-wrap: wrap;

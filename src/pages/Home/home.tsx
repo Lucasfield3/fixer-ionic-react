@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-
-
 import {
   IonButton,
   IonPage,
@@ -24,12 +22,11 @@ import smallLogo from '../../Assets/icons/logo-small.svg'
 import { FlashCard, getFlashCards } from '../../services/flashCard.service';
 import Cards from '../Flash-cards/Cards/Cards';
 import Carousel from 'react-elastic-carousel';
-import {BackDrop, BtnHome, ContainersHome, TitleCards, BtnSideMenu} from './Home-style/Home-styled'
-import { SearchBar, HeaderDefault} from '../styles/Page-default/Page-default-styled';
+import {BackDrop, BtnHome, ContainersHome, BtnSideMenu} from './Home-style/Home-styled'
+import { SearchBar, HeaderDefault, TitleCards} from '../styles/Page-default/Page-default-styled';
 import { menuOutline } from 'ionicons/icons'; 
 
 const Home: React.FC = () => {
-
 
   async function openMenu() {
     await menuController.open();

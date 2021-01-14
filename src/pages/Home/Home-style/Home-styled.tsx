@@ -26,15 +26,6 @@ export const ButtonLight = styled(IonButton)`
   font-size: small;
   color:var(--ion-color-primary);
 `;
-export const TitleCards = styled(IonLabel)`
-    display: flex;
-    font-size: 20px;
-    font-weight: bold;
-    justify-content: center;
-    color: #011627;
-    font-family: 'Archivo Narrow', sans-serif;
-    margin-top: 0.7rem;
-`;
 export const CardContainer = styled(IonCard)`
     display: flex;
     justify-content: center;
