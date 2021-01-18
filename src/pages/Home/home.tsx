@@ -12,7 +12,8 @@ import {
   IonToolbar,
   IonAvatar,
   IonLabel,
-  useIonViewWillEnter
+  useIonViewWillEnter,
+  IonMenuButton
 } from '@ionic/react'
 import './style.css'
 import { menuController } from '@ionic/core';
@@ -23,7 +24,7 @@ import { FlashCard, getFlashCards } from '../../services/flashCard.service';
 import Cards from '../Flash-cards/Cards/Cards';
 import Carousel from 'react-elastic-carousel';
 import {BackDrop, BtnHome, ContainersHome, BtnSideMenu} from './Home-style/Home-styled'
-import { SearchBar, HeaderDefault, TitleCards} from '../styles/Page-default/Page-default-styled';
+import { SearchBar, HeaderDefault, TitleCards, ButtonMenuDark} from '../styles/Page-default/Page-default-styled';
 import { menuOutline } from 'ionicons/icons'; 
 
 const Home: React.FC = () => {
@@ -191,7 +192,8 @@ const breakPoints = [
       </IonMenu>
 
       <IonPage id="main-content" className="page-inicio">
-        <HeaderDefault openMenu={()=>openMenu()}>
+        <HeaderDefault>
+            <ButtonMenuDark onClick={()=>openMenu()}/>
         </HeaderDefault>
 
         <IonContent className="menu-apresentacao-content">

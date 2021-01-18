@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-    IonSearchbar,
     IonCard,
     IonGrid,
     IonPage,
@@ -11,21 +10,18 @@ import {
     IonMenuButton,
     IonToolbar,
     IonLabel,
-    IonContent,
-    IonFab,
-    IonFabList, 
+    IonContent, 
     IonButton, 
-    IonActionSheet, 
     useIonViewWillEnter, 
     IonCol
 } from '@ionic/react'
-import { add, menuOutline, trash, bookSharp, addSharp, pencilSharp, card} from 'ionicons/icons';
+import {menuOutline} from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import Cards from './Cards/Cards';
 import { deleteFlashCard, FlashCard, getFlashCards } from '../../services/flashCard.service';
-import { SearchBar, Vazio, TitleCards, CreateButton, ButtonChoice, CardMenu } from '../styles/Page-default/Page-default-styled';
+import { SearchBar, Vazio, TitleCards, CreateButton, ButtonChoice, CardMenu, HeaderDefault, ButtonMenuDark } from '../styles/Page-default/Page-default-styled';
 
 
 
@@ -71,9 +67,6 @@ const FlashCards: React.FC = () => {
         card.title.toLowerCase().includes(searchText.toLowerCase())
     })
 
-    
-
-   
     const handleMenu = (card:FlashCard)=>{
         setActiveCard(card)
         setShowActionSheet(true)
@@ -94,20 +87,9 @@ const FlashCards: React.FC = () => {
     return (
         <>
             <IonPage>
-                <IonHeader className='custom-header'>
-                    <IonToolbar>
-                        <IonRow className='row-label'>
-                            <IonLabel className="label-menu-fixer">FIXER</IonLabel>
-                        </IonRow>
-                        <IonFabButton slot='start' onClick={() => openMenu()} className="icon-fab-button dark" size="small" color="dark">
-                            <IonIcon icon={menuOutline} />
-                            <IonButton slot='start'>
-                                <IonMenuButton></IonMenuButton>
-                            </IonButton>
-                        </IonFabButton>
-                    </IonToolbar>
-                </IonHeader>
-
+            <HeaderDefault>
+                <ButtonMenuDark onClick={()=>openMenu()}/>
+            </HeaderDefault>
                 <IonContent>
                     <IonRow>
                         <SearchBar placeholder='Buscar' color='light' className="search-bar"
@@ -123,7 +105,16 @@ const FlashCards: React.FC = () => {
                             <IonGrid className='ios grid-flashcards'>
                                 {cardsFiltered.map((card: FlashCard, index) => {
                                     return (
-                                    <Cards status={filteredCards} text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id} onClick={() => handleMenu(card)}>{filteredCards}</Cards>
+                                    <Cards 
+                                    status={filteredCards} 
+                                    text={card.title} 
+                                    title={card.title} 
+                                    key={index} 
+                                    type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} 
+                                    id={card.id} 
+                                    onClick={() => handleMenu(card)}>
+                                        {filteredCards}
+                                    </Cards>
                                     )
                                 })}
                             </IonGrid>

@@ -130,7 +130,7 @@ const EditDissertativa: React.FC = () => {
                 <IonHeader className='custom-header'>
                     <IonToolbar>
                         <IonRow className='row-label'>
-                            <IonLabel className="label-menu-fixer-dissertativa">FIXER</IonLabel>
+                            <IonLabel className="label-menu-fixer">FIXER</IonLabel>
                         </IonRow>
                         <IonFabButton
                             onClick={() => {

@@ -1,7 +1,23 @@
-import { IonActionSheet, IonButton, IonFab, IonFabButton, IonFabList, IonHeader, IonIcon, IonLabel, IonMenuButton, IonRow, IonSearchbar, IonToolbar } from '@ionic/react'
-import React from 'react'
+import { 
+    IonActionSheet, 
+    IonButton, 
+    IonCol, 
+    IonFab, 
+    IonFabButton, 
+    IonFabList, 
+    IonHeader, 
+    IonIcon, 
+    IonLabel, 
+    IonMenuButton, 
+    IonRow,
+    IonSearchbar, 
+    IonToolbar 
+} from '@ionic/react'
+import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
-import { add, menuOutline, trash, pencilSharp, bookSharp, addSharp} from 'ionicons/icons';
+import { add, menuOutline, trash, pencilSharp, bookSharp, addSharp, timerOutline, arrowUndoSharp} from 'ionicons/icons';
+import TimeField from 'react-simple-timefield';
+
 
 const LabelEmpty = styled(IonLabel)`
   font-size: 30px;
@@ -45,7 +61,7 @@ export const Vazio: React.FC = () => {
 }
 
 
-export const HeaderDefault:React.FC<{openMenu:()=>void}> = props=>{
+export const HeaderDefault:React.FC = props =>{
     return (
         <>
             <IonHeader className='ios custom-header'>
@@ -53,12 +69,7 @@ export const HeaderDefault:React.FC<{openMenu:()=>void}> = props=>{
                     <IonRow className='row-label'>
                         <IonLabel className="label-menu-fixer">FIXER</IonLabel>
                     </IonRow>
-                    <IonFabButton slot='start' onClick={props.openMenu} className="icon-fab-button dark" size="small" color="dark">
-                        <IonIcon icon={menuOutline} />
-                        <IonButton slot='start'>
-                            <IonMenuButton></IonMenuButton>
-                        </IonButton>
-                    </IonFabButton>
+                    {props.children}
                 </IonToolbar>
             </IonHeader>
         </>
@@ -88,7 +99,8 @@ export const CardMenu:React.FC<{
     handlerAnswer:()=>void;
     handlerAdd:()=>void;
     handlerClose:()=>void;
-    isOpen:boolean;onDidDismiss:()=>void}> = props=>{
+    isOpen:boolean;
+    onDidDismiss:()=>void}> = props=>{
 
     return(
         <>
@@ -128,6 +140,72 @@ export const CardMenu:React.FC<{
                 }]}
                 >
             </IonActionSheet>
+        </>
+    );
+
+}
+export const StyledTimer = styled(IonCol)`
+    display:flex;
+    flex-direction:row;
+    width:auto;
+    height:2rem;
+    align-items: center;
+    position:absolute;
+`;
+export const Timer: React.FC<{ value: string; onChange: (event: ChangeEvent<HTMLInputElement>) => void }> = props => {
+
+    return (
+        <>
+            <StyledTimer >
+                <IonIcon className='icon-styled' icon={timerOutline} />
+                <TimeField colon=':' value={props.value} onChange={props.onChange} input={<input className='input-time'></input>} ></TimeField>
+            </StyledTimer>
+        </>
+    );
+}
+export const ButtonMenuDark: React.FC<{onClick:()=>void}> = props=>{
+    return(
+        <>  
+             <IonFabButton slot='start' onClick={props.onClick} className="icon-fab-button dark" size="small" color="dark">
+                <IonIcon icon={menuOutline} />
+                <IonButton slot='start'>
+                    <IonMenuButton></IonMenuButton>
+                </IonButton>
+            </IonFabButton>
+        </>
+    )
+}
+export const ButtonArrow: React.FC<{onClick:()=>void}> = props=>{
+    return(
+        <>  
+            <IonFabButton
+                    onClick={props.onClick}
+                    slot='start'
+                    className="icon-fab-button light"
+
+                    size="small"
+                    color="light">
+                    <IonIcon icon={arrowUndoSharp} />
+                    <IonButton slot='start'>
+                        <IonMenuButton></IonMenuButton>
+                    </IonButton>
+                </IonFabButton>
+        </>
+    )
+}
+export const HeaderAnswer: React.FC<{onClick:()=>void;}> = props =>{
+
+    return(
+        <>
+            <IonHeader className='custom-header'>
+            <IonToolbar>
+                <IonRow className='row-label'>
+                    <IonLabel className="label-menu-fixer">FIXER</IonLabel>
+                </IonRow>
+                
+            </IonToolbar>
+        </IonHeader>
+
         </>
     );
 

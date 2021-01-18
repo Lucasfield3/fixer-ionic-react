@@ -18,32 +18,12 @@
   height: auto;
   flex-direction: column;
 }
-.dark{
-  position: absolute!important;
-  z-index: 3;
-  width: 2rem;
-  height: 2rem;
-  color:var(--ion-color-light);
-  --ion-color-contrast: none!important;
-}
-.custom-header, .custom-header-menu{
-  z-index: 0;
-  background: transparent;
-}
 
 .menu-items{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-items: center;
-}
-
-.light{
-  color:var(--ion-color-dark);
-  border-radius: 50%;
-  max-height: 2rem;
-  max-width: 2rem;
-  --ion-color-contrast: none!important;
 }
 
 .sair{

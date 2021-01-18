@@ -1,13 +1,10 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     IonButton,
     IonPage,
     IonRow,
     IonFabButton,
     IonIcon,
-    IonHeader,
-    IonMenuButton,
-    IonToolbar,
     IonLabel,
     IonContent,
     IonItem,
@@ -27,15 +24,14 @@ import {
     useIonViewWillLeave,
     useIonViewWillEnter,
 } from '@ionic/react'
-import { add, arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
+import { add, remove } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
-import styled from 'styled-components';
 import { createFlashCard, Payload, Alternative, NewAlternative } from '../../../services/flashCard.service';
 import { getPayload } from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-import TimeField from 'react-simple-timefield';
+import { ButtonArrow, HeaderDefault, Timer } from '../../styles/Page-default/Page-default-styled';
 
 
 
@@ -171,31 +167,15 @@ const QuestaoAlternativa: React.FC = () => {
     return (
         <>
             <IonPage>
-                <IonHeader className='custom-header'>
-                    <IonToolbar>
-                        <IonRow className='row-label'>
-                            <IonLabel className="label-menu-fixer-dissertativa">FIXER</IonLabel>
-                        </IonRow>
-                        <IonFabButton
-                            onClick={() => {
-                                history.push('/Flash-cards')
-                                menuController.enable(true);
-                                setThemes([])
-                                setChecked(false)
-                                setShownTimer(false)
-                            }}
-                            slot='start'
-                            className="icon-fab-button light"
-
-                            size="small"
-                            color="light">
-                            <IonIcon icon={arrowUndoSharp} />
-                            <IonButton slot='start'>
-                                <IonMenuButton></IonMenuButton>
-                            </IonButton>
-                        </IonFabButton>
-                    </IonToolbar>
-                </IonHeader>
+                <HeaderDefault>
+                    <ButtonArrow onClick={() => {
+                            history.push('/Flash-cards')
+                            menuController.enable(true);
+                            setThemes([])
+                            setChecked(false)
+                            setShownTimer(false)
+                        }}/>
+                </HeaderDefault>
 
 
                 <IonContent>
@@ -343,7 +323,7 @@ const QuestaoAlternativa: React.FC = () => {
                         ))}
                     </IonGrid>
 
-                    {/* <IonRow className='row-toggle'>
+                    <IonRow className='row-toggle'>
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>
                         <IonToggle checked={checked} onIonChange={(e) => setChecked(e.detail.checked)} className='ios toggle' onClick={() => {
                             setShownTimer(!shownTimer)
@@ -352,7 +332,7 @@ const QuestaoAlternativa: React.FC = () => {
                     </IonRow>
                     <IonRow className='ios row-timer-alternativa'>
                         {shownTimer && <Timer value={time} onChange={(event) => setTime(event.target.value!)} />}
-                    </IonRow> */}
+                    </IonRow> 
                     <Limitedalternativa
                         onClick={() => setShowPopLimit(false)}
                         isOpen={showPopLimit}
@@ -369,26 +349,5 @@ const QuestaoAlternativa: React.FC = () => {
     );
 
 }
-
-export const StyledTimer = styled(IonCol)`
-    display:flex;
-    flex-direction:row;
-    width:auto;
-    height:2rem;
-    align-items: center;
-    position:absolute;
-`;
-const Timer: React.FC<{ value: string; onChange: (event: ChangeEvent<HTMLInputElement>) => void }> = props => {
-
-    return (
-        <>
-            <StyledTimer >
-                <IonIcon className='icon-styled' icon={timerOutline} />
-                <TimeField colon=':' value={props.value} onChange={props.onChange} input={<input className='input-time'></input>} ></TimeField>
-            </StyledTimer>
-        </>
-    );
-}
-
 
 export default QuestaoAlternativa;

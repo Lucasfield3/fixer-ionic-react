@@ -1,13 +1,3 @@
-.label-menu-fixer-dissertativa{
-  display: flex;
-  font-size: 20px;
-  margin-top: .4rem;
-  margin-right: 3.5rem;
-  justify-content: center;
-  color: var(--ion-color-dark);
-  font-family: Poppins;
-}
-
 .item-input-dissertativa{
   --background: #fdfdfd;
   border-radius: 2rem;
