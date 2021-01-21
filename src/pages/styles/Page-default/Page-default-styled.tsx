@@ -31,6 +31,17 @@ const LabelEmpty = styled(IonLabel)`
   flex-direction:column;
   margin:auto;
 `;
+
+export const Vazio: React.FC = () => {
+
+    return (
+        <>
+            <LabelEmpty>
+                    VAZIO
+            </LabelEmpty>
+        </>
+    )
+}
 export const SearchBar = styled(IonSearchbar)`
 --border-radius: 6px;
 --ion-color-contrast: var(--ion-color-dark)!important;
@@ -52,16 +63,7 @@ export const ButtonChoice = styled(IonButton)`
     font-size: 11px !important;
     --border-radius: 16px;
 `;
-export const Vazio: React.FC = () => {
 
-    return (
-        <>
-            <LabelEmpty>
-                    VAZIO
-            </LabelEmpty>
-        </>
-    )
-}
 
 
 export const HeaderDefault:React.FC = props =>{
