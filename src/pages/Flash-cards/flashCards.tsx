@@ -1,27 +1,18 @@
 import React, { useState } from 'react';
-import {
-    IonCard,
-    IonGrid,
+import { 
     IonPage,
-    IonRow,
-    IonFabButton,
-    IonIcon,
-    IonHeader,
-    IonMenuButton,
-    IonToolbar,
+    IonRow,  
     IonLabel,
     IonContent, 
-    IonButton, 
     useIonViewWillEnter, 
-    IonCol
+
 } from '@ionic/react'
-import {menuOutline} from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import Cards from './Cards/Cards';
 import { deleteFlashCard, FlashCard, getFlashCards } from '../../services/flashCard.service';
-import { SearchBar, Vazio, TitleCards, CreateButton, ButtonChoice, CardMenu, HeaderDefault, ButtonMenuDark } from '../styles/Page-default/Page-default-styled';
+import { SearchBar, Vazio, TitleCards, CreateButton, ButtonChoice, CardMenu, HeaderDefault, ButtonMenuDark, ContainerCards } from '../styles/Page-default/Page-default-styled';
 
 
 
@@ -100,9 +91,7 @@ const FlashCards: React.FC = () => {
                     </IonRow>
 
                     <TitleCards>FlashCards</TitleCards>
-                    <IonCard style={{alignItems:cards!.length == 0 && 'center' || 'unset'}} className='container-flashcards'>
-                        <IonCol>
-                            <IonGrid className='ios grid-flashcards'>
+                    <ContainerCards style={{alignItems:cards!.length == 0 && 'center' || 'unset'}}>
                                 {cardsFiltered.map((card: FlashCard, index) => {
                                     return (
                                     <Cards 
@@ -117,9 +106,7 @@ const FlashCards: React.FC = () => {
                                     </Cards>
                                     )
                                 })}
-                            </IonGrid>
                             {cards.length == 0 && <Vazio/>|| '' }
-                        </IonCol>
                         <CardMenu onDidDismiss={()=>{       
                                 setShowActionSheet(false)
                                 menuController.enable(true);
@@ -133,9 +120,8 @@ const FlashCards: React.FC = () => {
                         handlerAnswer={()=>handleResponderButton()}
                         handlerAdd={()=> console.log('Favorite clicked')}
                         handlerClose={()=>menuController.enable(true)}
-                        />
-                        
-                    </IonCard>
+                        />                       
+                    </ContainerCards>
 
 
                     <CreateButton onClick={()=>{

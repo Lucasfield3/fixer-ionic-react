@@ -92,12 +92,12 @@ const CriarQuestionario:React.FC = ()=>{
                         <IonButton onClick={()=> setShowModal(true)}  style={{marginBottom:'0.5rem'}} className='buttons-dark' color='dark'>Adicionar flashcards</IonButton>
                     </IonCard>
                     <IonModal onDidDismiss={()=> setShowModal2(false)} isOpen={showModal2} cssClass='modal-choose'>
-                        <IonButton color='light' className="btn-dissertativa" onClick={() => {
+                        <IonButton color='light' className="btn-choose" onClick={() => {
                             setShowModal2(false)                                        
                             history.push('/questaoDissertativa')                        
                             }}>Dissertativa</IonButton>
                         <IonLabel className="label-modal">ou</IonLabel>
-                        <IonButton color='light' className="btn-alternativa" onClick={() => {
+                        <IonButton color='light' className="btn-choose" onClick={() => {
                             setShowModal2(false)   
                             history.push('/questaoAlternativa')
                             }}>Alternativa</IonButton>

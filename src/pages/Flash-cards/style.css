@@ -3,22 +3,6 @@
     background: transparent;
   }
 
-  .container-flashcards{
-    display: flex;
-    justify-content: center;
-    background: rgba(1, 22, 39, 0.29);
-    width: auto;
-    height: 80%;
-    border-radius: 5px;
-    overflow: auto;
-    margin-inline-start: 5px;
-    margin-inline-end: 5px;
-    margin-bottom: 1.3rem;
-    margin-top: 1rem;
-  }
-
-
- 
   @media screen and (max-width:340px){
     .ion-fab-margin{
       left: 84%;
@@ -34,19 +18,6 @@
     margin-right: 0;
 }
 
-.grid-flashcards{
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
-}
-
-
-.grid-flashcards{
-  display: flex;
-  flex-wrap: wrap;
-  padding:0;
-}
 .card-vazio-cards{
   font-size: 30px;
     font-weight: bold;

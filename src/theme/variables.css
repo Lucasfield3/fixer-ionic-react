@@ -215,3 +215,33 @@ ion-button{
   height: 2rem;
   font-size: 19px;
 }
+.container-cards{
+  display: flex;
+  justify-content: center;
+  background: rgba(1, 22, 39, 0.29);
+  width: auto;
+  height: 80%;
+  border-radius: 5px;
+  overflow: auto;
+  margin-inline-start: 5px;
+  margin-inline-end: 5px;
+  margin-bottom: 1.3rem;
+  margin-top: 1rem;
+}
+.grid-cards{
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+.btn-choose{
+  margin: auto;
+  font-weight: bold;
+  width: 7.9rem;
+  height: 2.3rem;
+  --ion-color-light-contrast: var(--ion-color-dark)!important;
+  border: 1px solid var(--ion-color-dark);
+  font-size: 14.2px;
+  border-radius: 0.2rem;
+  margin-top: 0.5rem;
+}

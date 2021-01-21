@@ -1,10 +1,12 @@
 import { 
     IonActionSheet, 
     IonButton, 
+    IonCard, 
     IonCol, 
     IonFab, 
     IonFabButton, 
     IonFabList, 
+    IonGrid, 
     IonHeader, 
     IonIcon, 
     IonLabel, 
@@ -27,6 +29,7 @@ const LabelEmpty = styled(IonLabel)`
   display: flex;
   align-items:center;
   flex-direction:column;
+  margin:auto;
 `;
 export const SearchBar = styled(IonSearchbar)`
 --border-radius: 6px;
@@ -193,7 +196,7 @@ export const ButtonArrow: React.FC<{onClick:()=>void}> = props=>{
         </>
     )
 }
-export const HeaderAnswer: React.FC<{onClick:()=>void;}> = props =>{
+export const HeaderAnswer: React.FC = () =>{
 
     return(
         <>
@@ -208,5 +211,20 @@ export const HeaderAnswer: React.FC<{onClick:()=>void;}> = props =>{
 
         </>
     );
+
+}
+export const ContainerCards:React.FC<{style: React.CSSProperties}> = props =>{
+
+    return(
+        <>
+             <IonCard style={props.style}  className='container-cards'>
+                 <IonCol>
+                     <IonGrid className='ios grid-cards'> 
+                         {props.children}
+                     </IonGrid>
+                 </IonCol>
+             </IonCard>
+        </>
+    )
 
 }

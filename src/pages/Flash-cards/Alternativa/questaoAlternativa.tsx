@@ -277,14 +277,14 @@ const QuestaoAlternativa: React.FC = () => {
 
 
                     <IonModal backdropDismiss={false} isOpen={showModal2} cssClass='modal-choose'>
-                        <IonButton color='light' className="btn-dissertativa" onClick={() => {
+                        <IonButton color='light' className="btn-choose" onClick={() => {
                             setShowModal2(false)
                             setShowModal(false)
                             CleanInputs()
                             history.push('/questaoDissertativa')
                         }}>Dissertativa</IonButton>
                         <IonLabel className="label-modal">ou</IonLabel>
-                        <IonButton color='light' className="btn-alternativa" onClick={() => {
+                        <IonButton color='light' className="btn-choose" onClick={() => {
                             setShowModal2(false)
                             setShowModal(false)
                             CleanInputs()
