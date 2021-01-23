@@ -192,7 +192,7 @@ const AnswerDissertativa: React.FC = () => {
                                         <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center row-btn'>
                                             <IonButton onClick={() => {
                                                 setShowPopover(false)
-                                            }} color='light' className='btn-cancel'>Fechar</IonButton>
+                                            }} color='light' className='btn-clean'>Fechar</IonButton>
                                         </IonRow>
                                     </IonPopover>
                                     <IonPopover
@@ -212,7 +212,7 @@ const AnswerDissertativa: React.FC = () => {
                                 </IonRow>
                             </IonCardHeader>
                             <IonCardContent className="content-background">
-                                <IonRow className="ios row-dissertativa">
+                                <IonRow className="ios row-enunciated">
                                     <IonTextarea
                                         overflow-scroll="true"
                                         rows={5}
@@ -250,7 +250,7 @@ const AnswerDissertativa: React.FC = () => {
                             <IonRow color='light' className='row-header-resposta'></IonRow>
                         </IonCardHeader>
                         <IonCardContent style={{ height: '9rem' }} className="content-background">
-                            <IonRow className="ios row-dissertativa">
+                            <IonRow className="ios row-enunciated">
                                 <IonTextarea
                                     overflow-scroll="true"
                                     className='ios answer'

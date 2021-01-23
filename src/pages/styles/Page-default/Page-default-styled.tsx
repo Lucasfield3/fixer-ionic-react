@@ -2,6 +2,8 @@ import {
     IonActionSheet, 
     IonButton, 
     IonCard, 
+    IonCardContent, 
+    IonCardHeader, 
     IonCol, 
     IonFab, 
     IonFabButton, 
@@ -9,10 +11,14 @@ import {
     IonGrid, 
     IonHeader, 
     IonIcon, 
+    IonInput, 
+    IonItem, 
     IonLabel, 
     IonMenuButton, 
-    IonRow,
+    IonPopover, 
+    IonRow, 
     IonSearchbar, 
+    IonTextarea, 
     IonToolbar 
 } from '@ionic/react'
 import React, { ChangeEvent } from 'react'
@@ -226,6 +232,94 @@ export const ContainerCards:React.FC<{style: React.CSSProperties}> = props =>{
                      </IonGrid>
                  </IonCol>
              </IonCard>
+        </>
+    )
+
+}
+
+export const CardQuestion:React.FC<{
+    onIonChangeTitle:(event: CustomEvent) => void;
+    valueTitle:string;
+    onClickTheme:()=>void;
+    isOpenThemes:boolean;
+    onDidDismissTheme:(event: CustomEvent) => void;
+    onClickAddTheme:()=>void;
+    onClickSaveBtn:()=>void;
+    onClickCleanBtn:()=>void;
+    isOpenSaveTheme:boolean;
+    onIonChangeTheme:(event: CustomEvent) => void;
+    onDidDismissSave:(event: CustomEvent) => void;
+    valueTextPop:string;
+    valueSubj:string;
+    onIonChangeSubj:(event: CustomEvent) => void;
+    onIonChangeQuestion:(event: CustomEvent) => void;
+    valueEnunciated:string;
+
+
+}> = props =>{
+
+    return(
+        <>
+             <IonItem className="item-input-title">
+                        <IonInput maxlength={100} value={props.valueTitle} type="text" required className="input-title" onIonChange={props.onIonChangeTitle} placeholder="Insira o título do Flashcard"></IonInput>
+                    </IonItem>
+
+                    <IonCard className='card-question' color='light'>
+                        <IonCardHeader style={{ padding: 0 }}>
+                            <IonRow className='ios ion-justify-content-space-between row-header'>
+                                <IonButton onClick={props.onClickTheme} className="ios btn-tema-dissertativa">Tema</IonButton>
+                                <IonPopover
+                                    isOpen={props.isOpenThemes}
+                                    cssClass='temas-custom'
+                                    onDidDismiss={props.onDidDismissTheme}
+                                >
+                                    <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
+                                        <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Adicione um tema</IonLabel>
+                                    </IonRow>
+                                    <IonGrid className='back-temas'>
+                                        <IonRow className='ion-justify-content-center'>
+                                            <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' onIonChange={props.onIonChangeTheme} value={props.valueTextPop} type='text'></IonInput>
+                                            <IonFabButton className='add-btn' onClick={props.onClickAddTheme} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
+                                        </IonRow>
+                                        {props.children}
+                                    </IonGrid>
+                                    <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center'>
+                                        <IonButton className='btn-save' color='light' onClick={props.onClickSaveBtn}>Salvar</IonButton>
+                                        <IonButton onClick={props.onClickCleanBtn} color='light' className='btn-clean'>Limpar</IonButton>
+                                    </IonRow>
+                                </IonPopover>
+                                <IonPopover
+                                    isOpen={props.isOpenSaveTheme}
+                                    cssClass='my-custom-class save'
+                                    onDidDismiss={props.onDidDismissSave}
+                                >
+                                    <IonRow className='ion-justify-content-center ion-text-align-center'>
+                                        <IonLabel style={{ fontWeight: 'bold', fontSize: '18px', lineHeight: '8rem' }} color='success'>Temas salvos!</IonLabel>
+                                    </IonRow>
+                                </IonPopover>
+
+                                <IonInput maxlength={100} value={props.valueSubj} className="input-tema" placeholder="Insira a matéria" onIonChange={props.onIonChangeSubj}></IonInput>
+                            </IonRow>
+                        </IonCardHeader>
+                        <IonCardContent className="content-background">
+                            <IonRow className="ios row-enunciated">
+                                <IonTextarea
+                                    autoCapitalize='on'
+                                    maxlength={240}
+                                    overflow-scroll="true"
+                                    rows={5}
+                                    cols={20}
+                                    required
+                                    className='ios question'
+                                    color='dark'
+                                    onIonChange={props.onIonChangeQuestion}
+                                    value={props.valueEnunciated}
+                                    placeholder="Digite ou cole o enunciado do flash-card">
+                                </IonTextarea>
+                            </IonRow>
+                        </IonCardContent>
+                        <IonRow className='row-footer' color='light'></IonRow>
+                    </IonCard >
         </>
     )
 

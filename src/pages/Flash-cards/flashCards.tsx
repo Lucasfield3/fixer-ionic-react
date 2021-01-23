@@ -7,7 +7,6 @@ import {
     useIonViewWillEnter, 
 
 } from '@ionic/react'
-import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import Cards from './Cards/Cards';

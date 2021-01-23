@@ -253,7 +253,7 @@ const AnswerAlternativa: React.FC = () => {
                                         <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center row-btn'>
                                             <IonButton onClick={() => {
                                                 setShowPopover(false)
-                                            }} color='light' className='btn-cancel'>Fechar</IonButton>
+                                            }} color='light' className='btn-clean'>Fechar</IonButton>
                                         </IonRow>
                                     </IonPopover>
                                     <IonPopover
@@ -273,7 +273,7 @@ const AnswerAlternativa: React.FC = () => {
                                 </IonRow>
                             </IonCardHeader>
                             <IonCardContent className="content-background">
-                                <IonRow className="ios row-dissertativa">
+                                <IonRow className="ios row-enunciated">
                                     <IonTextarea
                                         overflow-scroll="true"
                                         rows={5}

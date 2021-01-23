@@ -205,7 +205,7 @@ const CriarAlternativaQuest:React.FC = ()=>{
                                             setShowPopover(false)
                                             setThemes([])
                                             setTextPop('')
-                                        }} color='light' className='btn-cancel'>Limpar</IonButton>
+                                        }} color='light' className='btn-clean'>Limpar</IonButton>
                                     </IonRow>
                                 </IonPopover>
                                 <IonPopover
@@ -225,7 +225,7 @@ const CriarAlternativaQuest:React.FC = ()=>{
                             </IonRow>
                         </IonCardHeader>
                         <IonCardContent className="content-background">
-                            <IonRow className="ios row-dissertativa">
+                            <IonRow className="ios row-enunciated">
                                 <IonTextarea
                                     autoCapitalize='on'
                                     maxlength={240}
