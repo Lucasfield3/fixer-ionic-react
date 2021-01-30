@@ -35,15 +35,11 @@ const clickHandler= ()=>{
     setInput('')
 }
 
-
-
-
-
     return(
         <>
         <IonCardContent className='card-content-login'>
             
-            <IonRow className="ion-align-items-center">
+            <IonRow className="ios ion-align-items-center email">
                 <IonCol>
                     <IonItem color='light'>
                         <IonLabel color='primary' position='floating'>Login:</IonLabel>  
@@ -51,7 +47,7 @@ const clickHandler= ()=>{
                     </IonItem>
                 </IonCol>
             </IonRow>
-            <IonRow className="ion-align-items-center login">
+            <IonRow className="ion-align-items-center senha">
                 <IonCol>
                     <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Senha:</IonLabel>  

@@ -1,4 +1,5 @@
 .card-error{
+  backface-visibility: hidden;
   border-radius: 21px;
   width: auto;
   height: 16.2rem;

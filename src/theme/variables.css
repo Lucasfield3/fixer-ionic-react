@@ -398,3 +398,65 @@ ion-button{
   padding: 0!important;
   margin:0!important;
 }
+.ios .email{
+  margin-inline-start: -1.2rem;
+}
+.ios .senha{
+  margin-inline-start: -1.2rem;
+}
+.alternativa-correta{
+  border-radius: 1.7rem;
+  margin-right: 5px;
+  padding-inline-end: 2px;
+  background: var(--ion-color-light)!important;
+  box-shadow: var(--box-shadow);
+  margin-top: 0;
+  --padding-start: 1rem;
+}
+.alternativa-correta::placeholder{
+  line-height: 3rem;
+}
+.add-alternativas{
+  border-radius: 1.7rem;
+  height: auto;
+  margin-right: 5px;
+  padding-inline-end: 2px;
+  background: var(--ion-color-light)!important;
+  box-shadow: var(--box-shadow);
+  margin-top: 0;
+  --padding-start: 1rem;
+  --padding-bottom: 16px;
+}
+.div-modal-alternativa{
+  justify-content: center;
+  align-items: center;
+  display: block;
+  margin: 1rem 3rem;
+}
+
+.ios .div-modal-alternativa {
+  justify-content: center;
+  align-items: center;
+  display: block;
+  margin: 0rem 3rem;
+}
+.ios .card-image{
+  height: 5rem;
+  width: 5rem;
+  margin: .8rem 0;
+}
+
+.ios .card-title{
+  display: block;
+  opacity: 0;
+  font-size: 15px;
+  font-weight: bold;
+  color:var(--ion-color-dark);
+  text-align:center;
+}
+.card-flip{
+  backface-visibility: hidden;
+  border-radius: 21px;
+  width: auto;
+  height: 16.5rem;
+}

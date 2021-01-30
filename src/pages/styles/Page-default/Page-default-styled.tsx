@@ -4,6 +4,8 @@ import {
     IonCard, 
     IonCardContent, 
     IonCardHeader, 
+    IonCardSubtitle, 
+    IonCardTitle, 
     IonCol, 
     IonFab, 
     IonFabButton, 
@@ -15,9 +17,11 @@ import {
     IonItem, 
     IonLabel, 
     IonMenuButton, 
+    IonModal, 
     IonPopover, 
     IonRow, 
     IonSearchbar, 
+    IonText, 
     IonTextarea, 
     IonToolbar 
 } from '@ionic/react'
@@ -320,6 +324,80 @@ export const CardQuestion:React.FC<{
                         </IonCardContent>
                         <IonRow className='row-footer' color='light'></IonRow>
                     </IonCard >
+        </>
+    )
+
+}
+export const ModalChoose:React.FC<{isOpen:boolean; onClickDiss:()=>void;onClickAlt:()=>void}> = props =>{
+
+    return(
+        <>
+            <IonModal backdropDismiss={false} isOpen={props.isOpen} cssClass='modal-choose'>
+                <IonButton color='light' className="btn-choose" onClick={props.onClickDiss}>Dissertativa</IonButton>
+                <IonLabel className="label-modal">ou</IonLabel>
+                <IonButton color='light' className="btn-choose" onClick={props.onClickAlt}>Alternativa</IonButton>
+            </IonModal>
+        </>
+    )
+
+}
+
+export const ModalCreate:React.FC<{isOpen:boolean; onClickYes:()=>void; onClickNo:()=>void}> = props=>{
+
+    return(
+        <>
+             <IonModal backdropDismiss={false} isOpen={props.isOpen} cssClass='modal-criar'>
+                <IonCardTitle className="div-modal-alternativa">
+                    <IonText className="modal-text" color="dark">
+                        <IonLabel>Deseja criar mais um flashcard ?</IonLabel>
+                    </IonText>
+                    <IonCardSubtitle className="header-btn">
+                        <IonButton color='light' className="btn-sim" onClick={props.onClickYes}>Sim</IonButton>
+                        <IonButton color='light' className="btn-nao" onClick={props.onClickNo}>Não</IonButton>
+                    </IonCardSubtitle>
+                </IonCardTitle>
+            </IonModal>
+        </>
+    )
+
+}
+const RowRightAlternative = styled(IonRow)`
+    margin-bottom:1rem;
+`;
+export const GridAlternatives:React.FC<{
+
+    style: React.CSSProperties;
+    autoGrow:boolean;
+    onIonChangeRight:(event: CustomEvent) => void;
+    valueTextRighAnswer:string;
+    onClick:()=>void
+    valueAnswer:string;
+    onIonChangeAnswer:(event: CustomEvent) => void;
+
+}> = props=>{
+
+    return(
+        <>
+            <IonGrid className='array-div'>
+                <RowRightAlternative  className='ion-justify-content-center'>
+                    <IonTextarea 
+                    maxlength={240}
+                    autoGrow={props.autoGrow} 
+                    style={props.style} 
+                    className='ios alternativa-correta' 
+                    placeholder='Insira a alternativa correta' 
+                    color='dark' 
+                    onIonChange={props.onIonChangeRight} 
+                    value={props.valueTextRighAnswer}
+                    >
+                    </IonTextarea>
+                </RowRightAlternative>
+                <IonRow  className='ion-justify-content-center'>
+                    <IonTextarea autoGrow={true} className='ios add-alternativas'  placeholder='Insira a/as alternativas' color='dark'  onIonChange={props.onIonChangeAnswer} value={props.valueAnswer}></IonTextarea>
+                    <IonFabButton id='add-alternative' className='add-btn'  onClick={props.onClick} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
+                </IonRow>
+                {props.children}                                         
+        </IonGrid>
         </>
     )
 

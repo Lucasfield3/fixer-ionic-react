@@ -178,20 +178,6 @@ ion-item{
   border-radius: 0.2rem;
 }
 
-.div-modal-alternativa{
-  justify-content: center;
-  align-items: center;
-  display: block;
-  margin: 1rem 3rem;
-}
-
-.ios .div-modal-alternativa{
-  justify-content: center;
-  align-items: center;
-  display: block;
-  margin: 1rem 3rem;
-}
-
 .modal-text{
   text-align: center;
   color: var(--ion-color-dark);
@@ -263,27 +249,7 @@ ion-item{
     padding-inline-start: 9px;
     padding-top: 6px;
 }
-.add-alternativas{
-  border-radius: 1.7rem;
-  height: auto;
-  margin-right: 5px;
-  padding-inline-end: 2px;
-  background: var(--ion-color-light)!important;
-  box-shadow: var(--box-shadow);
-  margin-top: 0;
-}
-.alternativa-correta{
-  border-radius: 1.7rem;
-  height: auto;
-  margin-right: 5px;
-  padding-inline-end: 2px;
-  background: var(--ion-color-light)!important;
-  box-shadow: var(--box-shadow);
-  margin-top: 0;
-}
-.alternativa-correta::placeholder{
-  line-height: 3rem;
-}
+
 
 .quantidade .popover-content.sc-ion-popover-md{
   border-radius:21px;

@@ -7,31 +7,20 @@ import {
     IonIcon,
     IonLabel,
     IonContent,
-    IonItem,
-    IonInput,
-    IonCard,
-    IonCardContent,
-    IonTextarea,
-    IonCardHeader,
     IonToggle,
     IonCol,
-    IonGrid,
-    IonPopover,
-    IonCardSubtitle,
-    IonCardTitle,
-    IonModal,
-    IonText,
     useIonViewWillLeave,
     useIonViewWillEnter,
 } from '@ionic/react'
-import { add, remove } from 'ionicons/icons';
+import { remove } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
-import { createFlashCard, Payload, Alternative, NewAlternative } from '../../../services/flashCard.service';
+import { createFlashCard, Payload,  NewAlternative } from '../../../services/flashCard.service';
 import { getPayload } from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-import { ButtonArrow, CardQuestion, HeaderDefault, Timer } from '../../styles/Page-default/Page-default-styled';
+import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalChoose, ModalCreate, Timer } from '../../styles/Page-default/Page-default-styled';
+import { Alternative } from '../../../services/Questionarios.service';
 
 
 
@@ -217,71 +206,52 @@ const QuestaoAlternativa: React.FC = () => {
                     ))}
                    </CardQuestion>
 
-                    <IonModal backdropDismiss={false} isOpen={showModal} cssClass='modal-criar'>
-                        <IonCardTitle className="div-modal-alternativa">
-                            <IonText className="modal-text" color="dark">
-                                <IonLabel>Deseja criar mais um flashcard ?</IonLabel>
-                            </IonText>
-                            <IonCardSubtitle className="header-btn">
-                                <IonButton color='light' className="btn-sim" onClick={() => {
-                                    setShowModal2(true)
-                                }}>Sim</IonButton>
-                                <IonButton color='light' className="btn-nao" onClick={() => {
-                                    setShowModal(false)
-                                    history.push('Flash-cards')
-                                    menuController.enable(true)
-                                }}>Não</IonButton>
-                            </IonCardSubtitle>
-                        </IonCardTitle>
-                    </IonModal>
+                    <ModalCreate
+                    isOpen={showModal}
+                    onClickNo={() => {
+                        setShowModal(false)
+                        history.push('Flash-cards')
+                        menuController.enable(true)
+                    }}
+                    onClickYes={() => {
+                        setShowModal2(true)
+                    }}
+                    />
 
 
-                    <IonModal backdropDismiss={false} isOpen={showModal2} cssClass='modal-choose'>
-                        <IonButton color='light' className="btn-choose" onClick={() => {
-                            setShowModal2(false)
-                            setShowModal(false)
-                            CleanInputs()
-                            history.push('/questaoDissertativa')
-                        }}>Dissertativa</IonButton>
-                        <IonLabel className="label-modal">ou</IonLabel>
-                        <IonButton color='light' className="btn-choose" onClick={() => {
+                    <ModalChoose
+                        isOpen={showModal2}
+                        onClickAlt={() => {
                             setShowModal2(false)
                             setShowModal(false)
                             CleanInputs()
                             history.push('/questaoAlternativa')
-                        }}>Alternativa</IonButton>
-                    </IonModal>
+                        }}
+                        onClickDiss={() => {
+                            setShowModal2(false)
+                            setShowModal(false)
+                            CleanInputs()
+                            history.push('/questaoDissertativa')
+                        }}
+                    />
 
 
-                    <IonGrid className='array-div'>
-                        <IonRow style={{ marginBottom: '1rem' }} className='ion-justify-content-center'>
-                            <IonTextarea
-                                maxlength={240}
-                                autoGrow={textRightAnswer == '' && false || true}
-                                style={{ height: textRightAnswer == '' && '4rem' || 'auto' }}
-                                className='ios alternativa-correta'
-                                placeholder='Insira a alternativa correta'
-                                color='dark'
-                                onIonChange={e => {
-                                    setTextRightAnswer(e.detail.value!)
-                                }}
-                                value={textRightAnswer}
-                            >
-                            </IonTextarea>
-                        </IonRow>
-                        <IonRow className='ion-justify-content-center'>
-                            <IonTextarea autoGrow={true} className='ios add-alternativas' placeholder='Insira a/as alternativas' color='dark' onIonChange={e => setAnswer(e.detail.value!)} value={answer}></IonTextarea>
-                            <IonFabButton id='add-alternative' className='add-btn' onClick={() => {
-                                AddAlternative()
-                            }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
-                        </IonRow>
-                        {alternatives.map((alternative: Alternative, index) => (
-                            <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center colunas'>
-                                <IonCol style={{ height: 'auto', width: '10rem' }} key={index} className='alternativas' color='dark' placeholder='alternativas'>{alternative.answer}</IonCol>
-                                <IonFabButton onClick={() => DeleteAlternatives(alternative.answer)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
-                            </IonRow>
-                        ))}
-                    </IonGrid>
+                        <GridAlternatives
+                        onClick={()=>AddAlternative() }
+                        style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
+                        onIonChangeRight={e => setTextRightAnswer(e.detail.value!)}
+                        valueTextRighAnswer={textRightAnswer}
+                        onIonChangeAnswer={e => setAnswer(e.detail.value!)}
+                        valueAnswer={answer}
+                        autoGrow={textRightAnswer == '' && false || true}
+                        >
+                            {alternatives.map((alternative:Alternative, index)=>(
+                                <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
+                                    <IonCol style={{height:'auto', width:'10rem'}} key={index} className='alternativas' color='dark' placeholder='alternativas'>{alternative.answer}</IonCol>
+                                    <IonFabButton  onClick={()=>DeleteAlternatives(alternative.answer)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
+                                </IonRow>
+                            ))}       
+                        </GridAlternatives>
 
                     <IonRow className='row-toggle'>
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>

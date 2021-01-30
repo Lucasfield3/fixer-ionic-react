@@ -12,15 +12,10 @@ import {
     IonContent, 
     IonItem, 
     IonInput, 
-    IonCard, 
-    IonCardContent,
     IonTextarea, 
-    IonCardHeader, 
     IonToggle, 
     IonCol,  
     IonGrid, 
-    IonPopover,  
-    IonCardSubtitle, 
     IonCardTitle,
     IonModal, 
     IonText,
@@ -32,10 +27,10 @@ import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { createFlashCard, Payload, Alternative, NewAlternative, FlashCard, putFlashCard, getRightAnswer } from '../../../services/flashCard.service';
+import {  Payload, Alternative, NewAlternative, FlashCard, putFlashCard, getRightAnswer } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-import { getUser } from '../../../services/User.service';
+import { CardQuestion } from '../../styles/Page-default/Page-default-styled';
 
 
 
@@ -47,7 +42,6 @@ const EditAlternativa: React.FC = () => {
     const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
     const [textMat, setTextMat] = useState<string>('')
     const [enunciated, setEnunciated] = useState<string>('')
-    const [textAreaAlternative, setTextAreaAlternative] = useState<string>('')
     const [timer, setTimer] = useState<{}>(<Timer />)
     const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
@@ -56,10 +50,8 @@ const EditAlternativa: React.FC = () => {
     const [shownPopsave, setShownPopsave]= useState<boolean>(false);
     const [textPop, setTextPop] = useState<string>('')
     const [showModal, setShowModal] = useState(false)
-    const [showModal2, setShowModal2] = useState(false)
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     const [idFlashCard, setIdFlashCard] = useState<string>('')
-    //let newAlternative:NewAlternative[] = []
     const [answer, setAnswer] = useState<string>('')
     const [themes, setThemes] = useState<string[]>([]);
     const [alternatives, setAlternatives] = useState<NewAlternative[]>([]);
@@ -186,82 +178,43 @@ const EditAlternativa: React.FC = () => {
 
 
                 <IonContent>
-                    <IonItem style={{ borderRadius: '6px' }} className="item-input-dissertativa">
-                        <IonInput maxlength={100} value={textTitle} type="text" required className="input-dissertativa" onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Flashcard"></IonInput>
-                    </IonItem>
-
-                    <IonCard className='card-dissertativa' color='light'>
-                        <IonCardHeader style={{ padding: 0 }}>
-                            <IonRow className='ios ion-justify-content-space-between row-header'>
-                                <IonButton onClick={() => setShowPopover(true)} className="ios btn-tema-dissertativa">Tema</IonButton>
-                                <IonPopover
-                                    isOpen={showPopover}
-                                    cssClass='temas-custom-edit'
-                                    onDidDismiss={e => setShowPopover(false)}
-                                >
-                                    <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
-                                        <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Adicione um tema</IonLabel>
-                                    </IonRow>
-                                    <IonGrid className='back-temas'>
-                                        <IonRow className='ion-justify-content-center'>
-                                            <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' onIonChange={e => setTextPop(e.detail.value!)} value={textPop} type='text'></IonInput>
-                                            <IonFabButton className='add-btn' onClick={() => {
-                                                AddTema()
-                                                setTextPop('')
-                                            }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
-                                        </IonRow>
-                                        {themes.map((theme, index)=> (
-                                            <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                                                <IonCol key={index} className='ios temas-inputs' color='dark'>{theme}</IonCol>
-                                        <IonFabButton onClick={() => DeleteTema(theme)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
-                                            </IonRow>
-                                        ))}
-                                    </IonGrid>
-                                    <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center row-btn'>
-                                        <IonButton className='btn-save' color='light' onClick={() => popOverSave()}>Salvar</IonButton>
-                                        <IonButton onClick={() => {
-                                            setShowPopover(false)
-                                            setThemes([])
-                                            setTextPop('')
-                                        }} color='light' className='btn-cancel'>Limpar</IonButton>
-                                    </IonRow>
-                                </IonPopover>
-                                <IonPopover
-                                    isOpen={shownPopsave}
-                                    cssClass='my-custom-class save'
-                                    onDidDismiss={() => {
-                                        setShowPopover(false)
-                                        setShowPopover(false)
-                                    }}
-                                >
-                                    <IonRow className='ion-justify-content-center ion-text-align-center'>
-                                        <IonLabel style={{ fontWeight: 'bold', fontSize: '18px', lineHeight: '8rem' }} color='success'>Temas salvos!</IonLabel>
-                                    </IonRow>
-                                </IonPopover>
-
-                                <IonInput maxlength={100} value={textMat} className="input-tema" placeholder="Insira a matéria" onIonChange={e => setTextMat(e.detail.value!)}></IonInput>
-                            </IonRow>
-                        </IonCardHeader>
-                        <IonCardContent className="content-background">
-                            <IonRow className="ios row-dissertativa">
-                                <IonTextarea
-                                    maxlength={240}
-                                    overflow-scroll="true"
-                                    rows={5}
-                                    cols={20}
-                                    required
-                                    className='ios question'
-                                    color='dark'
-                                    onIonChange={e => {
-                                        setTextAreaQuestion(e.detail.value!)
-                                    }}
-                                    value={textAreaQuestion}
-                                    placeholder="Digite ou cole o enunciado do flash-card">
-                                </IonTextarea>
-                            </IonRow>
-                        </IonCardContent>
-                        <IonRow className='row-footer' color='light'></IonRow>
-                    </IonCard >
+                    <CardQuestion
+                    onIonChangeTitle={e => setTextTitle(e.detail.value!)}
+                    valueTitle={textTitle}
+                    onClickTheme={() => setShowPopover(true)}
+                    isOpenThemes={showPopover}
+                    onDidDismissTheme={e => setShowPopover(false)}
+                    onIonChangeTheme={e => setTextPop(e.detail.value!)}
+                    valueTextPop={textPop}
+                    onClickAddTheme={() => {
+                        AddTema()
+                        setTextPop('')
+                    }}
+                    onClickSaveBtn={() => popOverSave()}
+                    onClickCleanBtn={() => {
+                        setShowPopover(false)
+                        setThemes([])
+                        setTextPop('')
+                    }}
+                    isOpenSaveTheme={shownPopsave}
+                    onDidDismissSave={() => {
+                        setShowPopover(false)
+                        setShowPopover(false)
+                    }}
+                    valueSubj={textMat}
+                    onIonChangeSubj={e => setTextMat(e.detail.value!)}
+                    onIonChangeQuestion={e => {
+                        setTextAreaQuestion(e.detail.value!)
+                    }}
+                    valueEnunciated={textAreaQuestion}
+                   >
+                     {themes.map((theme, index)=> (
+                        <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
+                            <IonCol key={index} className='ios temas-inputs' color='dark'>{theme}</IonCol>
+                            <IonFabButton onClick={() => DeleteTema(theme)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
+                        </IonRow>
+                    ))}
+                   </CardQuestion>
 
                     <IonModal backdropDismiss={false} isOpen={showModal} cssClass='modal-criar'>
                         <IonCardTitle className="div-modal-alternativa">
@@ -278,21 +231,21 @@ const EditAlternativa: React.FC = () => {
                     </IonModal>
 
                     <IonGrid className='array-div'>
-                    <IonRow style={{marginBottom:'1rem'}} className='ion-justify-content-center'>
-                                <IonTextarea 
-                                maxlength={240}
-                                autoGrow={textRightAnswer == '' && false || true} 
-                                style={{height: textRightAnswer == '' && '4rem' || 'auto'}} 
-                                className='ios alternativa-correta' 
-                                placeholder='Insira a alternativa correta' 
-                                color='dark' 
-                                onIonChange={e => {
-                                    setTextRightAnswer(e.detail.value!)
-                                }} 
-                                value={textRightAnswer}
-                                >
-                                </IonTextarea>
-                    </IonRow>
+                        <IonRow style={{marginBottom:'1rem'}} className='ion-justify-content-center'>
+                                    <IonTextarea 
+                                    maxlength={240}
+                                    autoGrow={textRightAnswer == '' && false || true} 
+                                    style={{height: textRightAnswer == '' && '4rem' || 'auto'}} 
+                                    className='ios alternativa-correta' 
+                                    placeholder='Insira a alternativa correta' 
+                                    color='dark' 
+                                    onIonChange={e => {
+                                        setTextRightAnswer(e.detail.value!)
+                                    }} 
+                                    value={textRightAnswer}
+                                    >
+                                    </IonTextarea>
+                        </IonRow>
                         <IonRow  className='ion-justify-content-center'>
                                 <IonTextarea autoGrow={true} className='ios add-alternativas'  placeholder='Insira a/as alternativas' color='dark'  onIonChange={e => setAnswer(e.detail.value!)} value={answer}></IonTextarea>
                                 <IonFabButton id='add-alternative' className='add-btn'  onClick={()=> {            

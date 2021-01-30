@@ -50,7 +50,7 @@ const Home: React.FC = () => {
     setCards(cardsValues)
 }
   useIonViewWillEnter(() => {
-    menuController.enable(true);      
+    menuController.enable(true) 
    
 }, [])
   const changeBtn = () => {

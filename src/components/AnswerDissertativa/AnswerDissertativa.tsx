@@ -170,7 +170,7 @@ const AnswerDissertativa: React.FC = () => {
 
                     />
                 <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
-                    <IonCard className='card-dissertativa' color='light'>
+                    <IonCard className='card-flip' color='light'>
                             <IonCardHeader style={{ padding: 0 }}>
                                 <IonRow className='ios ion-justify-content-space-between row-header'>
                                     <IonButton onClick={() => setShowPopover(true)} className="ios btn-tema-dissertativa">Tema</IonButton>

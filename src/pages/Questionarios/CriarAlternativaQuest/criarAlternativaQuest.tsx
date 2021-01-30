@@ -172,7 +172,7 @@ const CriarAlternativaQuest:React.FC = ()=>{
                         <IonInput maxlength={100} value={textTitle} type="text" required className="input-dissertativa" onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Flashcard"></IonInput>
                     </IonItem>
 
-                    <IonCard className='card-dissertativa' color='light'>
+                    <IonCard className='card-flip' color='light'>
                         <IonCardHeader style={{ padding: 0 }}>
                             <IonRow className='ios ion-justify-content-space-between row-header'>
                                 <IonButton onClick={() => setShowPopover(true)} className="ios btn-tema-dissertativa">Tema</IonButton>
