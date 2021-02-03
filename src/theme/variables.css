@@ -219,7 +219,7 @@ ion-button{
   display: flex;
   justify-content: center;
   background: rgba(1, 22, 39, 0.29);
-  width: auto;
+  width: 97%;
   height: 80%;
   border-radius: 5px;
   overflow: auto;
@@ -227,6 +227,8 @@ ion-button{
   margin-inline-end: 5px;
   margin-bottom: 1.3rem;
   margin-top: 1rem;
+  padding-top: 5px;
+  overflow-y: overlay;
 }
 .grid-cards{
   margin: auto;

@@ -230,7 +230,7 @@ export const ContainerCards:React.FC<{style: React.CSSProperties}> = props =>{
     return(
         <>
              <IonCard style={props.style}  className='container-cards'>
-                 <IonCol>
+                 <IonCol style={{display:'flex'}}>
                      <IonGrid className='ios grid-cards'> 
                          {props.children}
                      </IonGrid>
