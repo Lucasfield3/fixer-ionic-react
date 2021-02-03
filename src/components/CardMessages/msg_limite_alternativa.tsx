@@ -9,9 +9,10 @@ const Limitedalternativa: React.FC<{onDidDismiss:()=> void; isOpen:boolean; onCl
     <IonPopover
     isOpen={props.isOpen}
     onDidDismiss={props.onDidDismiss}
+    cssClass='ios custom-popOverLimit'
     >
-      <IonCardContent style={{height:'15%'}} className='card-msg-limite' color='light'>
-        <IonCardHeader style={{padding:0}} color="light">
+      <IonCardContent style={{height:'15%', backgroundColor:'var(--ion-color-light)'}} className='card-msg-limite' color='light'>
+        <IonCardHeader style={{padding:0, marginBottom:'-0.5rem'}} color="light">
             <IonLabel className="ios label-msg-notification">Numero insuficiênte de alternativas.</IonLabel>
         </IonCardHeader>
         <IonButton color='light' onClick={props.onClick} className='ios btn_msg_notification'>OK</IonButton>

@@ -30,7 +30,7 @@ import styled from 'styled-components';
 import {  Payload, Alternative, NewAlternative, FlashCard, putFlashCard, getRightAnswer } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-import { CardQuestion } from '../../styles/Page-default/Page-default-styled';
+import { CardQuestion, RowBtnCreate, Timer } from '../../styles/Page-default/Page-default-styled';
 
 
 
@@ -42,7 +42,6 @@ const EditAlternativa: React.FC = () => {
     const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
     const [textMat, setTextMat] = useState<string>('')
     const [enunciated, setEnunciated] = useState<string>('')
-    const [timer, setTimer] = useState<{}>(<Timer />)
     const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
@@ -55,6 +54,7 @@ const EditAlternativa: React.FC = () => {
     const [answer, setAnswer] = useState<string>('')
     const [themes, setThemes] = useState<string[]>([]);
     const [alternatives, setAlternatives] = useState<NewAlternative[]>([]);
+    const [time, setTime] = useState<string>(':');
     const popOverSave = () => {
         setShownPopsave(true);
         setTimeout(() => {
@@ -216,7 +216,7 @@ const EditAlternativa: React.FC = () => {
                     ))}
                    </CardQuestion>
 
-                    <IonModal backdropDismiss={false} isOpen={showModal} cssClass='modal-criar'>
+                    <IonModal backdropDismiss={false} isOpen={showModal} cssClass='ios modal-criar'>
                         <IonCardTitle className="div-modal-alternativa">
                             <IonText className="modal-text" color="dark">
                                 <IonLabel>Alterações salvas</IonLabel>
@@ -262,21 +262,16 @@ const EditAlternativa: React.FC = () => {
                        
                     <IonRow className='row-toggle'>                                            
                         <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>                        
-                        <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>
-                        <IonLabel className='tooltip-text'>Opcional</IonLabel>                    
+                        <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>                 
                     </IonRow>
-                    <IonRow className='ios row-timer-alternativa'>
-                        {shownTimer && timer}
+                    <IonRow className='ios row-timer'>
+                    {shownTimer && <Timer value={time} onChange={(event) => setTime(event.target.value!)} />}
                     </IonRow>
                     <Limitedalternativa 
                     onClick={()=> setShowPopLimit(false)} 
                     isOpen={showPopLimit} 
                     onDidDismiss={()=>setShowPopLimit(false)} />
-                    <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
-                        <IonButton id='create-button' className="ios btn-criar" onClick={() => {
-                            handleSaveButton()
-                            }} >Salvar</IonButton>
-                    </IonRow>
+                   <RowBtnCreate onClick={()=> handleSaveButton()}>Salvar</RowBtnCreate>
                 </IonContent>
 
             </IonPage>
@@ -284,37 +279,5 @@ const EditAlternativa: React.FC = () => {
     );
 
 }
-
-const StyledTimer = styled(IonCol)`
-    display:flex;
-    flex-direction:row;
-    width:auto;
-    height:2rem;
-    align-items: center;
-    position:absolute;
-`;
-const Timertext = styled(IonInput)`
-    text-align:center;
-    color:var(--ion-color-dark);
-    border-radius:16px;
-    background:var(--ion-color-light);
-    font-weight:bold;
-    width: 3rem;
-    height: -webkit-fill-available;
-    --padding-start: 3px;
-    --padding-end: 3px;
-`;
-const Timer: React.FC = () => {
-
-    return (
-        <>
-            <StyledTimer>
-                <IonIcon className='icon-styled' icon={timerOutline} />
-                <Timertext placeholder='00:00'></Timertext>
-            </StyledTimer>
-        </>
-    );
-}
-
 
 export default EditAlternativa;

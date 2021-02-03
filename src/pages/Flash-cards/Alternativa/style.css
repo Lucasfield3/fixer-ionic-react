@@ -109,26 +109,6 @@ ion-item{
   width: 5px;
 }
 
-.ios .btn-criar{
-  margin: 12px 12px!important;
-  width: 4.6rem;
-  height: 1.8rem;
-  font-size: 11px!important;
-  --background: #fdfdfd !important;
-  font-weight: bold;
-  --background-activated: #f1f1f1;
-  --background-focused: #f1f1f1;
-  --background-hover: #f1f1f1;
-}
-
-.btn-criar{
-  margin: 12px 12px!important;
-  width: 4.6rem;
-  height: 1.8rem;
-  font-size: 11px!important;
-  --background: #fdfdfd !important;
-  font-weight: bold;
-}
 .btn-quantidade{
   width: 15.6rem;
   height: 1.8rem;
@@ -136,14 +116,6 @@ ion-item{
   --background: #fdfdfd !important;
   font-weight: bold;
   --ion-color-light-contrast:var(--ion-color-dark)!important;
-}
-.btn-criar-alternativa{
-  margin: 12px 12px!important;
-  width: 7rem;
-  height: 2.3rem;
-  font-size: 11px!important;
-  --background: #fdfdfd !important;
-  font-weight: bold;
 }
 
 .modal-wrapper {
@@ -259,15 +231,12 @@ ion-item{
   height:10rem;
   
 }
-.modal-criar{
-  --height: 16%;
-  --width: 92%;
-  border-color: 1px blue solid;
-}
+
 .modal-choose{
   --height: 20%;
   border-color: 1px  blue solid;
 }
+
 .modal-wrapper {
   background: var(--ion-color-light)!important;
   --border-radius: 21px;

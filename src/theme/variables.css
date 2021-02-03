@@ -265,10 +265,11 @@ ion-button{
 .back-temas{
   background: #C8F9F3;
   border-radius: 6px;
-  border:0.65px #41EAD4 solid;
-  height: 8.3rem;
+  border: 0.65px #41EAD4 solid;
+  height: 9.3rem;
   margin: 0rem 1rem 1rem 1rem;
   overflow-y: auto;
+  overflow-x: auto;
 }
 .back-temas > ion-input{
   background-color: var(--ion-color-light)!important;
@@ -431,14 +432,10 @@ ion-button{
   justify-content: center;
   align-items: center;
   display: block;
-  margin: 1rem 3rem;
 }
 
 .ios .div-modal-alternativa {
-  justify-content: center;
-  align-items: center;
-  display: block;
-  margin: 0rem 3rem;
+  margin: 0.3rem 3rem;
 }
 .ios .card-image{
   height: 5rem;
@@ -459,4 +456,46 @@ ion-button{
   border-radius: 21px;
   width: auto;
   height: 16.5rem;
+}
+.row-timer{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-top: -0.7rem;
+  width: 5.6rem;
+}
+.ios .row-timer{
+  margin-top: 0.3rem;
+}
+.ios .btn-criar{
+  margin: 12px 12px!important;
+  width: 4.6rem;
+  height: 1.8rem;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold;
+  --background-activated: #f1f1f1;
+  --background-focused: #f1f1f1;
+  --background-hover: #f1f1f1;
+}
+.btn-criar{
+  margin: 12px 12px!important;
+  width: 4.6rem;
+  height: 1.8rem;
+  font-size: 11px!important;
+  --background: #fdfdfd !important;
+  font-weight: bold;
+}
+.modal-criar{
+  --height: 16%;
+  --width: 92%;
+}
+.modal-choose{
+  --height:20%;
+}
+.ios .modal-criar{
+  --height: 19%;
+}
+.ios .modal-choose{
+  --height: 22%;
 }

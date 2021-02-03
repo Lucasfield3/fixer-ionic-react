@@ -246,7 +246,7 @@ const CriarAlternativaQuest:React.FC = ()=>{
                         <IonRow className='row-footer' color='light'></IonRow>
                     </IonCard >
 
-                    <IonModal backdropDismiss={false} isOpen={showModal} cssClass='modal-criar'>
+                    <IonModal backdropDismiss={false} isOpen={showModal} cssClass='ios modal-criar'>
                         <IonCardTitle className="div-modal-alternativa">
                             <IonText className="modal-text" color="dark">
                                 <IonLabel>Deseja criar mais um flashcard ?</IonLabel>
@@ -319,7 +319,7 @@ const CriarAlternativaQuest:React.FC = ()=>{
                             setTime('')
                             }}/>                   
                     </IonRow>
-                    <IonRow className='ios row-timer-alternativa'>
+                    <IonRow className='ios row-timer'>
                         {shownTimer && <Timer value={time} onChange={(event)=> setTime(event.target.value!)}/>}
                     </IonRow>
                     <Limitedalternativa 

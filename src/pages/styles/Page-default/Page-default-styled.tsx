@@ -274,10 +274,10 @@ export const CardQuestion:React.FC<{
                                 <IonButton onClick={props.onClickTheme} className="ios btn-tema-dissertativa">Tema</IonButton>
                                 <IonPopover
                                     isOpen={props.isOpenThemes}
-                                    cssClass='temas-custom'
+                                    cssClass='ios temas-custom'
                                     onDidDismiss={props.onDidDismissTheme}
                                 >
-                                    <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
+                                    <IonRow style={{ marginTop: '0.9rem'}} className='ion-justify-content-center'>
                                         <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Adicione um tema</IonLabel>
                                     </IonRow>
                                     <IonGrid className='back-temas'>
@@ -346,7 +346,7 @@ export const ModalCreate:React.FC<{isOpen:boolean; onClickYes:()=>void; onClickN
 
     return(
         <>
-             <IonModal backdropDismiss={false} isOpen={props.isOpen} cssClass='modal-criar'>
+             <IonModal backdropDismiss={false} isOpen={props.isOpen} cssClass='ios modal-criar'>
                 <IonCardTitle className="div-modal-alternativa">
                     <IonText className="modal-text" color="dark">
                         <IonLabel>Deseja criar mais um flashcard ?</IonLabel>
@@ -398,6 +398,17 @@ export const GridAlternatives:React.FC<{
                 </IonRow>
                 {props.children}                                         
         </IonGrid>
+        </>
+    )
+
+}
+export const RowBtnCreate:React.FC<{onClick:()=>void}> = props=>{
+
+    return(
+        <>
+            <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
+                <IonButton id='create-button' className="ios btn-criar" onClick={props.onClick} >{props.children}</IonButton>
+            </IonRow>
         </>
     )
 

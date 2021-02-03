@@ -62,25 +62,6 @@ ion-item{
   height: 2rem;
 }
 
-.ios .btn-criar{
-  margin: 12px 12px!important;
-  width: 4.6rem;
-  height: 1.8rem;
-  font-size: 11px!important;
-  --background: #fdfdfd !important;
-  font-weight: bold;
-  --background-activated: #f1f1f1;
-  --background-focused: #f1f1f1;
-  --background-hover: #f1f1f1;
-}
-.btn-criar{
-  margin: 12px 12px!important;
-  width: 4.6rem;
-  height: 1.8rem;
-  font-size: 11px!important;
-  --background: #fdfdfd !important;
-  font-weight: bold;
-}
 .native-textarea.sc-ion-textarea-md{
   word-spacing:-1px;
 }
@@ -156,7 +137,10 @@ ion-item{
 .temas-custom{
   --height: 35vh;
 }
-
+.ios .temas-custom{
+  --height: 37vh;
+  --background:var(--ion-color-light);
+}
 
 
 .temas-inputs{

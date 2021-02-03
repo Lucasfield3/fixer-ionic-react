@@ -31,7 +31,7 @@
   font-size: 15px;
   width: 5.9rem;
   text-align: center;
-  padding-bottom: 73px;
+  position: relative;
 }
 .ios .cards ion-label{
     margin-top: -1rem;

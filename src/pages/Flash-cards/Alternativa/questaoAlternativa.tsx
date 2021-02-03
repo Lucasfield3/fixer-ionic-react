@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-    IonButton,
     IonPage,
     IonRow,
     IonFabButton,
@@ -19,7 +18,7 @@ import { useHistory } from 'react-router';
 import { createFlashCard, Payload,  NewAlternative } from '../../../services/flashCard.service';
 import { getPayload } from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalChoose, ModalCreate, Timer } from '../../styles/Page-default/Page-default-styled';
+import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalChoose, ModalCreate, RowBtnCreate, Timer } from '../../styles/Page-default/Page-default-styled';
 import { Alternative } from '../../../services/Questionarios.service';
 
 
@@ -42,7 +41,6 @@ const QuestaoAlternativa: React.FC = () => {
     const [showModal2, setShowModal2] = useState(false)
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     const [time, setTime] = useState<string>(':');
-    const [timer, setTimer] = useState<{}>()
     const temas = {
         id: 0,
         textPop: ''
@@ -199,7 +197,7 @@ const QuestaoAlternativa: React.FC = () => {
                     valueEnunciated={enunciated}
                    >
                    {themes.map(theme => (
-                        <IonRow key={theme.id} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
+                        <IonRow key={theme.id} style={{ cursor: 'default', marginTop: '1rem'}} className='ion-justify-content-center'>
                         <IonCol key={theme.id} className='ios temas-inputs' color='dark'>{theme.textPop}</IonCol>
                             <IonFabButton onClick={() => DeleteTema(theme.id)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
                         </IonRow>
@@ -260,18 +258,14 @@ const QuestaoAlternativa: React.FC = () => {
                             setTime('')
                         }} />
                     </IonRow>
-                    <IonRow className='ios row-timer-alternativa'>
+                    <IonRow className='ios row-timer'>
                         {shownTimer && <Timer value={time} onChange={(event) => setTime(event.target.value!)} />}
                     </IonRow> 
                     <Limitedalternativa
                         onClick={() => setShowPopLimit(false)}
                         isOpen={showPopLimit}
                         onDidDismiss={() => setShowPopLimit(false)} />
-                    <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
-                        <IonButton id='create-button' className="ios btn-criar" onClick={() => {
-                            handleCreateButton()
-                        }} >Criar</IonButton>
-                    </IonRow>
+                    <RowBtnCreate onClick={()=> handleCreateButton()}>Criar</RowBtnCreate>
                 </IonContent>
 
             </IonPage>

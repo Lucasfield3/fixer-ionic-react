@@ -121,7 +121,7 @@ const CriarQuestionario:React.FC = ()=>{
                             })}
                         </IonGrid>
                     </IonModal>
-                    <IonModal backdropDismiss={false} isOpen={showModalCreate} cssClass='modal-criar'>
+                    <IonModal backdropDismiss={false} isOpen={showModalCreate} cssClass='ios modal-criar'>
                         <IonCardTitle className="div-modal-alternativa">
                             <IonText className="modal-text" color="dark">
                                 <IonLabel>Deseja criar mais um Questionário ?</IonLabel>

@@ -165,7 +165,7 @@ const EditDissertativa: React.FC = () => {
                                 <IonButton onClick={() => setShowPopover(true)} className="ios btn-tema-dissertativa">Tema</IonButton>
                                 <IonPopover
                                     isOpen={showPopover}
-                                    cssClass='my-custom-class temas-custom'
+                                    cssClass='ios my-custom-class temas-custom'
                                     onDidDismiss={e => setShowPopover(false)}
                                 >
                                     <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
@@ -231,7 +231,7 @@ const EditDissertativa: React.FC = () => {
                         </IonCardContent>
                         <IonRow className='row-footer' color='light'></IonRow>
                     </IonCard >
-                    <IonModal backdropDismiss={false} isOpen={showModal} cssClass='modal-criar'>
+                    <IonModal backdropDismiss={false} isOpen={showModal} cssClass='ios modal-criar'>
                         <IonCardTitle className="div-modal-alternativa">
                             <IonText className="modal-text" color="dark">
                                 <IonLabel>Alterações salvas</IonLabel>
