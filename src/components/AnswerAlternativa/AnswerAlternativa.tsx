@@ -20,6 +20,7 @@ import CardGreen from '../CardGreen/cardGreen';
 import { menuController } from '@ionic/core';
 import CardTime from '../CardTime/cardTime';
 import { loadavg } from 'os';
+import { AreaFlip } from '../../pages/styles/Page-default/Page-default-styled';
 
 
 
@@ -151,44 +152,44 @@ const AnswerAlternativa: React.FC = () => {
             setProgress(progress - 0.15)
        }
     }
-    // var i = 0
-    // var interValIntern = 0
-    // function cronometro(){
-    //     const cardTime = <CardTime/>
-    //     const card = history.location.state as FlashCard
-    //     if(card.time !== 0){
-    //             const timeToSeconds = (card.time!)/1000 
-    //             let minutesVar =  Math.trunc(timeToSeconds/60)
-    //             let secondsVar = timeToSeconds % 60
-    //                 console.log(interValIntern)
-    //                 interValIntern  = setInterval(()=>{
-    //                     console.log(i++)
-    //                     setMinutes((minutesVar).toString())
-    //                         if(secondsVar === 0 && minutesVar !== 0 ){
-    //                             setMinutes((minutesVar--).toString())
-    //                             setSeconds((secondsVar = 60).toString())
-    //                         }
-    //                         if(i === 1){
-    //                             clearInterval(interValIntern)
-    //                             console.log(i)
-    //                         }else{
-    //                             setSeconds((secondsVar--).toString()) 
-    //                             console.log(i)
-    //                         }
+    var i = 0
+    var interValIntern = 0
+    function cronometro(){
+        const cardTime = <CardTime/>
+        const card = history.location.state as FlashCard
+        if(card.time !== 0){
+                const timeToSeconds = (card.time!)/1000 
+                let minutesVar =  Math.trunc(timeToSeconds/60)
+                let secondsVar = timeToSeconds % 60
+                    console.log(interValIntern)
+                    interValIntern  = setInterval(()=>{
+                        console.log(i++)
+                        setMinutes((minutesVar).toString())
+                            if(secondsVar === 0 && minutesVar !== 0 ){
+                                setMinutes((minutesVar--).toString())
+                                setSeconds((secondsVar = 60).toString())
+                            }
+                            if(i === 1){
+                                clearInterval(interValIntern)
+                                console.log(i)
+                            }else{
+                                setSeconds((secondsVar--).toString()) 
+                                console.log(i)
+                            }
            
-    //                         if(secondsVar === -1 && minutesVar === 0){
-    //                             clearInterval(interValIntern)
-    //                             setSeconds((secondsVar + 1).toString())
-    //                             setMinutes((minutesVar).toString())
-    //                             setCards(cardTime)
-    //                             setIsFlipped(true)
-    //                             console.log(isFlipped)
-    //                         }                            
-    //                     }, 1000)
+                            if(secondsVar === -1 && minutesVar === 0){
+                                clearInterval(interValIntern)
+                                setSeconds((secondsVar + 1).toString())
+                                setMinutes((minutesVar).toString())
+                                setCards(cardTime)
+                                setIsFlipped(true)
+                                console.log(isFlipped)
+                            }                            
+                        }, 1000)
 
                 
-    //     }      
-    // }
+        }      
+    }
  
     return (
         <>
@@ -199,7 +200,7 @@ const AnswerAlternativa: React.FC = () => {
                             Sair
                     </IonFabButton>
                     </IonToolbar>
-                    {/* <IonRow className='row-level-progress'>
+                    <IonRow className='row-level-progress'>
                         <IonRow className='ion-justify-content-center'>
                             <IonLabel className="label-lvl">LV</IonLabel>
                         </IonRow>
@@ -208,7 +209,7 @@ const AnswerAlternativa: React.FC = () => {
                             <IonProgressBar className='progress-bar' value={progress}></IonProgressBar>
                             <IonLabel className="start-lvl">1</IonLabel>
                         </IonRow>
-                    </IonRow> */}
+                    </IonRow>
                     <IonRow className='ion-justify-content-center flashcard-title'>{title}</IonRow>
                 </IonHeader>
 
@@ -227,83 +228,32 @@ const AnswerAlternativa: React.FC = () => {
 
                     />
                      
-                        {/* <IonCol style={{display: time === 0 && 'none' || 'block'}} className='timer-flashcard' >
+                        <IonCol style={{display: time === 0 && 'none' || 'block'}} className='timer-flashcard' >
                             {parseInt(minutes) < 10 && '0'}{minutes}:{parseInt(seconds) < 10 && '0'}{seconds}
-                        </IonCol>  */}
-                    <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
-                        <IonCard  className='card-flip' color='light'>
-                            <IonCardHeader style={{ padding: 0 }}>
-                                <IonRow className='ios ion-justify-content-space-between row-header'>
-                                    <IonButton onClick={() => setShowPopover(true)} className="ios btn-tema-dissertativa">Tema</IonButton>
-                                    <IonPopover
-                                        isOpen={showPopover}
-                                        cssClass='my-custom-class tema'
-                                        onDidDismiss={e => setShowPopover(false)}
-                                    >
-                                        <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
-                                            <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Temas</IonLabel>
-                                        </IonRow>
-                                        <IonGrid className='back-temas'>
-                                            {themes.map((theme: string, index) => (
-                                                <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                                                    <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>
-                                                </IonRow>
-                                            ))}
-                                        </IonGrid>
-                                        <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center row-btn'>
-                                            <IonButton onClick={() => {
-                                                setShowPopover(false)
-                                            }} color='light' className='btn-clean'>Fechar</IonButton>
-                                        </IonRow>
-                                    </IonPopover>
-                                    <IonPopover
-                                        isOpen={shownPopsave}
-                                        cssClass='my-custom-class save'
-                                        onDidDismiss={() => {
-                                            setShowPopover(false)
-                                            setShowPopover(false)
-                                        }}
-                                    >
-                                        <IonRow className='ion-justify-content-center ion-text-align-center'>
-                                            <IonLabel style={{ fontWeight: 'bold', fontSize: '18px', lineHeight: '8rem' }} color='success'>Temas</IonLabel>
-                                        </IonRow>
-                                    </IonPopover>
-
-                                    <IonCol className="titulo" >{textMat}</IonCol>
-                                </IonRow>
-                            </IonCardHeader>
-                            <IonCardContent className="content-background">
-                                <IonRow className="ios row-enunciated">
-                                    <IonTextarea
-                                        overflow-scroll="true"
-                                        rows={5}
-                                        cols={20}
-                                        required
-                                        className='ios question'
-                                        color='dark'>
-                                        {textAreaQuestion}
-                                    </IonTextarea>
-                                </IonRow>
-                            </IonCardContent>
-                            <IonRow className='row-footer' color='light'></IonRow>
-                            <IonRow className='ios ion-justify-content-center'>
-                                <IonIcon style={{ display: className.active && 'block' || 'none', opacity: showLoading == true && 0 }} onClick={() => {
-                                    setShowLoading(!showLoading)
-                                    handleFlipAnswer()
-                                    settingLoading()
-                                   
-                                }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
-                            </IonRow>
-                            <IonLoading
-                                showBackdrop={false}
-                                cssClass='loading-custom'
-                                isOpen={showLoading}
-                                duration={600}
-                            />
-                        </IonCard >
-                        {cards}
-                        
-                    </ReactCardFlip>
+                        </IonCol>
+                   <AreaFlip
+                   isFlipped={isFlipped}
+                   onClickPopTheme={() => setShowPopover(true)}
+                   isOpen={showPopover}
+                   onDidDismissPopTheme={e => setShowPopover(false)}
+                   onClickClosePop={()=> setShowPopover(false)}
+                   textMat={textMat}
+                   textAreaQuestion={textAreaQuestion}
+                   style={{ display: className.active && 'block' || 'none', opacity: showLoading == true && 0 }}
+                   onClickArrowFlip={() => {
+                    setShowLoading(!showLoading)
+                    handleFlipAnswer()
+                    settingLoading()
+                    }}
+                    isOpenLoadig={showLoading}
+                    cards={cards}
+                   >
+                    {themes.map((theme: string, index) => (
+                        <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
+                            <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>
+                        </IonRow>
+                    ))}
+                   </AreaFlip>
 
 
                     <IonGrid key={alternatives?.length} style={{ pointerEvent: isFlipped && 'none' || 'auto' }} className='array-div'>

@@ -5,32 +5,23 @@ import {
     IonRow,
     IonFabButton,
     IonIcon,
-    IonHeader,
-    IonMenuButton,
-    IonToolbar,
     IonLabel,
     IonContent, 
-    IonItem, 
-    IonInput, 
-    IonTextarea, 
-    IonToggle, 
     IonCol,  
-    IonGrid, 
     IonCardTitle,
     IonModal, 
     IonText,
     useIonViewWillLeave,
     useIonViewWillEnter
 } from '@ionic/react'
-import { add, arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
+import { remove } from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
-import styled from 'styled-components';
 import {  Payload, Alternative, NewAlternative, FlashCard, putFlashCard, getRightAnswer } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-import { CardQuestion, RowBtnCreate, Timer } from '../../styles/Page-default/Page-default-styled';
+import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
 
 
 
@@ -150,31 +141,15 @@ const EditAlternativa: React.FC = () => {
     return (
         <>
             <IonPage>
-                <IonHeader className='custom-header'>
-                    <IonToolbar>
-                        <IonRow className='row-label'>
-                            <IonLabel className="label-menu-fixer">FIXER</IonLabel>
-                        </IonRow>
-                        <IonFabButton
-                            onClick={() => {
-                                history.push('/Flash-cards')
-                                menuController.enable(true);
-                                setThemes([])                              
-                                setChecked(false)
-                                setShownTimer(false)
-                            }}
-                            slot='start'
-                            className="icon-fab-button light"
-
-                            size="small"
-                            color="light">
-                            <IonIcon icon={arrowUndoSharp} />
-                            <IonButton slot='start'>
-                                <IonMenuButton></IonMenuButton>
-                            </IonButton>
-                        </IonFabButton>
-                    </IonToolbar>
-                </IonHeader>
+            <HeaderDefault>
+                <ButtonArrow onClick={() => {
+                    history.push('/Flash-cards')
+                    menuController.enable(true);
+                    setThemes([])
+                    setChecked(false)
+                    setShownTimer(false)
+                    }}/>
+            </HeaderDefault>
 
 
                 <IonContent>
@@ -229,44 +204,33 @@ const EditAlternativa: React.FC = () => {
                             </IonRow>
                         </IonCardTitle>
                     </IonModal>
-
-                    <IonGrid className='array-div'>
-                        <IonRow style={{marginBottom:'1rem'}} className='ion-justify-content-center'>
-                                    <IonTextarea 
-                                    maxlength={240}
-                                    autoGrow={textRightAnswer == '' && false || true} 
-                                    style={{height: textRightAnswer == '' && '4rem' || 'auto'}} 
-                                    className='ios alternativa-correta' 
-                                    placeholder='Insira a alternativa correta' 
-                                    color='dark' 
-                                    onIonChange={e => {
-                                        setTextRightAnswer(e.detail.value!)
-                                    }} 
-                                    value={textRightAnswer}
-                                    >
-                                    </IonTextarea>
-                        </IonRow>
-                        <IonRow  className='ion-justify-content-center'>
-                                <IonTextarea autoGrow={true} className='ios add-alternativas'  placeholder='Insira a/as alternativas' color='dark'  onIonChange={e => setAnswer(e.detail.value!)} value={answer}></IonTextarea>
-                                <IonFabButton id='add-alternative' className='add-btn'  onClick={()=> {            
-                                    AddAlternative()                                 
-                                    }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
-                        </IonRow>                       
-                            {alternatives.map((alternative:Alternative, index)=>(
+                    <GridAlternatives
+                        onClick={()=>AddAlternative() }
+                        style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
+                        onIonChangeRight={e => setTextRightAnswer(e.detail.value!)}
+                        valueTextRighAnswer={textRightAnswer}
+                        onIonChangeAnswer={e => setAnswer(e.detail.value!)}
+                        valueAnswer={answer}
+                        autoGrow={textRightAnswer == '' && false || true}
+                        >
+                           {alternatives.map((alternative:Alternative, index)=>(
                                 <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
                                     <IonCol style={{height:'auto', width:'10rem'}} key={index} className='alternativas' color='dark' placeholder='alternativas'>{alternative.answer}</IonCol>
                                     <IonFabButton  onClick={()=>DeleteAlternatives(alternative.answer)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
                                 </IonRow>
-                            ))}                       
-                    </IonGrid>
+                            ))}           
+                    </GridAlternatives>
                        
-                    <IonRow className='row-toggle'>                                            
-                        <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>                        
-                        <IonToggle checked={checked} onIonChange={(e)=>setChecked(e.detail.checked)} className='ios toggle' onClick={()=>setShownTimer(!shownTimer)}/>                 
-                    </IonRow>
-                    <IonRow className='ios row-timer'>
-                    {shownTimer && <Timer value={time} onChange={(event) => setTime(event.target.value!)} />}
-                    </IonRow>
+                    <RowTimer 
+                    onIonChange={(e) => setChecked(e.detail.checked)}
+                    onClick={() => {
+                        setShownTimer(!shownTimer)
+                        setTime('')
+                    }}
+                    checked={checked}
+                    >
+                        {shownTimer && <Timer value={time} onChange={(event) => setTime(event.target.value!)} />}
+                    </RowTimer>
                     <Limitedalternativa 
                     onClick={()=> setShowPopLimit(false)} 
                     isOpen={showPopLimit} 

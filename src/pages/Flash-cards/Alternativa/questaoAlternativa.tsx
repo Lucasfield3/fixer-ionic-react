@@ -10,6 +10,7 @@ import {
     IonCol,
     useIonViewWillLeave,
     useIonViewWillEnter,
+    IonGrid,
 } from '@ionic/react'
 import { remove } from 'ionicons/icons';
 import './style.css'
@@ -18,7 +19,7 @@ import { useHistory } from 'react-router';
 import { createFlashCard, Payload,  NewAlternative } from '../../../services/flashCard.service';
 import { getPayload } from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalChoose, ModalCreate, RowBtnCreate, Timer } from '../../styles/Page-default/Page-default-styled';
+import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalChoose, ModalCreate, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
 import { Alternative } from '../../../services/Questionarios.service';
 
 
@@ -250,17 +251,16 @@ const QuestaoAlternativa: React.FC = () => {
                                 </IonRow>
                             ))}       
                         </GridAlternatives>
-
-                    <IonRow className='row-toggle'>
-                        <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>
-                        <IonToggle checked={checked} onIonChange={(e) => setChecked(e.detail.checked)} className='ios toggle' onClick={() => {
-                            setShownTimer(!shownTimer)
-                            setTime('')
-                        }} />
-                    </IonRow>
-                    <IonRow className='ios row-timer'>
+                    <RowTimer 
+                    onIonChange={(e) => setChecked(e.detail.checked)}
+                    onClick={() => {
+                        setShownTimer(!shownTimer)
+                        setTime('')
+                    }}
+                    checked={checked}
+                    >
                         {shownTimer && <Timer value={time} onChange={(event) => setTime(event.target.value!)} />}
-                    </IonRow> 
+                    </RowTimer>
                     <Limitedalternativa
                         onClick={() => setShowPopLimit(false)}
                         isOpen={showPopLimit}

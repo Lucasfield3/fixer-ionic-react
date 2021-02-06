@@ -16,6 +16,7 @@ import {
     IonInput, 
     IonItem, 
     IonLabel, 
+    IonLoading, 
     IonMenuButton, 
     IonModal, 
     IonPopover, 
@@ -23,12 +24,14 @@ import {
     IonSearchbar, 
     IonText, 
     IonTextarea, 
+    IonToggle, 
     IonToolbar 
 } from '@ionic/react'
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, CSSProperties } from 'react'
 import styled from 'styled-components'
-import { add, menuOutline, trash, pencilSharp, bookSharp, addSharp, timerOutline, arrowUndoSharp} from 'ionicons/icons';
+import { add, menuOutline, trash, pencilSharp, bookSharp, addSharp, timerOutline, arrowUndoSharp, arrowForward} from 'ionicons/icons';
 import TimeField from 'react-simple-timefield';
+import ReactCardFlip from 'react-card-flip';
 
 
 const LabelEmpty = styled(IonLabel)`
@@ -230,7 +233,7 @@ export const ContainerCards:React.FC<{style: React.CSSProperties}> = props =>{
     return(
         <>
              <IonCard style={props.style}  className='container-cards'>
-                 <IonCol style={{display:'flex'}}>
+                 <IonCol>
                      <IonGrid className='ios grid-cards'> 
                          {props.children}
                      </IonGrid>
@@ -409,6 +412,97 @@ export const RowBtnCreate:React.FC<{onClick:()=>void}> = props=>{
             <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
                 <IonButton id='create-button' className="ios btn-criar" onClick={props.onClick} >{props.children}</IonButton>
             </IonRow>
+        </>
+    )
+
+}
+export const RowTimer:React.FC<{checked:boolean; 
+    onIonChange:(event: CustomEvent)=>void;
+    onClick:()=>void;
+}> = props=>{
+
+    return(
+        <>
+             <IonGrid>
+                <IonRow className='row-toggle'>
+                    <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>
+                    <IonToggle checked={props.checked} onIonChange={props.onIonChange} className='ios toggle' onClick={props.onClick} />
+                </IonRow>
+                <IonRow className='ios row-timer'>
+                    {props.children}
+                </IonRow> 
+            </IonGrid>
+        </>
+    )
+
+}
+
+export const AreaFlip:React.FC<{
+    isFlipped:boolean;
+    onClickPopTheme:()=>void;
+    isOpen:boolean;
+    onDidDismissPopTheme:(event: CustomEvent)=> void;
+    onClickClosePop:()=>void;
+    textMat:string;
+    textAreaQuestion:string;
+    style:any;
+    onClickArrowFlip:()=>void;
+    isOpenLoadig:boolean;
+    cards:{} | undefined;
+}>= props=>{
+
+    return(
+        <>
+             <ReactCardFlip isFlipped={props.isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
+                        <IonCard  className='card-flip' color='light'>
+                            <IonCardHeader style={{ padding: 0 }}>
+                                <IonRow className='ios ion-justify-content-space-between row-header'>
+                                    <IonButton onClick={props.onClickPopTheme} className="ios btn-tema-dissertativa">Tema</IonButton>
+                                    <IonPopover
+                                        isOpen={props.isOpen}
+                                        cssClass='my-custom-class tema'
+                                        onDidDismiss={props.onDidDismissPopTheme}
+                                    >
+                                        <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
+                                            <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Temas</IonLabel>
+                                        </IonRow>
+                                        <IonGrid className='back-temas'>
+                                            {props.children}
+                                        </IonGrid>
+                                        <IonRow  style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center row-btn'>
+                                            <IonButton onClick={props.onClickClosePop} color='light' className='btn-clean'>Fechar</IonButton>
+                                        </IonRow>
+                                    </IonPopover>
+                                    <IonCol className="titulo" >{props.textMat}</IonCol>
+                                </IonRow>
+                            </IonCardHeader>
+                            <IonCardContent className="content-background">
+                                <IonRow className="ios row-enunciated">
+                                    <IonTextarea
+                                        overflow-scroll="true"
+                                        rows={5}
+                                        cols={20}
+                                        required
+                                        className='ios question'
+                                        color='dark'>
+                                        {props.textAreaQuestion}
+                                    </IonTextarea>
+                                </IonRow>
+                            </IonCardContent>
+                            <IonRow className='row-footer' color='light'></IonRow>
+                            <IonRow className='ios ion-justify-content-center'>
+                                <IonIcon style={props.style} onClick={props.onClickArrowFlip} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
+                            </IonRow>
+                            <IonLoading
+                                showBackdrop={false}
+                                cssClass='loading-custom'
+                                isOpen={props.isOpenLoadig}
+                                duration={600}
+                            />
+                        </IonCard >
+                        {props.cards}
+                        
+                    </ReactCardFlip>
         </>
     )
 
