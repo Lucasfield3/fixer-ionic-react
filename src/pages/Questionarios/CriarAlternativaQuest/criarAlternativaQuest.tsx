@@ -251,7 +251,7 @@ const CriarAlternativaQuest:React.FC = ()=>{
                             <IonText className="modal-text" color="dark">
                                 <IonLabel>Deseja criar mais um flashcard ?</IonLabel>
                             </IonText>
-                            <IonCardSubtitle className="header-btn">
+                            <IonCardSubtitle className="btn-modalDefault">
                                 <IonButton color='light' className="btn-sim" onClick={() => {
                                     setShowModal2(true)
                                     }}>Sim</IonButton>

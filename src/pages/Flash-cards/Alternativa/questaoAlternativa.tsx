@@ -19,7 +19,7 @@ import { useHistory } from 'react-router';
 import { createFlashCard, Payload,  NewAlternative } from '../../../services/flashCard.service';
 import { getPayload } from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalChoose, ModalCreate, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
+import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalChoose, ModalDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
 import { Alternative } from '../../../services/Questionarios.service';
 
 
@@ -205,7 +205,7 @@ const QuestaoAlternativa: React.FC = () => {
                     ))}
                    </CardQuestion>
 
-                    <ModalCreate
+                    <ModalDefault
                     isOpen={showModal}
                     onClickNo={() => {
                         setShowModal(false)
@@ -215,6 +215,8 @@ const QuestaoAlternativa: React.FC = () => {
                     onClickYes={() => {
                         setShowModal2(true)
                     }}
+                    msg='Deseja criar mais um flashcard?'
+                    cssClass='ios modal-criar'
                     />
 
 

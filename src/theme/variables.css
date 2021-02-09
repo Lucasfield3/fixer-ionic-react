@@ -264,6 +264,9 @@ ion-button{
   width: auto;
   height: 16.5rem;
 }
+.ios .back-temas{
+  width: auto;
+}
 .back-temas{
   background: #C8F9F3;
   border-radius: 6px;
@@ -273,6 +276,7 @@ ion-button{
   overflow-y: auto;
   overflow-x: auto;
 }
+
 .back-temas > ion-input{
   background-color: var(--ion-color-light)!important;
   margin-right: 2px;
@@ -437,7 +441,7 @@ ion-button{
 }
 
 .ios .div-modal-alternativa {
-  margin: 0.3rem 3rem;
+  margin: 0.3rem 2rem;
 }
 .ios .card-image{
   height: 5rem;
@@ -492,12 +496,74 @@ ion-button{
   --height: 16%;
   --width: 92%;
 }
+.modalSair{
+  --height:13%;
+}
+.ios .modalSair{
+  --height:16%;
+}
 .modal-choose{
   --height:20%;
 }
 .ios .modal-criar{
-  --height: 19%;
+  --height: 22%;
 }
 .ios .modal-choose{
   --height: 22%;
+}
+.ios .row-timer{
+  margin-top: -0rem;
+}
+.tooltip-text{
+  visibility: hidden;
+  width: 69px;
+  background-color: var(--ion-color-dark);
+  color: var(--ion-color-light);
+  text-align: center;
+  border-radius: 19px;
+  z-index: 3;
+  height: 23px;
+  font-size: 14px;
+  line-height: 23px;
+  padding-left: 0px;
+
+}
+.toggle:hover + .tooltip-text{
+  visibility: visible;
+}
+.popover-content.sc-ion-popover-md{
+  border-radius:21px;
+  --background:var(--ion-color-light);
+
+}
+.temas-custom{
+  --height: 38vh;
+}
+.ios .temas-custom{
+  --height: 38vh;
+  --background:var(--ion-color-light);
+}
+
+
+.temas-inputs{
+  border-radius: 1.7rem;
+  height: 2rem;
+  margin-right: 5px;
+  background: var(--ion-color-light);
+  box-shadow: var(--box-shadow);
+}
+.ios .temas-inputs{
+  border-radius: 1.7rem;
+  height: 2rem;
+  margin-right: 5px;
+  background: var(--ion-color-light);
+  border: 0.65px rgb(199, 199, 199) solid;
+}
+.custom-popSair{
+  --background:var(--ion-color-light);
+  --height: 16%;
+  --width: 92%;
+}
+.ios .custom-popSair{
+  --height: 19%;
 }

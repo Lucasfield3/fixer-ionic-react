@@ -20,7 +20,7 @@ import CardGreen from '../CardGreen/cardGreen';
 import { menuController } from '@ionic/core';
 import CardTime from '../CardTime/cardTime';
 import { loadavg } from 'os';
-import { AreaFlip } from '../../pages/styles/Page-default/Page-default-styled';
+import { AreaFlip, HeaderAnswerDefault, ModalDefault, Redone } from '../../pages/styles/Page-default/Page-default-styled';
 
 
 
@@ -96,6 +96,7 @@ const AnswerAlternativa: React.FC = () => {
         } else {
             console.log('Não tem nada');
         }
+        cronometro()
     }, [])
     const removeActive = () => {
         setClassName({
@@ -194,40 +195,23 @@ const AnswerAlternativa: React.FC = () => {
     return (
         <>
             <IonPage>
-                <IonHeader className='custom-header'>
-                    <IonToolbar>
-                        <IonFabButton onClick={() => setShownPopsair(true)} className='btnSair-answer' color='light' slot='end' size='small'>
-                            Sair
-                    </IonFabButton>
-                    </IonToolbar>
-                    <IonRow className='row-level-progress'>
-                        <IonRow className='ion-justify-content-center'>
-                            <IonLabel className="label-lvl">LV</IonLabel>
-                        </IonRow>
-                        <IonRow style={{ height: '1rem' }} className='ion-justify-content-center row-progress'>
-                            <IonLabel className="start-lvl">0</IonLabel>
-                            <IonProgressBar className='progress-bar' value={progress}></IonProgressBar>
-                            <IonLabel className="start-lvl">1</IonLabel>
-                        </IonRow>
-                    </IonRow>
-                    <IonRow className='ion-justify-content-center flashcard-title'>{title}</IonRow>
-                </IonHeader>
 
+               <HeaderAnswerDefault onClickPopSair={()=>setShownPopsair(true)} valueprogressBar={progress} title={title}/>
 
                 <IonContent>
-                    <SairTelaResposta
+                    <ModalDefault
                         isOpen={shownPopsair}
-                        onClickSim={() => {
+                        onClickYes={() => {
                             setShownPopsair(false)
                             history.push('/Flash-cards')
                             removeActive()
                             enableAlternatives()
                         }}
-                        onClickNao={() => setShownPopsair(false)}
-                        onDidDismiss={() => setShownPopsair(false)}
-
+                        onClickNo={() => setShownPopsair(false)}
+                        msg='Deseja mesmo sair?'
+                        cssClass='ios modalSair'
                     />
-                     
+
                         <IonCol style={{display: time === 0 && 'none' || 'block'}} className='timer-flashcard' >
                             {parseInt(minutes) < 10 && '0'}{minutes}:{parseInt(seconds) < 10 && '0'}{seconds}
                         </IonCol>
@@ -256,7 +240,7 @@ const AnswerAlternativa: React.FC = () => {
                    </AreaFlip>
 
 
-                    <IonGrid key={alternatives?.length} style={{ pointerEvent: isFlipped && 'none' || 'auto' }} className='array-div'>
+                    <IonGrid key={alternatives?.length} style={{ pointerEvent: isFlipped && 'unset' || 'auto' }} className='array-div'>
                         {alternatives?.map((alternative: Alternative, i) => (
                             <IonRow key={i + 1} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center colunas'>
                                 <IonCol key={i} onClick={() => handleSelectAlternative(alternative, i)} size='1' className={(i === className.id && className.active) && 'active-letras' || 'letras-alternativas'}> {letras[i]}</IonCol>
@@ -268,7 +252,7 @@ const AnswerAlternativa: React.FC = () => {
                             </IonRow>
                         ))}
                     </IonGrid>
-                    <IonRow className='ios ion-justify-content-center row-btn-final'>
+                    <IonRow  className='ios ion-justify-content-center row-btn-final'>
                         <IonButton disabled={isFlipped == false && true} onClick={() => {
                             if(check!.correct){
                                 removeActive()
@@ -307,16 +291,6 @@ const AnswerAlternativa: React.FC = () => {
         </>
     );
 
-}
-const Redone: React.FC<{ onClick: () => void; style: React.CSSProperties }> = props => {
-
-    return (
-        <>
-            <IonButton color='light' onClick={props.onClick} style={props.style} className="ios btn_stats_refazer">
-                Refazer
-            </IonButton>
-        </>
-    );
 }
 export default AnswerAlternativa
 

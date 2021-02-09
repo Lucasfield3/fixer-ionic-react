@@ -8,6 +8,7 @@ const SairTelaResposta: React.FC<{onDidDismiss:()=> void; isOpen:boolean; onClic
     <IonPopover
     isOpen={props.isOpen}
     onDidDismiss={props.onDidDismiss}
+    cssClass='ios custom-popSair'
     >
       <IonCardHeader className="ios sairTelaResposta">
             <IonLabel className="ios label-msg-notification-sair">Deseja mesmo sair?</IonLabel>

@@ -20,6 +20,7 @@ import {
     IonMenuButton, 
     IonModal, 
     IonPopover, 
+    IonProgressBar, 
     IonRow, 
     IonSearchbar, 
     IonText, 
@@ -345,16 +346,16 @@ export const ModalChoose:React.FC<{isOpen:boolean; onClickDiss:()=>void;onClickA
 
 }
 
-export const ModalCreate:React.FC<{isOpen:boolean; onClickYes:()=>void; onClickNo:()=>void}> = props=>{
+export const ModalDefault:React.FC<{cssClass:string; isOpen:boolean; onClickYes:()=>void; onClickNo:()=>void; msg:string}> = props=>{
 
     return(
         <>
-             <IonModal backdropDismiss={false} isOpen={props.isOpen} cssClass='ios modal-criar'>
+             <IonModal  backdropDismiss={false} isOpen={props.isOpen} cssClass={props.cssClass}>
                 <IonCardTitle className="div-modal-alternativa">
                     <IonText className="modal-text" color="dark">
-                        <IonLabel>Deseja criar mais um flashcard ?</IonLabel>
+                        <IonLabel>{props.msg}</IonLabel>
                     </IonText>
-                    <IonCardSubtitle className="header-btn">
+                    <IonCardSubtitle className="btn-modalDefault">
                         <IonButton color='light' className="btn-sim" onClick={props.onClickYes}>Sim</IonButton>
                         <IonButton color='light' className="btn-nao" onClick={props.onClickNo}>Não</IonButton>
                     </IonCardSubtitle>
@@ -460,13 +461,13 @@ export const AreaFlip:React.FC<{
                                     <IonButton onClick={props.onClickPopTheme} className="ios btn-tema-dissertativa">Tema</IonButton>
                                     <IonPopover
                                         isOpen={props.isOpen}
-                                        cssClass='my-custom-class tema'
+                                        cssClass='ios my-custom-class temas-custom'
                                         onDidDismiss={props.onDidDismissPopTheme}
                                     >
                                         <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
                                             <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Temas</IonLabel>
                                         </IonRow>
-                                        <IonGrid className='back-temas'>
+                                        <IonGrid className='ios back-temas'>
                                             {props.children}
                                         </IonGrid>
                                         <IonRow  style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center row-btn'>
@@ -506,4 +507,44 @@ export const AreaFlip:React.FC<{
         </>
     )
 
+}
+export const HeaderAnswerDefault:React.FC<{
+    onClickPopSair:()=>void;
+    valueprogressBar:number;
+    title:string;
+}> = props=>{
+
+    return(
+        <>
+            <IonHeader className='custom-header'>
+                    <IonToolbar>
+                        <IonFabButton onClick={props.onClickPopSair} className='btnSair-answer' color='light' slot='end' size='small'>
+                                Sair
+                        </IonFabButton>
+                    </IonToolbar>
+                    <IonRow className='row-level-progress'>
+                        <IonRow className='ion-justify-content-center'>
+                            <IonLabel className="label-lvl">LV</IonLabel>
+                        </IonRow>
+                        <IonRow style={{ height: '1rem' }} className='ion-justify-content-center row-progress'>
+                            <IonLabel className="start-lvl">0</IonLabel>
+                            <IonProgressBar className='progress-bar' value={props.valueprogressBar}></IonProgressBar>
+                            <IonLabel className="start-lvl">1</IonLabel>
+                        </IonRow>
+                    </IonRow>
+                    <IonRow className='ion-justify-content-center flashcard-title'>{props.title}</IonRow>
+                </IonHeader>
+        </>
+    )
+
+}
+export const Redone: React.FC<{ onClick: () => void; style: React.CSSProperties }> = props => {
+
+    return (
+        <>
+            <IonButton color='light' onClick={props.onClick} style={props.style} className="ios btn_stats_refazer">
+                Refazer
+            </IonButton>
+        </>
+    );
 }

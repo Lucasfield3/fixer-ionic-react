@@ -122,17 +122,6 @@ ion-item{
   background: #fdfdfd;
 }
 
-.temas-custom-edit .modal-wrapper {
-  background: #fdfdfd;
-}
-
-.temas-custom-edit {
-  --background: #fdfdfd;
-  --height: 35vh;
-  --width: 40vh;
-  --border-radius: 15px;
-}
-
 .btn-sim{
   width: 4rem;
   height: 1.7rem;
@@ -193,9 +182,10 @@ ion-item{
   margin-right: .6rem;
 }
 
-.header-btn{
+.btn-modalDefault{
+  margin-top: 0.5rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 }
 .alternativas{
