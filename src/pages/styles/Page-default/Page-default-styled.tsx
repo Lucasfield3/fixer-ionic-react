@@ -449,7 +449,6 @@ export const AreaFlip:React.FC<{
     style:any;
     onClickArrowFlip:()=>void;
     isOpenLoadig:boolean;
-    cards:{} | undefined;
 }>= props=>{
 
     return(
@@ -501,7 +500,7 @@ export const AreaFlip:React.FC<{
                                 duration={600}
                             />
                         </IonCard >
-                        {props.cards}
+                        {props.children}
                         
                     </ReactCardFlip>
         </>
@@ -547,4 +546,16 @@ export const Redone: React.FC<{ onClick: () => void; style: React.CSSProperties 
             </IonButton>
         </>
     );
+}
+
+export const FinalBtn: React.FC<{onClick:()=>void; disabled:boolean}> = props =>{
+
+    return(
+        <>
+            <IonRow  className='ios ion-justify-content-center row-btn-final'>
+                <IonButton disabled={props.disabled} onClick={props.onClick} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>
+            </IonRow>
+        </>
+    )
+
 }

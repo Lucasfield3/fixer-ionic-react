@@ -72,7 +72,7 @@ const QuestaoAlternativa: React.FC = () => {
     const AddAlternative = () => {
         setAlternatives([...alternatives, { answer: answer }])
         console.log(alternatives)
-        if (alternatives.length == 4) {
+        if (alternatives.length == 4 || answer === '') {
             setAlternatives(alternatives)
 
         }
@@ -130,6 +130,7 @@ const QuestaoAlternativa: React.FC = () => {
             alternativesSend.push({ answer: a.answer })
         })
         alternativesSend.push({ answer: textRightAnswer })
+        ShuffleAlternativas(alternativesSend)
         if (enunciated !== '' && textRightAnswer !== '' && alternatives!.length > 0) {
             try {
                 await createFlashCard({
@@ -150,6 +151,16 @@ const QuestaoAlternativa: React.FC = () => {
             setShowPopLimit(true)
         }
 
+    }
+    const ShuffleAlternativas = ( alternativesSend: NewAlternative[]) => {
+
+        for(let i =  alternativesSend.length -1; i > 0; i--){
+            const j = Math.floor(Math.random() * (i + 1));
+            const temp =  alternativesSend[i];
+             alternativesSend[i] =  alternativesSend[j];
+             alternativesSend[j] = temp;
+        }
+        return  alternativesSend;
     }
 
     return (

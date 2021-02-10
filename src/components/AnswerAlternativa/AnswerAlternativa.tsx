@@ -20,7 +20,7 @@ import CardGreen from '../CardGreen/cardGreen';
 import { menuController } from '@ionic/core';
 import CardTime from '../CardTime/cardTime';
 import { loadavg } from 'os';
-import { AreaFlip, HeaderAnswerDefault, ModalDefault, Redone } from '../../pages/styles/Page-default/Page-default-styled';
+import { AreaFlip, FinalBtn, HeaderAnswerDefault, ModalDefault, Redone } from '../../pages/styles/Page-default/Page-default-styled';
 
 
 
@@ -45,6 +45,7 @@ const AnswerAlternativa: React.FC = () => {
     const [minutes, setMinutes] = useState('')
     const [cards, setCards] = useState<{}>()
     const [title, setTitle] = useState('')
+    const [cardRed, setCardRed] = useState(<CardRed/>)
     const card = history.location.state as FlashCard
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
@@ -62,20 +63,19 @@ const AnswerAlternativa: React.FC = () => {
     })
     const letras = ['a', 'b', 'c', 'd', 'e']
     const [themes, setThemes] = useState<string[]>([]);
-    const [cardRed, setCardRed] = useState(<CardRed />)
     const [showLoading, setShowLoading] = useState(true);
 
     const settingLoading = () => {
         setTimeout(() => {
             setShowLoading(false);
             setIsFlipped(true)
-            disableAlternatives()
         }, 1500);
     }
     useIonViewWillLeave(() => {
         menuController.enable(true)
     }, [])
     useIonViewWillEnter(() => {
+        
         enableAlternatives()
         setClassName({
             id: -1,
@@ -96,7 +96,6 @@ const AnswerAlternativa: React.FC = () => {
         } else {
             console.log('Não tem nada');
         }
-        cronometro()
     }, [])
     const removeActive = () => {
         setClassName({
@@ -125,12 +124,8 @@ const AnswerAlternativa: React.FC = () => {
         console.log(checker)
         ProgressBar(checker)
         setCheck(checker)
+        disableAlternatives()
 
-        if(checker.correct){    
-            setCards(<CardGreen textRightAnswer={check.answer}/>)
-        }else{
-            setCards(<CardRed/>)
-        }
     }
 
     const disableAlternatives = () => {
@@ -191,6 +186,8 @@ const AnswerAlternativa: React.FC = () => {
                 
         }      
     }
+
+
  
     return (
         <>
@@ -230,18 +227,19 @@ const AnswerAlternativa: React.FC = () => {
                     settingLoading()
                     }}
                     isOpenLoadig={showLoading}
-                    cards={cards}
                    >
                     {themes.map((theme: string, index) => (
                         <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
                             <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>
                         </IonRow>
                     ))}
+                    {check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}
                    </AreaFlip>
 
 
                     <IonGrid key={alternatives?.length} style={{ pointerEvent: isFlipped && 'unset' || 'auto' }} className='array-div'>
                         {alternatives?.map((alternative: Alternative, i) => (
+                            
                             <IonRow key={i + 1} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center colunas'>
                                 <IonCol key={i} onClick={() => handleSelectAlternative(alternative, i)} size='1' className={(i === className.id && className.active) && 'active-letras' || 'letras-alternativas'}> {letras[i]}</IonCol>
                                 <IonCol onClick={() => handleSelectAlternative(alternative, i)}
@@ -252,18 +250,19 @@ const AnswerAlternativa: React.FC = () => {
                             </IonRow>
                         ))}
                     </IonGrid>
-                    <IonRow  className='ios ion-justify-content-center row-btn-final'>
-                        <IonButton disabled={isFlipped == false && true} onClick={() => {
-                            if(check!.correct){
-                                removeActive()
-                                setShownPopResult(false)
-                                history.push('/Flash-cards')
-                                setIsFlipped(!isFlipped)
-                            }else{
-                                setShownPopResult(true)
-                            }
-                        }} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>
-                    </IonRow>
+                    <FinalBtn
+                    onClick={() => {
+                        if(check!.correct){
+                            removeActive()
+                            setShownPopResult(false)
+                            history.push('/Flash-cards')
+                            setIsFlipped(!isFlipped)
+                        }else{
+                            setShownPopResult(true)
+                        }
+                    }}
+                    disabled={isFlipped == false && true}
+                    />
                     <CardStats
                         backdropDismiss={false}
                         isOpen={shownPopResult}

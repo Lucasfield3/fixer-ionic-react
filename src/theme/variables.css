@@ -567,3 +567,11 @@ ion-button{
 .ios .custom-popSair{
   --height: 19%;
 }
+.row-btn-final{
+  margin-top: 2rem;
+}
+.btn-final{
+  background: var(--ion-color-light);
+  --ion-color-light-contrast: var(--ion-color-dark);
+  font-weight: bold;
+}

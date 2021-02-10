@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
     IonButton,
     IonPage,
@@ -33,6 +33,7 @@ import CardGreen from '../CardGreen/cardGreen';
 import SairTelaResposta from '../CardMessages/msg_sair_tela_resposta';
 import { Checker, FlashCard, getCheck } from '../../services/flashCard.service';
 import CardRed from '../cardRed/cardRed';
+import { AreaFlip, HeaderAnswerDefault } from '../../pages/styles/Page-default/Page-default-styled';
 
 
 
@@ -116,10 +117,12 @@ const AnswerDissertativa: React.FC = () => {
     const mystyle = {
         display: check.correct! && 'none' || 'block'
     }
+    const [cards, setCards] = useState<{}>()
     const handleFlipAnswer = async () => {
         let checker = await getCheck(idFlashCard, textAreaAnswer)
         console.log(checker)
         setCheck(checker)
+        ProgressBar(checker)
         disableAnswer()
     }
     const handleHabilit = ()=>{
@@ -131,30 +134,30 @@ const AnswerDissertativa: React.FC = () => {
             setShownPopResult(true)
         }
     }
+    const changeText = (event:CustomEvent)=>{
+        setTextAreaAnswer(event.detail.value!)
+        if(event.detail.value! !== ''){
+            enableButton()
+        }else{
+            disableButton()
+        }
+
+    }
+    const [progress, setProgress] = useState<number>(0)
+    const ProgressBar = (validator:Checker)=>{
+        if(validator.correct == true && progress >= 0){
+             setProgress(progress + 0.30) 
+        }else if(validator.correct == false && progress == 0){
+             setProgress(0)  
+        }else if(validator.correct == false && progress >= 0.30 || progress <= 0.30){
+             setProgress(progress - 0.15)
+        }
+     }
     return (
         <>
             <IonPage>
-            <IonHeader className='custom-header'>
-                    <IonToolbar>
-                        <IonFabButton onClick={() => {
-                            setShownPopsair(true)
-                            }} className='btnSair-answer' color='light' slot='end' size='small'>
-                            Sair
-                    </IonFabButton>
-                    </IonToolbar>
-                    {/* <IonRow className='row-level-progress'>
-                        <IonRow className='ion-justify-content-center'>
-                            <IonLabel className="label-lvl">LV</IonLabel>
-                        </IonRow>
-                        <IonRow style={{ height: '1rem' }} className='ion-justify-content-center row-progress'>
-                            <IonLabel className="start-lvl">0</IonLabel>
-                            <IonProgressBar className='progress-bar' value={0.5}></IonProgressBar>
-                            <IonLabel className="start-lvl">1</IonLabel>
-                        </IonRow>
-                    </IonRow> */}
-                     <IonRow className='ion-justify-content-center flashcard-title'>{title}</IonRow>
-                </IonHeader>
 
+            <HeaderAnswerDefault onClickPopSair={()=>setShownPopsair(true)} valueprogressBar={progress} title={title}/>
 
                 <IonContent>
                 <SairTelaResposta
@@ -169,80 +172,31 @@ const AnswerDissertativa: React.FC = () => {
                         onDidDismiss={() => setShownPopsair(false)}
 
                     />
-                <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal' flipSpeedBackToFront={1.1} flipSpeedFrontToBack={1.1}>
-                    <IonCard className='card-flip' color='light'>
-                            <IonCardHeader style={{ padding: 0 }}>
-                                <IonRow className='ios ion-justify-content-space-between row-header'>
-                                    <IonButton onClick={() => setShowPopover(true)} className="ios btn-tema-dissertativa">Tema</IonButton>
-                                    <IonPopover
-                                        isOpen={showPopover}
-                                        cssClass='my-custom-class tema'
-                                        onDidDismiss={e => setShowPopover(false)}
-                                    >
-                                        <IonRow style={{ marginTop: '0.9rem' }} className='ion-justify-content-center'>
-                                            <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Temas</IonLabel>
-                                        </IonRow>
-                                        <IonGrid className='back-temas'>
-                                            {themes.map((theme: string, index) => (
-                                                <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                                                    <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>
-                                                </IonRow>
-                                            ))}
-                                        </IonGrid>
-                                        <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center row-btn'>
-                                            <IonButton onClick={() => {
-                                                setShowPopover(false)
-                                            }} color='light' className='btn-clean'>Fechar</IonButton>
-                                        </IonRow>
-                                    </IonPopover>
-                                    <IonPopover
-                                        isOpen={shownPopsave}
-                                        cssClass='my-custom-class save'
-                                        onDidDismiss={() => {
-                                            setShowPopover(false)
-                                            setShowPopover(false)
-                                        }}
-                                    >
-                                        <IonRow className='ion-justify-content-center ion-text-align-center'>
-                                            <IonLabel style={{ fontWeight: 'bold', fontSize: '18px', lineHeight: '8rem' }} color='success'>Temas</IonLabel>
-                                        </IonRow>
-                                    </IonPopover>
-
-                                    <IonCol className="titulo" >{textMat}</IonCol>
-                                </IonRow>
-                            </IonCardHeader>
-                            <IonCardContent className="content-background">
-                                <IonRow className="ios row-enunciated">
-                                    <IonTextarea
-                                        overflow-scroll="true"
-                                        rows={5}
-                                        cols={20}
-                                        required
-                                        className='ios question'
-                                        color='dark'>
-                                        {textAreaQuestion}
-                                    </IonTextarea>
-                                </IonRow>
-                            </IonCardContent>
-                        <IonRow className='row-footer' color='light'></IonRow>
-                        <IonRow className='ios ion-justify-content-center'>
-                            <IonIcon style={{ display: shownIcon && 'block' || 'none', opacity: showLoading == true && 0 }} onClick={() => {
-                                setShowLoading(true)
-                                handleFlipAnswer()
-                                settingLoading()
-                                disableAnswer()
-                                setShownButton(!shownButton)
-                            }} className='ios arrow-foward' color='primary' src={arrowForward}></IonIcon>
-                        </IonRow>                   
-                        <IonLoading
-                            showBackdrop={false}
-                            cssClass='loading-custom-dissertative'
-                            isOpen={showLoading}
-                            duration={600}
-                        />
-                    </IonCard >
+              <AreaFlip
+                   isFlipped={isFlipped}
+                   onClickPopTheme={() => setShowPopover(true)}
+                   isOpen={showPopover}
+                   onDidDismissPopTheme={e => setShowPopover(false)}
+                   onClickClosePop={()=> setShowPopover(false)}
+                   textMat={textMat}
+                   textAreaQuestion={textAreaQuestion}
+                   style={{ display: shownIcon && 'block' || 'none', opacity: showLoading == true && 0 }}
+                   onClickArrowFlip={() => {
+                    setShowLoading(true)
+                    handleFlipAnswer()
+                    settingLoading()
+                    disableAnswer()
+                    setShownButton(!shownButton)
+                }}
+                    isOpenLoadig={showLoading}
+                   >
+                    {themes.map((theme: string, index) => (
+                        <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
+                            <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>
+                        </IonRow>
+                    ))}
                     {check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}
-                </ReactCardFlip>
+                   </AreaFlip>
 
 
                     <IonCard className='card-dissertativa-secundary' color='light'>
@@ -259,15 +213,7 @@ const AnswerDissertativa: React.FC = () => {
                                     rows={4}
                                     cols={20}
                                     color='dark'
-                                    onIonChange={e => {
-                                        setTextAreaAnswer(e.detail.value!)
-                                        if(e.detail.value! !== '') {
-                                            enableButton()
-                                        }else if(e.detail.value! == ''){
-                                            disableButton()
-                                        }
-
-                                    }}
+                                    onIonChange={event => changeText(event)}
                                     placeholder="Digite ou cole a resposta">
                                 </IonTextarea>
                             </IonRow>
