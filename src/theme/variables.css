@@ -493,8 +493,10 @@ ion-button{
   font-weight: bold;
 }
 .modal-criar{
-  --height: 16%;
-  --width: 92%;
+  --height: 14%;
+  --width: 72%;
+  --background: var(--ion-color-light);
+  --border-radius: 21px;
 }
 .modalSair{
   --height:13%;
@@ -506,7 +508,7 @@ ion-button{
   --height:20%;
 }
 .ios .modal-criar{
-  --height: 22%;
+  --height: 16%;
 }
 .ios .modal-choose{
   --height: 22%;
@@ -591,8 +593,10 @@ ion-button{
   border-radius: 0.2rem;
 }
 .modal-text{
+  display: flex;
   text-align: center;
   color: var(--ion-color-dark);
+  justify-content: center;
 }
 .modal-text > ion-label{
   font-weight:bold;

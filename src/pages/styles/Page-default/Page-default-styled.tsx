@@ -28,7 +28,7 @@ import {
     IonToggle, 
     IonToolbar 
 } from '@ionic/react'
-import React, { ChangeEvent, CSSProperties } from 'react'
+import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
 import { add, menuOutline, trash, pencilSharp, bookSharp, addSharp, timerOutline, arrowUndoSharp, arrowForward} from 'ionicons/icons';
 import TimeField from 'react-simple-timefield';

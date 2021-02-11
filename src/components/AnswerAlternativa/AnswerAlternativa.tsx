@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import {
-    IonButton,
     IonPage,
     IonRow,
-    IonFabButton,
-    IonHeader,
-    IonLabel,
-    IonContent, IonCard, IonCardContent, IonTextarea, IonCardHeader, IonCol, IonGrid, IonPopover, IonProgressBar, IonToolbar, IonIcon, useIonViewWillEnter, useIonViewWillLeave, IonLoading
+    IonContent, 
+    IonCol, 
+    IonGrid, 
+    useIonViewWillEnter, 
+    useIonViewWillLeave
 } from '@ionic/react'
 import './styles.css'
-import { arrowForward, card, time } from 'ionicons/icons';
-import ReactCardFlip from 'react-card-flip';
-import SairTelaResposta from '../CardMessages/msg_sair_tela_resposta';
 import { useHistory } from 'react-router';
 import CardStats from '../Card_stats_result/cardStats';
 import { Alternative, Checker, FlashCard, getCheck } from '../../services/flashCard.service';
@@ -19,7 +16,6 @@ import CardRed from '../cardRed/cardRed';
 import CardGreen from '../CardGreen/cardGreen';
 import { menuController } from '@ionic/core';
 import CardTime from '../CardTime/cardTime';
-import { loadavg } from 'os';
 import { AreaFlip, FinalBtn, HeaderAnswerDefault, ModalDefault, Redone } from '../../pages/styles/Page-default/Page-default-styled';
 
 

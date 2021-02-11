@@ -4,13 +4,10 @@ import {
     IonRow,
     IonFabButton,
     IonIcon,
-    IonLabel,
     IonContent,
-    IonToggle,
     IonCol,
     useIonViewWillLeave,
     useIonViewWillEnter,
-    IonGrid,
 } from '@ionic/react'
 import { remove } from 'ionicons/icons';
 import './style.css'
