@@ -24,7 +24,7 @@ export const ButtonDark = styled(IonButton)`
   font-size: small;
   color:var(--ion-color-primary);
   --background-hover:#1a2d3d;
-  --background-hover-opacity: 1;
+  --background-activated: #1a2d3d;
 `;
 
 

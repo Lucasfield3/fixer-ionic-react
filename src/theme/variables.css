@@ -575,3 +575,84 @@ ion-button{
   --ion-color-light-contrast: var(--ion-color-dark);
   font-weight: bold;
 }
+.btn-sim{
+  width: 4rem;
+  height: 1.7rem;
+  --ion-color-light-contrast: var(--ion-color-success)!important;
+  border: 1px solid var(--ion-color-success);
+  font-size: 13px;
+  border-radius: 0.2rem;
+}
+.btn-nao{
+  width: 4rem;
+  height: 1.7rem;
+  border: 1px solid rgba(255, 32, 110, 0.31);
+  font-size: 13px;
+  border-radius: 0.2rem;
+}
+.modal-text{
+  text-align: center;
+  color: var(--ion-color-dark);
+}
+.modal-text > ion-label{
+  font-weight:bold;
+  font-size: 20px;
+} 
+.btn-edit{
+  font-weight: bold;
+  width: 3.9rem;
+  height: 2.3rem;
+  --ion-color-light-contrast: var(--ion-color-dark)!important;
+  border: 1px solid var(--ion-color-dark);
+  font-size: 14.2px;
+  border-radius: 0.2rem;
+  margin-top: 0.7rem;
+}
+.btn-modal{
+  margin-left: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.label-modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  justify-content: center;
+  color: #011627;
+  font-family: 'Archivo Narrow', sans-serif;
+  margin-right: .6rem;
+}
+.btn-modalDefault{
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.alternativas{
+  border-radius: 1.7rem;
+  margin-right: 5px;
+  background: var(--ion-color-light);
+  margin-top: 0;
+  padding-bottom: 6px;
+  box-shadow: var(--box-shadow);
+  padding-inline-end: 9px;
+  padding-inline-start: 9px;
+  padding-top: 6px;
+}
+
+.ios .alternativas{
+    border-radius: 1.7rem;
+    margin-right: 5px;
+    background: var(--ion-color-light);
+    margin-top: 0;
+    padding-bottom: 6px;
+    box-shadow: var(--box-shadow);
+    padding-inline-end: 9px;
+    padding-inline-start: 9px;
+    padding-top: 6px;
+}

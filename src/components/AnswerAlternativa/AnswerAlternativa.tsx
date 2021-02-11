@@ -209,9 +209,9 @@ const AnswerAlternativa: React.FC = () => {
                         cssClass='ios modalSair'
                     />
 
-                        <IonCol style={{display: time === 0 && 'none' || 'block'}} className='timer-flashcard' >
-                            {parseInt(minutes) < 10 && '0'}{minutes}:{parseInt(seconds) < 10 && '0'}{seconds}
-                        </IonCol>
+                    <IonCol style={{display: time === 0 && 'none' || 'block'}} className='timer-flashcard' >
+                        {parseInt(minutes) < 10 && '0'}{minutes}:{parseInt(seconds) < 10 && '0'}{seconds}
+                    </IonCol>
                    <AreaFlip
                    isFlipped={isFlipped}
                    onClickPopTheme={() => setShowPopover(true)}
@@ -227,13 +227,13 @@ const AnswerAlternativa: React.FC = () => {
                     settingLoading()
                     }}
                     isOpenLoadig={showLoading}
+                    card={check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}
                    >
                     {themes.map((theme: string, index) => (
                         <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
                             <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>
                         </IonRow>
                     ))}
-                    {check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}
                    </AreaFlip>
 
 

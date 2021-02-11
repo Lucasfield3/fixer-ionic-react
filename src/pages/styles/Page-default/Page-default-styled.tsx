@@ -449,6 +449,7 @@ export const AreaFlip:React.FC<{
     style:any;
     onClickArrowFlip:()=>void;
     isOpenLoadig:boolean;
+    card:{};
 }>= props=>{
 
     return(
@@ -500,7 +501,7 @@ export const AreaFlip:React.FC<{
                                 duration={600}
                             />
                         </IonCard >
-                        {props.children}
+                        {props.card}
                         
                     </ReactCardFlip>
         </>

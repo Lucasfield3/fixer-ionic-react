@@ -189,13 +189,14 @@ const AnswerDissertativa: React.FC = () => {
                     setShownButton(!shownButton)
                 }}
                     isOpenLoadig={showLoading}
+                    card={check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}
                    >
                     {themes.map((theme: string, index) => (
                         <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
                             <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>
                         </IonRow>
                     ))}
-                    {check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}
+                    
                    </AreaFlip>
 
 
