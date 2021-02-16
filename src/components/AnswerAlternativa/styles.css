@@ -177,10 +177,6 @@ ion-item{
 .toggle:hover + .tooltip-text{
   visibility: visible;
 }
-.popover-content.sc-ion-popover-md{
-  border-radius:21px;
-  --background:var(--ion-color-light);
-}
 
 .temas-inputs{
   border-radius: 1.7rem;

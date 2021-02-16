@@ -1,39 +1,21 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import {
     IonButton,
     IonPage,
     IonRow,
-    IonFabButton,
-    IonIcon,
-    IonHeader,
-    IonToolbar,
-    IonLabel,
     IonContent, 
-    IonInput, 
-    IonCard, 
-    IonCardContent,
-    IonTextarea, 
-    IonCardHeader, 
     IonCol, 
-    IonGrid, 
-    IonPopover, 
-    IonProgressBar, 
     useIonViewWillLeave, 
     useIonViewWillEnter, 
-    IonLoading
 } from '@ionic/react'
-import { timerOutline, arrowForward } from 'ionicons/icons';
 import './styles.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
-import styled from 'styled-components';
 import CardStats from '../Card_stats_result/cardStats';
-import ReactCardFlip from 'react-card-flip';
 import CardGreen from '../CardGreen/cardGreen';
-import SairTelaResposta from '../CardMessages/msg_sair_tela_resposta';
 import { Checker, FlashCard, getCheck } from '../../services/flashCard.service';
 import CardRed from '../cardRed/cardRed';
-import { AreaFlip, HeaderAnswerDefault } from '../../pages/styles/Page-default/Page-default-styled';
+import { AreaDissertativeAnswer, AreaFlip, HeaderAnswerDefault, ModalDefault, Redone } from '../../pages/styles/Page-default/Page-default-styled';
 
 
 
@@ -48,8 +30,6 @@ const AnswerDissertativa: React.FC = () => {
     const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsair, setShownPopsair] = useState<boolean>(false);
-    const [shownPopsave, setShownPopsave] = useState<boolean>(false);
-    const [textPop, setTextPop] = useState<string>('')
     const [shownPopResult, setShownPopResult] = useState<boolean>(false);
     const [isFlipped, setIsflipped] = useState(false);
     const [showLoading, setShowLoading] = useState(true);
@@ -58,11 +38,13 @@ const AnswerDissertativa: React.FC = () => {
     const [cardRed, setCardRed] = useState(<CardRed />)
     const [themes, setThemes] = useState<string[]>([]);
     const [title, setTitle] = useState('')
+    const [time, setTime] = useState<number>();
+    const [seconds, setSeconds] = useState('')
+    const [minutes, setMinutes] = useState('')
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
         correct: false
     })
-    const [buttonFinal, setButtoFinal] = useState<{}>()
     const [buttonAnswer, setButtonAnswer] = useState<{}>(<IonButton disabled onClick={() => {
         setShownIcon(true)
         disableAnswer()
@@ -160,18 +142,21 @@ const AnswerDissertativa: React.FC = () => {
             <HeaderAnswerDefault onClickPopSair={()=>setShownPopsair(true)} valueprogressBar={progress} title={title}/>
 
                 <IonContent>
-                <SairTelaResposta
+                <ModalDefault
                         isOpen={shownPopsair}
-                        onClickSim={() => {
+                        onClickYes={() => {
                             setShownPopsair(false)
-                            history.push('/Flash-cards')                        
+                            history.push('/Flash-cards')
                             enableAnswer()
                             setTextAreaAnswer('')
                         }}
-                        onClickNao={() => setShownPopsair(false)}
-                        onDidDismiss={() => setShownPopsair(false)}
-
+                        onClickNo={() => setShownPopsair(false)}
+                        msg='Deseja mesmo sair?'
+                        cssClass='ios modalSair'
                     />
+                <IonCol style={{display: time === 0 && 'none' || 'block'}} className='timer-flashcard' >
+                    {parseInt(minutes) < 10 && '0'}{minutes}:{parseInt(seconds) < 10 && '0'}{seconds}
+                </IonCol>
               <AreaFlip
                    isFlipped={isFlipped}
                    onClickPopTheme={() => setShowPopover(true)}
@@ -199,28 +184,11 @@ const AnswerDissertativa: React.FC = () => {
                     
                    </AreaFlip>
 
-
-                    <IonCard className='card-dissertativa-secundary' color='light'>
-                        <IonCardHeader style={{ padding: 0 }}>
-                            <IonRow color='light' className='row-header-resposta'></IonRow>
-                        </IonCardHeader>
-                        <IonCardContent style={{ height: '9rem' }} className="content-background">
-                            <IonRow className="ios row-enunciated">
-                                <IonTextarea
-                                    overflow-scroll="true"
-                                    className='ios answer'
-                                    required
-                                    value={textAreaAnswer}
-                                    rows={4}
-                                    cols={20}
-                                    color='dark'
-                                    onIonChange={event => changeText(event)}
-                                    placeholder="Digite ou cole a resposta">
-                                </IonTextarea>
-                            </IonRow>
-                        </IonCardContent>
-                        <IonRow color='light' className='row-footer-resposta'></IonRow>
-                    </IonCard >
+                   <AreaDissertativeAnswer
+                    onIonChange={event => changeText(event)}
+                    value={textAreaAnswer}
+                    />
+                    
                     <IonRow className='ios ion-justify-content-center row-btn-final'>
                         {shownButton && buttonAnswer || <IonButton onClick={() => handleHabilit()} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>}
                     </IonRow>
@@ -244,7 +212,6 @@ const AnswerDissertativa: React.FC = () => {
                             setShownPopResult(false)
                             setIsflipped(false)
                             setShownButton(!shownButton)
-                            history.push('/AnswerDissertativa')
                         }} />
 
                     </CardStats>
@@ -257,58 +224,4 @@ const AnswerDissertativa: React.FC = () => {
 
 }
 
-const StyledTimer = styled(IonCol)`
-    display:flex;
-    flex-direction:row;
-    width:auto;
-    height:2rem;
-    align-items: center;
-    position:absolute;
-`;
-const Timertext = styled(IonInput)`
-    text-align:center;
-    color:var(--ion-color-dark);
-    border-radius:16px;
-    background:var(--ion-color-light);
-    font-weight:bold;
-    width: 3rem;
-    height: -webkit-fill-available;
-    --padding-start: 3px;
-    --padding-end: 3px;
-`;
-const Timer: React.FC = () => {
-
-    return (
-        <>
-            <StyledTimer>
-                <IonIcon className='icon-styled' icon={timerOutline} />
-                <Timertext placeholder='00:00'></Timertext>
-            </StyledTimer>
-        </>
-    );
-}
-const Redone: React.FC<{ onClick: () => void; style: React.CSSProperties }> = props => {
-
-    return (
-        <>
-            <IonButton color='light' onClick={props.onClick} style={props.style} className="ios btn_stats_refazer">
-                Refazer
-        </IonButton>
-        </>
-    );
-}
 export default AnswerDissertativa;
-/**   <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
-                        <a href="#" className="ios back-answer">
-                            <img className="href-back" src={backAnswer} alt="back" />
-                        </a>
-                        <IonCard className="ios bar-result-answers" color="light">
-                            <IonLabel id="answer-certas-dissertativa">Certas: 0 </IonLabel>
-                            <IonLabel id="answer-total-dissertativa">Total: 0 </IonLabel>
-                            <IonLabel id="answer-erradas-dissertativa">Erradas: 0 </IonLabel>
-                        </IonCard>
-
-                        <a href="#" className="ios back-answer">
-                            <img className="href-next" src={nextAnswer} alt="next" />
-                        </a>
-                    </IonRow> */

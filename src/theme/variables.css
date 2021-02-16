@@ -500,9 +500,13 @@ ion-button{
 }
 .modalSair{
   --height:13%;
+  --width: 72%;
+  --background: var(--ion-color-light);
+  --border-radius: 21px;
 }
 .ios .modalSair{
-  --height:16%;
+  --height: 13%;
+  --width: 77%;
 }
 .modal-choose{
   --height:20%;
@@ -678,4 +682,14 @@ ion-button{
   font-weight: bold;
   font-family: 'Archivo Narrow', sans-serif;
   padding: 2px;
+}
+.popover-content.sc-ion-popover-md{
+  border-radius:21px;
+  --background:var(--ion-color-light);
+}
+.ios .popover-content.sc-ion-popover-md{
+  --background:var(--ion-color-light);
+}
+.sc-ion-popover-ios-h{
+  --background:var(--ion-color-light);
 }
