@@ -560,3 +560,38 @@ export const FinalBtn: React.FC<{onClick:()=>void; disabled:boolean}> = props =>
     )
 
 }
+
+export const AreaDissertativeAnswer:React.FC<{
+    value:string;
+    onIonChange:(event: CustomEvent) => void;
+}> = props => {
+
+    return(
+        <>
+            <IonCard className='card-dissertativa-secundary' color='light'>
+                <IonCardHeader style={{ padding: 0 }}>
+                    <IonRow color='light' className='row-header-resposta'></IonRow>
+                </IonCardHeader>
+                <IonCardContent style={{ height: '9rem' }} className="content-background">
+                    <IonRow className="ios row-dissertativa">
+                        <IonTextarea
+                            maxlength={240}
+                            overflow-scroll="true"
+                            className='ios answer'
+                            required
+                            value={props.value}
+                            rows={4}
+                            cols={20}
+                            color='dark'
+                            onIonChange={props.onIonChange}
+                            placeholder="Digite ou cole a resposta">
+                        </IonTextarea>
+                    </IonRow>
+                </IonCardContent>
+                <IonRow color='light' className='row-footer-resposta'></IonRow>
+            </IonCard >
+
+        </>
+    )
+
+}

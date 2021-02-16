@@ -203,12 +203,18 @@ ion-item{
   overflow-y: auto;
   overflow-y: visible;
   word-spacing: -2px!important;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Archivo Narrow', sans-serif;
 }
 
 .ios .answer{
   overflow-x: auto;
   overflow-y:visible;
   word-spacing: -2px!important;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Archivo Narrow', sans-serif;
 }
 .question .native-textarea.sc-ion-textarea-md{
   --padding-top:0;

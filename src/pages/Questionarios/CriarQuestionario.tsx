@@ -28,7 +28,7 @@ import { arrowUndoSharp, remove } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 import { menuController } from '@ionic/core';
 import { FlashCard } from '../../services/flashCard.service';
-import { Timer } from '../Flash-cards/Dissertativa/questaoDisertativa';
+
 
 const CriarQuestionario:React.FC = ()=>{
 
@@ -39,7 +39,7 @@ const CriarQuestionario:React.FC = ()=>{
     const [cards, setCards] = useState<FlashCard[]>([]);
     const [listCards, setListCards] = useState<FlashCard[]>([]);
     const [searchText, setSearchText] = useState('');
-    const [timer, setTimer] = useState<{}>(<Timer/>)
+
     const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [checked, setChecked] = useState<boolean>(false);
     const history = useHistory()
@@ -144,7 +144,7 @@ const CriarQuestionario:React.FC = ()=>{
                         
                     </IonRow>
                     <IonRow className='ios row-timer-questionario'>
-                        {shownTimer && timer}
+                       
                     </IonRow>
                     <IonCard color='light' className='card-list'>
                         {cards.map((card:FlashCard, index)=>{

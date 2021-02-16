@@ -35,7 +35,7 @@ import styled from 'styled-components';
 import { getPayload } from '../../../services/Authentication.service';
 import { Payload, putFlashCard, FlashCard, getRightAnswer } from '../../../services/flashCard.service';
 import { getUser } from '../../../services/User.service';
-import { ButtonArrow, HeaderDefault, CardQuestion, RowTimer, RowBtnCreate, Timer } from '../../styles/Page-default/Page-default-styled';
+import { ButtonArrow, HeaderDefault, CardQuestion, RowTimer, RowBtnCreate, Timer, AreaDissertativeAnswer } from '../../styles/Page-default/Page-default-styled';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
 
 
@@ -194,28 +194,10 @@ const EditDissertativa: React.FC = () => {
                         </IonCardTitle>
                     </IonModal>
 
-                    <IonCard className='card-dissertativa-secundary' color='light'>
-                        <IonCardHeader style={{ padding: 0 }}>
-                            <IonRow color='light' className='row-header-resposta'></IonRow>
-                        </IonCardHeader>
-                        <IonCardContent style={{ height: '9rem' }} className="content-background">
-                            <IonRow className="ios row-dissertativa">
-                                <IonTextarea
-                                    maxlength={240}
-                                    overflow-scroll="true"
-                                    className='ios answer'
-                                    required
-                                    value={textRightAnswer}
-                                    rows={4}
-                                    cols={20}
-                                    color='dark'
-                                    onIonChange={e => setTextRightAnswer(e.detail.value!)}
-                                    placeholder="Digite ou cole a resposta">
-                                </IonTextarea>
-                            </IonRow>
-                        </IonCardContent>
-                        <IonRow color='light' className='row-footer-resposta'></IonRow>
-                    </IonCard >
+                    <AreaDissertativeAnswer
+                    onIonChange={e => setTextRightAnswer(e.detail.value!)}
+                    value={textRightAnswer}
+                    />
 
                     <RowTimer 
                     onIonChange={(e) => setChecked(e.detail.checked)}
