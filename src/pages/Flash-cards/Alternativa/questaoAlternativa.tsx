@@ -10,7 +10,6 @@ import {
     useIonViewWillEnter,
 } from '@ionic/react'
 import { remove } from 'ionicons/icons';
-import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import { createFlashCard, Payload,  NewAlternative } from '../../../services/flashCard.service';

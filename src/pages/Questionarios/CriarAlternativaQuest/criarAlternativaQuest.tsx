@@ -168,8 +168,8 @@ const CriarAlternativaQuest:React.FC = ()=>{
 
 
                 <IonContent>
-                    <IonItem style={{ borderRadius: '6px' }} className="item-input-dissertativa">
-                        <IonInput maxlength={100} value={textTitle} type="text" required className="input-dissertativa" onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Flashcard"></IonInput>
+                    <IonItem style={{ borderRadius: '6px' }} className="item-input-title">
+                        <IonInput maxlength={100} value={textTitle} type="text" required className="input-title" onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Flashcard"></IonInput>
                     </IonItem>
 
                     <IonCard className='card-flip' color='light'>

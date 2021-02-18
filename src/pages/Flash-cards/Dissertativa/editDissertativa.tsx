@@ -5,40 +5,21 @@ import {
     IonRow,
     IonFabButton,
     IonIcon,
-    IonHeader,
-    IonMenuButton,
-    IonToolbar,
     IonLabel,
     IonContent, 
-    IonItem, 
-    IonInput, 
-    IonCard, 
-    IonCardContent, 
-    IonTextarea, 
-    IonCardHeader, 
-    IonToggle, 
     IonCol,  
-    IonGrid, 
-    IonPopover,
     useIonViewWillLeave,
-    IonCardSubtitle,
     IonCardTitle,
     IonModal,
     IonText,
     useIonViewWillEnter
 } from '@ionic/react'
-import { add,  arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
-import './style.css'
+import { remove } from 'ionicons/icons';
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
-import styled from 'styled-components';
 import { getPayload } from '../../../services/Authentication.service';
 import { Payload, putFlashCard, FlashCard, getRightAnswer } from '../../../services/flashCard.service';
-import { getUser } from '../../../services/User.service';
 import { ButtonArrow, HeaderDefault, CardQuestion, RowTimer, RowBtnCreate, Timer, AreaDissertativeAnswer } from '../../styles/Page-default/Page-default-styled';
-import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-
-
 
 
 const EditDissertativa: React.FC = () => {

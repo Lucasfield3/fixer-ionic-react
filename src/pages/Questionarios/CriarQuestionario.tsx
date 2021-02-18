@@ -84,8 +84,8 @@ const CriarQuestionario:React.FC = ()=>{
                     </IonToolbar>
                 </IonHeader>
                 <IonContent>
-                    <IonItem style={{borderRadius:'6px'}} className="item-input-dissertativa">
-                        <IonInput  value={textTitle} type="text" required className="input-dissertativa" title='insira o título do Questionário' onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Questionário"></IonInput>
+                    <IonItem style={{borderRadius:'6px'}} className="item-input-title">
+                        <IonInput  value={textTitle} type="text" required className="input-title" title='insira o título do Questionário' onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Questionário"></IonInput>
                     </IonItem>
                     <IonCard color='light' className='card-buttons'>
                         <IonButton onClick={()=> setShowModal2(true)}  style={{marginBottom:'1.5rem', marginTop:'0.5rem'}} className='buttons-dark' color='dark'>Criar flashcards</IonButton>

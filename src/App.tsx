@@ -29,7 +29,7 @@ import Conquistas from './pages/Conquistas/conquistas';
 import Classes from './pages/Classes/classes'
 import QuestaoAlternativa from './pages/Flash-cards/Alternativa/questaoAlternativa'
 import EditAlternativa from './pages/Flash-cards/Alternativa/editAlternativa'
-import QuestaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDisertativa'
+import QuestaoDissertativa from './pages/Flash-cards/Dissertativa/questaoDissertativa'
 import EditDissertativa from './pages/Flash-cards/Dissertativa/editDissertativa'
 import AnswerDissertativa from './components/AnswerDissertativa/AnswerDissertativa';
 import AnswerAlternativa from './components/AnswerAlternativa/AnswerAlternativa';

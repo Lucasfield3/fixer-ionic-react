@@ -1,39 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
-    IonButton,
     IonPage,
     IonRow,
     IonFabButton,
     IonIcon,
-    IonHeader,
-    IonMenuButton,
-    IonToolbar,
-    IonLabel,
     IonContent, 
-    IonItem, 
-    IonInput, 
-    IonCard, 
-    IonCardContent, 
-    IonTextarea, 
-    IonCardHeader, 
-    IonToggle, 
     IonCol,  
-    IonGrid, 
-    IonPopover,
     useIonViewWillLeave,
-    IonCardSubtitle,
-    IonCardTitle,
-    IonModal,
-    IonText,
     useIonViewWillEnter
 } from '@ionic/react'
-import { add,  arrowUndoSharp, timerOutline, remove } from 'ionicons/icons';
-import './style.css'
+import {remove } from 'ionicons/icons';
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
-import styled from 'styled-components';
 import { getPayload } from '../../../services/Authentication.service';
-import { Payload, Alternative, createFlashCard } from '../../../services/flashCard.service';
+import { Payload, createFlashCard } from '../../../services/flashCard.service';
 import { AreaDissertativeAnswer, ButtonArrow, CardQuestion, HeaderDefault, ModalChoose, ModalDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
 
 
