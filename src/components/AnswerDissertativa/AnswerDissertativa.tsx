@@ -8,7 +8,6 @@ import {
     useIonViewWillLeave, 
     useIonViewWillEnter, 
 } from '@ionic/react'
-import './styles.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import CardStats from '../Card_stats_result/cardStats';

@@ -109,3 +109,50 @@
   display: flex;
   justify-content: center;
 }
+.ios .bar-result-answers{
+  margin: .6rem .6rem;
+  height: 3rem;
+  width: 60vw;
+  padding: 1rem;
+
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ios .bar-result-answers > #answer-certas, 
+.ios .bar-result-answers > #answer-total,
+.ios .bar-result-answers ~ #answer-erradas{
+  border-right: 1px var(--ion-color-dark) solid;
+  padding-right: 5px;
+}
+#answer-certas-dissertativa{
+  color: #2EC4B6;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#answer-total-dissertativa{
+  color: #011627;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+#answer-erradas-dissertativa{
+  color: #FF206E;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+.ios .href-back{
+  height: 3rem;
+  margin: .6rem 0;
+}
+
+.ios .href-next{
+  height: 3rem;
+  margin: .6rem 0;
+}
