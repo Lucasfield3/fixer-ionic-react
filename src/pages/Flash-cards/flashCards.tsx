@@ -73,7 +73,11 @@ const FlashCards: React.FC = () => {
             return card.title.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
         }
     })
-
+    const myStyle = {
+        display:'flex',
+        justifyContent:'center',
+        flexDirection:'column'
+    }
     return (
         <>
             <IonPage>
@@ -90,7 +94,10 @@ const FlashCards: React.FC = () => {
                     </IonRow>
 
                     <TitleCards>FlashCards</TitleCards>
-                    <ContainerCards style={{alignItems:cards!.length == 0 && 'center' || 'unset'}}>
+                    <ContainerCards style={{
+                        display:cards!.length == 0 && 'flex' || 'block',
+                        flexDirection:cards!.length == 0 && 'column' || 'unset'
+                        }}>
                                 {cardsFiltered.map((card: FlashCard, index) => {
                                     return (
                                     <Cards 

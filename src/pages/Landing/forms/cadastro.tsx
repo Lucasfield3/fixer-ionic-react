@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IonCardContent, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem, IonAlert } from '@ionic/react';
+import { IonCardContent, IonRow, IonCol, IonLabel, IonInput, IonItem, IonAlert } from '@ionic/react';
 import {ButtonRed, ButtonDark} from '../Landing-style/Landing-styled'
 import '../style.css'
 import { cadastro } from '../../../services/User.service';
@@ -25,7 +25,6 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
         }catch(err){
             console.log(err)
         }
-        props.handleClickCad();
 
     }
     /*const [showAlert2, setShowAlert2] = useState(false);
@@ -77,7 +76,10 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                 <IonRow className="ion-align-items-center row-btn-cadastro">
                     <IonCol>
                         <ButtonDark
-                            onClick={handleClickAuth}
+                            onClick={()=> {
+                                handleClickAuth()
+                                setShowAlert1(true)
+                            }}
                             size="small"
                             type='submit'
                             className='ios btn-dark'
@@ -86,7 +88,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                             isOpen={showAlert1}
                             onDidDismiss={() => {
                                 props.handleClickCad();
-                                setShowAlert1(false)
+                                setShowAlert1(false);
                             }}
                             cssClass='my-custom-class .alert-wrapper'
                             header={'Parabéns !!!'}
@@ -96,6 +98,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                                 text: 'OK',
                                 handler: () => {
                                     props.handleClickCad();
+                                    setShowAlert1(false);
                                 }
 
 

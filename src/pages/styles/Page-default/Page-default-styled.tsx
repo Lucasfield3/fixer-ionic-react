@@ -233,12 +233,12 @@ export const ContainerCards:React.FC<{style: React.CSSProperties}> = props =>{
 
     return(
         <>
-             <IonCard style={props.style}  className='container-cards'>
-                 <IonCol>
-                     <IonGrid className='ios grid-cards'> 
-                         {props.children}
-                     </IonGrid>
-                 </IonCol>
+             <IonCard style={props.style}  className='container-cards'>           
+                    <IonGrid className='ios grid-cards'>
+                        <IonRow>
+                            {props.children}    
+                        </IonRow> 
+                    </IonGrid>
              </IonCard>
         </>
     )

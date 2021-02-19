@@ -20,8 +20,8 @@
     box-shadow: 0 0 10px var(--light);
     transition: all 75ms ease-in;
 }
-.ios .cards ion-img{opacity: 0.5;}
-.ios .cards:hover > ion-img{
+.ios .cards .img-card{opacity: 0.5;}
+.ios .cards:hover > .img-card{
     opacity: 1;
 }
 .ios .cards ion-title {
@@ -36,22 +36,8 @@
 .ios .cards ion-label{
     margin-top: -1rem;
 }
-@media screen and (max-width:360px){
-    .ios .cards{
-      width: 6.4rem;
-    }
-  }
-  @media screen and (min-width:361px){
-    .ios .cards{
-      width: 8rem;
-    }
-  }
 
 @media screen and (min-width: 411px){
-  .ios .cards {
-      width: 11rem;
-      margin: 0.6rem;
-  }
   .ios .cards ion-title {
     margin-bottom: -2rem;
     font-size: 21px;
@@ -61,5 +47,66 @@
   margin-top: -2rem;
   font-size: 21px;
 }
+
+}
+
+
+@media screen and (min-width: 375px){
+  .ios .cards ion-title {
+    margin-bottom: -2rem;
+    font-size: 21px;
+    width: 7.9rem;
+}
+.ios .cards ion-label {
+  margin-top: -2rem;
+  font-size: 21px;
+}
+}
+@media screen and (min-width: 360px){
+  .ios .cards ion-title {
+    margin-bottom: -2rem;
+    font-size: 19px;
+    width: 7.9rem;
+}
+.ios .cards ion-label {
+  margin-top: -2rem;
+  font-size: 19px;
+}
+
+}
+@media screen and (min-width: 540px){
+  .ios .cards ion-title {
+    margin-bottom: -2rem;
+    font-size: 30px;
+    width: 20.9rem;
+}
+  .ios .cards ion-label {
+    margin-top: -2rem;
+    font-size: 30px;
+  }
+
+}
+@media screen and (min-width: 768px){
+  .ios .cards ion-title {
+    margin-bottom: -3rem;
+    font-size: 38px;
+    width: 20.9rem;
+}
+  .ios .cards ion-label {
+    margin-top: -3rem;
+    font-size: 38px;
+  }
+
+}
+@media screen and (min-width: 1024px){
+  .ios .cards ion-title {
+    margin-bottom: -5rem;
+    font-size: 46px;
+    width: 20.9rem;
+}
+  .ios .cards ion-label {
+    margin-top: -5rem;
+    font-size: 46px;
+  }
 
 }
