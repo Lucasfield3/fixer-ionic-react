@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import CardsConquistas from './CardsConquistas/cardsConquistas';
 import './style.css';
 import { menuController } from '@ionic/core';
 import {
-    IonButton,
+   
     IonPage,
     IonContent,
     IonGrid,
     IonRow,
-    IonFabButton,
-    IonIcon,
-    IonHeader,
-    IonMenuButton,
-    IonToolbar,
-    IonLabel,
     IonCard,
-    IonSearchbar, IonCardTitle, IonCardContent, IonCol
+    IonCardTitle, 
+    IonCardContent, 
+    IonCol
 } from '@ionic/react';
-import { menuOutline } from 'ionicons/icons';
 import planet from '../../Assets/icons/planet.svg'
 import resume from '../../Assets/icons/resume.svg'
 import diamond from '../../Assets/icons/diamond.svg'
@@ -39,9 +34,7 @@ import sabiopalavras from '../../Assets/icons/sabiopalavras.svg'
 import eremitapalavras from '../../Assets/icons/eremitapalavras.svg'
 import classista from '../../Assets/icons/classista.svg'
 import prodigio from '../../Assets/icons/prodigio.svg'
-
-
-
+import { ButtonMenuDark, HeaderDefault, SearchBar, TitleCards } from '../styles/Page-default/Page-default-styled';
 
 
 const Overlay = styled.div`
@@ -75,31 +68,20 @@ const Conquista: React.FC = () => {
 
         <>
             <IonPage>
-                <IonHeader className='custom-header'>
-                    <IonToolbar>
-                        <IonRow className='row-label'>
-                            <IonLabel className="label-menu-fixer">FIXER</IonLabel>
-                        </IonRow>
-                        <IonFabButton slot='start' onClick={openMenu} className="icon-fab-button dark" size="small" color="dark">
-                            <IonIcon icon={menuOutline} />
-                            <IonButton slot='start'>
-                                <IonMenuButton></IonMenuButton>
-                            </IonButton>
-                        </IonFabButton>
-                    </IonToolbar>
-                </IonHeader>
+            <HeaderDefault>
+                <ButtonMenuDark onClick={()=>openMenu()}/>
+            </HeaderDefault>
 
                 <IonContent className="menu-apresentacao-content">
-                    <IonRow>
+                <IonRow>
+                    <SearchBar placeholder='Buscar' color='light' className="search-bar"
+                        value={searchText}
+                        onIonChange={e => setSearchText(e.detail.value!)}>
+                        <div className='line'></div>
+                    </SearchBar>
+                </IonRow>
 
-                        <IonSearchbar placeholder='Buscar' color='light' className="ios search-bar"
-                            value={searchText}
-                            onIonChange={e => setSearchText(e.detail.value!)}>
-                            <div className='line'></div>
-                        </IonSearchbar>
-                    </IonRow>
-
-                    <IonLabel className="label-menu-title-cards">Conquistas</IonLabel>
+                <TitleCards>Conquistas</TitleCards>
 
                     <IonCard className='container-conquistas'>
                         <IonGrid className='align-conquistas'>

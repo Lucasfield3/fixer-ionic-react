@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import { 
-IonCard,  IonCol,  IonImg, IonLabel, IonTitle
+IonCard,  IonCol, IonLabel, IonTitle
 } from '@ionic/react';
 import imgCardIcon from '../../../Assets/images/cardicon.png'
 import { FlashCard } from '../../../services/flashCard.service';
