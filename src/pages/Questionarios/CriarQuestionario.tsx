@@ -8,23 +8,20 @@ import {
     IonContent, 
     IonFabButton, 
     IonGrid, 
-    IonHeader, 
     IonIcon, 
     IonInput, 
     IonItem, 
     IonLabel, 
-    IonMenuButton, 
     IonModal, 
     IonPage, 
     IonRow, 
     IonSearchbar, 
     IonText, 
     IonToggle, 
-    IonToolbar,
     useIonViewWillEnter
 } from '@ionic/react'
 import './style.css'
-import { arrowUndoSharp, remove } from 'ionicons/icons';
+import { remove } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 import { menuController } from '@ionic/core';
 import { FlashCard } from '../../services/flashCard.service';
