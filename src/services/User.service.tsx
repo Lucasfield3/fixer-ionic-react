@@ -1,6 +1,6 @@
 import https from '../utils/https'
 
-interface NewUser{
+export interface NewUser{
     name:string;
     email:string;
     password:string;

@@ -1,47 +1,32 @@
 import React, { useState } from 'react';
+import { useForm } from "react-hook-form";
 import { IonCardContent, IonRow, IonCol, IonLabel, IonInput, IonItem, IonAlert } from '@ionic/react';
 import {ButtonRed, ButtonDark} from '../Landing-style/Landing-styled'
 import '../style.css'
-import { cadastro } from '../../../services/User.service';
+import { cadastro, NewUser } from '../../../services/User.service';
 
 const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
     const [showAlert1, setShowAlert1] = useState<boolean>(false);
+    const { register, handleSubmit, watch, errors } = useForm();
 
-    const  handleClickAuth = async () => {
 
-        try{
-            await cadastro({
-                email:email, 
-                name:name, 
-                password:password, 
-                confirmPassword:confirmPassword
-            })
-            
-        }catch(err){
-            console.log(err)
-        }
-
+    const onSubmit = (data:NewUser) => {
+        console.log(data)
+        cadastro(data)
     }
-    /*const [showAlert2, setShowAlert2] = useState(false);
-    const [showAlert3, setShowAlert3] = useState(false);
-    const [showAlert4, setShowAlert4] = useState(false);
-    const [showAlert5, setShowAlert5] = useState(false);
-    const [showAlert6, setShowAlert6] = useState(false);
-    */
+       
     return (
         <>
             <IonCardContent className="card-content-cadastro">
+
+            <form onSubmit={handleSubmit(onSubmit)}>
 
                 <IonRow className="ion-align-items-center">
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>E-mail:</IonLabel>
-                            <IonInput value={email} onIonChange={e => setEmail(e.detail.value!.trim())} color='dark' type='text'></IonInput>
+                            <IonInput  name='email' ref={register({required: true, maxLength:50})}  color='dark' type='text'></IonInput>
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -50,7 +35,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Nome:</IonLabel>
-                            <IonInput value={name} onIonChange={e => setName(e.detail.value!.trim())} color='dark' type='text'></IonInput>
+                            <IonInput  name='name' ref={register({required:true, maxLength:20})}  color='dark' type='text'></IonInput>
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -59,7 +44,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Senha:</IonLabel>
-                            <IonInput value={password} onIonChange={e => setPassword(e.detail.value!.trim())} color='dark' type='password'></IonInput>
+                            <IonInput  name='password' ref={register({required:true, maxLength:25})}  color='dark' type='password'></IonInput>
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -68,7 +53,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Confirmar senha:</IonLabel>
-                            <IonInput value={confirmPassword} onIonChange={e => setConfirmPassword(e.detail.value!.trim())} color='dark' type='password'></IonInput>
+                            <IonInput  name='confirmPassword' ref={register({required:true, maxLength:25})}  color='dark' type='password'></IonInput>
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -77,14 +62,26 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <ButtonDark
                             onClick={()=> {
-                                handleClickAuth()
                                 setShowAlert1(true)
                             }}
                             size="small"
                             type='submit'
                             className='ios btn-dark'
                         >Cadastrar</ButtonDark>
-                        <IonAlert
+
+
+                    </IonCol>
+                    <IonCol>
+                        <ButtonRed
+                            onClick={() => props.handleClickCad()}
+                            size="small"
+                            color='light'
+                            className='ios btn-danger'
+                        >Cancelar</ButtonRed>
+                    </IonCol>
+                </IonRow>
+            </form>
+                <IonAlert
                             isOpen={showAlert1}
                             onDidDismiss={() => {
                                 props.handleClickCad();
@@ -105,22 +102,18 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                             }]}
                         />
 
-
-                    </IonCol>
-                    <IonCol>
-                        <ButtonRed
-                            onClick={() => props.handleClickCad()}
-                            size="small"
-                            color='light'
-                            className='ios btn-danger'
-                        >Cancelar</ButtonRed>
-                    </IonCol>
-                </IonRow>
             </IonCardContent>
         </>
     );
 
 }
+
+    /*const [showAlert2, setShowAlert2] = useState(false);
+    const [showAlert3, setShowAlert3] = useState(false);
+    const [showAlert4, setShowAlert4] = useState(false);
+    const [showAlert5, setShowAlert5] = useState(false);
+    const [showAlert6, setShowAlert6] = useState(false);
+    */
 
 export default Cadastro;
 //handleClickLogin: ()=> void

@@ -1,6 +1,6 @@
 import https from '../utils/https'
 import jwt_decode from 'jwt-decode'
-interface Credentials {
+export interface Credentials {
     email:string;
     password:string;
 }

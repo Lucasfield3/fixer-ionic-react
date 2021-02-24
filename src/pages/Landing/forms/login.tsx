@@ -1,49 +1,35 @@
 import React,{ useState} from 'react';
+import {useForm} from 'react-hook-form'
 import { IonCardContent, IonRow, IonCol, IonLabel, IonInput, IonItem } from '@ionic/react';
 import {ButtonRed, ButtonDark} from '../Landing-style/Landing-styled'
 import { useHistory } from 'react-router-dom'
 import '../style.css'
 import { menuController } from '@ionic/core';
-import { login, storeToken} from '../../../services/Authentication.service';
+import { Credentials, login, storeToken} from '../../../services/Authentication.service';
 
 
 const Login: React.FC<{handleClickLogin:()=> void}> = props=>{
-const [input, setInput] = useState<string>('')
-const [email, setEmail] = useState('')
-const [password, setPassword] = useState('')
 
- const history = useHistory()
+const history = useHistory()
 
- 
-    const handleClickAuth = async () =>{
-        try{
-           const access_token = await login({email: email, password: password})
-          storeToken(access_token)
-        
-        }catch (err){
-           console.log(err)
-        }
-        history.push('/Home')
-        menuController.enable(true)
-        setTimeout(()=>{props.handleClickLogin()}, 1000)
-        setEmail('')
-        setPassword('')
-    }
-
-
-const clickHandler= ()=>{
-    setInput('')
+const { register, handleSubmit, watch, errors } = useForm()
+const onSubmit = async (data:Credentials) =>{
+    console.log(data)
+    const access_token = await login(data)
+    storeToken(access_token)
 }
+
 
     return(
         <>
         <IonCardContent className='card-content-login'>
             
-            <IonRow className="ios ion-align-items-center email">
+           <form onSubmit={handleSubmit(onSubmit)}>
+           <IonRow className="ios ion-align-items-center email">
                 <IonCol>
                     <IonItem color='light'>
                         <IonLabel color='primary' position='floating'>Login:</IonLabel>  
-                        <IonInput value={email} name='email' required onIonChange={e=>setEmail(e.detail.value!.trim())} color='dark'type='text'></IonInput>
+                        <IonInput  name='email' ref={register({required:true})} color='dark'type='text'></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -51,7 +37,7 @@ const clickHandler= ()=>{
                 <IonCol>
                     <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Senha:</IonLabel>  
-                            <IonInput type='password' required name='password' value={password} onIonChange={e=>setPassword(e.detail.value!.trim())} color='dark'></IonInput>
+                            <IonInput type='password' ref={register({required:true})} name='password' color='dark'></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -61,7 +47,10 @@ const clickHandler= ()=>{
                         size="small"
                         type='submit'
                         className='ios btn-dark'
-                        onClick={handleClickAuth}
+                        onClick={()=>{
+                            menuController.enable(true)
+                            history.push('Home')
+                        }}
                         >Entrar</ButtonDark>
                     </IonCol>
             
@@ -74,6 +63,7 @@ const clickHandler= ()=>{
                         >Voltar</ButtonRed>
                     </IonCol>
                 </IonRow>
+           </form>
             </IonCardContent>
         </>
     );
