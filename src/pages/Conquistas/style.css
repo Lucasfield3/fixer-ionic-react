@@ -1,8 +1,3 @@
-.custom-header{
-    z-index: 0;
-    background: transparent;
-}
-
 .container-conquistas{
   display: flex;
   justify-content: center;
@@ -19,19 +14,35 @@
   padding-bottom: 0.1em;
   padding-top: 6.5em;
 }
+.ios .container-conquistas{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(1, 22, 39, 0.29);
+  width: auto;
+  height:auto;
+  border-radius: 5px;
+  overflow: auto;
+  margin-inline-start: 5px;
+  margin-inline-end: 5px;
+  margin-bottom: 1.3rem;
+  margin-top: 1rem;
+  padding-bottom: 0.1em;
+  padding-top: 6.5em;
+}
 
-.align-conquistas{
+.ios .align-conquistas{
   margin-left: 0;
   margin-right: 0;
   margin-top: -3rem;
 }
 
-.card-conquistas{
+.ios .card-conquistas{
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: auto;
+  width:auto;
   max-height: 7rem;
   position: relative;
   margin-top: 0.2rem;
@@ -39,28 +50,21 @@
   background: var(--ion-color-light);
   overflow: hidden;
   transition: max-height 0.5s ease-out;
-}
+} 
 
-.card-conquistas:hover{
+
+.ios .card-conquistas:hover{
   top:-4px;
   max-height: 20rem;
   box-shadow: 0 0 10px var(--light);
   transition: max-height 0.4s ease-in;
 }
 
-
 .card-conquistas:hover > .card-description, .card-conquistas:hover > .card-title{
   opacity: 1;
 }
-.card-header{
-  width: 1rem;
-  padding: 0!important;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.card-title{
+.ios .card-title{
   opacity: 0;
   font-family: roboto;
   font-size: 15px;
@@ -69,14 +73,14 @@
   text-align:center;
 }
 
-
-.card-image{
+.ios .card-image{
   height: 5rem;
   width: 5rem;
   margin: .8rem 0;
 }
 
-.card-description{
+
+.ios .card-description{
   padding-top: 13px;
   font-size: 11px;
   line-height: 1.3;
@@ -89,97 +93,3 @@
   font-weight: 600;
   text-align: center;
 }
-
-
-
-  .line{
-    width: 1px;
-    height: 24px;
-    background: var(--ion-color-dark);
-    z-index: 10;
-    position: absolute;
-    opacity: 0.4;
-    border-radius: 20%;
-    margin-left: 3rem;
-  }
-
-  .ios .container-conquistas{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(1, 22, 39, 0.29);
-    width: auto;
-    height:auto;
-    border-radius: 5px;
-    overflow: auto;
-    margin-inline-start: 5px;
-    margin-inline-end: 5px;
-    margin-bottom: 1.3rem;
-    margin-top: 1rem;
-    padding-bottom: 0.1em;
-    padding-top: 6.5em;
-  }
-
-  .ios .align-conquistas{
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: -3rem;
-  }
-
-  .ios .card-conquistas{
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width:auto;
-    max-height: 7rem;
-    position: relative;
-    margin-top: 0.2rem;
-    margin-bottom: 0.7rem;
-    background: var(--ion-color-light);
-    overflow: hidden;
-    transition: max-height 0.5s ease-out;
-  } 
-
-  .ios .card-conquistas:hover{
-    top:-4px;
-    max-height: 20rem;
-    box-shadow: 0 0 10px var(--light);
-    transition: max-height 0.4s ease-in;
-  }
-
-  .ios .card-header{
-    width: 1rem;
-    padding: 0!important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .ios .card-image{
-    height: 5rem;
-    width: 5rem;
-    margin: .8rem 0;
-  }
-
-  .ios .card-title{
-    opacity: 0;
-    font-size: 15px;
-    font-weight: bold;
-    color:var(--ion-color-dark);
-    text-align:center;
-  }
-
-  .ios .card-description{
-    padding-top: 13px;
-    font-size: 11px;
-    line-height: 1.3;
-    padding-inline-start: 4px;
-    padding-inline-end: 4px;
-    padding-bottom: 5px;
-    color: var(--ion-color-dark);
-    opacity: 0;
-    transition: opacity 0.2s;
-    font-weight: 600;
-    text-align: center;
-  }

@@ -83,8 +83,8 @@ const Conquista: React.FC = () => {
 
                 <TitleCards>Conquistas</TitleCards>
 
-                    <IonCard className='container-conquistas'>
-                        <IonGrid className='align-conquistas'>
+                    <IonCard className='ios container-conquistas'>
+                        <IonGrid className='ios align-conquistas'>
 
                             <IonRow>
                                 <Disable>

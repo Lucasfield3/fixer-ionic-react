@@ -28,6 +28,7 @@ import { arrowUndoSharp, remove } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 import { menuController } from '@ionic/core';
 import { FlashCard } from '../../services/flashCard.service';
+import { ButtonArrow, HeaderDefault } from '../styles/Page-default/Page-default-styled';
 
 
 const CriarQuestionario:React.FC = ()=>{
@@ -61,28 +62,14 @@ const CriarQuestionario:React.FC = ()=>{
     return(
         <>
             <IonPage>
-            <IonHeader className='custom-header'>
-                    <IonToolbar>
-                        <IonRow className='row-label'>
-                            <IonLabel className="label-menu-fixer">FIXER</IonLabel>
-                        </IonRow>
-                        <IonFabButton
-                            onClick={() => {
-                                history.push('/Questionarios')
-                                menuController.enable(true);
-                            }}
-                            slot='start'
-                            className="icon-fab-button light"
-
-                            size="small"
-                            color="light">
-                            <IonIcon icon={arrowUndoSharp} />
-                            <IonButton slot='start'>
-                                <IonMenuButton></IonMenuButton>
-                            </IonButton>
-                        </IonFabButton>
-                    </IonToolbar>
-                </IonHeader>
+                <HeaderDefault>
+                    <ButtonArrow onClick={() => {
+                            history.push('/Questionarios')
+                            menuController.enable(true);
+                            setChecked(false)
+                            setShownTimer(false)
+                        }}/>
+                </HeaderDefault>
                 <IonContent>
                     <IonItem style={{borderRadius:'6px'}} className="item-input-title">
                         <IonInput  value={textTitle} type="text" required className="input-title" title='insira o título do Questionário' onIonChange={e => setTextTitle(e.detail.value!)} placeholder="Insira o título do Questionário"></IonInput>
