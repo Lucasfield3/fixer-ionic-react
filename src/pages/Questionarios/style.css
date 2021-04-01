@@ -112,11 +112,34 @@
     --background-focused: #f1f1f1;
     --background-hover: #f1f1f1;
   }
-  .modal-list{
-    --height:34%
-  }
-  .title-select{
-    font-weight: bold;
-    margin-top: 1rem;
-    font-size: 18px;
-  }
+.modal-list{
+  --height:34%;
+}
+.sc-ion-modal-md-h:first-of-type {
+  --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+  --background: var(--ion-color-light);
+  --border-radius: 21px;
+  --width: 90%;
+}
+.title-select{
+  font-weight: bold;
+  margin-top: 1rem;
+  font-size: 18px;
+}
+.search-bar-modal{
+  margin-inline-end: 0.5rem!important;
+  margin-inline-start: 0.5rem !important;
+  color: var(--ion-color-contrast);
+  border-radius: 6px;
+  height: unset !important;
+  border: unset !important;
+}
+.ios .search-bar-modal{
+  margin-inline-end: 1rem;
+  margin-inline-start: 1rem;
+  margin-bottom: 0.3rem;
+  color: var(--ion-color-contrast);
+  border: 1px var(--ion-color-dark) solid;
+  border-radius: 6px;
+  height: 2.6rem;
+}

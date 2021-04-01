@@ -10,8 +10,18 @@ import {
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import Cards from './Cards/Cards';
-import { deleteFlashCard, FlashCard, getFlashCards } from '../../services/flashCard.service';
-import { SearchBar, Vazio, TitleCards, CreateButton, ButtonChoice, CardMenu, HeaderDefault, ButtonMenuDark, ContainerCards } from '../styles/Page-default/Page-default-styled';
+import { deleteFlashCard, FlashCard, getAllFlashCards } from '../../services/flashCard.service';
+import { 
+    SearchBar, 
+    Vazio, 
+    TitleCards, 
+    CreateButton, 
+    ButtonChoice, 
+    CardMenu, 
+    HeaderDefault, 
+    ButtonMenuDark, 
+    ContainerCards 
+} from '../styles/Page-default/Page-default-styled';
 
 
 
@@ -29,12 +39,14 @@ const FlashCards: React.FC = () => {
     const [cards, setCards] = useState<FlashCard[]>([])
     const status:FlashCard[] = []
     async function getCards() {
-        let cardsValues = await getFlashCards()
+        let cardsValues = await getAllFlashCards()
         setCards(cardsValues)
     }
+
+    
     useIonViewWillEnter(() => {
         menuController.enable(true);
-        getCards()
+        if(cards)  getCards()
     }, [])
     const handleResponderButton = ()=>{
         if(activeCard?.type === 'alternative'){
@@ -73,11 +85,7 @@ const FlashCards: React.FC = () => {
             return card.title.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
         }
     })
-    const myStyle = {
-        display:'flex',
-        justifyContent:'center',
-        flexDirection:'column'
-    }
+
     return (
         <>
             <IonPage>

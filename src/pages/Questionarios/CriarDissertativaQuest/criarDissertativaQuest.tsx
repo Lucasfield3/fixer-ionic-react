@@ -5,7 +5,6 @@ import {
     IonFabButton,
     IonIcon,
     IonContent, 
-    IonCol,  
     useIonViewWillLeave,
     useIonViewWillEnter,
     IonInput
@@ -19,9 +18,7 @@ import {  ButtonArrow, CardQuestion, CreateAreaDissertativeAnswer, HeaderDefault
 import { Controller, useForm } from 'react-hook-form';
 
 
-
-
-const QuestaoDissertativa: React.FC = () => {
+const CriarDissertativaQuest:React.FC = ()=>{
 
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -93,8 +90,6 @@ const QuestaoDissertativa: React.FC = () => {
 
     }
 
-
-
     const {register, handleSubmit, setValue, getValues, errors, control} = useForm()
 
     const onSubmit = async (data:NewFlashCard) => {
@@ -116,7 +111,7 @@ const QuestaoDissertativa: React.FC = () => {
             <IonPage>
                 <HeaderDefault>
                     <ButtonArrow onClick={() => {
-                            history.push('/Flash-cards')
+                            history.push('/CriarQuestionario')
                             menuController.enable(true);
                             setThemes([])
                             setChecked(false)
@@ -166,7 +161,7 @@ const QuestaoDissertativa: React.FC = () => {
                         isOpen={showModal}
                         onClickNo={() => {
                             setShowModal(false)
-                            history.push('Flash-cards')
+                            history.push('CriarQuestionario')
                             menuController.enable(true)
                         }}
                         onClickYes={() => {
@@ -181,17 +176,17 @@ const QuestaoDissertativa: React.FC = () => {
                                 setShowModal2(false)
                                 setShowModal(false)
                                 CleanInputs()
-                                history.push('/questaoAlternativa')
+                                history.push('/CriarAlternativaQuest')
                             }}
                             onClickDiss={() => {
                                 setShowModal2(false)
                                 setShowModal(false)
                                 CleanInputs()
-                                history.push('/questaoDissertativa')
+                                history.push('/CriarDissertativaQuest')
                             }}
                         />
 
-                        <CreateAreaDissertativeAnswer         
+                        <CreateAreaDissertativeAnswer                
                         refAnswer={register({required:true})}
                         />
 
@@ -215,6 +210,5 @@ const QuestaoDissertativa: React.FC = () => {
 
 }
 
-export default QuestaoDissertativa;
 
-
+export default CriarDissertativaQuest;

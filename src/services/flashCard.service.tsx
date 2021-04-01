@@ -1,7 +1,7 @@
 import https from '../utils/https'
 import { getPayload } from './Authentication.service'
 
-interface NewFlashCard{
+export interface NewFlashCard{
     creator:string;
     enunciated:string;
     subject?:string;
@@ -88,7 +88,7 @@ export async function getFlashCard(id:string){
             console.log(erro)
         })
 }
-export async function getFlashCards():Promise<FlashCard[]>{
+export async function getAllFlashCards():Promise<FlashCard[] | any>{
     const payload =  getPayload() as Payload
     return https
         .get(`flash-cards/owner/${payload.id}`)

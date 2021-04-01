@@ -41,7 +41,6 @@ const Landing: React.FC = () => {
         setIsflipped(!isFlipped)
         setCards(value)
     }
-    //const [visible, setVisible] = useState<boolean>(true);
     return (
         <IonPage className="landing">
             <IonContent className='control-over' >
@@ -107,10 +106,3 @@ const InitCard: React.FC<{onClickLogin:()=>void; onClickCad:()=>void}> = props=>
     );
 }
 export default Landing;
-//handleClickLogin={()=> {setIsflipped(isFlipped);
-//setCards(<Login handleClickLogin={handleClick}/>)}}
-//const gifStyle = {
-    //background:`url(${gif})`,
-    //backgroundRepeat:'no-repeat'
-
-//} as React.CSSProperties;

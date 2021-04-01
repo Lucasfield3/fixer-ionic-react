@@ -27,7 +27,8 @@ import { ButtonArrow,  ContainerList, HeaderDefault, RowBtnCreate, RowTimer, Sea
 import { useForm } from 'react-hook-form';
 
 
-const CriarQuestionario:React.FC = ()=>{
+
+export const EditQuest:React.FC = () =>{
 
     const [textTitle, setTextTitle] = useState<string>('')
     const [showModal2, setShowModal2] = useState(false)
@@ -162,4 +163,4 @@ const CriarQuestionario:React.FC = ()=>{
     )
 }
 
-export default CriarQuestionario;
+export default EditQuest;

@@ -12,15 +12,18 @@ import {
     IonModal, 
     IonText,
     useIonViewWillLeave,
-    useIonViewWillEnter
+    useIonViewWillEnter,
+    IonInput,
+    IonTextarea
 } from '@ionic/react'
-import { remove } from 'ionicons/icons';
+import { add, remove } from 'ionicons/icons';
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
-import {  Payload, Alternative, NewAlternative, FlashCard, putFlashCard, getRightAnswer } from '../../../services/flashCard.service';
+import {  Payload, Alternative, NewAlternative, FlashCard, putFlashCard, getRightAnswer, NewFlashCard } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
 import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
+import { Controller, useForm } from 'react-hook-form';
 
 
 
@@ -28,23 +31,23 @@ const EditAlternativa: React.FC = () => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
-    const [textTitle, setTextTitle] = useState<string>('')
-    const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
-    const [textMat, setTextMat] = useState<string>('')
-    const [enunciated, setEnunciated] = useState<string>('')
     const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [showPopLimit, setShowPopLimit] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave]= useState<boolean>(false);
-    const [textPop, setTextPop] = useState<string>('')
     const [showModal, setShowModal] = useState(false)
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [answer, setAnswer] = useState<string>('')
-    const [themes, setThemes] = useState<string[]>([]);
     const [alternatives, setAlternatives] = useState<NewAlternative[]>([]);
-    const [time, setTime] = useState<string>(':');
+    let temas = {
+        id:0,
+        textPop:''
+    }
+    const [themes, setThemes] = useState<string[]>([temas.textPop]);
+    const [time, setTime] = useState<number>();
+    const [newTime, setNewTime] = useState<string>(':');
     const popOverSave = () => {
         setShownPopsave(true);
         setTimeout(() => {
@@ -54,89 +57,143 @@ const EditAlternativa: React.FC = () => {
     }
 
     const AddTema = () => {
-        if (textPop !== '') {
-            setThemes([...themes, textPop])
+        const inputValue = getValues(`themes[${temas.textPop}].textPop`)
+        setThemes([...themes, inputValue
+        ])
+        if(inputValue == ''){
+            setThemes(themes)
         }
+        console.log(themes)
+    }
+    const RemoveTema = (textPop: string) => {
+        const themeToBedeleted = themes.filter((theme) => textPop !== theme);
+        setThemes(themeToBedeleted)
     }
     const AddAlternative = () => {
-        setAlternatives([...alternatives, {answer:answer}])
-        if(alternatives.length == 4){
+        const inputValue = getValues(`alternatives[${{answer}}].answer`)
+        setAlternatives([...alternatives, { answer: inputValue }])
+        console.log(inputValue)
+        if (alternatives.length == 4 || inputValue === '') {
             setAlternatives(alternatives)
-      
         }
-        setAnswer('')
     }
 
-
-
-    const DeleteAlternatives = (answer:string) => {
-        let alternativeToBedeleted = alternatives.filter(alternative => alternative.answer !== answer);
-        setAlternatives(alternativeToBedeleted)
+    const RemoveAlternative = (index:number) =>{
+        setAlternatives([...alternatives.slice(0, index), ...alternatives.slice(index + 1)])
     }
+
+    const { register, handleSubmit, errors, setValue, getValues, control, watch} = useForm()
+
+    const multiplesValues = watch();
     const removeRightAnswerOfAlternative = (answer:string) =>{ 
         const card = history.location.state as FlashCard         
         console.log(card.alternatives!)
         let alternativeDeleted = card.alternatives!.filter(alternative => alternative.answer !== answer)
         setAlternatives(alternativeDeleted)
+        setThemes(card.themes)
+    }
 
-    }
-    const DeleteTema = (id:string) => {
-       const themeDeleted =  themes.filter((theme)=> id !== theme)
-       setThemes(themeDeleted)
-    }
     async function getAnswer(id:string){
         const rightAnswer = await getRightAnswer(id) as string     
-        setTextRightAnswer(rightAnswer)
+        setValue('answerFlashCard', rightAnswer)
         removeRightAnswerOfAlternative(rightAnswer)
     }
     useIonViewWillEnter(()=>{
         if (history.location.state) {
             const card = history.location.state as FlashCard
             console.log(card)
-            setTextTitle(card.title)
-            setTextMat(card.subject)
-            setThemes(card.themes)
-            setTextAreaQuestion(card.enunciated)
-            setAlternatives(card.alternatives!)
+            setValue('title', card.title)
+            setValue('subject', card.subject)
+            setValue('enunciated', card.enunciated)
             setIdFlashCard(card.id)
+            setTime(card.time)
             getAnswer(card.id)
+            
         } else {
             console.log('Não tem nada');
         }
+         
     },[])
     useIonViewWillLeave(()=>{
         menuController.enable(true)   
     }, [])
     
-    const handleSaveButton = async ()=>{
+
+    const convertTime = () => {
+        const [minutes, seconds] = newTime.split(':').map(Number)
+        const newTimeInSeconds = (minutes * 60) + seconds
+        console.log(newTime)
+        console.log(newTimeInSeconds * 1000)
+        return newTimeInSeconds * 1000
+
+    }
+  
+    const timeUnconverted = (time:number) =>{
+        console.log(time)
+        const timeMinutsUnconverted = Math.trunc((time!/1000)/60) //minutos
+        console.log(timeMinutsUnconverted)
+        const timeSecondsUnconverted = ((time!/1000) % 60 )//segundos
+        console.log(timeSecondsUnconverted)
+
+        if(timeMinutsUnconverted < 10 && timeSecondsUnconverted < 10){
+
+            const timeUnconverted = `0${timeMinutsUnconverted}:0${timeSecondsUnconverted}`
+ 
+            return timeUnconverted
+        }else if(timeMinutsUnconverted < 10){
+            const timeUnconverted = `0${timeMinutsUnconverted}:${timeSecondsUnconverted}`
+            
+            return timeUnconverted
+        }else if(timeSecondsUnconverted < 10){
+            const timeUnconverted = `${timeMinutsUnconverted}:0${timeSecondsUnconverted}`
+            
+            return timeUnconverted
+        }else{
+            const timeUnconverted = `${timeMinutsUnconverted}:${timeSecondsUnconverted}`
+
+            return timeUnconverted
+        }
+        
+
+    }
+
+    const ShuffleAlternativas = ( alternativesSend: NewAlternative[]) => {
+
+        for(let i =  alternativesSend.length -1; i > 0; i--){
+            const j = Math.floor(Math.random() * (i + 1));
+            const temp =  alternativesSend[i];
+             alternativesSend[i] =  alternativesSend[j];
+             alternativesSend[j] = temp;
+        }
+        return  alternativesSend;
+    }
+
+    
+
+    const onSubmit = async(data:NewFlashCard) =>{
         const payLoad = getPayload() as Payload
         let alternativesSend:NewAlternative[] = []
         let temasSend:string[] = []
-        themes.map((t:string)=>{
-            temasSend.push(t)
+        themes.map((textPop)=>{
+            temasSend.push(textPop)
         })
         alternatives?.map((a)=>{
             alternativesSend.push({answer:a.answer})
         })
-        alternativesSend.push({answer:textRightAnswer})
-        if(textAreaQuestion !== '' && textTitle !== ''){
-            await putFlashCard(
-               { creator:payLoad.id,
-                enunciated:textAreaQuestion,
-                subject:textMat,
-                alternatives:alternativesSend,
-                title:textTitle,
-                themes:temasSend,
-                id:idFlashCard,
-                answerFlashCard:textRightAnswer
-                }
-            )
-
-        }
-            setShowModal(true)
-
+        const rightAnswer = getValues('answerFlashCard')
+        alternativesSend.push({answer:rightAnswer})
+        data.time = convertTime()
+        data.themes = temasSend
+        data.alternatives = alternativesSend
+        data.creator = payLoad.id
+        data.id = idFlashCard
+        ShuffleAlternativas(alternativesSend)
+        await putFlashCard(data)
+        console.log(data)
+        setShowModal(true)
     }
 
+    
     return (
         <>
             <IonPage>
@@ -150,91 +207,108 @@ const EditAlternativa: React.FC = () => {
                     }}/>
             </HeaderDefault>
 
-
-                <IonContent>
+            <IonContent>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <CardQuestion
-                    onIonChangeTitle={e => setTextTitle(e.detail.value!)}
-                    valueTitle={textTitle}
-                    onClickTheme={() => setShowPopover(true)}
-                    isOpenThemes={showPopover}
-                    onDidDismissTheme={e => setShowPopover(false)}
-                    onIonChangeTheme={e => setTextPop(e.detail.value!)}
-                    valueTextPop={textPop}
-                    onClickAddTheme={() => {
-                        AddTema()
-                        setTextPop('')
-                    }}
-                    onClickSaveBtn={() => popOverSave()}
-                    onClickCleanBtn={() => {
-                        setShowPopover(false)
-                        setThemes([])
-                        setTextPop('')
-                    }}
-                    isOpenSaveTheme={shownPopsave}
-                    onDidDismissSave={() => {
-                        setShowPopover(false)
-                        setShowPopover(false)
-                    }}
-                    valueSubj={textMat}
-                    onIonChangeSubj={e => setTextMat(e.detail.value!)}
-                    onIonChangeQuestion={e => {
-                        setTextAreaQuestion(e.detail.value!)
-                    }}
-                    valueEnunciated={textAreaQuestion}
-                   >
-                     {themes.map((theme, index)=> (
-                        <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                            <IonCol key={index} className='ios temas-inputs' color='dark'>{theme}</IonCol>
-                            <IonFabButton onClick={() => DeleteTema(theme)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
-                        </IonRow>
-                    ))}
-                   </CardQuestion>
-
-                    <IonModal backdropDismiss={false} isOpen={showModal} cssClass='ios modal-criar'>
-                        <IonCardTitle className="div-modal-alternativa">
-                            <IonText className="modal-text" color="dark">
-                                <IonLabel>Alterações salvas</IonLabel>
-                            </IonText>
-                            <IonRow className='ion-justify-content-center'>
-                                <IonButton color='light' className="btn-edit" onClick={() => {
-                                setShowModal(false)                        
-                                history.push('/Flash-cards')                        
-                                }}>Ok</IonButton>
-                            </IonRow>
-                        </IonCardTitle>
-                    </IonModal>
-                    <GridAlternatives
-                        onClick={()=>AddAlternative() }
-                        style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
-                        onIonChangeRight={e => setTextRightAnswer(e.detail.value!)}
-                        valueTextRighAnswer={textRightAnswer}
-                        onIonChangeAnswer={e => setAnswer(e.detail.value!)}
-                        valueAnswer={answer}
-                        autoGrow={textRightAnswer == '' && false || true}
+                            onClickTheme={() => setShowPopover(true)}
+                            isOpenThemes={showPopover}
+                            onDidDismissTheme={e => setShowPopover(false)}
+                            onClickSaveBtn={() => popOverSave()}
+                            onClickCleanBtn={() => {
+                                setShowPopover(false)
+                                setThemes([])
+                            }}
+                            isOpenSaveTheme={shownPopsave}
+                            onDidDismissSave={() => {
+                                setShowPopover(false)
+                                setShowPopover(false)
+                            }}
+                            refEnunciated={register({required:true})}
+                            refSub={register({required:false})}
+                            refTitle={register({required:true})}
                         >
-                           {alternatives.map((alternative:Alternative, index)=>(
-                                <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
-                                    <IonCol style={{height:'auto', width:'10rem'}} key={index} className='alternativas' color='dark' placeholder='alternativas'>{alternative.answer}</IonCol>
-                                    <IonFabButton  onClick={()=>DeleteAlternatives(alternative.answer)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
+                        <IonRow className='ion-justify-content-center'>
+                            <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${temas.textPop}].textPop`} ref={register({required:false})}   type='text'></IonInput>
+                            <IonFabButton className='add-btn' onClick={() => {
+                                AddTema()
+                                console.log(getValues(`themes[${temas.textPop}].textPop`))
+                                setValue(`themes[${temas.textPop}].textPop`, '')
+                            }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
+                        </IonRow>
+                        {themes.map((theme, index) => (
+                                <IonRow key={index - 1} style={{ cursor: 'default', marginTop: '1rem'}} className='ion-justify-content-center'>
+                                    <Controller as={<IonInput key={index} className='ios temas-inputs'  color='dark'></IonInput>} 
+                                    name={`themes[${index}].textPop`}
+                                    control={control}
+                                    defaultValue={theme}
+                                    />
+                                    <IonFabButton onClick={() => RemoveTema(theme)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove} ></IonIcon></IonFabButton>
                                 </IonRow>
-                            ))}           
-                    </GridAlternatives>
-                       
-                    <RowTimer 
-                    onIonChange={(e) => setChecked(e.detail.checked)}
-                    onClick={() => {
-                        setShownTimer(!shownTimer)
-                        setTime('')
-                    }}
-                    checked={checked}
-                    >
-                        {shownTimer && <Timer value={time} onChange={(event) => setTime(event.target.value!)} />}
-                    </RowTimer>
-                    <Limitedalternativa 
-                    onClick={()=> setShowPopLimit(false)} 
-                    isOpen={showPopLimit} 
-                    onDidDismiss={()=>setShowPopLimit(false)} />
-                   <RowBtnCreate onClick={()=> handleSaveButton()}>Salvar</RowBtnCreate>
+                            ))}
+                        </CardQuestion>
+
+
+                        <IonModal backdropDismiss={false} isOpen={showModal} cssClass='ios modal-criar'>
+                            <IonCardTitle className="div-modal-alternativa">
+                                <IonText className="modal-text" color="dark">
+                                    <IonLabel>Alterações salvas</IonLabel>
+                                </IonText>
+                                <IonRow className='ion-justify-content-center'>
+                                    <IonButton color='light' className="btn-edit" onClick={() => {
+                                    setShowModal(false)                        
+                                    history.push('/Flash-cards')                        
+                                    }}>Ok</IonButton>
+                                </IonRow>
+                            </IonCardTitle>
+                        </IonModal>
+                        <GridAlternatives                         
+                                style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
+                                refAlternatives={register({required:true})}
+                                refAnswer={register({required:true})}
+                                autoGrow={textRightAnswer == '' && false || true}
+                                nameAnswerFlashCard='answerFlashCard'
+                                >
+                                    <IonRow  className='ion-justify-content-center'>
+                                        <IonTextarea  className='ios add-alternativas'  
+                                        placeholder='Insira a/as alternativas' 
+                                        color='dark' ref={register({required:false})} 
+                                        name={`alternatives[${{answer}}].answer`}>                         
+                                        </IonTextarea>
+                                        <IonFabButton id='add-alternative' className='add-btn'  onClick={()=>{
+                                            AddAlternative()
+                                            console.log({answer})
+                                            setValue(`alternatives[${{answer}}].answer`, '')
+                                        }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
+                                    </IonRow>
+                                    {alternatives.map((alternative:NewAlternative, index)=>(
+                                        <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
+                                            <Controller as={<IonInput style={{height:'auto', width:'10rem'}} key={index} className='alternativas' color='dark'  placeholder='alternativas'></IonInput>} 
+                                            name={`alternatives[${index}].answer`}
+                                            defaultValue={alternative.answer}
+                                            control={control}
+                                            />
+                                            <IonFabButton  onClick={()=>RemoveAlternative(index)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove} ></IonIcon></IonFabButton>              
+                                        </IonRow>
+                                    ))}       
+                                </GridAlternatives>
+                        
+                                <RowTimer 
+                            onIonChange={(e) => setChecked(e.detail.checked)}
+                            onClick={() => {
+                                setShownTimer(!shownTimer)
+                                setNewTime('')
+                            }}
+                            checked={checked}
+                            >
+                            {shownTimer && <Timer  value={timeUnconverted(time!)} onChange={(event) => setNewTime(event.target.value!)} />}
+                            </RowTimer>
+                        <Limitedalternativa 
+                        onClick={()=> setShowPopLimit(false)} 
+                        isOpen={showPopLimit} 
+                        onDidDismiss={()=>setShowPopLimit(false)} />
+                   <RowBtnCreate>Salvar</RowBtnCreate>
+
+                </form>
                 </IonContent>
 
             </IonPage>

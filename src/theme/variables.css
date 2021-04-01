@@ -216,8 +216,9 @@ ion-button{
   background: var(--ion-color-light);
   font-weight: bold;
   width: 4.1rem;
-  height: 2rem;
+  height: 1.9rem;
   font-size: 19px;
+  border: 2px var(--ion-color-dark) solid;
 }
 .container-cards{
   background: rgba(1, 22, 39, 0.29);
@@ -336,17 +337,16 @@ ion-button{
   font-size: 13px;
   border-radius: 0.2rem;
 }
-.my-custom-class{
-  --height: 35vh;
+.save{
+  --height: 13vh;
 }
 
-.save .popover-content.sc-ion-popover-md{
+.ios .save .popover-content.sc-ion-popover-md{
   border-radius:21px;
   --background:var(--ion-color-light);
   justify-content: center;
   width:10rem;
-  height:4rem;
-  
+  height:3rem;
 }
 .input-tema{
   color: #011627;
@@ -366,7 +366,8 @@ ion-button{
   padding:0;
 }
 .row-enunciated{
-  justify-content: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   text-align: justify;
   display: flex;
   font-size: 16px;
@@ -391,12 +392,14 @@ ion-button{
   overflow: auto;
 }
 .question{
+  text-align: justify;
   overflow-x: auto;
   overflow-y: visible;
-  height:10.4rem;
+  height: 10.4rem;
   word-spacing: -2px!important;
 }
 .ios .question{
+  text-align: justify;
   overflow-x: auto;
   overflow-y: visible;
   height:10.4rem;
@@ -502,13 +505,13 @@ ion-button{
 }
 .modalSair{
   --height:13%;
-  --width: 72%;
+  --width: 72% !important;
   --background: var(--ion-color-light);
   --border-radius: 21px;
 }
 .ios .modalSair{
-  --height: 13%;
-  --width: 77%;
+  --height: 18%;
+  --width: 72% !important;
 }
 .modal-choose{
   --height: 20%;
@@ -536,10 +539,12 @@ ion-button{
 }
 .ios .temas-custom{
   --height: 40vh;
+  --width: 15rem;
   --background:var(--ion-color-light);
 }
 
 .ios .temas-inputs{
+  pointer-events: none;
   border-radius: 1.7rem;
   height: auto;
   margin-right: 5px;
@@ -624,27 +629,22 @@ ion-button{
   align-items: center;
 }
 .alternativas{
+  pointer-events: none;
   border-radius: 1.7rem;
   margin-right: 5px;
   background: var(--ion-color-light);
   margin-top: 0;
-  padding-bottom: 6px;
   box-shadow: var(--box-shadow);
-  padding-inline-end: 9px;
-  padding-inline-start: 9px;
-  padding-top: 6px;
 }
 
-.ios .alternativas{
-    border-radius: 1.7rem;
-    margin-right: 5px;
-    background: var(--ion-color-light);
-    margin-top: 0;
-    padding-bottom: 6px;
-    box-shadow: var(--box-shadow);
-    padding-inline-end: 9px;
-    padding-inline-start: 9px;
-    padding-top: 6px;
+.ios .alternativas {
+  pointer-events: none;
+  border-radius: 1.7rem;
+  margin-right: 5px;
+  background: var(--ion-color-light);
+  margin-top: 0;
+  box-shadow: var(--box-shadow);
+  --padding-start: 0.5rem;
 }
 .answer{
   overflow-y: auto;
@@ -823,9 +823,10 @@ ion-button{
   border: 0.5px var(--ion-color-dark) solid;
 }
 .titulo-mat{
+  display: flex;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  --padding-top: 0px;
   --padding-bottom: 7px;
   font-weight: bold;
   font-size: 18px;
@@ -881,7 +882,37 @@ ion-button{
 }
 
 .flashcard-title{
+  text-align: center;
   color: var(--ion-color-dark);
   font-size: 20px;
   font-weight: bold;
 }
+.label-title{
+  display: flex;
+  justify-content: center;
+  font-size: 17px;
+  margin: 7px 0px 2px 0px;
+  font-weight: bolder;
+}
+.list-quest{
+  display: flex;
+  justify-content: flex-start;
+  margin: 0px 0px 0px 0px;
+  font-weight: bolder;
+  font-size: 15px;
+  border-bottom: transparent;
+  transition: border-bottom 0.1s ease-in-out;
+  color: var(--ion-color-dark);
+  width: 100%;
+}
+.list-quest:hover{
+  border-bottom: 2px var(--ion-color-primary) solid;
+}
+
+.sc-ion-modal-ios-h:first-of-type{
+  --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+  --background: var(--ion-color-light);
+  --border-radius: 21px;
+  --width: 90%;
+}
+

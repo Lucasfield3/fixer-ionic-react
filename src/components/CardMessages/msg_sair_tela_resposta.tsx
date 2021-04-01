@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonButton, IonCard, IonCardHeader,  IonLabel, IonPopover, IonRow} from '@ionic/react'
+import { IonButton, IonCardHeader,  IonLabel, IonPopover, IonRow} from '@ionic/react'
 import './styles.css'
 
 const SairTelaResposta: React.FC<{onDidDismiss:()=> void; isOpen:boolean; onClickSim:()=>void; onClickNao:()=>void}> = props => {

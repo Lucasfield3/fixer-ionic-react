@@ -1,45 +1,49 @@
 
-.letras-alternativas{
-  height: 1.9rem;
-  padding-right: 1.1rem;
-  padding-left: 0.5rem;
+.letras-alternativas {
+  height: 2rem;
+  display: flex;
   border-radius: 5rem;
-  text-align: center;
   background-color: var(--light);
   margin-right: 0.3rem;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
-  line-height: 1.1rem;
+  justify-content: center;
+  align-items: center;
   color: var(--ion-color-dark);
 }
-.active-letras{
-  height: 1.9rem;
-    padding-right: 1rem;
-    padding-left: 0.4rem;
-    border-radius: 5rem;
-    text-align: center;
-    background-color: var(--light);
-    margin-right: 0.3rem;
-    font-size: 17px;
-    font-weight: bold;
-    line-height: 1rem;
-    color: var(--ion-color-primary);
-    border: 2px var(--ion-color-primary) solid;
-    box-shadow: 0 0 10px var(--light);
+.active-letras {
+  display: flex;
+  height: 2rem;
+  border-radius: 5rem;
+  background-color: var(--light);
+  margin-right: 0.3rem;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--ion-color-primary);
+  justify-content: center;
+  border: 2px var(--ion-color-primary) solid;
+  box-shadow: 0 0 10px var(--light);
+  align-items: center;
 }
-
 .alternativas-respostas{
   border-radius: 1.7rem;
   margin-right: 5px;
   background: var(--ion-color-light);
   margin-top: 0;
-  padding-bottom: 6px;
   box-shadow: var(--box-shadow);
   padding-inline-end: 9px;
   padding-inline-start: 9px;
-  padding-top: 6px;
 }
-.active{
+.ios .alternativas-respostas{
+  border-radius: 1.7rem;
+  margin-right: 5px;
+  background: var(--ion-color-light);
+  margin-top: 0;
+  box-shadow: var(--box-shadow);
+  padding-inline-end: 9px;
+  padding-inline-start: 9px;
+}
+.ios .active{
   border-radius: 1.7rem;
     margin-right: 5px;
     background: var(--ion-color-light);

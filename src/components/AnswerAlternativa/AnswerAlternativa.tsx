@@ -6,7 +6,9 @@ import {
     IonCol, 
     IonGrid, 
     useIonViewWillEnter, 
-    useIonViewWillLeave
+    useIonViewWillLeave,
+    IonInput,
+    IonLabel
 } from '@ionic/react'
 import './styles.css'
 import { useHistory } from 'react-router';
@@ -17,6 +19,7 @@ import CardGreen from '../CardGreen/cardGreen';
 import { menuController } from '@ionic/core';
 import CardTime from '../CardTime/cardTime';
 import { AreaFlip, FinalBtn, HeaderAnswerDefault, ModalDefault, Redone } from '../../pages/styles/Page-default/Page-default-styled';
+import {Controller, useForm} from 'react-hook-form'
 
 
 
@@ -25,10 +28,7 @@ const AnswerAlternativa: React.FC = () => {
 
     const history = useHistory()
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [textMat, setTextMat] = useState<string>('')
-    const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
     const [showPopover, setShowPopover] = useState<boolean>(false);
-    const [shownPopsave, setShownPopsave] = useState<boolean>(false);
     const [shownPopsair, setShownPopsair] = useState<boolean>(false);
     const [shownPopResult, setShownPopResult] = useState<boolean>(false);
     const [shownIcon, setShownIcon] = useState(false)
@@ -39,10 +39,7 @@ const AnswerAlternativa: React.FC = () => {
     const [time, setTime] = useState<number>();
     const [seconds, setSeconds] = useState('')
     const [minutes, setMinutes] = useState('')
-    const [cards, setCards] = useState<{}>()
-    const [title, setTitle] = useState('')
     const [cardRed, setCardRed] = useState(<CardRed/>)
-    const card = history.location.state as FlashCard
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
         correct: false
@@ -82,13 +79,13 @@ const AnswerAlternativa: React.FC = () => {
         if (history.location.state) {
             const card = history.location.state as FlashCard
             console.log(card)
-            setTextMat(card.subject)
+            setValue('subject' ,card.subject)
             setThemes(card.themes)
-            setTextAreaQuestion(card.enunciated)
+            setValue('enunciated' ,card.enunciated)
             setAlternatives(card.alternatives)
             setIdFlashCard(card.id)
             setTime(card.time!)
-            setTitle(card.title)
+            setValue('title' ,card.title)
         } else {
             console.log('Não tem nada');
         }
@@ -111,10 +108,7 @@ const AnswerAlternativa: React.FC = () => {
         setActiveAlternative(alternative)
 
     }
-    const enableButton = () => {
-        const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
-        btnFinal.removeAttribute("disabled")
-    }
+
     const handleFlipAnswer = async () => {
         let checker = await getCheck(idFlashCard, activeAlternative.answer)
         console.log(checker)
@@ -144,52 +138,15 @@ const AnswerAlternativa: React.FC = () => {
             setProgress(progress - 0.15)
        }
     }
-    var i = 0
-    var interValIntern = 0
-    function cronometro(){
-        const cardTime = <CardTime/>
-        const card = history.location.state as FlashCard
-        if(card.time !== 0){
-                const timeToSeconds = (card.time!)/1000 
-                let minutesVar =  Math.trunc(timeToSeconds/60)
-                let secondsVar = timeToSeconds % 60
-                    console.log(interValIntern)
-                    interValIntern  = setInterval(()=>{
-                        console.log(i++)
-                        setMinutes((minutesVar).toString())
-                            if(secondsVar === 0 && minutesVar !== 0 ){
-                                setMinutes((minutesVar--).toString())
-                                setSeconds((secondsVar = 60).toString())
-                            }
-                            if(i === 1){
-                                clearInterval(interValIntern)
-                                console.log(i)
-                            }else{
-                                setSeconds((secondsVar--).toString()) 
-                                console.log(i)
-                            }
-           
-                            if(secondsVar === -1 && minutesVar === 0){
-                                clearInterval(interValIntern)
-                                setSeconds((secondsVar + 1).toString())
-                                setMinutes((minutesVar).toString())
-                                setCards(cardTime)
-                                setIsFlipped(true)
-                                console.log(isFlipped)
-                            }                            
-                        }, 1000)
+   
 
-                
-        }      
-    }
-
-
+    const {register, setValue, getValues, control} = useForm()
  
     return (
         <>
             <IonPage>
 
-               <HeaderAnswerDefault onClickPopSair={()=>setShownPopsair(true)} valueprogressBar={progress} title={title}/>
+               <HeaderAnswerDefault onClickPopSair={()=>setShownPopsair(true)} valueprogressBar={progress} refTitle={register({required:true})} defaultValueTitle={getValues('title')}/>
 
                 <IonContent>
                     <ModalDefault
@@ -214,8 +171,10 @@ const AnswerAlternativa: React.FC = () => {
                    isOpen={showPopover}
                    onDidDismissPopTheme={e => setShowPopover(false)}
                    onClickClosePop={()=> setShowPopover(false)}
-                   textMat={textMat}
-                   textAreaQuestion={textAreaQuestion}
+                   refEnunciated={register({required:true})}
+                   defaultValueEnunciated={getValues('enunciated')}
+                   refSubj={register({required:true})}
+                   defaultValueSubj={getValues('subject')}
                    style={{ display: className.active && 'block' || 'none', opacity: showLoading == true && 0 }}
                    onClickArrowFlip={() => {
                     setShowLoading(!showLoading)
@@ -226,9 +185,13 @@ const AnswerAlternativa: React.FC = () => {
                     card={check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}
                    >
                     {themes.map((theme: string, index) => (
-                        <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                            <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>
-                        </IonRow>
+                         <IonRow key={index - 1} style={{ cursor: 'default', marginTop: '1rem'}} className='ion-justify-content-center'>
+                         <Controller as={<IonInput key={index}  className='ios temas-inputs'  color='dark'></IonInput>} 
+                         name={`themes[${index}].textPop`}
+                         control={control}
+                         defaultValue={theme}
+                         />
+                     </IonRow>
                     ))}
                    </AreaFlip>
 
@@ -236,13 +199,18 @@ const AnswerAlternativa: React.FC = () => {
                     <IonGrid key={alternatives?.length} style={{ pointerEvent: isFlipped && 'unset' || 'auto' }} className='array-div'>
                         {alternatives?.map((alternative: Alternative, i) => (
                             
-                            <IonRow key={i + 1} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center colunas'>
+                            <IonRow key={i + 1} style={{ cursor: 'default', marginTop: '1rem', alignItems:'center'}} className='ion-justify-content-center'>
                                 <IonCol key={i} onClick={() => handleSelectAlternative(alternative, i)} size='1' className={(i === className.id && className.active) && 'active-letras' || 'letras-alternativas'}> {letras[i]}</IonCol>
-                                <IonCol onClick={() => handleSelectAlternative(alternative, i)}
+                                <Controller as={<IonInput onClick={() => handleSelectAlternative(alternative, i)}
                                     style={{ height: 'auto', width: '10rem' }}
                                     key={alternative.id}
-                                    className={(i === className.id && className.active) && 'active' || 'alternativas-respostas'}
-                                    color='dark'>{alternative.answer}</IonCol>
+                                    disabled
+                                    className={(i === className.id && className.active) && 'ios active' || 'ios alternativas-respostas'}
+                                    color='dark'><IonLabel style={{paddingLeft:'0.5rem'}}>{alternative.answer}</IonLabel></IonInput>} 
+                                    control={control}
+                                    name={`alternatives[${i}].answer`}
+                                    
+                                />
                             </IonRow>
                         ))}
                     </IonGrid>

@@ -2,7 +2,7 @@ import https from '../utils/https'
 import { getPayload } from './Authentication.service'
 
 
-export interface Questionario {
+export interface Questionnaires {
     owner:User;
     creator:User;
     creation?:string;
@@ -40,10 +40,10 @@ export interface Checker {
     answer:string;
     correct:boolean
 }
-export async function createQuest(newQuest:Questionario){
+export async function createQuest(newQuest:Questionnaires){
     console.log(newQuest)
     https
-        .post<Questionario>('/questionnaires', newQuest)
+        .post<Questionnaires>('/questionnaires', newQuest)
         .then(async (res) => {
             console.log(res.data)
             return await res.data
@@ -66,7 +66,7 @@ export async function getQuest(id:string){
             console.log(erro)
         })
 }
-export async function getQuestionarios():Promise<Questionario[]>{
+export async function getQuestionnaires():Promise<Questionnaires[]>{
     const payload =  getPayload() as Payload
     return https
         .get(`questionnaires/owner/${payload.id}`)
@@ -92,11 +92,11 @@ export async function deleteQuest(idQuest:string){
             console.log(erro)
         })
 }
-export async function putQuest(questionario:Questionario){
-    console.log(questionario)
+export async function putQuest(questionnaires:Questionnaires){
+    console.log(questionnaires)
     const  payload = getPayload() as Payload
     return https
-        .put<Questionario>(`/flash-cards/owner/${payload.id}`, questionario)
+        .put<Questionnaires>(`/flash-cards/owner/${payload.id}`, questionnaires)
         .then(async(res)=>{
             console.log(res.data)
             return await res.data

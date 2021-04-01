@@ -1,9 +1,7 @@
 import React from 'react';
 import {  IonCard, IonCardHeader, IonIcon, IonLabel, IonRow} from '@ionic/react'
-//import { pin, walk, warning, wifi, wine } from 'ionicons/icons';
 import cardClose from '../../Assets/images/cardClose.svg'
 import './styles.css'
-import { arrowBack } from 'ionicons/icons';
 
 const CardRed: React.FC = () => {
 

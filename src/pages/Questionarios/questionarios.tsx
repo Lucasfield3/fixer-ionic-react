@@ -1,28 +1,18 @@
 import React, { useState } from 'react';
 import {
-  IonButton,
   IonPage,
   IonRow,
   IonFabButton,
   IonIcon,
-  IonHeader,
-  IonMenuButton,
-  IonToolbar, 
-  IonLabel, 
   IonContent, 
-  IonSearchbar, 
-  IonActionSheet, 
-  IonCard, 
   IonFab, 
-  IonCol, 
-  IonGrid
 } from '@ionic/react'
-import { add, addSharp, bookSharp, menuOutline, pencilSharp, trash } from 'ionicons/icons';
+import { add} from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import CardsQuestionarios from './cardsQuestionario';
-import { Questionario } from '../../services/Questionarios.service';
+import { Questionnaires } from '../../services/Questionnaires.service';
 import { ButtonMenuDark, CardMenu, ContainerCards, HeaderDefault, SearchBar, TitleCards, Vazio } from '../styles/Page-default/Page-default-styled';
 
 async function openMenu(){
@@ -35,7 +25,7 @@ const CardQuestionarios: React.FC = ()=>{
     const history = useHistory();
     const [searchText, setSearchText] = useState('');
     const [showActionSheet, setShowActionSheet] = useState(false);
-    const [quests, setQuests] = useState<Questionario[]>([])
+    const [quests, setQuests] = useState<Questionnaires[]>([])
 
     return(
         <>
@@ -56,7 +46,7 @@ const CardQuestionarios: React.FC = ()=>{
                         display:quests!.length == 0 && 'flex' || 'block',
                         flexDirection:quests!.length == 0 && 'column' || 'unset'
                         }}>
-                               {quests.map((quest: Questionario, index) => {
+                               {quests.map((quest: Questionnaires, index) => {
                                     return (
                                         <CardsQuestionarios text='Titulo' title='Titulo' key={index} type='tipo' id={quest.owner.id} onClick={() => setShowActionSheet(true)} />
                                     )

@@ -20,7 +20,7 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom'
 import imgAvatar from '../../Assets/images/avatar.svg'
 import smallLogo from '../../Assets/icons/logo-small.svg'
-import { FlashCard, getFlashCards } from '../../services/flashCard.service';
+import { FlashCard, getAllFlashCards } from '../../services/flashCard.service';
 import Cards from '../Flash-cards/Cards/Cards';
 import Carousel from 'react-elastic-carousel';
 import {BackDrop, BtnHome, ContainersHome, BtnSideMenu} from './Home-style/Home-styled'
@@ -45,7 +45,7 @@ const Home: React.FC = () => {
   const [cards, setCards] = useState<FlashCard[]>([])
 
   async function getCards() {
-    let cardsValues = await getFlashCards()
+    let cardsValues = await getAllFlashCards()
     console.log(cardsValues)
     setCards(cardsValues)
 }

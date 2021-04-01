@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonButton, IonCard, IonCardHeader, IonIcon, IonLabel, IonRow } from '@ionic/react'
+import { IonButton, IonCard, IonCardHeader, IonLabel } from '@ionic/react'
 import './styles.css'
 
 const Passwordlimited: React.FC = () => {

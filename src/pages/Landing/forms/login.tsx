@@ -5,15 +5,15 @@ import {ButtonRed, ButtonDark} from '../Landing-style/Landing-styled'
 import { useHistory } from 'react-router-dom'
 import '../style.css'
 import { menuController } from '@ionic/core';
-import { Credentials, login, storeToken} from '../../../services/Authentication.service';
+import { AccessToken, Credentials, login, storeToken} from '../../../services/Authentication.service';
 
 
 const Login: React.FC<{handleClickLogin:()=> void}> = props=>{
 
 const history = useHistory()
 
-const { register, handleSubmit, watch, errors } = useForm()
-const onSubmit = async (data:Credentials) =>{
+const { register, handleSubmit,  errors } = useForm()
+const onSubmit = async (data:Credentials):Promise<AccessToken | any> =>{
     console.log(data)
     const access_token = await login(data)
     storeToken(access_token)
@@ -53,7 +53,7 @@ const onSubmit = async (data:Credentials) =>{
                         }}
                         >Entrar</ButtonDark>
                     </IonCol>
-            
+             
                     <IonCol>
                         <ButtonRed
                         color='light'

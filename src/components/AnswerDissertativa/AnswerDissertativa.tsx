@@ -6,7 +6,8 @@ import {
     IonContent, 
     IonCol, 
     useIonViewWillLeave, 
-    useIonViewWillEnter, 
+    useIonViewWillEnter,
+    IonInput, 
 } from '@ionic/react'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
@@ -15,6 +16,7 @@ import CardGreen from '../CardGreen/cardGreen';
 import { Checker, FlashCard, getCheck } from '../../services/flashCard.service';
 import CardRed from '../cardRed/cardRed';
 import { AreaDissertativeAnswer, AreaFlip, HeaderAnswerDefault, ModalDefault, Redone } from '../../pages/styles/Page-default/Page-default-styled';
+import { Controller, useForm } from 'react-hook-form';
 
 
 
@@ -24,8 +26,6 @@ const AnswerDissertativa: React.FC = () => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
-    const [textMat, setTextMat] = useState<string>('')
-    const [textAreaQuestion, setTextAreaQuestion] = useState<string>('')
     const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsair, setShownPopsair] = useState<boolean>(false);
@@ -36,7 +36,6 @@ const AnswerDissertativa: React.FC = () => {
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [cardRed, setCardRed] = useState(<CardRed />)
     const [themes, setThemes] = useState<string[]>([]);
-    const [title, setTitle] = useState('')
     const [time, setTime] = useState<number>();
     const [seconds, setSeconds] = useState('')
     const [minutes, setMinutes] = useState('')
@@ -70,11 +69,11 @@ const AnswerDissertativa: React.FC = () => {
         if (history.location.state) {
             const card = history.location.state as FlashCard
             console.log(card)
-            setTextMat(card.subject)
+            setValue('subject' ,card.subject)
             setThemes(card.themes)
-            setTextAreaQuestion(card.enunciated)
+            setValue('enunciated' ,card.enunciated)
             setIdFlashCard(card.id)
-            setTitle(card.title)
+            setValue('title' ,card.title)
         } else {
             console.log('Não tem nada');
         }
@@ -98,7 +97,6 @@ const AnswerDissertativa: React.FC = () => {
     const mystyle = {
         display: check.correct! && 'none' || 'block'
     }
-    const [cards, setCards] = useState<{}>()
     const handleFlipAnswer = async () => {
         let checker = await getCheck(idFlashCard, textAreaAnswer)
         console.log(checker)
@@ -110,7 +108,7 @@ const AnswerDissertativa: React.FC = () => {
         if(check!.correct){
             history.push('Flash-cards')
             setIsflipped(!isFlipped)
-            setTextAreaAnswer('')
+            setValue('answerFlashCard', '')
         }else{
             setShownPopResult(true)
         }
@@ -134,11 +132,15 @@ const AnswerDissertativa: React.FC = () => {
              setProgress(progress - 0.15)
         }
      }
+
+     const {register, setValue, getValues, control} = useForm()
+
+
     return (
         <>
             <IonPage>
 
-            <HeaderAnswerDefault onClickPopSair={()=>setShownPopsair(true)} valueprogressBar={progress} title={title}/>
+            <HeaderAnswerDefault onClickPopSair={()=>setShownPopsair(true)} valueprogressBar={progress} refTitle={register({required:true})} defaultValueTitle={getValues('title')}/>
 
                 <IonContent>
                 <ModalDefault
@@ -147,7 +149,7 @@ const AnswerDissertativa: React.FC = () => {
                             setShownPopsair(false)
                             history.push('/Flash-cards')
                             enableAnswer()
-                            setTextAreaAnswer('')
+                            setValue('answerFlashCard', '')
                         }}
                         onClickNo={() => setShownPopsair(false)}
                         msg='Deseja mesmo sair?'
@@ -156,14 +158,16 @@ const AnswerDissertativa: React.FC = () => {
                 <IonCol style={{display: time === 0 && 'none' || 'block'}} className='timer-flashcard' >
                     {parseInt(minutes) < 10 && '0'}{minutes}:{parseInt(seconds) < 10 && '0'}{seconds}
                 </IonCol>
-              <AreaFlip
+                <AreaFlip
                    isFlipped={isFlipped}
                    onClickPopTheme={() => setShowPopover(true)}
                    isOpen={showPopover}
                    onDidDismissPopTheme={e => setShowPopover(false)}
                    onClickClosePop={()=> setShowPopover(false)}
-                   textMat={textMat}
-                   textAreaQuestion={textAreaQuestion}
+                   refEnunciated={register({required:true})}
+                   defaultValueEnunciated={getValues('enunciated')}
+                   refSubj={register({required:true})}
+                   defaultValueSubj={getValues('subject')}
                    style={{ display: shownIcon && 'block' || 'none', opacity: showLoading == true && 0 }}
                    onClickArrowFlip={() => {
                     setShowLoading(true)
@@ -171,21 +175,24 @@ const AnswerDissertativa: React.FC = () => {
                     settingLoading()
                     disableAnswer()
                     setShownButton(!shownButton)
-                }}
+                    }}
                     isOpenLoadig={showLoading}
                     card={check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}
                    >
                     {themes.map((theme: string, index) => (
-                        <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem' }} className='ion-justify-content-center'>
-                            <IonCol key={index} className='ios temas-inputs' placeholder='Temas' color='dark'>{theme}</IonCol>
-                        </IonRow>
+                         <IonRow key={index - 1} style={{ cursor: 'default', marginTop: '1rem'}} className='ion-justify-content-center'>
+                         <Controller as={<IonInput key={index} className='ios temas-inputs'  color='dark'></IonInput>} 
+                         name={`themes[${index}].textPop`}
+                         control={control}
+                         defaultValue={theme}
+                         />
+                     </IonRow>
                     ))}
-                    
                    </AreaFlip>
 
                    <AreaDissertativeAnswer
-                    onIonChange={event => changeText(event)}
-                    value={textAreaAnswer}
+                    onIonChange={(event:CustomEvent) => changeText(event)}
+                    refAnswer={register({required:true})}
                     />
                     
                     <IonRow className='ios ion-justify-content-center row-btn-final'>
@@ -198,7 +205,7 @@ const AnswerDissertativa: React.FC = () => {
                             setShownPopResult(false)
                             history.push('/Flash-cards')
                             setIsflipped(!isFlipped)
-                            setTextAreaAnswer('')
+                            setValue('answerFlashCard', '')
                         }}
                         textConquista=''
                         textCorrect=''

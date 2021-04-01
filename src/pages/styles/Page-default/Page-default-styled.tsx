@@ -29,7 +29,7 @@ import {
     IonToolbar 
 } from '@ionic/react'
 import React, { ChangeEvent } from 'react'
-import styled from 'styled-components'
+import styled, { CSSProperties } from 'styled-components'
 import { add, menuOutline, trash, pencilSharp, bookSharp, addSharp, timerOutline, arrowUndoSharp, arrowForward} from 'ionicons/icons';
 import TimeField from 'react-simple-timefield';
 import ReactCardFlip from 'react-card-flip';
@@ -246,30 +246,24 @@ export const ContainerCards:React.FC<{style: React.CSSProperties}> = props =>{
 }
 
 export const CardQuestion:React.FC<{
-    onIonChangeTitle:(event: CustomEvent) => void;
-    valueTitle:string;
     onClickTheme:()=>void;
     isOpenThemes:boolean;
     onDidDismissTheme:(event: CustomEvent) => void;
-    onClickAddTheme:()=>void;
     onClickSaveBtn:()=>void;
     onClickCleanBtn:()=>void;
     isOpenSaveTheme:boolean;
-    onIonChangeTheme:(event: CustomEvent) => void;
     onDidDismissSave:(event: CustomEvent) => void;
-    valueTextPop:string;
-    valueSubj:string;
-    onIonChangeSubj:(event: CustomEvent) => void;
-    onIonChangeQuestion:(event: CustomEvent) => void;
-    valueEnunciated:string;
-
-
+    refTitle:(instance: HTMLIonInputElement | null) => void;
+    refEnunciated:(instance: HTMLIonTextareaElement | null) => void;
+    refSub:(instance: HTMLIonInputElement | null) => void;
 }> = props =>{
+
+
 
     return(
         <>
             <IonItem className="item-input-title">
-                <IonInput maxlength={100} value={props.valueTitle} type="text" required className="input-title" onIonChange={props.onIonChangeTitle} placeholder="Insira o título do Flashcard"></IonInput>
+                <IonInput maxlength={100}  type="text" required className="input-title" name='title' ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
             </IonItem>
 
             <IonCard className='card-question' color='light'>
@@ -285,10 +279,6 @@ export const CardQuestion:React.FC<{
                                 <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Adicione um tema</IonLabel>
                             </IonRow>
                             <IonGrid className='back-temas'>
-                                <IonRow className='ion-justify-content-center'>
-                                    <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' onIonChange={props.onIonChangeTheme} value={props.valueTextPop} type='text'></IonInput>
-                                    <IonFabButton className='add-btn' onClick={props.onClickAddTheme} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
-                                </IonRow>
                                 {props.children}
                             </IonGrid>
                             <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center'>
@@ -298,15 +288,15 @@ export const CardQuestion:React.FC<{
                         </IonPopover>
                         <IonPopover
                             isOpen={props.isOpenSaveTheme}
-                            cssClass='my-custom-class save'
+                            cssClass='save'
                             onDidDismiss={props.onDidDismissSave}
                         >
                             <IonRow className='ion-justify-content-center ion-text-align-center'>
-                                <IonLabel style={{ fontWeight: 'bold', fontSize: '18px', lineHeight: '8rem' }} color='success'>Temas salvos!</IonLabel>
+                                <IonLabel style={{ fontWeight: 'bold', fontSize: '18px', lineHeight: '13vh' }} color='success'>Temas salvos!</IonLabel>
                             </IonRow>
                         </IonPopover>
 
-                        <IonInput maxlength={100} value={props.valueSubj} className="input-tema" placeholder="Insira a matéria" onIonChange={props.onIonChangeSubj}></IonInput>
+                        <IonInput  name='subject' ref={props.refSub} className="input-tema" placeholder="Insira a matéria" ></IonInput>
                     </IonRow>
                 </IonCardHeader>
                 <IonCardContent className="content-background">
@@ -320,8 +310,8 @@ export const CardQuestion:React.FC<{
                             required
                             className='ios question'
                             color='dark'
-                            onIonChange={props.onIonChangeQuestion}
-                            value={props.valueEnunciated}
+                            name='enunciated'
+                            ref={props.refEnunciated}
                             placeholder="Digite ou cole o enunciado do flash-card">
                         </IonTextarea>
                     </IonRow>
@@ -369,16 +359,14 @@ const RowRightAlternative = styled(IonRow)`
     margin-bottom:1rem;
 `;
 export const GridAlternatives:React.FC<{
-
     style: React.CSSProperties;
     autoGrow:boolean;
-    onIonChangeRight:(event: CustomEvent) => void;
-    valueTextRighAnswer:string;
-    onClick:()=>void
-    valueAnswer:string;
-    onIonChangeAnswer:(event: CustomEvent) => void;
-
+    refAlternatives:(instance: HTMLIonTextareaElement) => void;
+    refAnswer:(instance: HTMLIonTextareaElement) => void;
+    nameAnswerFlashCard:string;
 }> = props=>{
+
+
 
     return(
         <>
@@ -391,27 +379,25 @@ export const GridAlternatives:React.FC<{
                     className='ios alternativa-correta' 
                     placeholder='Insira a alternativa correta' 
                     color='dark' 
-                    onIonChange={props.onIonChangeRight} 
-                    value={props.valueTextRighAnswer}
+                    name={props.nameAnswerFlashCard}
+                    ref={props.refAnswer}
                     >
                     </IonTextarea>
                 </RowRightAlternative>
-                <IonRow  className='ion-justify-content-center'>
-                    <IonTextarea autoGrow={true} className='ios add-alternativas'  placeholder='Insira a/as alternativas' color='dark'  onIonChange={props.onIonChangeAnswer} value={props.valueAnswer}></IonTextarea>
-                    <IonFabButton id='add-alternative' className='add-btn'  onClick={props.onClick} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
-                </IonRow>
+                
                 {props.children}                                         
         </IonGrid>
         </>
     )
 
 }
-export const RowBtnCreate:React.FC<{onClick:()=>void}> = props=>{
+
+export const RowBtnCreate:React.FC = props=>{
 
     return(
         <>
             <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
-                <IonButton id='create-button' className="ios btn-criar" onClick={props.onClick} >{props.children}</IonButton>
+                <IonButton type='submit'  id='create-button' className="ios btn-criar" >{props.children}</IonButton>
             </IonRow>
         </>
     )
@@ -444,8 +430,10 @@ export const AreaFlip:React.FC<{
     isOpen:boolean;
     onDidDismissPopTheme:(event: CustomEvent)=> void;
     onClickClosePop:()=>void;
-    textMat:string;
-    textAreaQuestion:string;
+    refSubj:(instance: HTMLIonInputElement)=>void
+    defaultValueSubj:string;
+    refEnunciated:(instance: HTMLIonTextareaElement)=>void
+    defaultValueEnunciated:string;
     style:any;
     onClickArrowFlip:()=>void;
     isOpenLoadig:boolean;
@@ -474,7 +462,7 @@ export const AreaFlip:React.FC<{
                                             <IonButton onClick={props.onClickClosePop} color='light' className='btn-clean'>Fechar</IonButton>
                                         </IonRow>
                                     </IonPopover>
-                                    <IonCol className="titulo-mat" >{props.textMat}</IonCol>
+                                    <IonInput defaultValue={props.defaultValueSubj} ref={props.refSubj} name='subject' className="titulo-mat" ></IonInput>
                                 </IonRow>
                             </IonCardHeader>
                             <IonCardContent className="content-background">
@@ -483,10 +471,11 @@ export const AreaFlip:React.FC<{
                                         overflow-scroll="true"
                                         rows={5}
                                         cols={20}
-                                        required
+                                        name="enunciated"
                                         className='ios question'
+                                        ref={props.refEnunciated}
                                         color='dark'>
-                                        {props.textAreaQuestion}
+                                        {props.defaultValueEnunciated}
                                     </IonTextarea>
                                 </IonRow>
                             </IonCardContent>
@@ -511,7 +500,8 @@ export const AreaFlip:React.FC<{
 export const HeaderAnswerDefault:React.FC<{
     onClickPopSair:()=>void;
     valueprogressBar:number;
-    title:string;
+    refTitle:(instance: HTMLIonInputElement)=>void;
+    defaultValueTitle:string;
 }> = props=>{
 
     return(
@@ -532,7 +522,7 @@ export const HeaderAnswerDefault:React.FC<{
                             <IonLabel className="start-lvl">1</IonLabel>
                         </IonRow>
                     </IonRow>
-                    <IonRow className='ion-justify-content-center flashcard-title'>{props.title}</IonRow>
+                    <IonInput name='title' defaultValue={props.defaultValueTitle} ref={props.refTitle} className='ion-justify-content-center flashcard-title'></IonInput>
                 </IonHeader>
         </>
     )
@@ -562,7 +552,7 @@ export const FinalBtn: React.FC<{onClick:()=>void; disabled:boolean}> = props =>
 }
 
 export const AreaDissertativeAnswer:React.FC<{
-    value:string;
+    refAnswer:(instance: HTMLIonTextareaElement) => void;
     onIonChange:(event: CustomEvent) => void;
 }> = props => {
 
@@ -578,11 +568,11 @@ export const AreaDissertativeAnswer:React.FC<{
                             maxlength={240}
                             overflow-scroll="true"
                             className='ios answer-dissertative'
-                            required
-                            value={props.value}
                             rows={4}
                             cols={20}
                             color='dark'
+                            name='answerFlashCard'
+                            ref={props.refAnswer}
                             onIonChange={props.onIonChange}
                             placeholder="Digite ou cole a resposta">
                         </IonTextarea>
@@ -591,6 +581,79 @@ export const AreaDissertativeAnswer:React.FC<{
                 <IonRow color='light' className='row-footer-resposta'></IonRow>
             </IonCard >
 
+        </>
+    )
+
+}
+
+export const CreateAreaDissertativeAnswer:React.FC<{
+    refAnswer:(instance: HTMLIonTextareaElement) => void;
+}> = props => {
+
+    return(
+        <>
+            <IonCard className='card-dissertativa-secundary' color='light'>
+                <IonCardHeader style={{ padding: 0 }}>
+                    <IonRow color='light' className='row-header-resposta'></IonRow>
+                </IonCardHeader>
+                <IonCardContent style={{ height: '9rem' }} className="content-background">
+                    <IonRow className="ios row-dissertativa">
+                        <IonTextarea
+                            maxlength={240}
+                            overflow-scroll="true"
+                            className='ios answer-dissertative'
+                            rows={4}
+                            cols={20}
+                            color='dark'
+                            name='answerFlashCard'
+                            ref={props.refAnswer}
+                            placeholder="Digite ou cole a resposta">
+                        </IonTextarea>
+                    </IonRow>
+                </IonCardContent>
+                <IonRow color='light' className='row-footer-resposta'></IonRow>
+            </IonCard >
+
+        </>
+    )
+
+}
+
+export const CardContainer:React.FC<{
+    refTitle:(instance: HTMLIonInputElement)=> void;
+    title:string;
+}> = props =>{
+
+    return(
+        <>
+            <IonItem className="item-input-title">
+                <IonInput maxlength={100}  type="text" required className="input-title" name='title' ref={props.refTitle} placeholder="Insira o título da Classe"></IonInput>
+            </IonItem>
+
+            <IonCard style={{height:'14.5rem'}} className='card-question' color='light'>
+                <IonCardHeader style={{ padding: 0 }}>      
+                    <IonRow style={{flexDirection:'column'}} className='ios ion-justify-content-center'>
+                    <IonLabel className='label-title' color='dark'>{props.title}</IonLabel>
+                        {props.children}
+                    </IonRow>
+                </IonCardHeader>
+            </IonCard>
+        </>
+    )
+
+}
+export const ContainerList:React.FC<{title:string;style:CSSProperties}> = props =>{
+    
+    return(
+        <>
+            <IonCard style={props.style} className='card-question' color='light'>
+                <IonCardHeader style={{ padding: 0 }}>      
+                    <IonRow style={{flexDirection:'column'}} className='ios ion-justify-content-center'>
+                        <IonLabel className='label-title' color='dark'>{props.title}</IonLabel>
+                        {props.children}
+                    </IonRow>
+                </IonCardHeader>
+            </IonCard>
         </>
     )
 

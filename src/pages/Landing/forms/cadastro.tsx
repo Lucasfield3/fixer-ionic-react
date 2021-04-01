@@ -8,7 +8,7 @@ import { cadastro, NewUser } from '../../../services/User.service';
 const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
 
     const [showAlert1, setShowAlert1] = useState<boolean>(false);
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm();
 
 
     const onSubmit = (data:NewUser) => {
@@ -30,7 +30,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                         </IonItem>
                     </IonCol>
                 </IonRow>
-
+ 
                 <IonRow className="ion-align-items-center">
                     <IonCol>
                         <IonItem color='light'>

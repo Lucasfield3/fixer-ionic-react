@@ -4,7 +4,7 @@ export interface Credentials {
     email:string;
     password:string;
 }
-interface AccessToken {
+export interface AccessToken {
     access_token:string
 }
  //type AccessToken = string
@@ -16,7 +16,7 @@ export async function login (credentials:Credentials): Promise<AccessToken | any
     .catch((err)=> console.log(err))
 }
 export const storeToken = (access_token:AccessToken)=>{
-    window.localStorage.setItem('access_token', access_token.access_token)
+     window.localStorage.setItem('access_token', access_token.access_token)
 }
 export   const getToken = ()=>{
     return window.localStorage.getItem('access_token')

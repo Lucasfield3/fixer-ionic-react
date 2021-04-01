@@ -1,6 +1,5 @@
 import React from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonIcon, IonLabel, IonPopover, IonRow } from '@ionic/react'
-//import { pin, walk, warning, wifi, wine } from 'ionicons/icons';
+import { IonButton,  IonCardContent, IonCardHeader,  IonLabel, IonPopover, IonRow } from '@ionic/react'
 import './styles.css'
 
 const CardStats: React.FC<{
@@ -52,17 +51,3 @@ const CardStats: React.FC<{
 }
 
 export default CardStats;
-/**   <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
-                        <a href="#" className="ios back-answer">
-                            <img className="href-back" src={backAnswer} alt="back" />
-                        </a>
-                        <IonCard className="ios bar-result-answers" color="light">
-                            <IonLabel id="answer-certas-dissertativa">Certas: 0 </IonLabel>
-                            <IonLabel id="answer-total-dissertativa">Total: 0 </IonLabel>
-                            <IonLabel id="answer-erradas-dissertativa">Erradas: 0 </IonLabel>
-                        </IonCard>
-
-                        <a href="#" className="ios back-answer">
-                            <img className="href-next" src={nextAnswer} alt="next" />
-                        </a>
-                    </IonRow> */
