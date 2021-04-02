@@ -138,8 +138,8 @@ const AnswerAlternativa: React.FC = () => {
             setProgress(progress - 0.15)
        }
     }
-   
 
+ 
     const {register, setValue, getValues, control} = useForm()
  
     return (
@@ -215,16 +215,7 @@ const AnswerAlternativa: React.FC = () => {
                         ))}
                     </IonGrid>
                     <FinalBtn
-                    onClick={() => {
-                        if(check!.correct){
-                            removeActive()
-                            setShownPopResult(false)
-                            history.push('/Flash-cards')
-                            setIsFlipped(!isFlipped)
-                        }else{
-                            setShownPopResult(true)
-                        }
-                    }}
+                    onClick={() => setShownPopResult(true)}
                     disabled={isFlipped == false && true}
                     />
                     <CardStats
@@ -234,19 +225,20 @@ const AnswerAlternativa: React.FC = () => {
                             removeActive()
                             setShownPopResult(false)
                             history.push('/Flash-cards')
-                            setIsFlipped(true)
+                            setIsFlipped(!isFlipped)
                         }}
                         textConquista=''
                         textCorrect=''
                         textExp=''
                         textTotal=''
+                        condition={check!.correct}
                     >
-                        <Redone style={mystyle} onClick={() => {
+                       {check!.correct && '' || <Redone style={mystyle} onClick={() => {
                             enableAlternatives()
                             removeActive()
                             setShownPopResult(false)
                             setIsFlipped(false)
-                        }} />
+                        }} />}
                     </CardStats>
                 </IonContent>
 

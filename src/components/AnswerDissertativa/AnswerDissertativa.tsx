@@ -30,7 +30,7 @@ const AnswerDissertativa: React.FC = () => {
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsair, setShownPopsair] = useState<boolean>(false);
     const [shownPopResult, setShownPopResult] = useState<boolean>(false);
-    const [isFlipped, setIsflipped] = useState(false);
+    const [isFlipped, setIsFlipped] = useState(false);
     const [showLoading, setShowLoading] = useState(true);
     const [shownIcon, setShownIcon] = useState(false)
     const [idFlashCard, setIdFlashCard] = useState<string>('')
@@ -51,7 +51,7 @@ const AnswerDissertativa: React.FC = () => {
     const settingLoading = () => {
         setTimeout(() => {
             setShowLoading(false);
-            setIsflipped(!isFlipped)
+            setIsFlipped(!isFlipped)
             enableButton()
             disableAnswer()
         }, 1500);
@@ -65,7 +65,7 @@ const AnswerDissertativa: React.FC = () => {
         setShownIcon(false)
         setShownButton(!shownButton)
         setShowLoading(false)
-        setIsflipped(false)
+        setIsFlipped(false)
         if (history.location.state) {
             const card = history.location.state as FlashCard
             console.log(card)
@@ -107,7 +107,7 @@ const AnswerDissertativa: React.FC = () => {
     const handleHabilit = ()=>{
         if(check!.correct){
             history.push('Flash-cards')
-            setIsflipped(!isFlipped)
+            setIsFlipped(!isFlipped)
             setValue('answerFlashCard', '')
         }else{
             setShownPopResult(true)
@@ -196,7 +196,7 @@ const AnswerDissertativa: React.FC = () => {
                     />
                     
                     <IonRow className='ios ion-justify-content-center row-btn-final'>
-                        {shownButton && buttonAnswer || <IonButton onClick={() => handleHabilit()} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>}
+                        {shownButton && buttonAnswer || <IonButton onClick={() => setShownPopResult(true)} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>}
                     </IonRow>
                     <CardStats
                         backdropDismiss={false}
@@ -204,22 +204,22 @@ const AnswerDissertativa: React.FC = () => {
                         onClickSair={() => {
                             setShownPopResult(false)
                             history.push('/Flash-cards')
-                            setIsflipped(!isFlipped)
+                            setIsFlipped(!isFlipped)
                             setValue('answerFlashCard', '')
                         }}
                         textConquista=''
                         textCorrect=''
                         textExp=''
                         textTotal=''
+                        condition={check!.correct}
                     >
-                    <Redone style={mystyle} onClick={() => {
-                            enableAnswer()
-                            setShownIcon(false)
-                            setShownPopResult(false)
-                            setIsflipped(false)
-                            setShownButton(!shownButton)
-                        }} />
-
+                       {check!.correct && '' || <Redone style={mystyle} onClick={() => {
+                             enableAnswer()
+                             setShownIcon(false)
+                             setShownPopResult(false)
+                             setIsFlipped(false)
+                             setShownButton(!shownButton)
+                        }} />}
                     </CardStats>
   
                 </IonContent>

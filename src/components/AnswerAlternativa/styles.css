@@ -34,6 +34,18 @@
   padding-inline-end: 9px;
   padding-inline-start: 9px;
 }
+.active {
+  border-radius: 1.7rem;
+  margin-right: 5px;
+  background: var(--ion-color-light);
+  margin-top: 0;
+  padding-bottom: 6px;
+  padding-inline-end: 9px;
+  padding-inline-start: 9px;
+  padding-top: 6px;
+  border: 2px var(--ion-color-primary) solid;
+  box-shadow: 0 0 10px var(--light);
+}
 .ios .alternativas-respostas{
   border-radius: 1.7rem;
   margin-right: 5px;
@@ -45,13 +57,13 @@
 }
 .ios .active{
   border-radius: 1.7rem;
-    margin-right: 5px;
-    background: var(--ion-color-light);
-    margin-top: 0;
-    padding-bottom: 6px;
-    padding-inline-end: 9px;
-    padding-inline-start: 9px;
-    padding-top: 6px;
-    border: 2px var(--ion-color-primary) solid;
-    box-shadow: 0 0 10px var(--light);
+  margin-right: 5px;
+  background: var(--ion-color-light);
+  margin-top: 0;
+  padding-bottom: 6px;
+  padding-inline-end: 9px;
+  padding-inline-start: 9px;
+  padding-top: 6px;
+  border: 2px var(--ion-color-primary) solid;
+  box-shadow: 0 0 10px var(--light);
 }

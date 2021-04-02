@@ -565,6 +565,7 @@ export const AreaDissertativeAnswer:React.FC<{
                 <IonCardContent style={{ height: '9rem' }} className="content-background">
                     <IonRow className="ios row-dissertativa">
                         <IonTextarea
+                            mode='md'
                             maxlength={240}
                             overflow-scroll="true"
                             className='ios answer-dissertative'
@@ -656,5 +657,20 @@ export const ContainerList:React.FC<{title:string;style:CSSProperties}> = props 
             </IonCard>
         </>
     )
+
+}
+export const TagsIfIsRight:React.FC<{textConquista:string; textExp:string}> = props =>{
+
+    return ( 
+        <>
+          <IonRow className='ios row-stats'>
+            <IonLabel className="stats_answer_exp">EXP adquirido:<IonLabel style={{ color: '#20A4F3' }}> +{props.textExp}</IonLabel></IonLabel>
+          </IonRow>
+    
+          <IonRow>
+            <IonLabel color='dark' className="ios stats_conquista">Conquistas:{props.textConquista}</IonLabel>
+          </IonRow>
+        </>
+        )
 
 }

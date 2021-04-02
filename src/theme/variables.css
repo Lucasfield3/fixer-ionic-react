@@ -781,8 +781,9 @@ ion-button{
 }
 .ios .answer-dissertative{
   overflow-x: auto;
-  overflow-y:visible;
-  word-spacing: -2px!important;
+  overflow-y: visible;
+  text-align: justify;
+  --padding-bottom: 20px;
 }
 .row-level-progress{
   display: flex;

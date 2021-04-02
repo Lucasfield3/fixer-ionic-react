@@ -1,6 +1,9 @@
 import React from 'react';
 import { IonButton,  IonCardContent, IonCardHeader,  IonLabel, IonPopover, IonRow } from '@ionic/react'
 import './styles.css'
+import { TagsIfIsRight } from '../../pages/styles/Page-default/Page-default-styled';
+
+
 
 const CardStats: React.FC<{
   onClickSair:()=>void;
@@ -10,6 +13,7 @@ const CardStats: React.FC<{
   textConquista:string;
   isOpen:boolean;
   backdropDismiss:boolean;
+  condition:any;
 }> = props => {
 
   return (
@@ -22,20 +26,13 @@ const CardStats: React.FC<{
       </IonCardHeader>
         
         <IonCardContent className='ios container-result'>
-          <IonRow>
-            <IonLabel  className="stats_answer_correct">
-              <IonLabel style={{fontSize:'20px'}} color='dark'>Deseja refazer?</IonLabel>
-            </IonLabel>
-          </IonRow>
-
-          <IonRow className='ios row-stats'>
-            <IonLabel className="stats_answer_exp">EXP adquirido:<IonLabel style={{ color: '#20A4F3' }}> +{props.textExp}</IonLabel></IonLabel>
-          </IonRow>
-
-          <IonRow>
-            <IonLabel color='dark' className="ios stats_conquista">Conquistas:{props.textConquista}</IonLabel>
-          </IonRow>
-
+        {props.condition && <TagsIfIsRight textExp={props.textExp} textConquista={props.textConquista} /> || 
+        <IonRow>
+          <IonLabel  className="stats_answer_correct">
+            <IonLabel style={{fontSize:'20px'}} color='dark'>Deseja refazer?</IonLabel>
+          </IonLabel>
+        </IonRow>
+        }
         </IonCardContent>
 
           <IonRow className='ios ion-justify-content-center'>           
