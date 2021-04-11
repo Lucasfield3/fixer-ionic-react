@@ -17,7 +17,6 @@ import { Alternative, Checker, FlashCard, getCheck } from '../../services/flashC
 import CardRed from '../cardRed/cardRed';
 import CardGreen from '../CardGreen/cardGreen';
 import { menuController } from '@ionic/core';
-import CardTime from '../CardTime/cardTime';
 import { AreaFlip, FinalBtn, HeaderAnswerDefault, ModalDefault, Redone } from '../../pages/styles/Page-default/Page-default-styled';
 import {Controller, useForm} from 'react-hook-form'
 
@@ -113,6 +112,7 @@ const AnswerAlternativa: React.FC = () => {
         let checker = await getCheck(idFlashCard, activeAlternative.answer)
         console.log(checker)
         ProgressBar(checker)
+        DinamicLevel()
         setCheck(checker)
         disableAlternatives()
 
@@ -130,23 +130,55 @@ const AnswerAlternativa: React.FC = () => {
         display: check!.correct && 'none' || 'block',
     }
     const ProgressBar = (validator:Checker)=>{
-       if(validator.correct == true && progress >= 0){
-            setProgress(progress + 0.30) 
-       }else if(validator.correct == false && progress == 0){
+        var progressNumber:string
+        if(validator.correct == true && (1 - progress) == 0.20 ){
+            setProgress(1)
+        }
+        if(validator.correct == true && (1 - progress) < 0.20 ){
+            setProgress(1)
+            if(progress == 1){
+                progressNumber = ((1 - progress) + (0.20 - (1 - progress))).toFixed(2)
+            setProgress(parseFloat(progressNumber))
+            console.log(parseFloat(progressNumber))
+            }          
+        }else if(validator.correct == true && (1 - progress) > 0.20 ){
+            progressNumber = (progress + 0.20).toFixed(2)
+            setProgress(parseFloat(progressNumber))
+            console.log(parseFloat(progressNumber))
+        }else if(validator.correct == false && progress == 0){
             setProgress(0)  
-       }else if(validator.correct == false && progress >= 0.30 || progress <= 0.30){
-            setProgress(progress - 0.15)
-       }
-    }
+            console.log(progress)
+        }else if(validator.correct == false && progress >= 0.20 || progress <= 0.20){
+            progressNumber = (progress - 0.10).toFixed(2)
+            setProgress(parseFloat(progressNumber))
+            console.log(parseFloat(progressNumber))
+        }
+     }
 
  
     const {register, setValue, getValues, control} = useForm()
- 
+    const [actualLevel, setActualLevel] = useState(0)
+    const [nextLevel, setNextLevel] = useState(1)  
+
+     const DinamicLevel = ()=>{
+        var nextLevelNumber:number = actualLevel + 1
+        if(progress >= 0.9){
+            nextLevelNumber ++
+            setActualLevel(actualLevel + 1)
+            setNextLevel(nextLevelNumber)
+        }
+        if(progress == 0 && actualLevel !== 0){
+            setActualLevel(actualLevel - 1)
+            setNextLevel(actualLevel - 1)
+        }
+
+     }
+
     return (
         <>
             <IonPage>
 
-               <HeaderAnswerDefault onClickPopSair={()=>setShownPopsair(true)} valueprogressBar={progress} refTitle={register({required:true})} defaultValueTitle={getValues('title')}/>
+               <HeaderAnswerDefault actualLevel={actualLevel} nextLevel={nextLevel} onClickPopSair={()=>setShownPopsair(true)} valueprogressBar={progress} refTitle={register({required:true})} defaultValueTitle={getValues('title')}/>
 
                 <IonContent>
                     <ModalDefault

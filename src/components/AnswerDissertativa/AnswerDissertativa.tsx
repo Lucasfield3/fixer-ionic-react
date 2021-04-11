@@ -102,6 +102,7 @@ const AnswerDissertativa: React.FC = () => {
         console.log(checker)
         setCheck(checker)
         ProgressBar(checker)
+        console.log(progress)
         disableAnswer()
     }
     const handleHabilit = ()=>{
@@ -124,23 +125,55 @@ const AnswerDissertativa: React.FC = () => {
     }
     const [progress, setProgress] = useState<number>(0)
     const ProgressBar = (validator:Checker)=>{
-        if(validator.correct == true && progress >= 0){
-             setProgress(progress + 0.30) 
+        var progressNumber:string
+        if(validator.correct == true && (1 - progress) == 0.20 ){
+            setProgress(1)
+        }
+        if(validator.correct == true && (1 - progress) < 0.20 ){
+            setProgress(1)
+            if(progress == 1){
+                progressNumber = ((1 - progress) + (0.20 - (1 - progress))).toFixed(2)
+            setProgress(parseFloat(progressNumber))
+            console.log(parseFloat(progressNumber))
+            }          
+        }else if(validator.correct == true && (1 - progress) > 0.20 ){
+            progressNumber = (progress + 0.20).toFixed(2)
+            setProgress(parseFloat(progressNumber))
+            console.log(parseFloat(progressNumber))
         }else if(validator.correct == false && progress == 0){
-             setProgress(0)  
-        }else if(validator.correct == false && progress >= 0.30 || progress <= 0.30){
-             setProgress(progress - 0.15)
+            setProgress(0)  
+            console.log(progress)
+        }else if(validator.correct == false && progress >= 0.20 || progress <= 0.20){
+            progressNumber = (progress - 0.10).toFixed(2)
+            setProgress(parseFloat(progressNumber))
+            console.log(parseFloat(progressNumber))
         }
      }
 
-     const {register, setValue, getValues, control} = useForm()
 
+     const {register, setValue, getValues, control} = useForm()
+     const [actualLevel, setActualLevel] = useState(0)
+     const [nextLevel, setNextLevel] = useState(1)  
+ 
+      const DinamicLevel = ()=>{
+         var nextLevelNumber:number = actualLevel + 1
+         if(progress >= 0.9){
+             nextLevelNumber ++
+             setActualLevel(actualLevel + 1)
+             setNextLevel(nextLevelNumber)
+         }
+         if(progress == 0 && actualLevel !== 0){
+             setActualLevel(actualLevel - 1)
+             setNextLevel(actualLevel - 1)
+         }
+ 
+      }
 
     return (
         <>
             <IonPage>
 
-            <HeaderAnswerDefault onClickPopSair={()=>setShownPopsair(true)} valueprogressBar={progress} refTitle={register({required:true})} defaultValueTitle={getValues('title')}/>
+            <HeaderAnswerDefault actualLevel={actualLevel} nextLevel={nextLevel} onClickPopSair={()=>setShownPopsair(true)} valueprogressBar={progress} refTitle={register({required:true})} defaultValueTitle={getValues('title')}/>
 
                 <IonContent>
                 <ModalDefault

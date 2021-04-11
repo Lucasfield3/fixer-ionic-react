@@ -502,6 +502,8 @@ export const HeaderAnswerDefault:React.FC<{
     valueprogressBar:number;
     refTitle:(instance: HTMLIonInputElement)=>void;
     defaultValueTitle:string;
+    actualLevel:number;
+    nextLevel:number;
 }> = props=>{
 
     return(
@@ -517,9 +519,9 @@ export const HeaderAnswerDefault:React.FC<{
                             <IonLabel className="label-lvl">LV</IonLabel>
                         </IonRow>
                         <IonRow style={{ height: '1rem' }} className='ion-justify-content-center row-progress'>
-                            <IonLabel className="start-lvl">0</IonLabel>
-                            <IonProgressBar className='progress-bar' value={props.valueprogressBar}></IonProgressBar>
-                            <IonLabel className="start-lvl">1</IonLabel>
+                            <IonLabel className="start-lvl">{props.actualLevel}</IonLabel>
+                            <IonProgressBar className='progress-bar' type='determinate' value={props.valueprogressBar}></IonProgressBar>
+                            <IonLabel className="start-lvl">{props.nextLevel}</IonLabel>
                         </IonRow>
                     </IonRow>
                     <IonInput name='title' defaultValue={props.defaultValueTitle} ref={props.refTitle} className='ion-justify-content-center flashcard-title'></IonInput>
