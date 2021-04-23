@@ -133,6 +133,7 @@ export const EditQuest:React.FC = () =>{
                                 setTime('')
                             }}
                             checked={checked}
+                            style={{}}
                             >
                                 {shownTimer && <Timer  value={time} onChange={(event) => setTime(event.target.value!)} />}
                             </RowTimer>
@@ -155,7 +156,7 @@ export const EditQuest:React.FC = () =>{
                                     </IonGrid>
                                 </IonRow>
                             </ContainerList>
-                            <RowBtnCreate>Criar</RowBtnCreate>
+                            <RowBtnCreate style={{marginTop: '1.7rem' }} >Criar</RowBtnCreate>
                     </form>
                 </IonContent>
             </IonPage>

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useState } from 'react';
+import React, {  useState } from 'react';
 import {
     IonPage,
     IonRow,
@@ -184,6 +184,9 @@ const QuestaoAlternativa: React.FC = () => {
                         refEnunciated={register({required:true})}
                         refSub={register({required:false})}
                         refTitle={register({required:true})}
+                        titleForQuest=''
+                        subjectForQuest=''
+                        enunciatedForQuest=''
                     >
                     <IonRow className='ion-justify-content-center'>
                         <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${tema.id}].textPop`} ref={register({required:false})}   type='text'></IonInput>
@@ -238,7 +241,8 @@ const QuestaoAlternativa: React.FC = () => {
                         />
 
 
-                            <GridAlternatives                         
+                            <GridAlternatives
+                            styleGrid={{}}                         
                             style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
                             refAlternatives={register({required:true})}
                             refAnswer={register({required:true})}
@@ -275,6 +279,7 @@ const QuestaoAlternativa: React.FC = () => {
                                 setTime('')
                             }}
                             checked={checked}
+                            style={{}}
                             >
                                 {shownTimer && <Timer  value={time} onChange={(event) => setTime(event.target.value!)} />}
                             </RowTimer>
@@ -282,7 +287,7 @@ const QuestaoAlternativa: React.FC = () => {
                             onClick={() => setShowPopLimit(false)}
                             isOpen={showPopLimit}
                             onDidDismiss={() => setShowPopLimit(false)} />
-                        <RowBtnCreate>Criar</RowBtnCreate>
+                        <RowBtnCreate style={{marginTop: '1.7rem' }} >Criar</RowBtnCreate>
                     </form>
                 </IonContent>
 

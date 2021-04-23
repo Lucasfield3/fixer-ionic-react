@@ -77,6 +77,8 @@ const AnswerAlternativa: React.FC = () => {
         setIsFlipped(false)
         if (history.location.state) {
             const card = history.location.state as FlashCard
+            const path = history.location.pathname
+            console.log(path)
             console.log(card)
             setValue('subject' ,card.subject)
             setThemes(card.themes)
@@ -85,6 +87,7 @@ const AnswerAlternativa: React.FC = () => {
             setIdFlashCard(card.id)
             setTime(card.time!)
             setValue('title' ,card.title)
+            console.log(history.location)
         } else {
             console.log('Não tem nada');
         }

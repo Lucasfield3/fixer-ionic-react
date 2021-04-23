@@ -740,7 +740,7 @@ ion-button{
 }
 
 .row-toggle {
-  width: 100%;
+  width: 100vh;
   display: flex;
   align-items: center;
   transition: visibility ease-in-out 7ms;
@@ -916,4 +916,17 @@ ion-button{
   --border-radius: 21px;
   --width: 90%;
 }
-
+.btn-create{
+  margin-top: -11.3rem;
+}
+.array-div::-webkit-scrollbar{
+  width: 7px;
+  padding-left: 2px;
+}
+.array-div::-webkit-scrollbar-thumb{
+  background: #4a5a66;
+  border-radius: 8px;
+}
+.array-div::-webkit-scrollbar-thumb:hover{
+  background: var(--ion-color-dark);
+}

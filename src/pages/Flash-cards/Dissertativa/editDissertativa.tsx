@@ -204,6 +204,9 @@ const EditDissertativa: React.FC = () => {
                             refEnunciated={register({required:true})}
                             refSub={register({required:false})}
                             refTitle={register({required:true})}
+                            titleForQuest=''
+                            subjectForQuest=''
+                            enunciatedForQuest=''
                         >
                         <IonRow className='ion-justify-content-center'>
                             <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${temas.textPop}].textPop`} ref={register({required:false})}   type='text'></IonInput>
@@ -250,6 +253,7 @@ const EditDissertativa: React.FC = () => {
                         setNewTime('')
                     }}
                     checked={checked}
+                    style={{}}
                     >
                         {shownTimer && <Timer  value={timeUnconverted(time!)} onChange={(event) => setNewTime(event.target.value!)} />}
                     </RowTimer>
@@ -257,7 +261,7 @@ const EditDissertativa: React.FC = () => {
                         onClick={()=> setShowPopLimit(false)} 
                         isOpen={showPopLimit} 
                         onDidDismiss={()=>setShowPopLimit(false)} />
-                   <RowBtnCreate>Salvar</RowBtnCreate>
+                   <RowBtnCreate style={{marginTop: '1.7rem' }}>Salvar</RowBtnCreate>
                 </form>
                 </IonContent>
 

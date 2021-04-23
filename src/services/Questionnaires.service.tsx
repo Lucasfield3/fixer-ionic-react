@@ -1,5 +1,6 @@
 import https from '../utils/https'
 import { getPayload } from './Authentication.service'
+import { FlashCard, NewFlashCard } from './flashCard.service'
 
 
 export interface Questionnaires {
@@ -105,3 +106,4 @@ export async function putQuest(questionnaires:Questionnaires){
             console.log(erro)
         })
 }
+

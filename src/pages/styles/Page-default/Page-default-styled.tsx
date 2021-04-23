@@ -253,9 +253,12 @@ export const CardQuestion:React.FC<{
     onClickCleanBtn:()=>void;
     isOpenSaveTheme:boolean;
     onDidDismissSave:(event: CustomEvent) => void;
-    refTitle:(instance: HTMLIonInputElement | null) => void;
+    refTitle:(instance: HTMLIonInputElement | null) => void | string;
+    titleForQuest:string;
     refEnunciated:(instance: HTMLIonTextareaElement | null) => void;
-    refSub:(instance: HTMLIonInputElement | null) => void;
+    enunciatedForQuest:string;
+    refSub:(instance: HTMLIonInputElement | null) => void | string;
+    subjectForQuest:string;
 }> = props =>{
 
 
@@ -263,7 +266,7 @@ export const CardQuestion:React.FC<{
     return(
         <>
             <IonItem className="item-input-title">
-                <IonInput maxlength={100}  type="text" required className="input-title" name='title' ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
+                <IonInput maxlength={100}  type="text" required className="input-title" name='title' value={props.titleForQuest} ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
             </IonItem>
 
             <IonCard className='card-question' color='light'>
@@ -296,7 +299,7 @@ export const CardQuestion:React.FC<{
                             </IonRow>
                         </IonPopover>
 
-                        <IonInput  name='subject' ref={props.refSub} className="input-tema" placeholder="Insira a matéria" ></IonInput>
+                        <IonInput  name='subject' ref={props.refSub} value={props.subjectForQuest} className="input-tema" placeholder="Insira a matéria" ></IonInput>
                     </IonRow>
                 </IonCardHeader>
                 <IonCardContent className="content-background">
@@ -311,6 +314,7 @@ export const CardQuestion:React.FC<{
                             className='ios question'
                             color='dark'
                             name='enunciated'
+                            value={props.enunciatedForQuest}
                             ref={props.refEnunciated}
                             placeholder="Digite ou cole o enunciado do flash-card">
                         </IonTextarea>
@@ -360,6 +364,7 @@ const RowRightAlternative = styled(IonRow)`
 `;
 export const GridAlternatives:React.FC<{
     style: React.CSSProperties;
+    styleGrid: React.CSSProperties;
     autoGrow:boolean;
     refAlternatives:(instance: HTMLIonTextareaElement) => void;
     refAnswer:(instance: HTMLIonTextareaElement) => void;
@@ -370,7 +375,7 @@ export const GridAlternatives:React.FC<{
 
     return(
         <>
-            <IonGrid className='array-div'>
+            <IonGrid style={props.styleGrid} className='array-div'>
                 <RowRightAlternative  className='ion-justify-content-center'>
                     <IonTextarea 
                     maxlength={240}
@@ -392,11 +397,11 @@ export const GridAlternatives:React.FC<{
 
 }
 
-export const RowBtnCreate:React.FC = props=>{
+export const RowBtnCreate:React.FC<{style:CSSProperties}> = props=>{
 
     return(
         <>
-            <IonRow style={{ marginTop: '1.7rem' }} className='ios ion-justify-content-center'>
+            <IonRow slot='start' style={props.style} className='ios ion-justify-content-center btn-create'>
                 <IonButton type='submit'  id='create-button' className="ios btn-criar" >{props.children}</IonButton>
             </IonRow>
         </>
@@ -406,6 +411,7 @@ export const RowBtnCreate:React.FC = props=>{
 export const RowTimer:React.FC<{checked:boolean; 
     onIonChange:(event: CustomEvent)=>void;
     onClick:()=>void;
+    style:CSSProperties;
 }> = props=>{
 
     return(
@@ -415,7 +421,7 @@ export const RowTimer:React.FC<{checked:boolean;
                     <IonLabel color='dark' className='label-timer' >Tempo</IonLabel>
                     <IonToggle checked={props.checked} onIonChange={props.onIonChange} className='ios toggle' onClick={props.onClick} />
                 </IonRow>
-                <IonRow className='ios row-timer'>
+                <IonRow style={props.style} className='ios row-timer'>
                     {props.children}
                 </IonRow> 
             </IonGrid>

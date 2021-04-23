@@ -226,6 +226,9 @@ const EditAlternativa: React.FC = () => {
                             refEnunciated={register({required:true})}
                             refSub={register({required:false})}
                             refTitle={register({required:true})}
+                            titleForQuest=''
+                            subjectForQuest=''
+                            enunciatedForQuest=''
                         >
                         <IonRow className='ion-justify-content-center'>
                             <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${temas.textPop}].textPop`} ref={register({required:false})}   type='text'></IonInput>
@@ -261,7 +264,8 @@ const EditAlternativa: React.FC = () => {
                                 </IonRow>
                             </IonCardTitle>
                         </IonModal>
-                        <GridAlternatives                         
+                        <GridAlternatives
+                                styleGrid={{}}                         
                                 style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
                                 refAlternatives={register({required:true})}
                                 refAnswer={register({required:true})}
@@ -293,20 +297,21 @@ const EditAlternativa: React.FC = () => {
                                 </GridAlternatives>
                         
                                 <RowTimer 
-                            onIonChange={(e) => setChecked(e.detail.checked)}
-                            onClick={() => {
-                                setShownTimer(!shownTimer)
-                                setNewTime('')
-                            }}
-                            checked={checked}
-                            >
-                            {shownTimer && <Timer  value={timeUnconverted(time!)} onChange={(event) => setNewTime(event.target.value!)} />}
-                            </RowTimer>
+                                onIonChange={(e) => setChecked(e.detail.checked)}
+                                onClick={() => {
+                                    setShownTimer(!shownTimer)
+                                    setNewTime('')
+                                }}
+                                checked={checked}
+                                style={{}}
+                                >
+                                    {shownTimer && <Timer  value={timeUnconverted(time!)} onChange={(event) => setNewTime(event.target.value!)} />}
+                                </RowTimer>
                         <Limitedalternativa 
                         onClick={()=> setShowPopLimit(false)} 
                         isOpen={showPopLimit} 
                         onDidDismiss={()=>setShowPopLimit(false)} />
-                   <RowBtnCreate>Salvar</RowBtnCreate>
+                   <RowBtnCreate style={{marginTop: '1.7rem' }} >Salvar</RowBtnCreate>
 
                 </form>
                 </IonContent>

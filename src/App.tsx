@@ -31,8 +31,6 @@ import AnswerDissertativa from './components/AnswerDissertativa/AnswerDissertati
 import AnswerAlternativa from './components/AnswerAlternativa/AnswerAlternativa';
 import Questionarios from './pages/Questionarios/questionarios';
 import CriarQuestionario from './pages/Questionarios/CriarQuestionario';
-import CriarAlternativaQuest from './pages/Questionarios/CriarAlternativaQuest/criarAlternativaQuest';
-import CriarDissertativaQuest from './pages/Questionarios/CriarDissertativaQuest/criarDissertativaQuest'
 import Classes from './pages/Classes/classes'
 import CriarClasse from './pages/Classes/criarClasse'
 import Conquistas from './pages/Conquistas/conquistas';
@@ -54,8 +52,6 @@ const App: React.FC = () => {
         <Route path="/AnswerAlternativa" component={AnswerAlternativa} exact={true} />
         <Route path="/Questionarios" component={Questionarios} exact={true} />
         <Route path="/CriarQuestionario" component={CriarQuestionario} exact={true} />
-        <Route path="/CriarAlternativaQuest" component={CriarAlternativaQuest} exact={true} />
-        <Route path="/CriarDissertativaQuest" component={CriarDissertativaQuest} exact={true} />
         <Route path="/Classes" component={Classes} exact={true} />
         <Route path="/CriarClasse" component={CriarClasse} exact={true} />
         <Route path="/Conquistas" component={Conquistas} exact={true} />

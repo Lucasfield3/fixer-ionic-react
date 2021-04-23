@@ -143,3 +143,6 @@
   border-radius: 6px;
   height: 2.6rem;
 }
+.modal-alternativa{
+  --background:var(--ion-background-color)!important;
+}
