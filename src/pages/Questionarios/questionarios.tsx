@@ -48,7 +48,7 @@ const CardQuestionarios: React.FC = ()=>{
                         }}>
                                {quests.map((quest: Questionnaires, index) => {
                                     return (
-                                        <CardsQuestionarios text='Titulo' title='Titulo' key={index} type='tipo' id={quest.owner.id} onClick={() => setShowActionSheet(true)} />
+                                        <CardsQuestionarios text='Titulo' title='Titulo' key={index} type='tipo' id={quest.creator.id} onClick={() => setShowActionSheet(true)} />
                                     )
                                 })}
                             {quests.length == 0 && <Vazio/>|| '' }

@@ -1,13 +1,28 @@
 import https from '../utils/https'
 import { getPayload } from './Authentication.service'
-import { FlashCard, NewFlashCard } from './flashCard.service'
 
 
 export interface Questionnaires {
-    owner:User;
     creator:User;
+    title:string;
+    time?:number;
+    flashCards:string[];
     creation?:string;
     modification?:string;
+}
+export interface FlashCardFromQuest {
+    [x: string]: any
+    owner?:User;
+    creation?:string;
+    modification?:string;
+    id:string;
+    enunciated:string;
+    type?:string;
+    subject:string;
+    time?:number;
+    title:string;
+    themes:string[];
+    alternatives?:Alternative[];
 }
 interface User{
     id:string;

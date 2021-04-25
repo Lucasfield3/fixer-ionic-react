@@ -60,7 +60,7 @@ const CriarClasse:React.FC = ()=>{
                                         </IonGrid>
                                     </IonRow>
                                 </ContainerList>
-                                <RowBtnCreate style={{marginTop: '1.7rem' }}>Criar</RowBtnCreate>
+                                <RowBtnCreate onClick={()=> null} style={{marginTop: '1.7rem' }}>Criar</RowBtnCreate>
                         </form>
                     </IonContent>
             </IonPage>

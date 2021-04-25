@@ -188,6 +188,7 @@ const EditDissertativa: React.FC = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                 <CardQuestion
+                            onIonChange={()=>{}}
                             onClickTheme={() => setShowPopover(true)}
                             isOpenThemes={showPopover}
                             onDidDismissTheme={e => setShowPopover(false)}
@@ -261,7 +262,7 @@ const EditDissertativa: React.FC = () => {
                         onClick={()=> setShowPopLimit(false)} 
                         isOpen={showPopLimit} 
                         onDidDismiss={()=>setShowPopLimit(false)} />
-                   <RowBtnCreate style={{marginTop: '1.7rem' }}>Salvar</RowBtnCreate>
+                   <RowBtnCreate onClick={()=> null} style={{marginTop: '1.7rem' }}>Salvar</RowBtnCreate>
                 </form>
                 </IonContent>
 

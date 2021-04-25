@@ -259,6 +259,7 @@ export const CardQuestion:React.FC<{
     enunciatedForQuest:string;
     refSub:(instance: HTMLIonInputElement | null) => void | string;
     subjectForQuest:string;
+    onIonChange:(event:CustomEvent)=>void;
 }> = props =>{
 
 
@@ -266,7 +267,7 @@ export const CardQuestion:React.FC<{
     return(
         <>
             <IonItem className="item-input-title">
-                <IonInput maxlength={100}  type="text" required className="input-title" name='title' value={props.titleForQuest} ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
+                <IonInput maxlength={100} onIonChange={props.onIonChange} type="text" required className="input-title" name='title' value={props.titleForQuest} ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
             </IonItem>
 
             <IonCard className='card-question' color='light'>
@@ -397,12 +398,12 @@ export const GridAlternatives:React.FC<{
 
 }
 
-export const RowBtnCreate:React.FC<{style:CSSProperties}> = props=>{
+export const RowBtnCreate:React.FC<{style:CSSProperties;onClick:()=>void}> = props=>{
 
     return(
         <>
             <IonRow slot='start' style={props.style} className='ios ion-justify-content-center btn-create'>
-                <IonButton type='submit'  id='create-button' className="ios btn-criar" >{props.children}</IonButton>
+                <IonButton onClick={props.onClick} type='submit'  id='create-button' className="ios btn-criar" >{props.children}</IonButton>
             </IonRow>
         </>
     )

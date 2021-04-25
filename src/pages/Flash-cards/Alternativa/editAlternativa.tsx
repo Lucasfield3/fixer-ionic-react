@@ -210,6 +210,7 @@ const EditAlternativa: React.FC = () => {
             <IonContent>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <CardQuestion
+                            onIonChange={()=>{}}
                             onClickTheme={() => setShowPopover(true)}
                             isOpenThemes={showPopover}
                             onDidDismissTheme={e => setShowPopover(false)}
@@ -311,7 +312,7 @@ const EditAlternativa: React.FC = () => {
                         onClick={()=> setShowPopLimit(false)} 
                         isOpen={showPopLimit} 
                         onDidDismiss={()=>setShowPopLimit(false)} />
-                   <RowBtnCreate style={{marginTop: '1.7rem' }} >Salvar</RowBtnCreate>
+                   <RowBtnCreate onClick={()=> null} style={{marginTop: '1.7rem' }} >Salvar</RowBtnCreate>
 
                 </form>
                 </IonContent>

@@ -127,6 +127,7 @@ const QuestaoDissertativa: React.FC = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
 
                     <CardQuestion
+                        onIonChange={()=>{}}
                         onClickTheme={() => setShowPopover(true)}
                         isOpenThemes={showPopover}
                         onDidDismissTheme={e => setShowPopover(false)}
@@ -209,7 +210,7 @@ const QuestaoDissertativa: React.FC = () => {
                         >
                            {shownTimer && <Timer  value={time} onChange={(event) => setTime(event.target.value!)} />}
                         </RowTimer>
-                        <RowBtnCreate style={{marginTop: '1.7rem' }} >Criar</RowBtnCreate>
+                        <RowBtnCreate onClick={()=> null} style={{marginTop: '1.7rem' }} >Criar</RowBtnCreate>
                     </form>
                 </IonContent>
 

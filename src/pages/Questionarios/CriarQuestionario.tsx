@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import {
     IonButton, 
     IonCard, 
@@ -24,9 +24,11 @@ import './style.css'
 import { add, remove } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 import { menuController } from '@ionic/core';
-import { FlashCard, getAllFlashCards, NewAlternative } from '../../services/flashCard.service';
+import { FlashCard, getAllFlashCards, NewAlternative, NewFlashCard, Payload } from '../../services/flashCard.service';
 import { ButtonArrow,  CardQuestion,  ContainerList, GridAlternatives, HeaderDefault, RowBtnCreate, RowTimer, SearchBar, Timer } from '../styles/Page-default/Page-default-styled';
 import { Controller, useForm } from 'react-hook-form';
+import { createQuest, FlashCardFromQuest, Questionnaires } from '../../services/Questionnaires.service';
+import { getPayload } from '../../services/Authentication.service';
 
 
 const CriarQuestionario:React.FC = ()=>{
@@ -36,7 +38,7 @@ const CriarQuestionario:React.FC = ()=>{
     const [showModal, setShowModal] = useState(false)
     const [showModalCreate, setShowModalCreate] = useState(false)
     const [showModalAlternative, setShowModalAlternative] = useState(false)
-    const [cards, setCards] = useState<FlashCard[]>([]);
+    const [cards, setCards] = useState<NewFlashCard[]>([]);
     const [listCards, setListCards] = useState<FlashCard[]>([]);
     const [searchText, setSearchText] = useState('');
     const [time, setTime] = useState<string>(':');
@@ -53,6 +55,7 @@ const CriarQuestionario:React.FC = ()=>{
     const [subject, setSubject] = useState<string>('')
     const [title, setTitle] = useState<string>('')
     const [checkStyle, setCheckStyle] = useState<boolean>()
+    const [idFlashCard, setIdFlashCard] = useState<string>('')
     let tema = {
         id:0,
         textPop:''
@@ -64,20 +67,11 @@ const CriarQuestionario:React.FC = ()=>{
     const [alternatives, setAlternatives] = useState<NewAlternative[]>([newAlternative]);
     const history = useHistory()
 
-    const { register, handleSubmit, errors, setValue, getValues, control} = useForm()
-
-    const onSubmit = (data:FlashCard) =>{
-        console.log(data)
-    }
+   
 
     const DeleteCard = (id:number)=>{
-        const cardDeleted = cards.filter( card=> parseInt(card.id) !== id)
+        const cardDeleted = cards.filter( card=> parseInt(card.id!) !== id)
         setCards(cardDeleted)
-    }
-
-    async function getCards() {
-        let cardsValues = await getAllFlashCards() as FlashCard[]
-        setCards(cardsValues)
     }
 
     useIonViewWillEnter(()=>{
@@ -124,9 +118,85 @@ const CriarQuestionario:React.FC = ()=>{
         }
     }
 
+    const AddFlashCard = () => {
+        const payLoad = getPayload() as Payload
+        const themesSend = [] as string[]
+        const alternativesSend = [] as NewAlternative[]
+        alternatives.map((a) =>{
+            alternatives.push({answer:a.answer})
+        })
+        alternativesSend.push({answer:textRightAnswer})
+        themes.map((theme)=>{
+            themesSend.push(theme.textPop)
+        })
+        ShuffleAlternativas(alternativesSend)
+        setCards([...cards, { 
+            title:title,
+            enunciated:enunciated,
+            id:idFlashCard,
+            subject:subject,
+            themes:themesSend,
+            alternatives:alternativesSend,
+            creator:payLoad.id,
+            answerFlashCard:textRightAnswer
+        }])
+        console.log({title})
+    }
+
+    const ShuffleAlternativas = ( alternativesSend: NewAlternative[]) => {
+
+        for(let i =  alternativesSend.length -1; i > 0; i--){
+            const j = Math.floor(Math.random() * (i + 1));
+            const temp =  alternativesSend[i];
+             alternativesSend[i] =  alternativesSend[j];
+             alternativesSend[j] = temp;
+        }
+        return  alternativesSend;
+    }
+
     const RemoveAlternative = (index:number) =>{
         setAlternatives([...alternatives.slice(0, index), ...alternatives.slice(index + 1)])
     }
+    const RemoveFlashCards = (index:number) =>{
+        setCards([...cards.slice(0, index), ...cards.slice(index + 1)])
+    }
+
+    const ClearInputsModal = ()=>{
+        setAlternatives([])
+        setEnunciated('')
+        setSubject('')
+        setTitle('')
+        setTextRightAnswer('')
+        setThemes([])
+        setTimeModalAlt('')
+    }
+    const ClearInputQuest = ()=>{
+        setCards([])
+        setValue('title', '')
+    }
+
+    const { register, handleSubmit, errors, setValue, getValues, control} = useForm()
+
+    const onSubmit = async (data:Questionnaires) =>{
+        const payLoad = getPayload() as Payload
+        const flashCardsSend = [] as string[]
+        cards.map((card)=>{
+            flashCardsSend.push(card.title)
+        })
+        data.creator.id = payLoad.id
+        data.time = convertTime()
+        createQuest(data)
+    }
+
+    const convertTime = () => {
+        const [minutes, seconds] = time.split(':').map(Number)
+        const timeInSeconds = (minutes * 60) + seconds
+        console.log(time)
+        console.log(timeInSeconds * 1000)
+        return timeInSeconds * 1000
+
+    }
+
     
 
     return(
@@ -151,13 +221,16 @@ const CriarQuestionario:React.FC = ()=>{
                         </IonCard>
                             <IonModal onDidDismiss={()=> setShowModal2(false)} isOpen={showModal2} cssClass='modal-choose'>
                                 <IonButton color='light' className="btn-choose" onClick={() => {
-                                    setShowModal2(false)                                        
-                                    history.push('/CriarDissertativaQuest')                        
+                                    setShowModal2(false)  
+                                    setShowModalCreate(false)                                      
+                                    ClearInputsModal()                       
                                     }}>Dissertativa</IonButton>
                                 <IonLabel className="label-modal">ou</IonLabel>
                                 <IonButton color='light' className="btn-choose" onClick={() => {
-                                    setShowModal2(false)   
+                                    setShowModal2(false)  
+                                    setShowModalCreate(false)    
                                     setShowModalAlternative(true)
+                                    ClearInputsModal()   
                                     }}>Alternativa</IonButton>
                             </IonModal>
                             <IonModal isOpen={showModal} cssClass='ios modal-list' onDidDismiss={()=> setShowModal(false)}>
@@ -182,8 +255,62 @@ const CriarQuestionario:React.FC = ()=>{
                                     })}
                                 </IonGrid>
                             </IonModal>
-                            <IonModal backdropDismiss={false} isOpen={showModalAlternative} cssClass='ios modal-alternativa'>
+
+                            <IonModal  isOpen={showModalCreate} cssClass='ios modal-criar'>
+                                <IonCardTitle className="div-modal-alternativa">
+                                    <IonText className="modal-text" color="dark">
+                                        <IonLabel>Deseja criar mais um Questionário ?</IonLabel>
+                                    </IonText>
+                                    <IonCardSubtitle className="btn-modalDefault">
+                                        <IonButton color='light' className="btn-sim" onClick={() => {
+                                            setShowModalCreate(false)
+                                            ClearInputQuest()
+                                            }}>Sim</IonButton>
+                                        <IonButton color='light' className="btn-nao" onClick={() => {
+                                            setShowModalAlternative(false)
+                                            ClearInputQuest()
+                                            }}>Não</IonButton>
+                                    </IonCardSubtitle>
+                                </IonCardTitle>
+                            </IonModal>
+                            <RowTimer 
+                            onIonChange={(e) => setChecked(e.detail.checked)}
+                            onClick={() => {
+                                setShownTimer(!shownTimer)
+                                setTime('')
+                            }}
+                            checked={checked}
+                            style={{}}
+                            >
+                                {shownTimer && <Timer  value={time} onChange={(event) => setTime(event.target.value!)} />}
+                            </RowTimer>
+                            <ContainerList style={{height:'11.5rem', marginTop:'2rem'}}  title='Flash cards'>
+                                <IonRow>
+                                    <IonGrid  className='back-list-remove'>
+                                        <IonRow className='ion-justify-content-center row-label-remove'>Remover</IonRow>
+                                        <IonRow>
+                                            {/* <IonCol color='dark' className="flash-cards" style={{height:'auto', width:'10rem'}}>Título Flashcards</IonCol>
+                                            <IonFabButton  className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton> */}
+                                        </IonRow>
+                                        {cards.map((card:NewFlashCard, index)=>{
+                                            return(
+                                                <IonRow style={{marginBottom:'0.5rem'}} key={index} className='ion-justify-content-center'>
+                                                    <IonCol key={card.id} color='dark' className="flash-cards" style={{height:'auto', width:'10rem'}}>{card.title}</IonCol>
+                                                    <IonFabButton onClick={()=>RemoveFlashCards(index)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
+                                                </IonRow>
+                                            )
+                                        })}
+                                    </IonGrid>
+                                </IonRow>
+                            </ContainerList>
+                            <RowBtnCreate onClick={()=> null} style={{marginTop: '1.7rem' }}>Criar</RowBtnCreate>
+                    </form>
+                    <IonModal backdropDismiss={false} onDidDismiss={()=> {
+                                setShowModalAlternative(false)
+                                ClearInputsModal()
+                                }} isOpen={showModalAlternative} cssClass='ios modal-alternativa'>
                                 <CardQuestion
+                                    onIonChange={(event:CustomEvent)=>setTitle(event.detail.value)}
                                     onClickTheme={() => setShowPopover(true)}
                                     isOpenThemes={showPopover}
                                     onDidDismissTheme={e => setShowPopover(false)}
@@ -265,57 +392,12 @@ const CriarQuestionario:React.FC = ()=>{
                                 >
                                     {shownTimerModalAlt && <Timer  value={timeModalAlt} onChange={(event) => setTimeModalAlt(event.target.value!)} />}
                                 </RowTimer>
-                                <RowBtnCreate style={{marginTop:'-11.3rem'}}>Criar</RowBtnCreate>
+                                <RowBtnCreate onClick={()=> {
+                                    AddFlashCard()
+                                    ClearInputsModal()
+                                    setShowModalAlternative(false)
+                                    }} style={{marginTop:'-11.3rem'}}>Criar</RowBtnCreate>
                             </IonModal>
-                            <IonModal backdropDismiss={false} isOpen={showModalCreate} cssClass='ios modal-criar'>
-                                <IonCardTitle className="div-modal-alternativa">
-                                    <IonText className="modal-text" color="dark">
-                                        <IonLabel>Deseja criar mais um Questionário ?</IonLabel>
-                                    </IonText>
-                                    <IonCardSubtitle className="btn-modalDefault">
-                                        <IonButton color='light' className="btn-sim" onClick={() => {
-                                            history.push('CriarQuestionario')
-                                            }}>Sim</IonButton>
-                                        <IonButton color='light' className="btn-nao" onClick={() => {
-                                            setShowModalCreate(false)
-                                            history.push('Questionarios')
-                                            menuController.enable(true)
-                                            }}>Não</IonButton>
-                                    </IonCardSubtitle>
-                                </IonCardTitle>
-                            </IonModal>
-                            <RowTimer 
-                            onIonChange={(e) => setChecked(e.detail.checked)}
-                            onClick={() => {
-                                setShownTimer(!shownTimer)
-                                setTime('')
-                            }}
-                            checked={checked}
-                            style={{}}
-                            >
-                                {shownTimer && <Timer  value={time} onChange={(event) => setTime(event.target.value!)} />}
-                            </RowTimer>
-                            <ContainerList style={{height:'11.5rem', marginTop:'2rem'}}  title='Flash cards'>
-                                <IonRow>
-                                    <IonGrid  className='back-list-remove'>
-                                        <IonRow className='ion-justify-content-center row-label-remove'>Remover</IonRow>
-                                        <IonRow>
-                                            {/* <IonCol color='dark' className="flash-cards" style={{height:'auto', width:'10rem'}}>Título Flashcards</IonCol>
-                                            <IonFabButton  className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton> */}
-                                        </IonRow>
-                                        {cards.map((card:FlashCard, index)=>{
-                                            return(
-                                                <IonRow  key={index} className='ion-justify-content-center'>
-                                                    <IonCol key={card.id} color='dark' className="flash-cards" style={{height:'auto', width:'10rem'}}>{card.title}</IonCol>
-                                                    <IonFabButton  className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
-                                                </IonRow>
-                                            )
-                                        })}
-                                    </IonGrid>
-                                </IonRow>
-                            </ContainerList>
-                            <RowBtnCreate style={{marginTop: '1.7rem' }}>Criar</RowBtnCreate>
-                    </form>
                 </IonContent>
             </IonPage>
         </>
