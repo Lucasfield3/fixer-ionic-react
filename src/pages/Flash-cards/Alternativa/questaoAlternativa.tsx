@@ -42,7 +42,9 @@ const QuestaoAlternativa: React.FC = () => {
     const history = useHistory()
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     const [time, setTime] = useState<string>(':');
- 
+    const [enunciated, setEnunciated] = useState<string>('')
+    const [subject, setSubject] = useState<string>('')
+    const [title, setTitle] = useState<string>('')
     let newAlternative:NewAlternative= {
         answer:''
     }
@@ -168,7 +170,9 @@ const QuestaoAlternativa: React.FC = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     
                     <CardQuestion
-                        onIonChange={()=>{}}
+                        onIonChangeTitle={(event:CustomEvent)=>setTitle(event.detail.value)}
+                        onIonChangeEnunciated={(event:CustomEvent)=>{setEnunciated(event.detail.value)}}
+                        onIonChangeSubject={(event:CustomEvent)=>{setSubject(event.detail.value)}}
                         onClickTheme={() => setShowPopover(true)}
                         isOpenThemes={showPopover}
                         onDidDismissTheme={e => setShowPopover(false)}
@@ -185,9 +189,9 @@ const QuestaoAlternativa: React.FC = () => {
                         refEnunciated={register({required:true})}
                         refSub={register({required:false})}
                         refTitle={register({required:true})}
-                        titleForQuest=''
-                        subjectForQuest=''
-                        enunciatedForQuest=''
+                        titleForQuest={title}
+                        subjectForQuest={subject}
+                        enunciatedForQuest={enunciated}
                     >
                     <IonRow className='ion-justify-content-center'>
                         <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${tema.id}].textPop`} ref={register({required:false})}   type='text'></IonInput>
@@ -243,6 +247,7 @@ const QuestaoAlternativa: React.FC = () => {
 
 
                             <GridAlternatives
+                            onIonChange={()=> {}}
                             styleGrid={{}}                         
                             style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
                             refAlternatives={register({required:true})}

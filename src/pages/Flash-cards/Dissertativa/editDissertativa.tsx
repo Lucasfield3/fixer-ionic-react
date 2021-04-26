@@ -188,7 +188,9 @@ const EditDissertativa: React.FC = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                 <CardQuestion
-                            onIonChange={()=>{}}
+                            onIonChangeEnunciated={()=>{}}
+                            onIonChangeSubject={()=>{}}
+                            onIonChangeTitle={()=>{}}
                             onClickTheme={() => setShowPopover(true)}
                             isOpenThemes={showPopover}
                             onDidDismissTheme={e => setShowPopover(false)}

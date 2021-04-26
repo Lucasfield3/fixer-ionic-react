@@ -32,12 +32,12 @@ export interface FlashCard {
 }
 export interface User{
     id:string;
-    name:string;
-    email:string;
-    role:string;
-    entryDate: Date;
-    modification:Date;
-    status:Status;
+    name?:string;
+    email?:string;
+    role?:string;
+    entryDate?: Date;
+    modification?:Date;
+    status?:Status;
 }
 interface Status{
     level:number;

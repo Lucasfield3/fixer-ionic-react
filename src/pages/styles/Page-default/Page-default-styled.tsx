@@ -259,7 +259,10 @@ export const CardQuestion:React.FC<{
     enunciatedForQuest:string;
     refSub:(instance: HTMLIonInputElement | null) => void | string;
     subjectForQuest:string;
-    onIonChange:(event:CustomEvent)=>void;
+    onIonChangeTitle:(event:CustomEvent)=>void;
+    onIonChangeSubject:(event:CustomEvent)=>void;
+    onIonChangeEnunciated:(event:CustomEvent)=>void;
+    
 }> = props =>{
 
 
@@ -267,7 +270,7 @@ export const CardQuestion:React.FC<{
     return(
         <>
             <IonItem className="item-input-title">
-                <IonInput maxlength={100} onIonChange={props.onIonChange} type="text" required className="input-title" name='title' value={props.titleForQuest} ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
+                <IonInput maxlength={100} onIonChange={props.onIonChangeTitle} type="text" required className="input-title" name='title' value={props.titleForQuest} ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
             </IonItem>
 
             <IonCard className='card-question' color='light'>
@@ -300,7 +303,7 @@ export const CardQuestion:React.FC<{
                             </IonRow>
                         </IonPopover>
 
-                        <IonInput  name='subject' ref={props.refSub} value={props.subjectForQuest} className="input-tema" placeholder="Insira a matéria" ></IonInput>
+                        <IonInput  name='subject' onIonChange={props.onIonChangeSubject} ref={props.refSub} value={props.subjectForQuest} className="input-tema" placeholder="Insira a matéria" ></IonInput>
                     </IonRow>
                 </IonCardHeader>
                 <IonCardContent className="content-background">
@@ -315,6 +318,7 @@ export const CardQuestion:React.FC<{
                             className='ios question'
                             color='dark'
                             name='enunciated'
+                            onIonChange={props.onIonChangeEnunciated}
                             value={props.enunciatedForQuest}
                             ref={props.refEnunciated}
                             placeholder="Digite ou cole o enunciado do flash-card">
@@ -370,6 +374,7 @@ export const GridAlternatives:React.FC<{
     refAlternatives:(instance: HTMLIonTextareaElement) => void;
     refAnswer:(instance: HTMLIonTextareaElement) => void;
     nameAnswerFlashCard:string;
+    onIonChange:(event:CustomEvent)=>void;
 }> = props=>{
 
 
@@ -385,6 +390,7 @@ export const GridAlternatives:React.FC<{
                     className='ios alternativa-correta' 
                     placeholder='Insira a alternativa correta' 
                     color='dark' 
+                    onIonChange={props.onIonChange}
                     name={props.nameAnswerFlashCard}
                     ref={props.refAnswer}
                     >

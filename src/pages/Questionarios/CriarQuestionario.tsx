@@ -24,10 +24,10 @@ import './style.css'
 import { add, remove } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 import { menuController } from '@ionic/core';
-import { FlashCard, getAllFlashCards, NewAlternative, NewFlashCard, Payload } from '../../services/flashCard.service';
+import { FlashCard, getAllFlashCards, NewAlternative, NewFlashCard, Payload, User } from '../../services/flashCard.service';
 import { ButtonArrow,  CardQuestion,  ContainerList, GridAlternatives, HeaderDefault, RowBtnCreate, RowTimer, SearchBar, Timer } from '../styles/Page-default/Page-default-styled';
 import { Controller, useForm } from 'react-hook-form';
-import { createQuest, FlashCardFromQuest, Questionnaires } from '../../services/Questionnaires.service';
+import { createQuest, Questionnaires } from '../../services/Questionnaires.service';
 import { getPayload } from '../../services/Authentication.service';
 
 
@@ -50,12 +50,14 @@ const CriarQuestionario:React.FC = ()=>{
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [showPopLimit, setShowPopLimit] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave] = useState<boolean>(false);
-    const [textRightAnswer, setTextRightAnswer] = useState<string>('')
+    const [answerFlashCard, setAnswerFlashCard] = useState<string>('')
     const [enunciated, setEnunciated] = useState<string>('')
     const [subject, setSubject] = useState<string>('')
     const [title, setTitle] = useState<string>('')
     const [checkStyle, setCheckStyle] = useState<boolean>()
     const [idFlashCard, setIdFlashCard] = useState<string>('')
+    const [textAreaAlt, setTextAreaAlt] = useState<string>('')
+    const [inputTheme, setInputTheme] = useState<string>('')
     let tema = {
         id:0,
         textPop:''
@@ -83,13 +85,12 @@ const CriarQuestionario:React.FC = ()=>{
     },[])
 
     const AddTema = () => {
-        const inputValue = getValues(`themes[${tema.id}].textPop`)
         setThemes([...themes, {
             id:themes.length,
-            textPop: inputValue
+            textPop: inputTheme
         }
         ])
-        if(inputValue == ''){
+        if(inputTheme == ''){
             setThemes(themes)
         }
         console.log(themes)
@@ -110,37 +111,50 @@ const CriarQuestionario:React.FC = ()=>{
     }
 
     const AddAlternative = () => {
-        const inputValue = getValues(`alternatives[${newAlternative.answer}].answer`)
-        setAlternatives([...alternatives, { answer: inputValue }])
-        console.log(inputValue)
-        if (alternatives.length == 4 || inputValue === '') {
+        setAlternatives([...alternatives, { answer: textAreaAlt }])
+        console.log(textAreaAlt)
+        if (alternatives.length == 4 || textAreaAlt === '') {
             setAlternatives(alternatives)
         }
     }
+    const convertTimeFlash = () => {
+        const [minutes, seconds] = timeModalAlt.split(':').map(Number)
+        const timeInSeconds = (minutes * 60) + seconds
+        console.log(timeModalAlt)
+        console.log(timeInSeconds * 1000)
+        return timeInSeconds * 1000
+
+    }
+    
 
     const AddFlashCard = () => {
         const payLoad = getPayload() as Payload
         const themesSend = [] as string[]
-        const alternativesSend = [] as NewAlternative[]
-        alternatives.map((a) =>{
-            alternatives.push({answer:a.answer})
-        })
-        alternativesSend.push({answer:textRightAnswer})
         themes.map((theme)=>{
             themesSend.push(theme.textPop)
         })
-        ShuffleAlternativas(alternativesSend)
-        setCards([...cards, { 
-            title:title,
-            enunciated:enunciated,
-            id:idFlashCard,
-            subject:subject,
-            themes:themesSend,
-            alternatives:alternativesSend,
-            creator:payLoad.id,
-            answerFlashCard:textRightAnswer
-        }])
-        console.log({title})
+        console.log(themesSend)
+        console.log(alternatives)
+        alternatives.push({answer:answerFlashCard})
+        ShuffleAlternativas(alternatives)
+        if(enunciated !== '' && title !== '' && alternatives.length > 1  && answerFlashCard !== ''){
+            setCards([...cards, { 
+                title:title,
+                enunciated:enunciated,
+                id:idFlashCard,
+                subject:subject,
+                themes:themesSend,
+                alternatives:alternatives,
+                creator:payLoad.id,
+                answerFlashCard:answerFlashCard,
+                time:convertTimeFlash(),
+            }])
+            setShowModalAlternative(false)
+            console.log(cards)
+        }else{
+            console.log('Campo/s obrigatórios em branco.')
+        }
+        
     }
 
     const ShuffleAlternativas = ( alternativesSend: NewAlternative[]) => {
@@ -166,29 +180,43 @@ const CriarQuestionario:React.FC = ()=>{
         setEnunciated('')
         setSubject('')
         setTitle('')
-        setTextRightAnswer('')
+        setAnswerFlashCard('')
         setThemes([])
+        setTimeModalAlt('')
         setTimeModalAlt('')
     }
     const ClearInputQuest = ()=>{
         setCards([])
         setValue('title', '')
+        setTime('')
     }
 
     const { register, handleSubmit, errors, setValue, getValues, control} = useForm()
 
     const onSubmit = async (data:Questionnaires) =>{
         const payLoad = getPayload() as Payload
-        const flashCardsSend = [] as string[]
-        cards.map((card)=>{
-            flashCardsSend.push(card.title)
+        const flashCardsSend = [] as FlashCard[]
+        cards.map(card=>{
+            flashCardsSend.push({
+                creator:{id:payLoad.id},
+                enunciated:card.enunciated,
+                subject:card.subject!,
+                themes:card.themes,
+                title:card.title,
+                alternatives:card.alternatives,
+                time:card.time,
+                id:card.id!,
+
+            })
         })
-        data.creator.id = payLoad.id
-        data.time = convertTime()
+        data.flashCards = flashCardsSend
+        data.creator = {id:payLoad.id}
+        data.time = convertTimeQuest()
         createQuest(data)
+        console.log(data)
     }
 
-    const convertTime = () => {
+    const convertTimeQuest = () => {
         const [minutes, seconds] = time.split(':').map(Number)
         const timeInSeconds = (minutes * 60) + seconds
         console.log(time)
@@ -196,6 +224,7 @@ const CriarQuestionario:React.FC = ()=>{
         return timeInSeconds * 1000
 
     }
+    
 
     
 
@@ -295,7 +324,7 @@ const CriarQuestionario:React.FC = ()=>{
                                         {cards.map((card:NewFlashCard, index)=>{
                                             return(
                                                 <IonRow style={{marginBottom:'0.5rem'}} key={index} className='ion-justify-content-center'>
-                                                    <IonCol key={card.id} color='dark' className="flash-cards" style={{height:'auto', width:'10rem'}}>{card.title}</IonCol>
+                                                    <IonCol key={card.id} onClick={()=>console.log(cards)} color='dark' className="flash-cards" style={{height:'auto', width:'10rem'}}>{card.title}</IonCol>
                                                     <IonFabButton onClick={()=>RemoveFlashCards(index)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove}></IonIcon></IonFabButton>
                                                 </IonRow>
                                             )
@@ -310,7 +339,9 @@ const CriarQuestionario:React.FC = ()=>{
                                 ClearInputsModal()
                                 }} isOpen={showModalAlternative} cssClass='ios modal-alternativa'>
                                 <CardQuestion
-                                    onIonChange={(event:CustomEvent)=>setTitle(event.detail.value)}
+                                    onIonChangeTitle={(event:CustomEvent)=>setTitle(event.detail.value)}
+                                    onIonChangeEnunciated={(event:CustomEvent)=>{setEnunciated(event.detail.value)}}
+                                    onIonChangeSubject={(event:CustomEvent)=>{setSubject(event.detail.value)}}
                                     onClickTheme={() => setShowPopover(true)}
                                     isOpenThemes={showPopover}
                                     onDidDismissTheme={e => setShowPopover(false)}
@@ -332,51 +363,47 @@ const CriarQuestionario:React.FC = ()=>{
                                     enunciatedForQuest={enunciated}
                                 >
                                     <IonRow className='ion-justify-content-center'>
-                                        <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${tema.id}].textPop`} ref={register({required:false})}   type='text'></IonInput>
+                                        <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${tema.id}].textPop`} ref={register({required:false})} value={inputTheme} onIonChange={(event:CustomEvent)=>setInputTheme(event.detail.value)}  type='text'></IonInput>
                                         <IonFabButton className='add-btn' onClick={() => {
                                             AddTema()
-                                            setValue(`themes[${tema.id}].textPop`, '')
+                                            setInputTheme('')
                                         }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                                     </IonRow>
                                     {themes.map((theme, index) => (
                                             <IonRow key={index} style={{ cursor: 'default', marginTop: '1rem'}} className='ion-justify-content-center'>
-                                                <Controller as={<IonInput key={index} className='ios temas-inputs'  disabled  color='dark'></IonInput>} 
-                                                name={`themes[${index}].textPop`}
-                                                control={control}
-                                                defaultValue={theme.textPop}
-                                                />
+                                                <IonInput key={index} className='ios temas-inputs'  disabled  color='dark'>{theme.textPop}</IonInput>
                                                 <IonFabButton onClick={() => RemoveTema(theme.id)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove} ></IonIcon></IonFabButton>
                                             </IonRow>
                                         ))}
                                 </CardQuestion>
 
                                 <GridAlternatives
+                                onIonChange={(event:CustomEvent)=>{setAnswerFlashCard(event.detail.value)}}
                                 styleGrid={{width:'97%', overflowY:'auto'}}                         
-                                style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
+                                style={{height: answerFlashCard == '' && '4rem' || 'auto'}}
                                 refAlternatives={register({required:true})}
                                 refAnswer={register({required:true})}
-                                autoGrow={textRightAnswer == '' && false || true}
+                                autoGrow={answerFlashCard == '' && false || true}
                                 nameAnswerFlashCard='answerFlashCard'
                                 >
                                     <IonRow  className='ion-justify-content-center'>
                                         <IonTextarea  className='ios add-alternativas'  
                                         placeholder='Insira a/as alternativas' 
                                         color='dark' ref={register({required:false})} 
-                                        name={`alternatives[${newAlternative.answer}].answer`}>                         
+                                        name={`alternatives[${newAlternative.answer}].answer`}
+                                        onIonChange={(event:CustomEvent)=>setTextAreaAlt(event.detail.value!)}
+                                        value={textAreaAlt}
+                                        >                         
                                         </IonTextarea>
                                         <IonFabButton id='add-alternative' className='add-btn'  onClick={()=>{
                                             AddAlternative()
                                             console.log(newAlternative.answer)
-                                            setValue(`alternatives[${newAlternative.answer}].answer`, '')
+                                            setTextAreaAlt('')
                                         }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                                     </IonRow>
                                     {alternatives.map((alternative:NewAlternative, index)=>(
                                         <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
-                                            <Controller as={<IonInput style={{height:'auto', width:'10rem'}} disabled key={index} className='alternativas' color='dark'  placeholder='alternativas'></IonInput>} 
-                                            name={`alternatives[${alternative.answer}].answer`}
-                                            defaultValue={alternative.answer}
-                                            control={control}
-                                            />
+                                            <IonInput style={{height:'auto', width:'10rem'}} disabled key={index} className='alternativas' color='dark' >{alternative.answer}</IonInput>
                                             <IonFabButton  onClick={()=>RemoveAlternative(index)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove} ></IonIcon></IonFabButton>              
                                         </IonRow>
                                     ))}       
@@ -395,7 +422,7 @@ const CriarQuestionario:React.FC = ()=>{
                                 <RowBtnCreate onClick={()=> {
                                     AddFlashCard()
                                     ClearInputsModal()
-                                    setShowModalAlternative(false)
+                                    
                                     }} style={{marginTop:'-11.3rem'}}>Criar</RowBtnCreate>
                             </IonModal>
                 </IonContent>

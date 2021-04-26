@@ -210,7 +210,9 @@ const EditAlternativa: React.FC = () => {
             <IonContent>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <CardQuestion
-                            onIonChange={()=>{}}
+                            onIonChangeEnunciated={()=>{}}
+                            onIonChangeSubject={()=>{}}
+                            onIonChangeTitle={()=>{}}
                             onClickTheme={() => setShowPopover(true)}
                             isOpenThemes={showPopover}
                             onDidDismissTheme={e => setShowPopover(false)}
@@ -266,6 +268,7 @@ const EditAlternativa: React.FC = () => {
                             </IonCardTitle>
                         </IonModal>
                         <GridAlternatives
+                                onIonChange={()=>{}}
                                 styleGrid={{}}                         
                                 style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
                                 refAlternatives={register({required:true})}
