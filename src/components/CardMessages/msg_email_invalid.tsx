@@ -1,17 +1,15 @@
 import React from 'react';
-import { IonButton, IonCard, IonCardHeader,  IonLabel } from '@ionic/react'
+import { IonButton, IonCard, IonCardHeader,  IonLabel, IonModal } from '@ionic/react'
 import './styles.css'
 
-const Emailinvalid: React.FC = () => {
+const Emailinvalid: React.FC<{isOpen:boolean; onDidDismiss:(event:CustomEvent)=> void; onClick:()=>void}> = props => {
 
   return (
     <>
-      <IonCard className='ios card-msg' color='light'>
-        <IonCardHeader color="light">
-            <IonLabel className="ios label-msg-notification">E-mail inválido.</IonLabel>
-        </IonCardHeader>
-        <IonButton className='ios btn_msg_notification'>OK</IonButton>
-      </IonCard >
+    <IonModal cssClass='ios card-msg'  onDidDismiss={props.onDidDismiss} isOpen={props.isOpen}>
+      <IonLabel className="ios label-msg-notification">E-mail inválido.</IonLabel>
+      <IonButton onClick={props.onClick} className='ios btn_msg_notification'>OK</IonButton>
+    </IonModal>
     </>
   );
 

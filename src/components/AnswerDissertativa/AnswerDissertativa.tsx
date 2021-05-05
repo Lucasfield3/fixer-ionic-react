@@ -72,7 +72,7 @@ const AnswerDissertativa: React.FC = () => {
             setValue('subject' ,card.subject)
             setThemes(card.themes)
             setValue('enunciated' ,card.enunciated)
-            setIdFlashCard(card.id)
+            setIdFlashCard(card.id!)
             setValue('title' ,card.title)
         } else {
             console.log('Não tem nada');

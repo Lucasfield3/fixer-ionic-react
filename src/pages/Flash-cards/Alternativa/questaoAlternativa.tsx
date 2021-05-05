@@ -170,9 +170,6 @@ const QuestaoAlternativa: React.FC = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     
                     <CardQuestion
-                        onIonChangeTitle={(event:CustomEvent)=>setTitle(event.detail.value)}
-                        onIonChangeEnunciated={(event:CustomEvent)=>{setEnunciated(event.detail.value)}}
-                        onIonChangeSubject={(event:CustomEvent)=>{setSubject(event.detail.value)}}
                         onClickTheme={() => setShowPopover(true)}
                         isOpenThemes={showPopover}
                         onDidDismissTheme={e => setShowPopover(false)}
@@ -189,9 +186,6 @@ const QuestaoAlternativa: React.FC = () => {
                         refEnunciated={register({required:true})}
                         refSub={register({required:false})}
                         refTitle={register({required:true})}
-                        titleForQuest={title}
-                        subjectForQuest={subject}
-                        enunciatedForQuest={enunciated}
                     >
                     <IonRow className='ion-justify-content-center'>
                         <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${tema.id}].textPop`} ref={register({required:false})}   type='text'></IonInput>

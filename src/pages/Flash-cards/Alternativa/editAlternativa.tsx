@@ -22,7 +22,7 @@ import { useHistory } from 'react-router';
 import {  Payload, Alternative, NewAlternative, FlashCard, putFlashCard, getRightAnswer, NewFlashCard } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
+import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalErrorDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
 import { Controller, useForm } from 'react-hook-form';
 
 
@@ -105,9 +105,9 @@ const EditAlternativa: React.FC = () => {
             setValue('title', card.title)
             setValue('subject', card.subject)
             setValue('enunciated', card.enunciated)
-            setIdFlashCard(card.id)
+            setIdFlashCard(card.id!)
             setTime(card.time)
-            getAnswer(card.id)
+            getAnswer(card.id!)
             
         } else {
             console.log('Não tem nada');
@@ -210,9 +210,6 @@ const EditAlternativa: React.FC = () => {
             <IonContent>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <CardQuestion
-                            onIonChangeEnunciated={()=>{}}
-                            onIonChangeSubject={()=>{}}
-                            onIonChangeTitle={()=>{}}
                             onClickTheme={() => setShowPopover(true)}
                             isOpenThemes={showPopover}
                             onDidDismissTheme={e => setShowPopover(false)}
@@ -229,9 +226,6 @@ const EditAlternativa: React.FC = () => {
                             refEnunciated={register({required:true})}
                             refSub={register({required:false})}
                             refTitle={register({required:true})}
-                            titleForQuest=''
-                            subjectForQuest=''
-                            enunciatedForQuest=''
                         >
                         <IonRow className='ion-justify-content-center'>
                             <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${temas.textPop}].textPop`} ref={register({required:false})}   type='text'></IonInput>
@@ -254,19 +248,18 @@ const EditAlternativa: React.FC = () => {
                         </CardQuestion>
 
 
-                        <IonModal backdropDismiss={false} isOpen={showModal} cssClass='ios modal-criar'>
-                            <IonCardTitle className="div-modal-alternativa">
-                                <IonText className="modal-text" color="dark">
-                                    <IonLabel>Alterações salvas</IonLabel>
-                                </IonText>
-                                <IonRow className='ion-justify-content-center'>
-                                    <IonButton color='light' className="btn-edit" onClick={() => {
-                                    setShowModal(false)                        
-                                    history.push('/Flash-cards')                        
-                                    }}>Ok</IonButton>
-                                </IonRow>
-                            </IonCardTitle>
-                        </IonModal>
+                        <ModalErrorDefault
+                        backdropDismiss={false}
+                        isOpen={showModal}
+                        cssClass='ios modal-criar'
+                        onClick={() => {
+                            setShowModal(false)                        
+                            history.push('/Flash-cards')                        
+                        }}
+                        msg='Alterações Salvas!'
+                        onDidDismiss={()=>{}}
+                        color='dark'
+                        />
                         <GridAlternatives
                                 onIonChange={()=>{}}
                                 styleGrid={{}}                         

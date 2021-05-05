@@ -7,9 +7,7 @@ export interface Questionnaires {
     creator:User;
     title:string;
     time?:number;
-    flashCards:FlashCard[
-        string
-    ];
+    flashCards:FlashCard[];
 }
 
  interface User{

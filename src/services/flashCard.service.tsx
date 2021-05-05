@@ -21,7 +21,7 @@ export interface FlashCard {
     creator:User;
     creation?:string;
     modification?:string;
-    id:string;
+    id?:string;
     enunciated:string;
     type?:string;
     subject:string;
@@ -68,7 +68,7 @@ export async function createFlashCard(newFlashCard:NewFlashCard){
         .post<FlashCard>('flash-cards', newFlashCard)
         .then(async (res) => {
             console.log(res.data)
-            return await res.data
+            return await res.data //as FlashCard
         })
         .catch((erro)=>{
             console.log(erro)

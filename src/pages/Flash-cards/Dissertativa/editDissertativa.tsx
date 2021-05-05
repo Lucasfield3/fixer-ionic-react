@@ -77,9 +77,9 @@ const EditDissertativa: React.FC = () => {
             setValue('title', card.title)
             setValue('subject', card.subject)
             setValue('enunciated', card.enunciated)
-            setIdFlashCard(card.id)
+            setIdFlashCard(card.id!)
             setTime(card.time)
-            getAnswer(card.id)
+            getAnswer(card.id!)
             setThemes(card.themes)
             
         } else {
@@ -188,9 +188,6 @@ const EditDissertativa: React.FC = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                 <CardQuestion
-                            onIonChangeEnunciated={()=>{}}
-                            onIonChangeSubject={()=>{}}
-                            onIonChangeTitle={()=>{}}
                             onClickTheme={() => setShowPopover(true)}
                             isOpenThemes={showPopover}
                             onDidDismissTheme={e => setShowPopover(false)}
@@ -207,9 +204,6 @@ const EditDissertativa: React.FC = () => {
                             refEnunciated={register({required:true})}
                             refSub={register({required:false})}
                             refTitle={register({required:true})}
-                            titleForQuest=''
-                            subjectForQuest=''
-                            enunciatedForQuest=''
                         >
                         <IonRow className='ion-justify-content-center'>
                             <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${temas.textPop}].textPop`} ref={register({required:false})}   type='text'></IonInput>

@@ -84,7 +84,7 @@ const AnswerAlternativa: React.FC = () => {
             setThemes(card.themes)
             setValue('enunciated' ,card.enunciated)
             setAlternatives(card.alternatives)
-            setIdFlashCard(card.id)
+            setIdFlashCard(card.id!)
             setTime(card.time!)
             setValue('title' ,card.title)
             console.log(history.location)

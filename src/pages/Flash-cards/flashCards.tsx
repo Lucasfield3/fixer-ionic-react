@@ -75,7 +75,7 @@ const FlashCards: React.FC = () => {
     }
     const handleDelete = (card:FlashCard)=>{
         const flashCardDeleted = cards.filter((cardDeleted)=> cardDeleted.id !== card.id )
-        deleteFlashCard(card.id)
+        deleteFlashCard(card.id!)
         setCards(flashCardDeleted)
         console.log(cards)
     }
@@ -114,7 +114,7 @@ const FlashCards: React.FC = () => {
                                     title={card.title} 
                                     key={index} 
                                     type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} 
-                                    id={card.id} 
+                                    id={card.id!} 
                                     onClick={() => handleMenu(card)}>
                                         {filteredCards}
                                     </Cards>

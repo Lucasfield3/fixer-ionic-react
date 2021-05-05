@@ -127,9 +127,6 @@ const QuestaoDissertativa: React.FC = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
 
                     <CardQuestion
-                        onIonChangeEnunciated={()=>{}}
-                        onIonChangeSubject={()=>{}}
-                        onIonChangeTitle={()=>{}}
                         onClickTheme={() => setShowPopover(true)}
                         isOpenThemes={showPopover}
                         onDidDismissTheme={e => setShowPopover(false)}
@@ -146,9 +143,6 @@ const QuestaoDissertativa: React.FC = () => {
                         refEnunciated={register({required:true})}
                         refSub={register({required:false})}
                         refTitle={register({required:true})}
-                        titleForQuest=''
-                        subjectForQuest=''
-                        enunciatedForQuest=''
                     >
                     <IonRow className='ion-justify-content-center'>
                         <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${tema.id}].textPop`} ref={register({required:false})}   type='text'></IonInput>

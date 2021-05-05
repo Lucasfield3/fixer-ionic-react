@@ -254,14 +254,8 @@ export const CardQuestion:React.FC<{
     isOpenSaveTheme:boolean;
     onDidDismissSave:(event: CustomEvent) => void;
     refTitle:(instance: HTMLIonInputElement | null) => void | string;
-    titleForQuest:string;
     refEnunciated:(instance: HTMLIonTextareaElement | null) => void;
-    enunciatedForQuest:string;
     refSub:(instance: HTMLIonInputElement | null) => void | string;
-    subjectForQuest:string;
-    onIonChangeTitle:(event:CustomEvent)=>void;
-    onIonChangeSubject:(event:CustomEvent)=>void;
-    onIonChangeEnunciated:(event:CustomEvent)=>void;
     
 }> = props =>{
 
@@ -270,7 +264,7 @@ export const CardQuestion:React.FC<{
     return(
         <>
             <IonItem className="item-input-title">
-                <IonInput maxlength={100} onIonChange={props.onIonChangeTitle} type="text" required className="input-title" name='title' value={props.titleForQuest} ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
+                <IonInput maxlength={100}  type="text" required className="input-title" name='title'  ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
             </IonItem>
 
             <IonCard className='card-question' color='light'>
@@ -303,7 +297,7 @@ export const CardQuestion:React.FC<{
                             </IonRow>
                         </IonPopover>
 
-                        <IonInput  name='subject' onIonChange={props.onIonChangeSubject} ref={props.refSub} value={props.subjectForQuest} className="input-tema" placeholder="Insira a matéria" ></IonInput>
+                        <IonInput  name='subject' ref={props.refSub}  className="input-tema" placeholder="Insira a matéria" ></IonInput>
                     </IonRow>
                 </IonCardHeader>
                 <IonCardContent className="content-background">
@@ -318,8 +312,6 @@ export const CardQuestion:React.FC<{
                             className='ios question'
                             color='dark'
                             name='enunciated'
-                            onIonChange={props.onIonChangeEnunciated}
-                            value={props.enunciatedForQuest}
                             ref={props.refEnunciated}
                             placeholder="Digite ou cole o enunciado do flash-card">
                         </IonTextarea>
@@ -687,5 +679,117 @@ export const TagsIfIsRight:React.FC<{textConquista:string; textExp:string}> = pr
           </IonRow>
         </>
         )
+
+}
+
+export const CardQuestionModal:React.FC<{
+    onClickTheme:()=>void;
+    isOpenThemes:boolean;
+    onDidDismissTheme:(event: CustomEvent) => void;
+    onClickSaveBtn:()=>void;
+    onClickCleanBtn:()=>void;
+    isOpenSaveTheme:boolean;
+    onDidDismissSave:(event: CustomEvent) => void;
+    refTitle:(instance: HTMLIonInputElement | null) => void | string;
+    titleForQuest:string;
+    refEnunciated:(instance: HTMLIonTextareaElement | null) => void;
+    enunciatedForQuest:string;
+    refSub:(instance: HTMLIonInputElement | null) => void | string;
+    subjectForQuest:string;
+    onIonChangeTitle:(event:CustomEvent)=>void;
+    onIonChangeSubject:(event:CustomEvent)=>void;
+    onIonChangeEnunciated:(event:CustomEvent)=>void;
+    
+}> = props =>{
+
+
+
+    return(
+        <>
+            <IonItem className="item-input-title">
+                <IonInput maxlength={100} onIonChange={props.onIonChangeTitle} type="text" required className="input-title" name='title' value={props.titleForQuest} ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
+            </IonItem>
+
+            <IonCard className='card-question' color='light'>
+                <IonCardHeader style={{ padding: 0 }}>
+                    <IonRow className='ios ion-justify-content-space-between row-header'>
+                        <IonButton onClick={props.onClickTheme} className="ios btn-tema-dissertativa">Tema</IonButton>
+                        <IonPopover
+                            isOpen={props.isOpenThemes}
+                            cssClass='ios temas-custom'
+                            onDidDismiss={props.onDidDismissTheme}
+                        >
+                            <IonRow style={{ marginTop: '0.9rem'}} className='ion-justify-content-center'>
+                                <IonLabel style={{ fontWeight: 'bold', fontSize: '18px' }} color='dark'>Adicione um tema</IonLabel>
+                            </IonRow>
+                            <IonGrid className='back-temas'>
+                                {props.children}
+                            </IonGrid>
+                            <IonRow style={{ marginTop: '-0.9rem' }} className='ion-justify-content-center'>
+                                <IonButton className='btn-save' color='light' onClick={props.onClickSaveBtn}>Salvar</IonButton>
+                                <IonButton onClick={props.onClickCleanBtn} color='light' className='btn-clean'>Limpar</IonButton>
+                            </IonRow>
+                        </IonPopover>
+                        <IonPopover
+                            isOpen={props.isOpenSaveTheme}
+                            cssClass='save'
+                            onDidDismiss={props.onDidDismissSave}
+                        >
+                            <IonRow className='ion-justify-content-center ion-text-align-center'>
+                                <IonLabel style={{ fontWeight: 'bold', fontSize: '18px', lineHeight: '13vh' }} color='success'>Temas salvos!</IonLabel>
+                            </IonRow>
+                        </IonPopover>
+
+                        <IonInput  name='subject' onIonChange={props.onIonChangeSubject} ref={props.refSub} value={props.subjectForQuest} className="input-tema" placeholder="Insira a matéria" ></IonInput>
+                    </IonRow>
+                </IonCardHeader>
+                <IonCardContent className="content-background">
+                    <IonRow className="ios row-enunciated">
+                        <IonTextarea
+                            autoCapitalize='on'
+                            maxlength={240}
+                            overflow-scroll="true"
+                            rows={5}
+                            cols={20}
+                            required
+                            className='ios question'
+                            color='dark'
+                            name='enunciated'
+                            onIonChange={props.onIonChangeEnunciated}
+                            value={props.enunciatedForQuest}
+                            ref={props.refEnunciated}
+                            placeholder="Digite ou cole o enunciado do flash-card">
+                        </IonTextarea>
+                    </IonRow>
+                </IonCardContent>
+                <IonRow className='row-footer' color='light'></IonRow>
+            </IonCard >
+        </>
+    )
+
+}
+export const ModalErrorDefault:React.FC<{
+    cssClass:string; 
+    isOpen:boolean; 
+    msg:string; 
+    onDidDismiss:(event:CustomEvent)=>void;
+    backdropDismiss:boolean; 
+    color:string;
+    onClick:()=>void}> = props=>{
+        
+    return(
+        <>
+             <IonModal backdropDismiss={props.backdropDismiss} onDidDismiss={props.onDidDismiss} isOpen={props.isOpen} cssClass={props.cssClass}>
+                <IonCardTitle className="div-modal-alternativa">
+                    <IonText className="modal-text" color="dark">
+                        <IonLabel color={props.color} >{props.msg}</IonLabel>
+                    </IonText>
+                    <IonRow className='ion-justify-content-center'>
+                        <IonButton  className="btn-edit" onClick={props.onClick}>Ok</IonButton>
+                    </IonRow>
+                </IonCardTitle>
+            </IonModal>
+        </>
+    )
 
 }
