@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
-import { IonCardContent, IonRow, IonCol, IonLabel, IonInput, IonItem, IonAlert, useIonViewWillEnter } from '@ionic/react';
+import { IonCardContent, IonRow, IonCol, IonLabel, IonInput, IonItem, IonAlert } from '@ionic/react';
 import {ButtonRed, ButtonDark} from '../Landing-style/Landing-styled'
 import '../style.css'
 import { cadastro, NewUser } from '../../../services/User.service';
-import Emailinvalid from '../../../components/CardMessages/msg_email_invalid';
 import { ModalErrorDefault } from '../../styles/Page-default/Page-default-styled';
 
 const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
@@ -101,7 +100,6 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     isOpen={isOpen.email!} 
                     onClick={()=> {
                         setIsOpen({email:false})
-                        console.log(isOpen)
                     }}/>
                     <ModalErrorDefault 
                     cssClass='ios modal-criar' 
@@ -112,18 +110,16 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     isOpen={isOpen.name!} 
                     onClick={()=> {
                         setIsOpen({name:false})
-                        console.log(isOpen)
                     }}/>
                     <ModalErrorDefault 
                     cssClass='ios modal-criar' 
                     backdropDismiss={true} 
-                    msg='password inválido.' 
+                    msg='Senha inválida.' 
                     color='danger' 
                     onDidDismiss={()=> setIsOpen({password:false})} 
                     isOpen={isOpen.password!} 
                     onClick={()=> {
                         setIsOpen({password:false})
-                        console.log(isOpen)
                     }}/>
                     <ModalErrorDefault 
                     cssClass='ios modal-criar' 
@@ -149,8 +145,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Senha:</IonLabel>
-                            <IonInput  name='password' ref={register({required:true, maxLength:25})}  color='dark' type='password'></IonInput>
-                            
+                            <IonInput  name='password' ref={register({required:true, maxLength:25})}  color='dark' type='password'></IonInput>                           
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -160,7 +155,6 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Confirmar senha:</IonLabel>
                             <IonInput  name='confirmPassword' ref={register({required:true, maxLength:25})}  color='dark' type='password'></IonInput>
-                            {valueInputs('confirmPassword') !== valueInputs('password') && console.log('As senhas não são iguais.')}
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -180,7 +174,6 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                         <ButtonRed
                             onClick={() => {
                                 props.handleClickCad()
-                                valueInputs('confirmPassword')
                                 cleanInputs()
                             }}
                             size="small"
@@ -191,25 +184,25 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                 </IonRow>
             </form>
                 <IonAlert
-                            isOpen={showAlert1}
-                            onDidDismiss={() => {
-                                props.handleClickCad();
-                                setShowAlert1(false);
-                            }}
-                            cssClass='my-custom-class .alert-wrapper'
-                            header={'Parabéns !!!'}
-                            subHeader={'Cadastro realizado com sucesso.'}
-                            message={'Um e-mail de confirmação foi enviado para sua caixa de entrada.'}
-                            buttons={[{
-                                text: 'OK',
-                                handler: () => {
-                                    props.handleClickCad();
-                                    setShowAlert1(false);
-                                }
+                    isOpen={showAlert1}
+                    onDidDismiss={() => {
+                        props.handleClickCad();
+                        setShowAlert1(false);
+                    }}
+                    cssClass='my-custom-class .alert-wrapper'
+                    header={'Parabéns !!!'}
+                    subHeader={'Cadastro realizado com sucesso.'}
+                    message={'Um e-mail de confirmação foi enviado para sua caixa de entrada.'}
+                    buttons={[{
+                        text: 'OK',
+                        handler: () => {
+                            props.handleClickCad();
+                            setShowAlert1(false);
+                        }
 
 
-                            }]}
-                        />
+                    }]}
+                />
 
             </IonCardContent>
         </>

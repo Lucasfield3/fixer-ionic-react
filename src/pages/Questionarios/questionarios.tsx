@@ -5,14 +5,15 @@ import {
   IonFabButton,
   IonIcon,
   IonContent, 
-  IonFab, 
+  IonFab,
+  useIonViewWillEnter, 
 } from '@ionic/react'
 import { add} from 'ionicons/icons';
 import './style.css'
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router-dom';
 import CardsQuestionarios from './cardsQuestionario';
-import { Questionnaires } from '../../services/Questionnaires.service';
+import { getQuestionnaires, Questionnaires } from '../../services/Questionnaires.service';
 import { ButtonMenuDark, CardMenu, ContainerCards, HeaderDefault, SearchBar, TitleCards, Vazio } from '../styles/Page-default/Page-default-styled';
 
 async function openMenu(){
@@ -26,6 +27,17 @@ const CardQuestionarios: React.FC = ()=>{
     const [searchText, setSearchText] = useState('');
     const [showActionSheet, setShowActionSheet] = useState(false);
     const [quests, setQuests] = useState<Questionnaires[]>([])
+
+    async function getQuests() {
+        let questsValues = await getQuestionnaires()
+        setQuests(questsValues)
+    }
+
+    useIonViewWillEnter(()=>{
+
+        if(quests) getQuests()
+
+    }, [])
 
     return(
         <>
@@ -48,7 +60,7 @@ const CardQuestionarios: React.FC = ()=>{
                         }}>
                                {quests.map((quest: Questionnaires, index) => {
                                     return (
-                                        <CardsQuestionarios text='Titulo' title='Titulo' key={index} type='tipo' id={quest.creator.id} onClick={() => setShowActionSheet(true)} />
+                                        <CardsQuestionarios text='Titulo' title={quest.title} key={index} type='tipo' id={index.toString()} onClick={() => setShowActionSheet(true)} />
                                     )
                                 })}
                             {quests.length == 0 && <Vazio/>|| '' }

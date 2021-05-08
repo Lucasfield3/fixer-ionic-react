@@ -17,7 +17,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { createFlashCard, Payload,  NewAlternative, NewFlashCard } from '../../../services/flashCard.service';
 import { getPayload } from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalChoose, ModalDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
+import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalChoose, ModalDefault, ModalErrorDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
 import { Alternative } from '../../../services/Questionnaires.service';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -148,9 +148,59 @@ const QuestaoAlternativa: React.FC = () => {
         data.alternatives = alternativesSend
         data.creator = payLoad.id
         ShuffleAlternativas(alternativesSend)
-        console.log(data)
-        await createFlashCard(data)
-        setShowModal(true)
+        if(convertTime() < 10000 && checked == true){
+            setIsOpen(true)
+        }else if(alternatives.length == 0){
+            setIsOpen(true)
+        }else{
+            await createFlashCard(data)
+            setShowModal(true)
+        }       
+        
+       
+    }
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    const MsgsAndErrors = ()=>{
+
+        if(errors.enunciated && errors.title && errors.answerFlashCard ||
+            errors.enunciated && errors.title ||
+            errors.enunciated && errors.answerFlashCard ||
+            errors.answerFlashCard && errors.title
+            ){
+            return 'Campos inválidos.'
+        }else if(errors.enunciated){
+            return 'Enunciado inválido.'
+        }else if(errors.title){
+            return 'Título inválido.'
+        }else if(errors.answerFlashCard){
+            return 'Resposta inválida.'
+        }else if(alternatives.length == 0){
+            return 'Numero insuficiênte de alternativas.'
+        } else if(convertTime() < 10000 && checked == true){
+            return 'Tempo muito curto.' 
+        }
+       
+    }
+    const Errors = ()=>{
+
+        if(errors.enunciated && errors.title && errors.answerFlashCard ||
+            errors.enunciated && errors.title ||
+            errors.enunciated && errors.answerFlashCard ||
+            errors.answerFlashCard && errors.title
+            ){
+            setIsOpen(true)
+        }else if(errors.enunciated){
+            setIsOpen(true)
+        }else if(errors.title){
+            setIsOpen(true)
+        }else if(errors.answerFlashCard){
+            setIsOpen(true)
+        }else if(alternatives.length == 0){
+            setIsOpen(true)
+        }
+  
     }
   
     return (
@@ -183,9 +233,9 @@ const QuestaoAlternativa: React.FC = () => {
                             setShowPopover(false)
                             setShowPopover(false)
                         }}
-                        refEnunciated={register({required:true})}
-                        refSub={register({required:false})}
-                        refTitle={register({required:true})}
+                        refEnunciated={register({required:true, minLength:10})}
+                        refSub={register({required:false, minLength:5, maxLength:50})}
+                        refTitle={register({required:true, minLength:5, maxLength:50})}
                     >
                     <IonRow className='ion-justify-content-center'>
                         <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${tema.id}].textPop`} ref={register({required:false})}   type='text'></IonInput>
@@ -243,9 +293,9 @@ const QuestaoAlternativa: React.FC = () => {
                             <GridAlternatives
                             onIonChange={()=> {}}
                             styleGrid={{}}                         
-                            style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
-                            refAlternatives={register({required:true})}
-                            refAnswer={register({required:true})}
+                            style={{height: textRightAnswer.length == 0 && '4rem' || 'auto'}}
+                            refAlternatives={register({required:true, minLength:1, maxLength:100})}
+                            refAnswer={register({required:true, minLength:1, maxLength:100})}
                             autoGrow={textRightAnswer == '' && false || true}
                             nameAnswerFlashCard='answerFlashCard'
                             >
@@ -283,12 +333,19 @@ const QuestaoAlternativa: React.FC = () => {
                             >
                                 {shownTimer && <Timer  value={time} onChange={(event) => setTime(event.target.value!)} />}
                             </RowTimer>
-                        <Limitedalternativa
-                            onClick={() => setShowPopLimit(false)}
-                            isOpen={showPopLimit}
-                            onDidDismiss={() => setShowPopLimit(false)} />
-                        <RowBtnCreate onClick={()=> null} style={{marginTop: '1.7rem' }} >Criar</RowBtnCreate>
-                    </form>
+                        <RowBtnCreate onClick={()=> Errors()} style={{marginTop: '1.7rem' }} >Criar</RowBtnCreate>
+                        <ModalErrorDefault 
+                        cssClass='ios modal-error-flash' 
+                        backdropDismiss={true} 
+                        msg={MsgsAndErrors()!} 
+                        color='danger' 
+                        onDidDismiss={()=> setIsOpen(false)} 
+                        isOpen={isOpen} 
+                        onClick={()=> {
+                            setIsOpen(false)
+                        }}/>
+                    </form>            
+                    
                 </IonContent>
 
             </IonPage>

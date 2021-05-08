@@ -49,7 +49,7 @@ export const EditQuest:React.FC = () =>{
     }
 
     const DeleteCard = (id:number)=>{
-        const cardDeleted = cards.filter( card=> parseInt(card.id) !== id)
+        const cardDeleted = cards.filter( card=> parseInt(card.id!) !== id)
         setCards(cardDeleted)
     }
     useIonViewWillEnter(()=>{

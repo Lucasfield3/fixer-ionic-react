@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import {
     IonButton, 
     IonCard, 
@@ -24,9 +24,9 @@ import './style.css'
 import { add, remove } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 import { menuController } from '@ionic/core';
-import { FlashCard, getAllFlashCards, NewAlternative, NewFlashCard, Payload, User } from '../../services/flashCard.service';
-import { ButtonArrow,  CardQuestion,  ContainerList, GridAlternatives, HeaderDefault, RowBtnCreate, RowTimer, SearchBar, Timer } from '../styles/Page-default/Page-default-styled';
-import { Controller, useForm } from 'react-hook-form';
+import { FlashCard, NewAlternative, NewFlashCard, Payload} from '../../services/flashCard.service';
+import { ButtonArrow, CardQuestionModal,  ContainerList, GridAlternatives, HeaderDefault, RowBtnCreate, RowTimer, SearchBar, Timer } from '../styles/Page-default/Page-default-styled';
+import { useForm } from 'react-hook-form';
 import { createQuest, Questionnaires } from '../../services/Questionnaires.service';
 import { getPayload } from '../../services/Authentication.service';
 
@@ -141,7 +141,6 @@ const CriarQuestionario:React.FC = ()=>{
             setCards([...cards, { 
                 title:title,
                 enunciated:enunciated,
-                id:idFlashCard,
                 subject:subject,
                 themes:themesSend,
                 alternatives:alternatives,
@@ -338,7 +337,7 @@ const CriarQuestionario:React.FC = ()=>{
                                 setShowModalAlternative(false)
                                 ClearInputsModal()
                                 }} isOpen={showModalAlternative} cssClass='ios modal-alternativa'>
-                                <CardQuestion
+                                <CardQuestionModal
                                     onIonChangeTitle={(event:CustomEvent)=>setTitle(event.detail.value)}
                                     onIonChangeEnunciated={(event:CustomEvent)=>{setEnunciated(event.detail.value)}}
                                     onIonChangeSubject={(event:CustomEvent)=>{setSubject(event.detail.value)}}
@@ -375,7 +374,7 @@ const CriarQuestionario:React.FC = ()=>{
                                                 <IonFabButton onClick={() => RemoveTema(theme.id)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove} ></IonIcon></IonFabButton>
                                             </IonRow>
                                         ))}
-                                </CardQuestion>
+                                </CardQuestionModal>
 
                                 <GridAlternatives
                                 onIonChange={(event:CustomEvent)=>{setAnswerFlashCard(event.detail.value)}}

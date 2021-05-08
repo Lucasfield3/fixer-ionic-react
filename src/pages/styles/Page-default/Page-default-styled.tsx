@@ -264,7 +264,7 @@ export const CardQuestion:React.FC<{
     return(
         <>
             <IonItem className="item-input-title">
-                <IonInput maxlength={100}  type="text" required className="input-title" name='title'  ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
+                <IonInput maxlength={100}  type="text" className="input-title" name='title'  ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
             </IonItem>
 
             <IonCard className='card-question' color='light'>
@@ -308,7 +308,6 @@ export const CardQuestion:React.FC<{
                             overflow-scroll="true"
                             rows={5}
                             cols={20}
-                            required
                             className='ios question'
                             color='dark'
                             name='enunciated'
@@ -343,7 +342,7 @@ export const ModalDefault:React.FC<{cssClass:string; isOpen:boolean; onClickYes:
         <>
              <IonModal  backdropDismiss={false} isOpen={props.isOpen} cssClass={props.cssClass}>
                 <IonCardTitle className="div-modal-alternativa">
-                    <IonText className="modal-text" color="dark">
+                    <IonText className="modal-text-default" color="dark">
                         <IonLabel>{props.msg}</IonLabel>
                     </IonText>
                     <IonCardSubtitle className="btn-modalDefault">
