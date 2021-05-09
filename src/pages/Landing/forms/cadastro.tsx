@@ -10,25 +10,31 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
 
     const [showAlert1, setShowAlert1] = useState<boolean>(false);
     const { register, handleSubmit, errors, setValue, getValues } = useForm();
-    interface ArrayErros {
-        email?:boolean;
-        name?:boolean;
-        password?:boolean;
-        confirmPass?:boolean;
-        camposInvalidos?:boolean;
-    }
-    const errorsArray:ArrayErros = {
-        email:false,
-        name:false,
-        password:false,
-        confirmPass:false,
-        camposInvalidos:false,
-    }
+    // interface ArrayErros {
+    //     email?:boolean;
+    //     name?:boolean;
+    //     password?:boolean;
+    //     confirmPass?:boolean;
+    //     camposInvalidos?:boolean;
+    // }
+    // const errorsArray:ArrayErros = {
+    //     email:false,
+    //     name:false,
+    //     password:false,
+    //     confirmPass:false,
+    //     camposInvalidos:false,
+    // }
 
-    const [isOpen, setIsOpen] = useState<ArrayErros>(errorsArray)
+    const [isOpen, setIsOpen] = useState(false)
     const onSubmit = (data:NewUser) => {
         console.log(data)
-        cadastro(data)
+
+        if(valueInputs('confirmPassword') !== valueInputs('password')){
+            setIsOpen(true)
+        }else{
+            cadastro(data)
+            setShowAlert1(true)
+        }
 
     }
 
@@ -50,19 +56,39 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
             errors.name && errors.password || 
             errors.email && errors.name || 
             errors.email && errors.password){
-            setIsOpen({camposInvalidos:true})
+            setIsOpen(true)
         }else if(errors.email) {
-            setIsOpen({email:true})
+            setIsOpen(true)
         }else if(errors.name){
-            setIsOpen({name:true})
+            setIsOpen(true)
         }else if(errors.password){
-            setIsOpen({password:true})
-        }else if(valueInputs('confirmPassword') !== valueInputs('password')){
-            setIsOpen({confirmPass:true})
-        }else {
-            setShowAlert1(true)
+            setIsOpen(true)
         }
 
+    }
+
+    const MsgsAndErrors = ()=>{
+
+        if(errors.email && errors.name && errors.password || 
+            errors.name && errors.password || 
+            errors.email && errors.name || 
+            errors.email && errors.password){
+
+            return 'Campos inválidos.'
+        }else if(errors.email){
+
+            return 'Email inválido.'
+        }else if(errors.name){
+
+            return 'Nome inválido.'
+        }else if(errors.password){
+
+            return 'Senha inválida.'
+        }else if(valueInputs('confirmPassword') !== valueInputs('password')){
+
+            return 'As senhas não são iguais.'
+        }
+       
     }
 
        
@@ -94,53 +120,14 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                 <ModalErrorDefault 
                     cssClass='ios modal-criar' 
                     backdropDismiss={true} 
-                    msg='Email inválido.' 
+                    msg={MsgsAndErrors()!} 
                     color='danger' 
-                    onDidDismiss={()=> setIsOpen({email:false})} 
-                    isOpen={isOpen.email!} 
+                    onDidDismiss={()=> setIsOpen(false)} 
+                    isOpen={isOpen} 
                     onClick={()=> {
-                        setIsOpen({email:false})
+                        setIsOpen(false)
                     }}/>
-                    <ModalErrorDefault 
-                    cssClass='ios modal-criar' 
-                    backdropDismiss={true} 
-                    msg='Nome inválido.' 
-                    color='danger' 
-                    onDidDismiss={()=> setIsOpen({name:false})} 
-                    isOpen={isOpen.name!} 
-                    onClick={()=> {
-                        setIsOpen({name:false})
-                    }}/>
-                    <ModalErrorDefault 
-                    cssClass='ios modal-criar' 
-                    backdropDismiss={true} 
-                    msg='Senha inválida.' 
-                    color='danger' 
-                    onDidDismiss={()=> setIsOpen({password:false})} 
-                    isOpen={isOpen.password!} 
-                    onClick={()=> {
-                        setIsOpen({password:false})
-                    }}/>
-                    <ModalErrorDefault 
-                    cssClass='ios modal-criar' 
-                    backdropDismiss={true} 
-                    msg='As senhas não são iguais.' 
-                    color='danger' 
-                    onDidDismiss={()=> setIsOpen({confirmPass:false})} 
-                    isOpen={isOpen.confirmPass!} 
-                    onClick={()=> {
-                        setIsOpen({confirmPass:false})
-                    }}/>
-                      <ModalErrorDefault 
-                    cssClass='ios modal-criar' 
-                    backdropDismiss={true} 
-                    msg='Campos inválidos.' 
-                    color='danger' 
-                    onDidDismiss={()=> setIsOpen({camposInvalidos:false})} 
-                    isOpen={isOpen.camposInvalidos!} 
-                    onClick={()=> {
-                        setIsOpen({camposInvalidos:false})
-                    }}/>
+                   
                 <IonRow className="ion-align-items-center">
                     <IonCol>
                         <IonItem color='light'>
@@ -198,6 +185,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                         handler: () => {
                             props.handleClickCad();
                             setShowAlert1(false);
+                            cleanInputs()
                         }
 
 

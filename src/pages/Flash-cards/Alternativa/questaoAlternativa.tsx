@@ -99,7 +99,7 @@ const QuestaoAlternativa: React.FC = () => {
     useIonViewWillLeave(() => {
         menuController.enable(true)
         CleanInputs()
-        setChecked(false)
+        
     }, [])
     const CleanInputs = () => {
         setValue('enunciated', '')
@@ -109,6 +109,9 @@ const QuestaoAlternativa: React.FC = () => {
         setTime('')
         setAlternatives([])
         setThemes([])
+        let dinamicChecked = checked == true && false || false
+        setChecked(dinamicChecked)
+        setShownTimer(dinamicChecked)
     }
     const convertTime = () => {
         const [minutes, seconds] = time.split(':').map(Number)
@@ -208,10 +211,7 @@ const QuestaoAlternativa: React.FC = () => {
             <IonPage>
                 <HeaderDefault>
                     <ButtonArrow onClick={() => {
-                            history.push('/Flash-cards')
-                            setThemes([])
-                            setChecked(false)
-                            setShownTimer(false)
+                        history.push('/Flash-cards')
                         }}/>
                 </HeaderDefault>
 
@@ -265,6 +265,7 @@ const QuestaoAlternativa: React.FC = () => {
                         }}
                         onClickYes={() => {
                             setShowModal2(true)
+                            setShowModal(false)
                         }}
                         msg='Deseja criar mais um flashcard?'
                         cssClass='ios modal-criar'
@@ -275,16 +276,11 @@ const QuestaoAlternativa: React.FC = () => {
                             isOpen={showModal2}
                             onClickAlt={() => {                       
                                 setShowModal2(false)
-                                setShowModal(false)
                                 CleanInputs()
-                                setChecked(false)
-                                setShownTimer(false)
                                 history.push('/questaoAlternativa')
                             }}
                             onClickDiss={() => {                             
                                 setShowModal2(false)
-                                setShowModal(false)
-                                CleanInputs()
                                 history.push('/questaoDissertativa')
                             }}
                         />

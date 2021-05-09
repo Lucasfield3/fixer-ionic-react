@@ -215,6 +215,7 @@ const AnswerAlternativa: React.FC = () => {
                     setShowLoading(!showLoading)
                     handleFlipAnswer()
                     settingLoading()
+                    disableAlternatives()
                     }}
                     isOpenLoadig={showLoading}
                     card={check!.correct && <CardGreen textRightAnswer={check.answer} /> || cardRed}

@@ -15,7 +15,7 @@ import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import { getPayload } from '../../../services/Authentication.service';
 import { Payload, createFlashCard, NewFlashCard } from '../../../services/flashCard.service';
-import {  ButtonArrow, CardQuestion, CreateAreaDissertativeAnswer, HeaderDefault, ModalChoose, ModalDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
+import {  ButtonArrow, CardQuestion, CreateAreaDissertativeAnswer, HeaderDefault, ModalChoose, ModalDefault, ModalErrorDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
 import { Controller, useForm } from 'react-hook-form';
 
 
@@ -80,8 +80,9 @@ const QuestaoDissertativa: React.FC = () => {
         setValue('answerFlashCard', '')
         setTime('')
         setThemes([])
-        setChecked(false)
-        setShownTimer(!shownTimer)
+        let dinamicChecked = checked == true && false || false
+        setChecked(dinamicChecked)
+        setShownTimer(dinamicChecked)
     }
   
     const convertTime = () => {
@@ -106,9 +107,54 @@ const QuestaoDissertativa: React.FC = () => {
         data.creator = payLoad.id
         data.time = convertTime()
         data.themes = themesSend
-        await createFlashCard(data)
-        setShowModal(true)
+        if(convertTime() < 10000 && checked == true){
+
+            setIsOpen(true)
+        }else{
+            await createFlashCard(data)
+            setShowModal(true)
+        }
+        
     }
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    const MsgsAndErrors = ()=>{
+
+        if(errors.enunciated && errors.title && errors.answerFlashCard ||
+            errors.enunciated && errors.title ||
+            errors.enunciated && errors.answerFlashCard ||
+            errors.answerFlashCard && errors.title
+            ){
+            return 'Campos inválidos.'
+        }else if(errors.enunciated){
+            return 'Enunciado inválido.'
+        }else if(errors.title){
+            return 'Título inválido.'
+        }else if(errors.answerFlashCard){
+            return 'Resposta inválida.'
+        }else if(convertTime() < 10000 && checked == true){
+            return 'Tempo muito curto.' 
+        }
+       
+    }
+    const Errors = ()=>{
+
+        if(errors.enunciated && errors.title && errors.answerFlashCard ||
+            errors.enunciated && errors.title ||
+            errors.enunciated && errors.answerFlashCard ||
+            errors.answerFlashCard && errors.title
+            ){
+            setIsOpen(true)
+        }else if(errors.enunciated){
+            setIsOpen(true)
+        }else if(errors.title){
+            setIsOpen(true)
+        }else if(errors.answerFlashCard){
+            setIsOpen(true)
+        }
+    }
+  
 
    
     return (
@@ -171,16 +217,26 @@ const QuestaoDissertativa: React.FC = () => {
                         }}
                         onClickYes={() => {
                             setShowModal2(true)
+                            setShowModal(false)
                         }}
                         msg='Deseja criar mais um flashcard?'
                         cssClass='ios modal-criar'
                         />
+                        <ModalErrorDefault 
+                        cssClass='ios modal-error-flash' 
+                        backdropDismiss={true} 
+                        msg={MsgsAndErrors()!} 
+                        color='danger' 
+                        onDidDismiss={()=> setIsOpen(false)} 
+                        isOpen={isOpen} 
+                        onClick={()=> {
+                            setIsOpen(false)
+                        }}/>
                         <ModalChoose
                             isOpen={showModal2}
                             onClickAlt={() => {
                                 setShowModal2(false)
                                 setShowModal(false)
-                                CleanInputs()
                                 history.push('/questaoAlternativa')
                             }}
                             onClickDiss={() => {
@@ -206,7 +262,7 @@ const QuestaoDissertativa: React.FC = () => {
                         >
                            {shownTimer && <Timer  value={time} onChange={(event) => setTime(event.target.value!)} />}
                         </RowTimer>
-                        <RowBtnCreate onClick={()=> null} style={{marginTop: '1.7rem' }} >Criar</RowBtnCreate>
+                        <RowBtnCreate onClick={()=> Errors()} style={{marginTop: '1.7rem' }} >Criar</RowBtnCreate>
                     </form>
                 </IonContent>
 
