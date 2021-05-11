@@ -256,6 +256,9 @@ export const CardQuestion:React.FC<{
     refTitle:(instance: HTMLIonInputElement | null) => void | string;
     refEnunciated:(instance: HTMLIonTextareaElement | null) => void;
     refSub:(instance: HTMLIonInputElement | null) => void | string;
+    onChangeEnun:(event: CustomEvent) => void;
+    onChangeSubj:(event: CustomEvent) => void;
+    onChangeTitle:(event: CustomEvent) => void;
     
 }> = props =>{
 
@@ -264,7 +267,7 @@ export const CardQuestion:React.FC<{
     return(
         <>
             <IonItem className="item-input-title">
-                <IonInput maxlength={100}  type="text" className="input-title" name='title'  ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
+                <IonInput  maxlength={100}  type="text" onIonChange={props.onChangeTitle} className="input-title" name='title'  ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
             </IonItem>
 
             <IonCard className='card-question' color='light'>
@@ -297,7 +300,7 @@ export const CardQuestion:React.FC<{
                             </IonRow>
                         </IonPopover>
 
-                        <IonInput  name='subject' ref={props.refSub}  className="input-tema" placeholder="Insira a matéria" ></IonInput>
+                        <IonInput  name='subject' ref={props.refSub} onIonChange={props.onChangeSubj} className="input-tema" placeholder="Insira a matéria" ></IonInput>
                     </IonRow>
                 </IonCardHeader>
                 <IonCardContent className="content-background">
@@ -311,6 +314,7 @@ export const CardQuestion:React.FC<{
                             className='ios question'
                             color='dark'
                             name='enunciated'
+                            onIonChange={props.onChangeEnun}
                             ref={props.refEnunciated}
                             placeholder="Digite ou cole o enunciado do flash-card">
                         </IonTextarea>

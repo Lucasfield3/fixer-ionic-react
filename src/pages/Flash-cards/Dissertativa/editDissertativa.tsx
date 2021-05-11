@@ -169,6 +169,7 @@ const EditDissertativa: React.FC = () => {
         await putFlashCard(data)
         setShowModal(true)
     }
+    
    
     return (
         <>
@@ -204,6 +205,9 @@ const EditDissertativa: React.FC = () => {
                             refEnunciated={register({required:true})}
                             refSub={register({required:false})}
                             refTitle={register({required:true})}
+                            onChangeEnun={()=> {}}
+                            onChangeSubj={()=> {}}
+                            onChangeTitle={()=> {}}
                         >
                         <IonRow className='ion-justify-content-center'>
                             <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${temas.textPop}].textPop`} ref={register({required:false})}   type='text'></IonInput>

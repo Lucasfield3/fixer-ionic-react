@@ -236,6 +236,9 @@ const QuestaoAlternativa: React.FC = () => {
                         refEnunciated={register({required:true, minLength:10})}
                         refSub={register({required:false, minLength:5, maxLength:50})}
                         refTitle={register({required:true, minLength:5, maxLength:50})}
+                        onChangeEnun={()=> {}}
+                        onChangeSubj={()=> {}}
+                        onChangeTitle={()=> {}}
                     >
                     <IonRow className='ion-justify-content-center'>
                         <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${tema.id}].textPop`} ref={register({required:false})}   type='text'></IonInput>

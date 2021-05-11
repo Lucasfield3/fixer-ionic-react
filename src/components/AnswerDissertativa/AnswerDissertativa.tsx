@@ -123,6 +123,7 @@ const AnswerDissertativa: React.FC = () => {
         }
 
     }
+    
     const [progress, setProgress] = useState<number>(0)
     const ProgressBar = (validator:Checker)=>{
         var progressNumber:string

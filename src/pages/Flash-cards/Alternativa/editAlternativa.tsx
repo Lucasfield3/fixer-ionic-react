@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import {
     IonButton,
     IonPage,
@@ -22,7 +22,7 @@ import { useHistory } from 'react-router';
 import {  Payload, Alternative, NewAlternative, FlashCard, putFlashCard, getRightAnswer, NewFlashCard } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
-import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalErrorDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
+import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalDefault, ModalErrorDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
 import { Controller, useForm } from 'react-hook-form';
 
 
@@ -37,9 +37,11 @@ const EditAlternativa: React.FC = () => {
     const [showPopLimit, setShowPopLimit] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave]= useState<boolean>(false);
     const [showModal, setShowModal] = useState(false)
+    const [showModalExit, setShowModalExit] = useState(false)
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [answer, setAnswer] = useState<string>('')
+    const [title, setTitle] = useState<string>('')
     const [alternatives, setAlternatives] = useState<NewAlternative[]>([]);
     let temas = {
         id:0,
@@ -97,12 +99,16 @@ const EditAlternativa: React.FC = () => {
         const rightAnswer = await getRightAnswer(id) as string     
         setValue('answerFlashCard', rightAnswer)
         removeRightAnswerOfAlternative(rightAnswer)
+        console.log(rightAnswer)
     }
+ 
+
     useIonViewWillEnter(()=>{
         if (history.location.state) {
             const card = history.location.state as FlashCard
             console.log(card)
             setValue('title', card.title)
+            setTitle(card.title)
             setValue('subject', card.subject)
             setValue('enunciated', card.enunciated)
             setIdFlashCard(card.id!)
@@ -122,8 +128,6 @@ const EditAlternativa: React.FC = () => {
     const convertTime = () => {
         const [minutes, seconds] = newTime.split(':').map(Number)
         const newTimeInSeconds = (minutes * 60) + seconds
-        console.log(newTime)
-        console.log(newTimeInSeconds * 1000)
         return newTimeInSeconds * 1000
 
     }
@@ -135,24 +139,23 @@ const EditAlternativa: React.FC = () => {
         const timeSecondsUnconverted = ((time!/1000) % 60 )//segundos
         console.log(timeSecondsUnconverted)
 
+
         if(timeMinutsUnconverted < 10 && timeSecondsUnconverted < 10){
 
             const timeUnconverted = `0${timeMinutsUnconverted}:0${timeSecondsUnconverted}`
- 
             return timeUnconverted
         }else if(timeMinutsUnconverted < 10){
             const timeUnconverted = `0${timeMinutsUnconverted}:${timeSecondsUnconverted}`
-            
             return timeUnconverted
         }else if(timeSecondsUnconverted < 10){
             const timeUnconverted = `${timeMinutsUnconverted}:0${timeSecondsUnconverted}`
-            
             return timeUnconverted
         }else{
             const timeUnconverted = `${timeMinutsUnconverted}:${timeSecondsUnconverted}`
-
             return timeUnconverted
         }
+
+       
         
 
     }
@@ -168,10 +171,20 @@ const EditAlternativa: React.FC = () => {
         return  alternativesSend;
     }
 
-    
+    // const enableButton = () => {
+    //     const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
+    //     btnFinal.removeAttribute("disabled")
+    // }
+    // const disableButton = () => {
+    //     const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
+    //     btnFinal.setAttribute('disabled', 'disabled')
+    // }
+
+ 
 
     const onSubmit = async(data:NewFlashCard) =>{
         const payLoad = getPayload() as Payload
+        const card = history.location.state as FlashCard
         let alternativesSend:NewAlternative[] = []
         let temasSend:string[] = []
         themes.map((textPop)=>{
@@ -188,11 +201,89 @@ const EditAlternativa: React.FC = () => {
         data.creator = payLoad.id
         data.id = idFlashCard
         ShuffleAlternativas(alternativesSend)
-        await putFlashCard(data)
-        console.log(data)
-        setShowModal(true)
+        if(errors.subject){
+            setIsOpen(true)
+        }else{
+            await putFlashCard(data)
+            console.log(data)
+            setShowModal(true)
+        }
+        
+    }
+   
+    
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    const MsgsAndErrors = ()=>{
+
+        if( errors.title && errors.subject  && errors.enunciated  && errors.answerFlashCard ||
+            errors.title && errors.subject  && errors.enunciated ||
+            errors.title && errors.subject  && errors.answerFlashCard ||
+            errors.title && errors.subject ||
+            errors.title && errors.enunciated ||
+            errors.title && errors.answerFlashCard ||
+           errors.subject  && errors.enunciated ||
+           errors.subject  && errors.answerFlashCard ||
+           errors.enunciated  && errors.answerFlashCard ){
+            return 'Campos inválidos.'
+        }else if(errors.enunciated){
+            return 'Enunciado inválido.'
+        }else if(errors.title){
+            return 'Título inválido.'
+        }else if(errors.answerFlashCard){
+            return 'Resposta inválida.'
+        }else if(errors.subject){
+            return 'Matéria inválida.'
+        }else if(alternatives.length == 0){
+            return 'Numero insuficiênte de alternativas.'
+        } else if(convertTime() < 10000 && checked == true){
+            return 'Tempo muito curto.' 
+        }else {
+
+            return 'Tem certeza que deseja sair sem salvar?'
+        }
+        
+       
     }
 
+    const valueInputs = (value:string)=>{
+        const inputValue = getValues(value)
+        return inputValue
+    }
+
+    async function getFilterAnswer(id:string){
+        const rightAnswer = await getRightAnswer(id) as string  
+        return rightAnswer
+    }
+
+   
+
+const Errors =()=>{
+
+    if( errors.title && errors.subject  && errors.enunciated  && errors.answerFlashCard ||
+        errors.title && errors.subject  && errors.enunciated ||
+        errors.title && errors.subject  && errors.answerFlashCard ||
+        errors.title && errors.subject ||
+        errors.title && errors.enunciated ||
+        errors.title && errors.answerFlashCard ||
+       errors.subject  && errors.enunciated ||
+       errors.subject  && errors.answerFlashCard ||
+       errors.enunciated  && errors.answerFlashCard ){
+           setIsOpen(true)
+       }else if(errors.enunciated){
+        setIsOpen(true)
+        }else if(errors.title){
+            setIsOpen(true)
+        }else if(errors.answerFlashCard){
+            setIsOpen(true)
+        }else if(alternatives.length == 0){
+            setIsOpen(true)
+        }
+        
+}
+
+    const card = history.location.state as FlashCard
     
     return (
         <>
@@ -223,9 +314,12 @@ const EditAlternativa: React.FC = () => {
                                 setShowPopover(false)
                                 setShowPopover(false)
                             }}
-                            refEnunciated={register({required:true})}
-                            refSub={register({required:false})}
-                            refTitle={register({required:true})}
+                            refEnunciated={register({required:true, minLength:10})}
+                            refSub={register({required:false, minLength:5, maxLength:50})}
+                            refTitle={register({required:true, minLength:5, maxLength:50})}
+                            onChangeEnun={()=> {}}
+                            onChangeSubj={()=> {}}
+                            onChangeTitle={()=> {}}
                         >
                         <IonRow className='ion-justify-content-center'>
                             <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${temas.textPop}].textPop`} ref={register({required:false})}   type='text'></IonInput>
@@ -260,8 +354,32 @@ const EditAlternativa: React.FC = () => {
                         onDidDismiss={()=>{}}
                         color='dark'
                         />
+                        <ModalErrorDefault 
+                        cssClass='ios modal-error-flash' 
+                        backdropDismiss={true} 
+                        msg={MsgsAndErrors()!} 
+                        color='danger' 
+                        onDidDismiss={()=> setIsOpen(false)} 
+                        isOpen={isOpen} 
+                        onClick={()=> {
+                            setIsOpen(false)
+                        }}/>
+                        <ModalDefault
+                        isOpen={showModalExit}
+                        onClickNo={() => {                        
+                            setShowModalExit(false)
+                        }}
+                        onClickYes={() => {
+                            setShowModalExit(false)
+                            history.push('Flash-cards')
+                            menuController.enable(true)
+                        }}
+                        msg='Tem certeza que deseja sair sem salvar?'
+                        cssClass='ios modal-criar'
+                        />
+
                         <GridAlternatives
-                                onIonChange={()=>{}}
+                                onIonChange={()=> {}}
                                 styleGrid={{}}                         
                                 style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
                                 refAlternatives={register({required:true})}
@@ -273,7 +391,8 @@ const EditAlternativa: React.FC = () => {
                                         <IonTextarea  className='ios add-alternativas'  
                                         placeholder='Insira a/as alternativas' 
                                         color='dark' ref={register({required:false})} 
-                                        name={`alternatives[${{answer}}].answer`}>                         
+                                        name={`alternatives[${{answer}}].answer`}
+                                        >                         
                                         </IonTextarea>
                                         <IonFabButton id='add-alternative' className='add-btn'  onClick={()=>{
                                             AddAlternative()
@@ -302,13 +421,18 @@ const EditAlternativa: React.FC = () => {
                                 checked={checked}
                                 style={{}}
                                 >
-                                    {shownTimer && <Timer  value={timeUnconverted(time!)} onChange={(event) => setNewTime(event.target.value!)} />}
+                                    {shownTimer && <Timer  value={timeUnconverted(time!)} onChange={(event) => {
+                                        setNewTime(event.target.value!)
+                                        }} />}
                                 </RowTimer>
                         <Limitedalternativa 
                         onClick={()=> setShowPopLimit(false)} 
                         isOpen={showPopLimit} 
                         onDidDismiss={()=>setShowPopLimit(false)} />
-                   <RowBtnCreate onClick={()=> null} style={{marginTop: '1.7rem' }} >Salvar</RowBtnCreate>
+                   {/* <RowBtnCreate onClick={()=> Errors()} style={{marginTop: '1.7rem' }} >Salvar</RowBtnCreate> */}
+                   <IonRow slot='start' className='ios ion-justify-content-center row-btn-final'>
+                        <IonButton  type='submit' onClick={() => Errors()} style={{marginTop: '1.7rem' }} className='ios btn-final' color='light' size='default' >Salvar</IonButton>
+                    </IonRow>
 
                 </form>
                 </IonContent>
