@@ -267,7 +267,7 @@ export const CardQuestion:React.FC<{
     return(
         <>
             <IonItem className="item-input-title">
-                <IonInput  maxlength={100}  type="text" onIonChange={props.onChangeTitle} className="input-title" name='title'  ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
+                <IonInput  maxlength={100} id='input' type="text" onIonChange={props.onChangeTitle} className="input-title" name='title'  ref={props.refTitle} placeholder="Insira o título do Flashcard"></IonInput>
             </IonItem>
 
             <IonCard className='card-question' color='light'>
@@ -300,7 +300,7 @@ export const CardQuestion:React.FC<{
                             </IonRow>
                         </IonPopover>
 
-                        <IonInput  name='subject' ref={props.refSub} onIonChange={props.onChangeSubj} className="input-tema" placeholder="Insira a matéria" ></IonInput>
+                        <IonInput  name='subject' ref={props.refSub} id='input' onIonChange={props.onChangeSubj} className="input-tema" placeholder="Insira a matéria" ></IonInput>
                     </IonRow>
                 </IonCardHeader>
                 <IonCardContent className="content-background">
@@ -314,6 +314,7 @@ export const CardQuestion:React.FC<{
                             className='ios question'
                             color='dark'
                             name='enunciated'
+                            id='input-textArea'
                             onIonChange={props.onChangeEnun}
                             ref={props.refEnunciated}
                             placeholder="Digite ou cole o enunciado do flash-card">
@@ -388,6 +389,7 @@ export const GridAlternatives:React.FC<{
                     onIonChange={props.onIonChange}
                     name={props.nameAnswerFlashCard}
                     ref={props.refAnswer}
+                    id='input-textArea'
                     >
                     </IonTextarea>
                 </RowRightAlternative>

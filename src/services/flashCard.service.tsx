@@ -139,12 +139,10 @@ export async function putFlashCard(newflashCard:NewFlashCard){
         })
 }
 export async function getRightAnswer(idFlashCard:string){
-    console.log(idFlashCard)
     const  payload = getPayload() as Payload
     return https
         .get(`/flash-cards/answer?id-user=${payload.id}&id-flash-card=${idFlashCard}`)
         .then(async(res)=>{
-            console.log(res.data)
             return await res.data
         })
         .catch((erro)=>{

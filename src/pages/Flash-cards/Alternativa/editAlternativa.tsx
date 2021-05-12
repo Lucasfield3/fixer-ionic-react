@@ -24,6 +24,7 @@ import { getPayload} from '../../../services/Authentication.service';
 import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
 import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalDefault, ModalErrorDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
 import { Controller, useForm } from 'react-hook-form';
+import { NodeArray } from 'typescript';
 
 
 
@@ -65,48 +66,57 @@ const EditAlternativa: React.FC = () => {
         if(inputValue == ''){
             setThemes(themes)
         }
+        //enableButton()
         console.log(themes)
     }
     const RemoveTema = (textPop: string) => {
         const themeToBedeleted = themes.filter((theme) => textPop !== theme);
         setThemes(themeToBedeleted)
+        //enableButton()
     }
+    const card = history.location.state as FlashCard    
     const AddAlternative = () => {
         const inputValue = getValues(`alternatives[${{answer}}].answer`)
-        setAlternatives([...alternatives, { answer: inputValue }])
-        console.log(inputValue)
+        //setAlternatives([...alternatives, { answer: inputValue }])
+        console.log(alternatives.length)
+        //alternatives.push({answer:inputValue})
+        setAlternatives([...alternatives, {answer:inputValue}])
+        CompareOldAndCurrenttValues()
         if (alternatives.length == 4 || inputValue === '') {
             setAlternatives(alternatives)
+        }else{
+            alternatives.push({answer:inputValue})
         }
     }
 
-    const RemoveAlternative = (index:number) =>{
-        setAlternatives([...alternatives.slice(0, index), ...alternatives.slice(index + 1)])
+    const RemoveAlternative = (answer:string, index:number) =>{
+        const alternativeToBeDeleted = alternatives.filter((a) => answer !== a.answer)
+        //setAlternatives([...alternatives.slice(0, index), ...alternatives.slice(index + 1)])
+        alternatives.splice(index, 1)
+        setAlternatives(alternativeToBeDeleted)
+        return alternatives.length -1
     }
 
     const { register, handleSubmit, errors, setValue, getValues, control, watch} = useForm()
 
-    const multiplesValues = watch();
     const removeRightAnswerOfAlternative = (answer:string) =>{ 
         const card = history.location.state as FlashCard         
-        console.log(card.alternatives!)
         let alternativeDeleted = card.alternatives!.filter(alternative => alternative.answer !== answer)
         setAlternatives(alternativeDeleted)
         setThemes(card.themes)
+        CompareOldAndCurrenttValues()
     }
 
     async function getAnswer(id:string){
         const rightAnswer = await getRightAnswer(id) as string     
         setValue('answerFlashCard', rightAnswer)
         removeRightAnswerOfAlternative(rightAnswer)
-        console.log(rightAnswer)
     }
  
 
     useIonViewWillEnter(()=>{
         if (history.location.state) {
             const card = history.location.state as FlashCard
-            console.log(card)
             setValue('title', card.title)
             setTitle(card.title)
             setValue('subject', card.subject)
@@ -114,7 +124,7 @@ const EditAlternativa: React.FC = () => {
             setIdFlashCard(card.id!)
             setTime(card.time)
             getAnswer(card.id!)
-            
+           
         } else {
             console.log('Não tem nada');
         }
@@ -132,13 +142,9 @@ const EditAlternativa: React.FC = () => {
 
     }
   
-    const timeUnconverted = (time:number) =>{
-        console.log(time)
+    const timeUnconverted = (time:number) =>{ 
         const timeMinutsUnconverted = Math.trunc((time!/1000)/60) //minutos
-        console.log(timeMinutsUnconverted)
         const timeSecondsUnconverted = ((time!/1000) % 60 )//segundos
-        console.log(timeSecondsUnconverted)
-
 
         if(timeMinutsUnconverted < 10 && timeSecondsUnconverted < 10){
 
@@ -171,14 +177,14 @@ const EditAlternativa: React.FC = () => {
         return  alternativesSend;
     }
 
-    // const enableButton = () => {
-    //     const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
-    //     btnFinal.removeAttribute("disabled")
-    // }
-    // const disableButton = () => {
-    //     const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
-    //     btnFinal.setAttribute('disabled', 'disabled')
-    // }
+    const enableButton = () => {
+        const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
+        btnFinal.removeAttribute("disabled")
+    }
+    const disableButton = () => {
+        const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
+        btnFinal.setAttribute('disabled', 'disabled')
+    }
 
  
 
@@ -283,7 +289,57 @@ const Errors =()=>{
         
 }
 
-    const card = history.location.state as FlashCard
+   interface CompareValues {
+       title:string,
+       subject:string,
+       enunciated:string,
+       alternatives:NewAlternative[],
+       time?:number,
+       themes?:string[],
+       answerFlashCard:string
+   }
+  
+    const CompareOldAndCurrenttValues = ()=>{
+            const card = history.location.state as FlashCard
+            const rightAnswer = getFilterAnswer(card.id!)
+        
+            rightAnswer.then(async function(answer){
+                let alternativeDeleted:NewAlternative[] = []          
+                alternativeDeleted = card.alternatives!.filter(alternative => alternative.answer !== answer)
+                const defaultValues:CompareValues = {
+                    title:card.title,
+                    subject:card.subject,
+                    enunciated:card.enunciated,
+                    alternatives:alternativeDeleted,
+                    time:parseInt(timeUnconverted(card.time!)),
+                    themes:card.themes,
+                    answerFlashCard:answer
+                }
+                console.log(defaultValues)
+                const currentValues:CompareValues = {
+                    title:valueInputs('title'),
+                    subject:valueInputs('subject'),
+                    enunciated:valueInputs('enunciated'),
+                    alternatives:alternatives.length == 0 && alternativeDeleted || alternatives,
+                    time:card.time == 0 && 0 || convertTime(),
+                    themes:themes[0] == '' && card.themes || themes,
+                    answerFlashCard:valueInputs('answerFlashCard')
+                }
+                console.log(currentValues)
+                const inputsValues = (document.querySelectorAll('input') as NodeListOf<HTMLInputElement>)
+                //const arr = [...inputsValues].map(inputs => inputs.value)
+                if(JSON.stringify(currentValues) === JSON.stringify(defaultValues)) {
+                    disableButton()
+                    console.log('é igual')
+                    console.log(inputsValues)
+                }else{
+                    enableButton()
+                }
+            })
+
+        
+        
+    }
     
     return (
         <>
@@ -317,9 +373,9 @@ const Errors =()=>{
                             refEnunciated={register({required:true, minLength:10})}
                             refSub={register({required:false, minLength:5, maxLength:50})}
                             refTitle={register({required:true, minLength:5, maxLength:50})}
-                            onChangeEnun={()=> {}}
-                            onChangeSubj={()=> {}}
-                            onChangeTitle={()=> {}}
+                            onChangeEnun={()=> CompareOldAndCurrenttValues()}
+                            onChangeSubj={()=> CompareOldAndCurrenttValues()}
+                            onChangeTitle={()=> CompareOldAndCurrenttValues()}
                         >
                         <IonRow className='ion-justify-content-center'>
                             <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${temas.textPop}].textPop`} ref={register({required:false})}   type='text'></IonInput>
@@ -331,12 +387,15 @@ const Errors =()=>{
                         </IonRow>
                         {themes.map((theme, index) => (
                                 <IonRow key={index - 1} style={{ cursor: 'default', marginTop: '1rem'}} className='ion-justify-content-center'>
-                                    <Controller as={<IonInput key={index} className='ios temas-inputs'  color='dark'></IonInput>} 
+                                    <Controller as={<IonInput  key={index} onIonChange={CompareOldAndCurrenttValues} className='ios temas-inputs'  color='dark'></IonInput>} 
                                     name={`themes[${index}].textPop`}
                                     control={control}
                                     defaultValue={theme}
                                     />
-                                    <IonFabButton onClick={() => RemoveTema(theme)} className='remove-btn' color='light'><IonIcon color='danger' icon={remove} ></IonIcon></IonFabButton>
+                                    <IonFabButton onClick={() => {
+                                        RemoveTema(theme)
+                                        enableButton()
+                                        }} className='remove-btn' color='light'><IonIcon color='danger' icon={remove} ></IonIcon></IonFabButton>
                                 </IonRow>
                             ))}
                         </CardQuestion>
@@ -379,7 +438,7 @@ const Errors =()=>{
                         />
 
                         <GridAlternatives
-                                onIonChange={()=> {}}
+                                onIonChange={()=> CompareOldAndCurrenttValues()}
                                 styleGrid={{}}                         
                                 style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
                                 refAlternatives={register({required:true})}
@@ -398,16 +457,20 @@ const Errors =()=>{
                                             AddAlternative()
                                             console.log({answer})
                                             setValue(`alternatives[${{answer}}].answer`, '')
+                                            //CompareOldAndCurrenttValues()
                                         }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                                     </IonRow>
                                     {alternatives.map((alternative:NewAlternative, index)=>(
                                         <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
-                                            <Controller as={<IonInput style={{height:'auto', width:'10rem'}} key={index} className='alternativas' color='dark'  placeholder='alternativas'></IonInput>} 
+                                            <Controller as={<IonInput onIonChange={CompareOldAndCurrenttValues} style={{height:'auto', width:'10rem'}} key={index} className='alternativas' color='dark'  placeholder='alternativas'></IonInput>} 
                                             name={`alternatives[${index}].answer`}
                                             defaultValue={alternative.answer}
                                             control={control}
                                             />
-                                            <IonFabButton  onClick={()=>RemoveAlternative(index)} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove} ></IonIcon></IonFabButton>              
+                                            <IonFabButton  onClick={()=>{
+                                                RemoveAlternative(alternative.answer, index)
+                                                CompareOldAndCurrenttValues()
+                                                }} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove} ></IonIcon></IonFabButton>              
                                         </IonRow>
                                     ))}       
                                 </GridAlternatives>
@@ -417,12 +480,14 @@ const Errors =()=>{
                                 onClick={() => {
                                     setShownTimer(!shownTimer)
                                     setNewTime('')
+                                    CompareOldAndCurrenttValues()
                                 }}
                                 checked={checked}
                                 style={{}}
                                 >
                                     {shownTimer && <Timer  value={timeUnconverted(time!)} onChange={(event) => {
                                         setNewTime(event.target.value!)
+                                        CompareOldAndCurrenttValues()
                                         }} />}
                                 </RowTimer>
                         <Limitedalternativa 
