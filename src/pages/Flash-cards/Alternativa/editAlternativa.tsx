@@ -185,14 +185,16 @@ const EditAlternativa: React.FC = () => {
         }
         return  alternativesSend;
     }
-
+    var checkExit = false
     const enableButton = () => {
         const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
         btnFinal.removeAttribute("disabled")
+        return checkExit = true
     }
     const disableButton = () => {
         const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
         btnFinal.setAttribute('disabled', 'disabled')
+        
     }
 
  
@@ -388,7 +390,15 @@ const Errors =()=>{
             <IonPage>
             <HeaderDefault>
                 <ButtonArrow onClick={() => {
-                    setShowModalExit(true)
+                    if(checkExit == true) {
+                        setShowModalExit(true)
+                    }else{
+                        history.push('Flash-cards')
+                        menuController.enable(true)
+                        setChecked(false)
+                        setShownTimer(false)
+                    }
+                   
                     }}/>
             </HeaderDefault>
 
