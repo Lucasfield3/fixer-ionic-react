@@ -310,7 +310,7 @@ const CriarQuestionario:React.FC = ()=>{
                             checked={checked}
                             style={{}}
                             >
-                                {shownTimer && <Timer  value={time} onChange={(event) => setTime(event.target.value!)} />}
+                                {shownTimer && <Timer   value={time} onChange={(event) => setTime(event.target.value!)} />}
                             </RowTimer>
                             <ContainerList style={{height:'11.5rem', marginTop:'2rem'}}  title='Flash cards'>
                                 <IonRow>

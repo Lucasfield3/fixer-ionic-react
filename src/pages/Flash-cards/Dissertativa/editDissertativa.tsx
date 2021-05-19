@@ -256,7 +256,7 @@ const EditDissertativa: React.FC = () => {
                     checked={checked}
                     style={{}}
                     >
-                        {shownTimer && <Timer  value={timeUnconverted(time!)} onChange={(event) => setNewTime(event.target.value!)} />}
+                        {shownTimer && <Timer value={timeUnconverted(time!)} onChange={(event) => setNewTime(event.target.value!)} />}
                     </RowTimer>
                     <Limitedalternativa 
                         onClick={()=> setShowPopLimit(false)} 

@@ -28,7 +28,7 @@ import {
     IonToggle, 
     IonToolbar 
 } from '@ionic/react'
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent} from 'react'
 import styled, { CSSProperties } from 'styled-components'
 import { add, menuOutline, trash, pencilSharp, bookSharp, addSharp, timerOutline, arrowUndoSharp, arrowForward} from 'ionicons/icons';
 import TimeField from 'react-simple-timefield';
@@ -171,11 +171,11 @@ export const StyledTimer = styled(IonCol)`
     align-items: center;
     position:absolute;
 `;
-export const Timer: React.FC<{ value: string; onChange: (event: ChangeEvent<HTMLInputElement>) => void }> = props => {
+export const Timer: React.FC<{ value: string; onChange: (event: ChangeEvent<HTMLInputElement>) => void}> = props => {
 
     return (
         <>
-            <StyledTimer >
+            <StyledTimer className='col-timer'>
                 <IonIcon className='icon-styled' icon={timerOutline} />
                 <TimeField colon=':' value={props.value} onChange={props.onChange} input={<input className='input-time'></input>} ></TimeField>
             </StyledTimer>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { 
     IonPage,
     IonRow,  
@@ -43,10 +43,14 @@ const FlashCards: React.FC = () => {
         setCards(cardsValues)
     }
 
-    
     useIonViewWillEnter(() => {
+        const fetchData = async ()=>{
+            let cardsValues = await getAllFlashCards()
+            setCards(cardsValues)
+        }
         menuController.enable(true);
-        if(cards)  getCards()
+        
+        if(cards) fetchData()
     }, [])
     const handleResponderButton = ()=>{
         if(activeCard?.type === 'alternative'){
