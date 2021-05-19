@@ -38,7 +38,6 @@ const EditAlternativa: React.FC = () => {
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [answer, setAnswer] = useState<string>('')
-    //const [title, setTitle] = useState<string>('')
 
     const [alternatives, setAlternatives] = useState<NewAlternative[]>([]);
     let temas = {
@@ -64,22 +63,17 @@ const EditAlternativa: React.FC = () => {
     const AddTema = () => {
         const inputValue = getValues(`themes[${temas.textPop}].textPop`) as string
         setTemasAt([...temasAt, inputValue])
-        //temasAt.push(inputValue)
         if(inputValue == ''){
             setTemasAt(temasAt)
         }
-        console.log(temasAt.length)
     }
-    const RemoveTema = (textPop: string, index:number) => {
+    const RemoveTema = (textPop: string) => {
         const themeToBedeleted = temasAt.filter((theme) => textPop !== theme);
-        //temasAt.splice(index, 1)
         setTemasAt(themeToBedeleted)
-        //enableButton()
     }
     const card = history.location.state as FlashCard    
     const AddAlternative = () => {
         const inputValue = getValues(`alternatives[${{answer}}].answer`)  
-        console.log(alternatives.length)
         setAlternatives([...alternatives, {answer:inputValue}])
         if (alternatives.length == 4 || inputValue === '') {
             setAlternatives(alternatives)
@@ -94,7 +88,7 @@ const EditAlternativa: React.FC = () => {
         setAlternatives(alternativeToBeDeleted)
     }
 
-    const { register, handleSubmit, errors, setValue, getValues, control, watch} = useForm()
+    const { register, handleSubmit, errors, setValue, getValues, control} = useForm()
 
     const removeRightAnswerOfAlternative = (answer:string) =>{ 
         const card = history.location.state as FlashCard         
@@ -121,6 +115,7 @@ const EditAlternativa: React.FC = () => {
             getAnswer(card.id!)
             setTemasAt(card.themes) 
             console.log(card) 
+            CompareOldAndCurrenttValues()
             if(timeUnconverted(time!) == "00:00" || card.time == 0){ 
                 setChecked(false)
                 setShownTimer(false)
@@ -152,7 +147,6 @@ const EditAlternativa: React.FC = () => {
   
     const timeUnconverted = (time:number) =>{ 
       
-
         const timeMinutsUnconverted = Math.trunc((time!/1000)/60) //minutos
         const timeSecondsUnconverted = ((time!/1000) % 60 )//segundos
 
@@ -185,6 +179,7 @@ const EditAlternativa: React.FC = () => {
         }
         return  alternativesSend;
     }
+
     var checkExit = false
     const enableButton = () => {
         const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
@@ -220,11 +215,17 @@ const EditAlternativa: React.FC = () => {
         ShuffleAlternativas(alternativesSend)
         if(alternatives.length == 0){
             setIsOpen(true)
-        }else if(convertTime()! < 10000 && checked == true && timeUnconverted(time!) == "00:00" || convertTime() == 0 && checked == true && timeUnconverted(time!) == "00:00" && checked == true){
+        }else if(convertTime()! < 10000 && checked == true && 
+                timeUnconverted(time!) == "00:00" || 
+                convertTime() == 0 && checked == true && 
+                timeUnconverted(time!) == "00:00" && 
+                checked == true){
+
             console.log(convertTime())
             console.log(timeUnconverted(time!))
             console.log(newTime)
             setIsOpen(true)
+
         }else {
             data.time = convertTime()
             await putFlashCard(data)
@@ -358,7 +359,7 @@ const Errors =()=>{
                     timeString:timeUnconverted(time!),
                     toggle:toggleChek
                 }
-                //console.log(defaultValues)
+
                 const currentValues:CompareValues = {
                     title:valueInputs('title'),
                     subject:valueInputs('subject'),
@@ -369,13 +370,12 @@ const Errors =()=>{
                     timeString:checkTime(),
                     toggle:checked
                 }
-               //console.log(currentValues)
                 if(JSON.stringify(currentValues) === JSON.stringify(defaultValues)) {
-                   // console.log('igual')
+
                     disableButton()
                 }else{
+
                     enableButton()
-                   // console.log('diferente')
                 }
             })
         }else{
@@ -444,7 +444,7 @@ const Errors =()=>{
                                     defaultValue={theme}
                                     />
                                     <IonFabButton onClick={() => {
-                                        RemoveTema(theme, index)
+                                        RemoveTema(theme)
                                         CompareOldAndCurrenttValues()
                                         }} className='remove-btn' color='light'><IonIcon color='danger' icon={remove} ></IonIcon></IonFabButton>
                                 </IonRow>
@@ -510,7 +510,6 @@ const Errors =()=>{
                                             AddAlternative()
                                             console.log({answer})
                                             setValue(`alternatives[${{answer}}].answer`, '')
-                                            //CompareOldAndCurrenttValues()
                                         }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                                     </IonRow>
                                     {alternatives.map((alternative:NewAlternative, index)=>(
@@ -542,11 +541,6 @@ const Errors =()=>{
                                 >
                                     {shownTimer && <Timer  value={timeUnconverted(time!)} onChange={(event) => setNewTime(event.target.value)}  />}
                                 </RowTimer>
-                        <Limitedalternativa 
-                        onClick={()=> setShowPopLimit(false)} 
-                        isOpen={showPopLimit} 
-                        onDidDismiss={()=>setShowPopLimit(false)} />
-                   {/* <RowBtnCreate onClick={()=> Errors()} style={{marginTop: '1.7rem' }} >Salvar</RowBtnCreate> */}
                    <IonRow slot='start' className='ios ion-justify-content-center row-btn-final'>
                         <IonButton  type='submit' onClick={() => Errors()} style={{marginTop: '1.7rem' }} className='ios btn-final' color='light' size='default' >Salvar</IonButton>
                     </IonRow>

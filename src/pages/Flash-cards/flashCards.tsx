@@ -44,13 +44,13 @@ const FlashCards: React.FC = () => {
     }
 
     useIonViewWillEnter(() => {
-        const fetchData = async ()=>{
-            let cardsValues = await getAllFlashCards()
-            setCards(cardsValues)
-        }
-        menuController.enable(true);
+        // const fetchData = async ()=>{
+        //     let cardsValues = await getAllFlashCards()
+        //     setCards(cardsValues)
+        // }
+        // menuController.enable(true);
         
-        if(cards) fetchData()
+        if(cards) getCards()
     }, [])
     const handleResponderButton = ()=>{
         if(activeCard?.type === 'alternative'){
@@ -114,7 +114,7 @@ const FlashCards: React.FC = () => {
                                     return (
                                     <Cards 
                                     status={filteredCards} 
-                                    text={card.title} 
+                                    // text={card.title} 
                                     title={card.title} 
                                     key={index} 
                                     type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} 
