@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import useStateWithCallback from 'use-state-with-callback';
 import {
     IonButton,
@@ -12,12 +12,11 @@ import {
     IonInput,
     IonTextarea
 } from '@ionic/react'
-import { add, remove, toggle } from 'ionicons/icons';
+import { add, remove} from 'ionicons/icons';
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import {  Payload, NewAlternative, FlashCard, putFlashCard, getRightAnswer, NewFlashCard } from '../../../services/flashCard.service';
 import { getPayload} from '../../../services/Authentication.service';
-import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
 import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalDefault, ModalErrorDefault, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -31,7 +30,6 @@ const EditAlternativa: React.FC = () => {
     const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
-    const [showPopLimit, setShowPopLimit] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave]= useState<boolean>(false);
     const [showModal, setShowModal] = useState(false)
     const [showModalExit, setShowModalExit] = useState(false)
@@ -71,15 +69,15 @@ const EditAlternativa: React.FC = () => {
         const themeToBedeleted = temasAt.filter((theme) => textPop !== theme);
         setTemasAt(themeToBedeleted)
     }
-    const card = history.location.state as FlashCard    
     const AddAlternative = () => {
         const inputValue = getValues(`alternatives[${{answer}}].answer`)  
         setAlternatives([...alternatives, {answer:inputValue}])
-        if (alternatives.length == 4 || inputValue === '') {
-            setAlternatives(alternatives)
-        }else{
+        if (alternatives.length == 4 || inputValue == '') {
+            setAlternatives(alternatives)   
+        }else {
             alternatives.push({answer:inputValue})
         }
+       
     }
 
     const RemoveAlternative = (answer:string, index:number) =>{
@@ -115,18 +113,14 @@ const EditAlternativa: React.FC = () => {
             getAnswer(card.id!)
             setTemasAt(card.themes) 
             console.log(card) 
-            CompareOldAndCurrenttValues()
             if(timeUnconverted(time!) == "00:00" || card.time == 0){ 
                 setChecked(false)
                 setShownTimer(false)
-                setToggleChek(false)
-                console.log(timeUnconverted(time!))
+                setToggleChek(false)   
             }else{
                 setChecked(true)
                 setShownTimer(true)
                 setToggleChek(true)
-                console.log('2')
-                console.log(timeUnconverted(time!))
             }
            
         } else {
@@ -140,9 +134,9 @@ const EditAlternativa: React.FC = () => {
     
 
     const convertTime = () => {
-            const [minutes, seconds] = newTime!.split(':').map(Number)
-            const newTimeInSeconds = (minutes * 60) + seconds
-            return newTimeInSeconds * 1000
+        const [minutes, seconds] = newTime!.split(':').map(Number)
+        const newTimeInSeconds = (minutes * 60) + seconds
+        return newTimeInSeconds * 1000
     }
   
     const timeUnconverted = (time:number) =>{ 
@@ -164,8 +158,6 @@ const EditAlternativa: React.FC = () => {
             const timeUnconverted = `${timeMinutsUnconverted}:${timeSecondsUnconverted}`
             return timeUnconverted
         }
-
-        
 
     }
 
@@ -196,7 +188,6 @@ const EditAlternativa: React.FC = () => {
 
     const onSubmit = async(data:NewFlashCard) =>{
         const payLoad = getPayload() as Payload
-        const card = history.location.state as FlashCard
         let alternativesSend:NewAlternative[] = []
         let temasSend:string[] = []
         temasAt.map((textPop)=>{
@@ -238,9 +229,15 @@ const EditAlternativa: React.FC = () => {
     
 
     const [isOpen, setIsOpen] = useState(false)
+    const [isOpenLimit, setIsOpenLimit] = useState(false)
+
+    // var validateClick = false
+    // const checkClick = ()=>{
+    //     console.log('clicked')
+    //     return validateClick =  true
+    // }
 
     const MsgsAndErrors = ()=>{
-
         if( errors.title && errors.subject  && errors.enunciated  && errors.answerFlashCard ||
             errors.title && errors.subject  && errors.enunciated ||
             errors.title && errors.subject  && errors.answerFlashCard ||
@@ -261,13 +258,14 @@ const EditAlternativa: React.FC = () => {
             return 'Matéria inválida.'
         }else if(alternatives.length == 0){
             return 'Numero insuficiênte de alternativas.'
-        } else if(convertTime()! < 10000  && convertTime()! > 0 && checked == true){
+        }else if(convertTime()! < 10000  && convertTime()! > 0 && checked == true){
             console.log(convertTime())
             return 'Tempo muito curto.' 
         }else if(convertTime() == 0 && checked == true && timeUnconverted(time!) == "00:00" && checked == true){
             return 'Tempo zerado, desabilite o tempo ou mude o tempo.' 
         }
-        
+       
+         
        
     }
 
@@ -320,11 +318,12 @@ const Errors =()=>{
        timeString?:string
        toggle?:boolean
    }
+
    const checkTime =()=>{
 
         if(timeUnconverted(time!) !== "00:00" || time !== undefined ){
             if(newTime == ':' || newTime == '' || newTime == undefined || newTime == "00:00") {
-                console.log('opa1')
+
                 return timeUnconverted(time!)
             }else {
                 return newTime
@@ -332,10 +331,10 @@ const Errors =()=>{
 
         }else{
             if(newTime == ':' || newTime == '' || newTime == '0') {
-                console.log('opa3')
+
                 return timeUnconverted(time!)
             }else{
-                console.log('opa4')
+
                 return newTime
             }
         }
@@ -380,6 +379,7 @@ const Errors =()=>{
             })
         }else{
             console.log('nada aqui')
+            disableButton()
         }   
         
     }
@@ -407,12 +407,11 @@ const Errors =()=>{
                     <CardQuestion
                             onClickTheme={() => setShowPopover(true)}
                             isOpenThemes={showPopover}
-                            onDidDismissTheme={e => setShowPopover(false)}
+                            onDidDismissTheme={() => setShowPopover(false)}
                             onClickSaveBtn={() => popOverSave()}
                             onClickCleanBtn={() => {
                                 setShowPopover(false)
-                                setTemasAt([])
-                               
+                                setTemasAt([])                             
                                 CompareOldAndCurrenttValues()
                             }}
                             isOpenSaveTheme={shownPopsave}
@@ -474,6 +473,16 @@ const Errors =()=>{
                         onClick={()=> {
                             setIsOpen(false)
                         }}/>
+                        <ModalErrorDefault 
+                        cssClass='ios modal-error-flash' 
+                        backdropDismiss={true} 
+                        msg={'Você atingiu o número máximo de alternativas.'} 
+                        color='danger' 
+                        onDidDismiss={()=> setIsOpenLimit(false)} 
+                        isOpen={isOpenLimit} 
+                        onClick={()=> {
+                            setIsOpenLimit(false)
+                        }}/>
                         <ModalDefault
                         isOpen={showModalExit}
                         onClickNo={() => {                        
@@ -507,8 +516,8 @@ const Errors =()=>{
                                         >                         
                                         </IonTextarea>
                                         <IonFabButton id='add-alternative' className='add-btn'  onClick={()=>{
+                                            if(alternatives.length == 4)   setIsOpenLimit(true)
                                             AddAlternative()
-                                            console.log({answer})
                                             setValue(`alternatives[${{answer}}].answer`, '')
                                         }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                                     </IonRow>

@@ -5,25 +5,17 @@ import {ButtonRed, ButtonDark} from '../Landing-style/Landing-styled'
 import { useHistory } from 'react-router-dom'
 import '../style.css'
 import { menuController } from '@ionic/core';
-import { AccessToken, Credentials, login, storeToken} from '../../../services/Authentication.service';
+import { AccessToken, Credentials, getPayload, login, storeToken} from '../../../services/Authentication.service';
 import { ModalErrorDefault } from '../../styles/Page-default/Page-default-styled';
+import { Payload } from '../../../services/flashCard.service';
 
 
 const Login: React.FC<{handleClickLogin:()=> void}> = props=>{
 
 const history = useHistory()
 
-const { register, handleSubmit,  errors, setValue } = useForm()
-// interface ArrayErros {
-//     login?:boolean;
-//     password?:boolean;
-//     camposInvalidos?:boolean;
-// }
-// const errorsArray:ArrayErros = {
-//     login:false,
-//     password:false,
-//     camposInvalidos:false,
-// }
+const { register, handleSubmit,  errors, setValue, getValues } = useForm()
+
 
 const [isOpen, setIsOpen] = useState(false)
 const onSubmit = async (data:Credentials):Promise<AccessToken | any> =>{
@@ -40,6 +32,7 @@ const onSubmit = async (data:Credentials):Promise<AccessToken | any> =>{
 }
 
 const Errors = ()=>{
+    const payLoad = getPayload() as Payload
     if(errors.email && errors.password){
         setIsOpen(true)
     }else if(errors.email){
@@ -47,23 +40,33 @@ const Errors = ()=>{
     }else if(errors.password){
         setIsOpen(true)
     }
+
+    // if(getValues('email') !== payLoad.email){
+    //     setIsOpen(true)
+    // }
 }
 
 const MsgsAndErrors = ()=>{
+    const payLoad = getPayload() as Payload
 
     if(errors.email && errors.password){
 
-        return 'Campos inválidos.'
+        return 'Campos Vazios.'
     }else if(errors.email){
 
-        return 'Login inválido.'
+        return 'Login Vazio.'
     }else if(errors.password){
 
-        return 'Senha inválida.'
-    }else {
+        return 'Senha Vazia.'
+    }    
+    // }else if(getValues('email') !== payLoad.email){
+    //     console.log(payLoad)
+    //     return 'Email incorreto.'
+    // }
+   
 
-        return 'Login ou senha inválidos.'
-    }
+
+
 }
 
 const CleanInputs =()=>{
