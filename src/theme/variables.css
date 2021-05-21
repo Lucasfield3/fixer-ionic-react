@@ -577,6 +577,14 @@ ion-button{
   --ion-color-light-contrast: var(--ion-color-dark);
   font-weight: bold;
 }
+.row-btn-final-edit{
+  margin-top: 2rem;
+}
+.btn-final-edit{
+  background: var(--ion-color-light);
+  --ion-color-light-contrast: var(--ion-color-dark);
+  font-weight: bold;
+}
 .btn-final-answer{
   background: var(--ion-color-light);
   --ion-color-light-contrast: var(--ion-color-dark);
@@ -954,5 +962,17 @@ ion-button{
   border-radius: 8px;
 }
 .array-div::-webkit-scrollbar-thumb:hover{
+  background: var(--ion-color-dark);
+}
+
+.array-div-alternatives::-webkit-scrollbar{
+  width: 7px;
+  padding-left: 2px;
+}
+.array-div-alternatives::-webkit-scrollbar-thumb{
+  background: #4a5a66;
+  border-radius: 8px;
+}
+.array-div-alternatives::-webkit-scrollbar-thumb:hover{
   background: var(--ion-color-dark);
 }

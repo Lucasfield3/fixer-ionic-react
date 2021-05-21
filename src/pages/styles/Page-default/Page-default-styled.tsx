@@ -377,7 +377,7 @@ export const GridAlternatives:React.FC<{
 
     return(
         <>
-            <IonGrid style={props.styleGrid} className='array-div'>
+            <IonGrid style={props.styleGrid} className='array-div-alternatives'>
                 <RowRightAlternative  className='ion-justify-content-center'>
                     <IonTextarea 
                     maxlength={240}
