@@ -5,7 +5,6 @@ import {
     IonFabButton,
     IonIcon,
     IonContent,
-    IonCol,
     useIonViewWillLeave,
     useIonViewWillEnter,
     IonTextarea,
@@ -13,19 +12,11 @@ import {
 } from '@ionic/react'
 import { add, remove } from 'ionicons/icons';
 import { menuController } from '@ionic/core';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { createFlashCard, Payload,  NewAlternative, NewFlashCard } from '../../../services/flashCard.service';
 import { getPayload } from '../../../services/Authentication.service';
-import Limitedalternativa from '../../../components/CardMessages/msg_limite_alternativa';
 import { ButtonArrow, CardQuestion, GridAlternatives, HeaderDefault, ModalChoose, ModalDefault, ModalErrorDefault, RowBtnCreate, RowTimer, Timer } from '../../styles/Page-default/Page-default-styled';
-import { Alternative } from '../../../services/Questionnaires.service';
 import { Controller, useForm } from 'react-hook-form';
-
-
-interface ListThemes {
-    textPop:string
-}
-
 
 
 const QuestaoAlternativa: React.FC = () => {
@@ -35,16 +26,12 @@ const QuestaoAlternativa: React.FC = () => {
     const [checked, setChecked] = useState<boolean>(false);
     const [shownTimer, setShownTimer] = useState<boolean>(false);
     const [showPopover, setShowPopover] = useState<boolean>(false);
-    const [showPopLimit, setShowPopLimit] = useState<boolean>(false);
     const [shownPopsave, setShownPopsave] = useState<boolean>(false);
     const [showModal, setShowModal] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
     const history = useHistory()
     const [textRightAnswer, setTextRightAnswer] = useState<string>('')
     const [time, setTime] = useState<string>(':');
-    const [enunciated, setEnunciated] = useState<string>('')
-    const [subject, setSubject] = useState<string>('')
-    const [title, setTitle] = useState<string>('')
     let newAlternative:NewAlternative= {
         answer:''
     }

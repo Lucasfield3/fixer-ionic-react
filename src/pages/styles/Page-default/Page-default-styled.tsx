@@ -601,6 +601,7 @@ export const AreaDissertativeAnswer:React.FC<{
 
 export const CreateAreaDissertativeAnswer:React.FC<{
     refAnswer:(instance: HTMLIonTextareaElement) => void;
+    onIonChange?:(event:CustomEvent)=>void;
 }> = props => {
 
     return(
@@ -618,6 +619,7 @@ export const CreateAreaDissertativeAnswer:React.FC<{
                             rows={4}
                             cols={20}
                             color='dark'
+                            onIonChange={props.onIonChange}
                             name='answerFlashCard'
                             ref={props.refAnswer}
                             placeholder="Digite ou cole a resposta">

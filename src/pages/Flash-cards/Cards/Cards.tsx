@@ -15,7 +15,7 @@ const Cards: React.FC<{onClick:()=>void;id:string;title:string;type:string;text?
         <IonCol size='6'  col-md-3 col-lg-3>
             <IonCard  key={props.id} onClick={props.onClick} color='dark' className='ios cards'>
                 <IonTitle title={props.text}>{props.title}</IonTitle>
-                <img className='img-card' src={imgCardIcon}></img>
+                <img alt='Flash-card' className='img-card' src={imgCardIcon}></img>
                 <IonLabel >{props.type}</IonLabel>
             </IonCard>
         </IonCol>

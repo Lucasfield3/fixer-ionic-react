@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {
     IonButton,
     IonPage,
@@ -17,6 +17,7 @@ import { Checker, FlashCard, getCheck } from '../../services/flashCard.service';
 import CardRed from '../cardRed/cardRed';
 import { AreaDissertativeAnswer, AreaFlip, HeaderAnswerDefault, ModalDefault, Redone } from '../../pages/styles/Page-default/Page-default-styled';
 import { Controller, useForm } from 'react-hook-form';
+import useStateWithCallback, { useStateWithCallbackInstant } from 'use-state-with-callback';
 
 
 
@@ -26,7 +27,13 @@ const AnswerDissertativa: React.FC = () => {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const history = useHistory()
-    const [textAreaAnswer, setTextAreaAnswer] = useState<string>('')
+    const [textAreaAnswer, setTextAreaAnswer] = useStateWithCallbackInstant<string>('', ()=>{
+        if(getValues('answerFlashCard') == '' || textAreaAnswer ==''){
+            disableButtonFinal()
+        }else{
+            enableButtonFinal()
+        }
+    })
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsair, setShownPopsair] = useState<boolean>(false);
     const [shownPopResult, setShownPopResult] = useState<boolean>(false);
@@ -46,13 +53,13 @@ const AnswerDissertativa: React.FC = () => {
     const [buttonAnswer, setButtonAnswer] = useState<{}>(<IonButton disabled onClick={() => {
         setShownIcon(true)
         disableAnswer()
-    }} className='ios btn-final' color='light' size='default' >Submeter Resposta</IonButton>)
+    }} className='ios btn-final-answer' color='light' size='default' >Submeter Resposta</IonButton>)
     const [shownButton, setShownButton] = useState(false)
     const settingLoading = () => {
         setTimeout(() => {
             setShowLoading(false);
             setIsFlipped(!isFlipped)
-            enableButton()
+            enableButtonFinal()
             disableAnswer()
         }, 1500);
     }
@@ -60,30 +67,38 @@ const AnswerDissertativa: React.FC = () => {
         menuController.enable(true);
         
     },[])
+    const getValuesCards = async()=>{
+        if (history.location.state) {
+            try{
+                const card = history.location.state as FlashCard
+                console.log(card)
+                setValue('subject' ,card.subject)
+                setThemes(card.themes)
+                setValue('enunciated' ,card.enunciated)
+                setIdFlashCard(card.id!)
+                setValue('title' ,card.title)
+            }catch(e){
+                console.log(e)
+            }
+           
+        }else{
+            console.log('nada aqui')
+        }
+    }
     useIonViewWillEnter(() => {
         enableAnswer()
         setShownIcon(false)
         setShownButton(!shownButton)
         setShowLoading(false)
         setIsFlipped(false)
-        if (history.location.state) {
-            const card = history.location.state as FlashCard
-            console.log(card)
-            setValue('subject' ,card.subject)
-            setThemes(card.themes)
-            setValue('enunciated' ,card.enunciated)
-            setIdFlashCard(card.id!)
-            setValue('title' ,card.title)
-        } else {
-            console.log('Não tem nada');
-        }
+        getValuesCards()
     }, [])
-    const enableButton = () => {
-        const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
+    const enableButtonFinal = () => {
+        const btnFinal = document.querySelector('.btn-final-answer') as HTMLIonButtonElement
         btnFinal.removeAttribute("disabled")
     }
-    const disableButton = () => {
-        const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
+    const disableButtonFinal = () => {
+        const btnFinal = document.querySelector('.btn-final-answer') as HTMLIonButtonElement
         btnFinal.setAttribute('disabled', 'disabled')
     }
     const disableAnswer = () => {
@@ -98,7 +113,7 @@ const AnswerDissertativa: React.FC = () => {
         display: check.correct! && 'none' || 'block'
     }
     const handleFlipAnswer = async () => {
-        let checker = await getCheck(idFlashCard, textAreaAnswer)
+        let checker = await getCheck(idFlashCard, textAreaAnswer!)
         console.log(checker)
         setCheck(checker)
         ProgressBar(checker)
@@ -114,15 +129,7 @@ const AnswerDissertativa: React.FC = () => {
             setShownPopResult(true)
         }
     }
-    const changeText = (event:CustomEvent)=>{
-        setTextAreaAnswer(event.detail.value!)
-        if(event.detail.value! !== ''){
-            enableButton()
-        }else{
-            disableButton()
-        }
 
-    }
     
     const [progress, setProgress] = useState<number>(0)
     const ProgressBar = (validator:Checker)=>{
@@ -225,12 +232,15 @@ const AnswerDissertativa: React.FC = () => {
                    </AreaFlip>
 
                    <AreaDissertativeAnswer
-                    onIonChange={(event:CustomEvent) => changeText(event)}
+                    onIonChange={(event) => {
+                        setTextAreaAnswer(event.detail.value!)
+
+                    }}
                     refAnswer={register({required:true})}
                     />
                     
                     <IonRow className='ios ion-justify-content-center row-btn-final'>
-                        {shownButton && buttonAnswer || <IonButton onClick={() => setShownPopResult(true)} className='ios btn-final' color='light' size='default' >Finalizar</IonButton>}
+                        {shownButton && buttonAnswer || <IonButton onClick={() => setShownPopResult(true)} className='ios btn-final-answer' color='light' size='default' >Finalizar</IonButton>}
                     </IonRow>
                     <CardStats
                         backdropDismiss={false}

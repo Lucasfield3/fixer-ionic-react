@@ -33,7 +33,7 @@ const EditAlternativa: React.FC = () => {
     const [shownPopsave, setShownPopsave]= useState<boolean>(false);
     const [showModal, setShowModal] = useState(false)
     const [showModalExit, setShowModalExit] = useState(false)
-    const [textRightAnswer, setTextRightAnswer] = useState<string>('')
+    const [textRightAnswer] = useState<string>('')
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [answer, setAnswer] = useState<string>('')
 
@@ -230,12 +230,6 @@ const EditAlternativa: React.FC = () => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenLimit, setIsOpenLimit] = useState(false)
-
-    // var validateClick = false
-    // const checkClick = ()=>{
-    //     console.log('clicked')
-    //     return validateClick =  true
-    // }
 
     const MsgsAndErrors = ()=>{
         if( errors.title && errors.subject  && errors.enunciated  && errors.answerFlashCard ||
@@ -502,10 +496,10 @@ const Errors =()=>{
                         <GridAlternatives
                                 onIonChange={()=> CompareOldAndCurrenttValues()}
                                 styleGrid={{}}                         
-                                style={{height: textRightAnswer == '' && '4rem' || 'auto'}}
+                                style={{}}
                                 refAlternatives={register({required:true})}
                                 refAnswer={register({required:true})}
-                                autoGrow={textRightAnswer == '' && false || true}
+                                autoGrow={valueInputs('answerFlashCard') == '' && false || true}
                                 nameAnswerFlashCard='answerFlashCard'
                                 >
                                     <IonRow  className='ion-justify-content-center'>
@@ -550,7 +544,7 @@ const Errors =()=>{
                                 >
                                     {shownTimer && <Timer  value={timeUnconverted(time!)} onChange={(event) => setNewTime(event.target.value)}  />}
                                 </RowTimer>
-                   <IonRow slot='start' className='ios ion-justify-content-center row-btn-final'>
+                    <IonRow slot='start' className='ios ion-justify-content-center row-btn-final'>
                         <IonButton  type='submit' onClick={() => Errors()} style={{marginTop: '1.7rem' }} className='ios btn-final' color='light' size='default' >Salvar</IonButton>
                     </IonRow>
 
