@@ -4,7 +4,6 @@ import {
     IonContent,
     IonCard,
     IonCardContent,
-    IonButton,
     IonRow,
     IonGrid,
     IonCol,

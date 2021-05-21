@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, {useState } from 'react';
 import { 
     IonPage,
     IonRow,  
@@ -44,12 +44,6 @@ const FlashCards: React.FC = () => {
     }
 
     useIonViewWillEnter(() => {
-        // const fetchData = async ()=>{
-        //     let cardsValues = await getAllFlashCards()
-        //     setCards(cardsValues)
-        // }
-        // menuController.enable(true);
-        
         if(cards) getCards()
     }, [])
     const handleResponderButton = ()=>{

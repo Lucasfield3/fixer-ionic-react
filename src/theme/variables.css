@@ -721,6 +721,10 @@ ion-button{
   border-radius: 21px;
   width: auto;
 }
+.card-dissertativa-secundary-creation{
+  border-radius: 21px;
+  width: auto;
+}
 .row-header{
   border-bottom: 1px var(--ion-color-dark) solid;
   height: 2.9rem;

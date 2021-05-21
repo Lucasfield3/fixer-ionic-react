@@ -11,7 +11,7 @@ import {
     useIonViewWillEnter,
     IonInput
 } from '@ionic/react'
-import { add, compassOutline, remove } from 'ionicons/icons';
+import { add,  remove } from 'ionicons/icons';
 import { menuController } from '@ionic/core';
 import { useHistory } from 'react-router';
 import { getPayload } from '../../../services/Authentication.service';

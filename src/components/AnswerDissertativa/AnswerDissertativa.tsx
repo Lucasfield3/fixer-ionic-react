@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {useState} from 'react';
 import {
     IonButton,
     IonPage,
@@ -17,7 +17,7 @@ import { Checker, FlashCard, getCheck } from '../../services/flashCard.service';
 import CardRed from '../cardRed/cardRed';
 import { AreaDissertativeAnswer, AreaFlip, HeaderAnswerDefault, ModalDefault, Redone } from '../../pages/styles/Page-default/Page-default-styled';
 import { Controller, useForm } from 'react-hook-form';
-import useStateWithCallback, { useStateWithCallbackInstant } from 'use-state-with-callback';
+import { useStateWithCallbackInstant } from 'use-state-with-callback';
 
 
 
@@ -41,16 +41,16 @@ const AnswerDissertativa: React.FC = () => {
     const [showLoading, setShowLoading] = useState(true);
     const [shownIcon, setShownIcon] = useState(false)
     const [idFlashCard, setIdFlashCard] = useState<string>('')
-    const [cardRed, setCardRed] = useState(<CardRed />)
+    const [cardRed] = useState(<CardRed />)
     const [themes, setThemes] = useState<string[]>([]);
-    const [time, setTime] = useState<number>();
-    const [seconds, setSeconds] = useState('')
-    const [minutes, setMinutes] = useState('')
+    const [time] = useState<number>();
+    const [seconds] = useState('')
+    const [minutes] = useState('')
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
         correct: false
     })
-    const [buttonAnswer, setButtonAnswer] = useState<{}>(<IonButton disabled onClick={() => {
+    const [buttonAnswer] = useState<{}>(<IonButton disabled onClick={() => {
         setShownIcon(true)
         disableAnswer()
     }} className='ios btn-final-answer' color='light' size='default' >Submeter Resposta</IonButton>)
@@ -120,16 +120,7 @@ const AnswerDissertativa: React.FC = () => {
         console.log(progress)
         disableAnswer()
     }
-    const handleHabilit = ()=>{
-        if(check!.correct){
-            history.push('Flash-cards')
-            setIsFlipped(!isFlipped)
-            setValue('answerFlashCard', '')
-        }else{
-            setShownPopResult(true)
-        }
-    }
-
+    
     
     const [progress, setProgress] = useState<number>(0)
     const ProgressBar = (validator:Checker)=>{

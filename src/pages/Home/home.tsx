@@ -13,7 +13,7 @@ import {
   IonAvatar,
   IonLabel,
   useIonViewWillEnter,
-  IonMenuButton
+
 } from '@ionic/react'
 import './style.css'
 import { menuController } from '@ionic/core';
@@ -45,13 +45,20 @@ const Home: React.FC = () => {
   const [cards, setCards] = useState<FlashCard[]>([])
 
   async function getCards() {
-    let cardsValues = await getAllFlashCards()
-    console.log(cardsValues)
-    setCards(cardsValues)
+    if(history.location.state) {
+      try{
+        let cardsValues = await getAllFlashCards()
+        console.log(cardsValues)
+        setCards(cardsValues)
+      }catch(e){
+        console.log(e)
+      }
+    }
+   
 }
   useIonViewWillEnter(() => {
-    menuController.enable(true) 
-   
+    menuController.enable(true)
+      getCards()  
 }, [])
   const changeBtn = () => {
     setTimeout(() => {

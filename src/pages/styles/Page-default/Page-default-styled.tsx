@@ -606,7 +606,7 @@ export const CreateAreaDissertativeAnswer:React.FC<{
 
     return(
         <>
-            <IonCard className='card-dissertativa-secundary' color='light'>
+            <IonCard className='card-dissertativa-secundary-creation' color='light'>
                 <IonCardHeader style={{ padding: 0 }}>
                     <IonRow color='light' className='row-header-resposta'></IonRow>
                 </IonCardHeader>

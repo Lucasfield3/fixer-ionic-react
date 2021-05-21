@@ -30,15 +30,15 @@ const AnswerAlternativa: React.FC = () => {
     const [showPopover, setShowPopover] = useState<boolean>(false);
     const [shownPopsair, setShownPopsair] = useState<boolean>(false);
     const [shownPopResult, setShownPopResult] = useState<boolean>(false);
-    const [shownIcon, setShownIcon] = useState(false)
+    const [, setShownIcon] = useState(false)
     const [isFlipped, setIsFlipped] = useState<boolean>(false);
     const [alternatives, setAlternatives] = useState<Alternative[]>()
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [progress, setProgress] = useState<number>(0)
     const [time, setTime] = useState<number>();
-    const [seconds, setSeconds] = useState('')
-    const [minutes, setMinutes] = useState('')
-    const [cardRed, setCardRed] = useState(<CardRed/>)
+    const [seconds] = useState('')
+    const [minutes] = useState('')
+    const [cardRed] = useState(<CardRed/>)
     const [check, setCheck] = useState<Checker>({
         answer: 'resposta-certa',
         correct: false

@@ -33,9 +33,8 @@ const EditAlternativa: React.FC = () => {
     const [shownPopsave, setShownPopsave]= useState<boolean>(false);
     const [showModal, setShowModal] = useState(false)
     const [showModalExit, setShowModalExit] = useState(false)
-    const [textRightAnswer] = useState<string>('')
     const [idFlashCard, setIdFlashCard] = useState<string>('')
-    const [answer, setAnswer] = useState<string>('')
+    const [answer] = useState<string>('')
 
     const [alternatives, setAlternatives] = useState<NewAlternative[]>([]);
     let temas = {

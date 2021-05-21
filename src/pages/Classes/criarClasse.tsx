@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     IonCol, 
     IonContent, 
@@ -14,13 +14,13 @@ import { remove } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 import { menuController } from '@ionic/core';
 import { ButtonArrow, CardContainer, ContainerList, HeaderDefault, RowBtnCreate } from '../styles/Page-default/Page-default-styled';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { NewClass } from '../../services/classe.service';
 
 const CriarClasse:React.FC = ()=>{
 
     const history = useHistory()
-    const {register, handleSubmit, getValues, setValue} = useForm()
+    const {register, handleSubmit} = useForm()
     const onSubmit = (data:NewClass) =>{
         console.log(data)
     }
