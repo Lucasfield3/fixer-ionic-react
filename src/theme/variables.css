@@ -580,7 +580,12 @@ ion-button{
 .row-btn-final-edit{
   margin-top: 2rem;
 }
-.btn-final-edit{
+.btn-final-edit-alt{
+  background: var(--ion-color-light);
+  --ion-color-light-contrast: var(--ion-color-dark);
+  font-weight: bold;
+}
+.btn-final-edit-diss{
   background: var(--ion-color-light);
   --ion-color-light-contrast: var(--ion-color-dark);
   font-weight: bold;

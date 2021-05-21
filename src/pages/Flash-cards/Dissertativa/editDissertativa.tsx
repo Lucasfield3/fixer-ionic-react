@@ -83,7 +83,6 @@ const EditDissertativa: React.FC = () => {
             setTime(card.time)
             getAnswer(card.id!)
             setTemasAt(card.themes)
-            CompareOldAndCurrenttValues()
             if(timeUnconverted(time!) == "00:00" || card.time == 0){ 
                 setChecked(false)
                 setShownTimer(false)
@@ -140,13 +139,13 @@ const EditDissertativa: React.FC = () => {
 
     var checkExit = false
     const enableButton = () => {
-        const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
+        const btnFinal = document.querySelector('.btn-final-edit-diss') as HTMLIonButtonElement
         btnFinal.removeAttribute("disabled") 
         return checkExit = true 
     }
 
     const disableButton = () => {
-        const btnFinal = document.querySelector('.btn-final') as HTMLIonButtonElement
+        const btnFinal = document.querySelector('.btn-final-edit-diss') as HTMLIonButtonElement
         btnFinal.setAttribute('disabled', 'disabled')
         
     }
@@ -444,7 +443,7 @@ const [toggleChek, setToggleChek] = useState<boolean>()
                         />        
 
                     <IonRow slot='start' className='ios ion-justify-content-center row-btn-final'>
-                        <IonButton  type='submit' onClick={() => Errors()} style={{marginTop: '1.7rem' }} className='ios btn-final' color='light' size='default' >Salvar</IonButton>
+                        <IonButton  type='submit' onClick={() => Errors()} style={{marginTop: '1.7rem' }} className='ios btn-final-edit-diss' color='light' size='default' >Salvar</IonButton>
                     </IonRow>
                 </form>
                 </IonContent>

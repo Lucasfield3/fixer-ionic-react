@@ -173,12 +173,12 @@ const EditAlternativa: React.FC = () => {
 
     var checkExit = false
     const enableButton = () => {
-        const btnFinal = document.querySelector('.btn-final-edit') as HTMLIonButtonElement
+        const btnFinal = document.querySelector('.btn-final-edit-alt') as HTMLIonButtonElement
         btnFinal.removeAttribute("disabled")
         return checkExit = true
     }
     const disableButton = () => {
-        const btnFinal = document.querySelector('.btn-final-edit') as HTMLIonButtonElement
+        const btnFinal = document.querySelector('.btn-final-edit-alt') as HTMLIonButtonElement
         btnFinal.setAttribute('disabled', 'disabled')
         
     }
@@ -544,7 +544,7 @@ const Errors =()=>{
                                     {shownTimer && <Timer  value={timeUnconverted(time!)} onChange={(event) => setNewTime(event.target.value)}  />}
                                 </RowTimer>
                     <IonRow slot='start' className='ios ion-justify-content-center row-btn-final-edit'>
-                        <IonButton  type='submit' onClick={() => Errors()} style={{marginTop: '1.7rem' }} className='ios btn-final-edit' color='light' size='default' >Salvar</IonButton>
+                        <IonButton  type='submit' onClick={() => Errors()} style={{marginTop: '1.7rem' }} className='ios btn-final-edit-alt' color='light' size='default' >Salvar</IonButton>
                     </IonRow>
 
                 </form>
