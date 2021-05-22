@@ -32,7 +32,6 @@ const onSubmit = async (data:Credentials):Promise<AccessToken | any> =>{
 }
 
 const Errors = ()=>{
-    const payLoad = getPayload() as Payload
     if(errors.email && errors.password){
         setIsOpen(true)
     }else if(errors.email){
@@ -40,15 +39,9 @@ const Errors = ()=>{
     }else if(errors.password){
         setIsOpen(true)
     }
-
-    // if(getValues('email') !== payLoad.email){
-    //     setIsOpen(true)
-    // }
 }
 
 const MsgsAndErrors = ()=>{
-    const payLoad = getPayload() as Payload
-
     if(errors.email && errors.password){
 
         return 'Campos Vazios.'
@@ -58,14 +51,9 @@ const MsgsAndErrors = ()=>{
     }else if(errors.password){
 
         return 'Senha Vazia.'
+    }else{
+        return 'Senha ou Login Incorretos.'
     }    
-    // }else if(getValues('email') !== payLoad.email){
-    //     console.log(payLoad)
-    //     return 'Email incorreto.'
-    // }
-   
-
-
 
 }
 

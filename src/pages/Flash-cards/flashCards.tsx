@@ -40,11 +40,17 @@ const FlashCards: React.FC = () => {
     const status:FlashCard[] = []
     async function getCards() {
         let cardsValues = await getAllFlashCards()
+        console.log(cardsValues)        
         setCards(cardsValues)
     }
 
     useIonViewWillEnter(() => {
-        if(cards) getCards()
+        console.log(getCards())
+        if(cards) {
+            getCards()
+        }else {
+            setCards([])
+        }    
     }, [])
     const handleResponderButton = ()=>{
         if(activeCard?.type === 'alternative'){
