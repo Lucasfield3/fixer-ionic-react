@@ -113,6 +113,7 @@ const FlashCards: React.FC = () => {
                                 {cardsFiltered.map((card: FlashCard, index) => {
                                     return (
                                     <Cards 
+                                    text={'flash-cards'}
                                     status={filteredCards} 
                                     // text={card.title} 
                                     title={card.title} 

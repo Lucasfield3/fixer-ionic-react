@@ -191,10 +191,10 @@ ion-button{
   box-shadow: 0 0 1px 3px var(--ion-color-dark)!important;
 }
 .rec .rec-arrow-right{
-  display: none;
+  display: auto;
 }
 .rec .rec-arrow-left{
-  display: none;
+  display: auto;
 }
 .slides-presentation{
   height: 7rem;

@@ -14,16 +14,16 @@ import {
   IonLabel,
   useIonViewWillEnter,
 
-} from '@ionic/react'
-import './style.css'
+} from '@ionic/react';
+import './style.css';
 import { menuController } from '@ionic/core';
-import { useHistory } from 'react-router-dom'
-import imgAvatar from '../../Assets/images/avatar.svg'
-import smallLogo from '../../Assets/icons/logo-small.svg'
+import { useHistory } from 'react-router-dom';
+import imgAvatar from '../../Assets/images/avatar.svg';
+import smallLogo from '../../Assets/icons/logo-small.svg';
 import { FlashCard, getAllFlashCards } from '../../services/flashCard.service';
 import Cards from '../Flash-cards/Cards/Cards';
 import Carousel from 'react-elastic-carousel';
-import {BackDrop, BtnHome, ContainersHome, BtnSideMenu} from './Home-style/Home-styled'
+import {BackDrop, BtnHome, ContainersHome, BtnSideMenu} from './Home-style/Home-styled';
 import { SearchBar, HeaderDefault, TitleCards, ButtonMenuDark} from '../styles/Page-default/Page-default-styled';
 import { menuOutline } from 'ionicons/icons'; 
 
@@ -44,21 +44,18 @@ const Home: React.FC = () => {
   const [isShownPhoto, setIsPhoto] = useState<boolean>(false);
   const [cards, setCards] = useState<FlashCard[]>([])
 
+
   async function getCards() {
-    if(history.location.state) {
-      try{
-        let cardsValues = await getAllFlashCards()
-        console.log(cardsValues)
-        setCards(cardsValues)
-      }catch(e){
-        console.log(e)
-      }
-    }
-   
+    let cardsValues = await getAllFlashCards()
+    
+    setCards(cardsValues)
+    console.log(cardsValues)
+    console.log(cards)
 }
   useIonViewWillEnter(() => {
     menuController.enable(true)
-      getCards()  
+      getCards()
+     console.log(getCards())  
 }, [])
   const changeBtn = () => {
     setTimeout(() => {
@@ -80,7 +77,10 @@ const Home: React.FC = () => {
     }} />)
   }
 const breakPoints = [
-  {width: 1, itemsToShow:2}
+  {width: 1, itemsToShow:1},
+  {width: 500, itemsToShow:2},
+  {width: 768, itemsToShow:3},
+  {width: 1200, itemsToShow:4},
 ]
 
   return (
@@ -213,14 +213,15 @@ const breakPoints = [
           <TitleCards>Últimos criados </TitleCards>
 
             <ContainersHome  style={{alignItems:cards!.length == 0 && 'center' || 'unset'}}>
-                  <IonGrid style={{display:cards.length == 0 && 'none' || 'block'}} className='ios grid-flashcards'>
-                  <Carousel breakPoints={breakPoints}>
-                      {cards.map((card: FlashCard, index) => {
+                  <IonGrid style={{display:cards!.length == 0 && 'none' || 'block'}} className='ios style-carousel'>
+                  <Carousel  breakPoints={breakPoints}>
+                      {cards.length > 0 && 
+                      cards.map((card: FlashCard, index:number) => {
                           return (        
-                              <Cards status={[card]} text={card.title} title={card.title} key={index} type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id!} onClick={()=> console.log('clicked')} />
+                              <Cards status={cards} text={card.title!} title={card.title!} key={index} type={card.type! === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id!} onClick={()=> console.log('clicked')} />
                           )
                       })}
-                       {cards.length == 0 && <IonLabel className='label-vazio'>VAZIO</IonLabel>|| '' }
+                       {/* {cards.length == 0 && <IonLabel className='label-vazio'>VAZIO</IonLabel>|| '' } */}
                       </Carousel>
                   </IonGrid>
                   {cards.length == 0 && <IonLabel className='label-vazio'>VAZIO</IonLabel>|| '' }

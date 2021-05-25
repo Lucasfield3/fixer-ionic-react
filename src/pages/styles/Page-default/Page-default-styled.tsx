@@ -782,14 +782,16 @@ export const ModalErrorDefault:React.FC<{
     onDidDismiss:(event:CustomEvent)=>void;
     backdropDismiss:boolean; 
     color:string;
-    onClick:()=>void}> = props=>{
+    onClick:()=>void;
+    style?:CSSProperties;
+}> = props=>{
         
     return(
         <>
-             <IonModal backdropDismiss={props.backdropDismiss} onDidDismiss={props.onDidDismiss} isOpen={props.isOpen} cssClass={props.cssClass}>
+             <IonModal  backdropDismiss={props.backdropDismiss} onDidDismiss={props.onDidDismiss} isOpen={props.isOpen} cssClass={props.cssClass}>
                 <IonCardTitle className="div-modal-alternativa">
                     <IonText className="modal-text" color="dark">
-                        <IonLabel color={props.color} >{props.msg}</IonLabel>
+                        <IonLabel style={props.style} color={props.color} >{props.msg}</IonLabel>
                     </IonText>
                     <IonRow className='ion-justify-content-center'>
                         <IonButton  className="btn-edit" onClick={props.onClick}>Ok</IonButton>

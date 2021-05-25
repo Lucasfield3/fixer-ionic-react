@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import {useForm} from 'react-hook-form'
-import { IonCardContent, IonRow, IonCol, IonLabel, IonInput, IonItem, useIonViewWillLeave } from '@ionic/react';
+import { IonCardContent, IonRow, IonCol, IonLabel, IonInput, IonItem } from '@ionic/react';
 import {ButtonRed, ButtonDark} from '../Landing-style/Landing-styled'
 import { useHistory } from 'react-router-dom'
 import '../style.css'
 import { menuController } from '@ionic/core';
 import { AccessToken, Credentials, getPayload, login, storeToken} from '../../../services/Authentication.service';
 import { ModalErrorDefault } from '../../styles/Page-default/Page-default-styled';
-import { Payload } from '../../../services/flashCard.service';
 
 
 const Login: React.FC<{handleClickLogin:()=> void}> = props=>{
@@ -31,30 +30,90 @@ const onSubmit = async (data:Credentials):Promise<AccessToken | any> =>{
     
 }
 
+var myStyleForLength ={
+    fontSize:'19px',
+    marginTop:'0rem',
+    paddingBottom:'0rem'
+} as React.CSSProperties
+
+var myStyleForEmpty ={
+    fontSize:'20px',
+    marginTop:'0.5rem',
+    paddingBottom:'0.5rem'
+} as React.CSSProperties
+
+
 const Errors = ()=>{
-    if(errors.email && errors.password){
+    if(errors.email && errors.email.type === "required" && 
+    errors.password && errors.password.type === "required"){
+
         setIsOpen(true)
-    }else if(errors.email){
+        
+    }else if(errors.email && errors.email.type === "maxLength" && 
+    errors.password && errors.password.type === "maxLength"){
+
         setIsOpen(true)
-    }else if(errors.password){
+       
+    }else if(errors.email && errors.email.type === "required"){
+
         setIsOpen(true)
-    }
+       
+    }else if(errors.password && errors.password.type === "required"){
+
+        setIsOpen(true)
+        
+    }else if(errors.email && errors.email.type === "maxLength"){
+
+        setIsOpen(true)
+       
+    }else if(errors.password && errors.password.type === "maxLength"){
+
+        setIsOpen(true)
+       
+    } 
 }
 
+
+
 const MsgsAndErrors = ()=>{
-    if(errors.email && errors.password){
+    if(errors.email && errors.email.type === "required" && 
+        errors.password && errors.password.type === "required"){
 
         return 'Campos Vazios.'
-    }else if(errors.email){
+    }else if(errors.email && errors.email.type === "maxLength" && 
+    errors.password && errors.password.type === "maxLength"){
 
-        return 'Login Vazio.'
-    }else if(errors.password){
+        return 'Campos com muitos caracteres.'
+    }else if(errors.email && errors.email.type === "required"){
 
-        return 'Senha Vazia.'
-    }else{
+        return 'Email Vazio.'
+    }else if(errors.password && errors.password.type === "required"){
+
+        return 'Senha Vazio.'
+    }else if(errors.email && errors.email.type === "maxLength"){
+
+        return 'Você ultrapassou o número máximo de 65 caracteres no campo email.'
+    }else if(errors.password && errors.password.type === "maxLength"){
+
+        return 'Você ultrapassou o número máximo de 30 caracteres no campo senha.'
+    } 
+    else{
         return 'Senha ou Login Incorretos.'
-    }    
+    }   
 
+}
+const dinamicStyle = ()=>{
+    if(errors.email && errors.email.type === "required" && 
+    errors.password && errors.password.type === "required"){
+        return myStyleForEmpty
+    }else if(errors.email && errors.email.type === "maxLength" && 
+    errors.password && errors.password.type === "maxLength"){
+        return myStyleForLength
+    }else if(errors.email && errors.email.type === "maxLength"){
+        return myStyleForLength
+    }else if(errors.password && errors.password.type === "maxLength"){
+        return myStyleForLength
+    }
 }
 
 const CleanInputs =()=>{
@@ -71,7 +130,8 @@ const CleanInputs =()=>{
                 <IonCol>
                     <IonItem color='light'>
                         <IonLabel color='primary' position='floating'>Login:</IonLabel>  
-                        <IonInput  name='email' ref={register({required:true})} color='dark'type='text'></IonInput>
+                        <IonInput  name='email' ref={register({required:true, maxLength:65})} color='dark'type='text'></IonInput>
+
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -79,7 +139,7 @@ const CleanInputs =()=>{
                 <IonCol>
                     <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Senha:</IonLabel>  
-                            <IonInput type='password' ref={register({required:true})} name='password' color='dark'></IonInput>
+                            <IonInput type='password' ref={register({required:true, maxLength:30})} name='password' color='dark'></IonInput>
                     </IonItem>
                 </IonCol>
             </IonRow>
@@ -113,6 +173,7 @@ const CleanInputs =()=>{
             color='danger' 
             onDidDismiss={()=> setIsOpen(false)} 
             isOpen={isOpen} 
+            style={dinamicStyle()}
             onClick={()=> {
                 setIsOpen(false)
             }}/>
