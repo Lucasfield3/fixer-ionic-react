@@ -56,7 +56,7 @@ export const ContainersHome:React.FC<{style: React.CSSProperties }> = props =>{
 
   return(
     <>
-      <CardContainer className='style-carousel' style={props.style}>
+      <CardContainer  style={props.style}>
         <CardContent>
             {props.children}
         </CardContent>
