@@ -10,30 +10,234 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
 
     const [showAlert1, setShowAlert1] = useState<boolean>(false);
     const { register, handleSubmit, errors, setValue, getValues } = useForm();
-    // interface ArrayErros {
-    //     email?:boolean;
-    //     name?:boolean;
-    //     password?:boolean;
-    //     confirmPass?:boolean;
-    //     camposInvalidos?:boolean;
-    // }
-    // const errorsArray:ArrayErros = {
-    //     email:false,
-    //     name:false,
-    //     password:false,
-    //     confirmPass:false,
-    //     camposInvalidos:false,
-    // }
+
+    const Errors = ()=>{
+        if(
+            errors.email && errors.email.type === "required" && 
+            errors.password && errors.password.type === "required" &&
+            errors.name && errors.name.type === "required" ||
+            errors.email && errors.email.type === "required" && 
+            errors.password && errors.password.type === "required" ||
+            errors.password && errors.password.type === "required" &&
+            errors.name && errors.name.type === "required" ||
+            errors.name && errors.name.type === "required" &&
+            errors.email && errors.email.type === "required"
+        ){
+    
+            setIsOpen(true) 
+        }else if(
+            errors.email && errors.email.type === "maxLength" && 
+            errors.password && errors.password.type === "maxLength" &&
+            errors.name && errors.name.type === "maxLength"
+        ){
+    
+            setIsOpen(true)        
+        }else if(errors.email && errors.email.type === "maxLength" && 
+                errors.name && errors.name.type === "maxLength"){
+    
+            setIsOpen(true)         
+        }else if(errors.name && errors.name.type === "maxLength" && 
+                errors.password && errors.password.type === "maxLength"){
+    
+            setIsOpen(true)          
+        }else if(errors.email && errors.email.type === "maxLength" && 
+                errors.password && errors.password.type === "maxLength"){
+    
+            setIsOpen(true)
+        }else if(errors.email && errors.email.type === "required"){
+    
+            setIsOpen(true)
+        }else if(errors.password && errors.password.type === "required"){
+    
+            setIsOpen(true)
+        }else if(errors.name && errors.name.type === "required"){
+
+            setIsOpen(true)
+        }else if(errors.email && errors.email.type === "maxLength"){
+    
+            setIsOpen(true)
+        }else if(errors.password && errors.password.type === "maxLength"){
+    
+            setIsOpen(true)
+        }else if(errors.name && errors.name.type === "maxLength"){
+
+            setIsOpen(true)
+        }
+
+    }
+
+    
+    const MsgsAndErrors = ()=>{
+        if(
+            errors.email && errors.email.type === "required" && 
+            errors.password && errors.password.type === "required" &&
+            errors.name && errors.name.type === "required" ||
+            errors.email && errors.email.type === "required" && 
+            errors.password && errors.password.type === "required" ||
+            errors.password && errors.password.type === "required" &&
+            errors.name && errors.name.type === "required" ||
+            errors.name && errors.name.type === "required" &&
+            errors.email && errors.email.type === "required"
+            ){
+    
+            return 'Campos vazios.'
+        }else if(
+            errors.email && errors.email.type === "maxLength" && 
+            errors.password && errors.password.type === "maxLength" &&
+            errors.name && errors.name.type === "maxLength"
+        ){
+
+            return 'Você ultrapassou o número máximo de caracteres nos campos: email(65 caracteres), nome(30 caracteres) e senha(30 caracteres).'
+        }else if(errors.email && errors.email.type === "maxLength" && 
+                errors.name && errors.name.type === "maxLength"){
+            
+                return 'Você ultrapassou o número máximo de caracteres nos campos: email(65 caracteres) e nome(30 caracteres).'
+        }else if(errors.name && errors.name.type === "maxLength" && 
+                errors.password && errors.password.type === "maxLength"){
+    
+                return 'Você ultrapassou o número máximo de caracteres nos campos: nome(30 caracteres) e senha(30 caracteres).'
+        }else if(errors.email && errors.email.type === "maxLength" && 
+                errors.password && errors.password.type === "maxLength"){
+
+                return 'Você ultrapassou o número máximo de caracteres nos campos: email(65 caracteres) e senha(30 caracteres).'
+        }else if(errors.email && errors.email.type === "required"){
+    
+            return 'Campo email vazio.'
+        }else if(errors.password && errors.password.type === "required"){
+    
+            return 'Campo senha vazio.'
+        }else if(errors.name && errors.name.type === "required"){
+
+            return 'Campo nome vazio.'
+        }else if(errors.email && errors.email.type === "maxLength"){
+    
+            return 'Você ultrapassou o número máximo de 65 caracteres no campo email.'
+        }else if(errors.password && errors.password.type === "maxLength"){
+    
+            return 'Você ultrapassou o número máximo de 30 caracteres no campo senha.'
+        }else if(errors.name && errors.name.type === "maxLength"){
+
+            return 'Você ultrapassou o número máximo de 30 caracteres no campo nome.'
+        }else if(valueInputs('confirmPassword') !== valueInputs('password')){
+
+            return 'As senhas não são iguais.'
+        }else{
+            return 'Campo/s incorretos.'
+        } 
+    
+    }
+
+    var myStyleForLength ={
+        fontSize:'16px',
+        marginTop:'0rem',
+        paddingBottom:'0rem'
+    } as React.CSSProperties
+    
+    var myStyleForEmpty ={
+        fontSize:'20px',
+        marginTop:'0.5rem',
+        paddingBottom:'0.5rem'
+    } as React.CSSProperties
+
+    var btnStyleForLengthInAllFields = {
+        marginTop:'0rem',
+        width:'3.1rem',
+        height:'1.3rem'
+    } as React.CSSProperties  
+
+     var btnStyleForLengthInTwoFields = {
+        marginTop:'0.4rem',
+        width:'3.1rem',
+        height:'1.8rem'
+    } as React.CSSProperties  
+
+    const dinamicBtnStyle = () =>{
+        if(
+            errors.email && errors.email.type === "maxLength" && 
+            errors.password && errors.password.type === "maxLength" &&
+            errors.name && errors.name.type === "maxLength"
+            ){
+    
+                return btnStyleForLengthInAllFields
+        }
+
+        if( errors.email && errors.email.type === "maxLength" && 
+            errors.name && errors.name.type === "maxLength"){
+    
+                return btnStyleForLengthInTwoFields
+        }
+
+        if(errors.name && errors.name.type === "maxLength" && 
+            errors.password && errors.password.type === "maxLength"){
+    
+                return btnStyleForLengthInTwoFields
+        }
+
+        if(errors.email && errors.email.type === "maxLength" && 
+            errors.password && errors.password.type === "maxLength"){
+    
+                return btnStyleForLengthInTwoFields
+        }
+
+    }
+    
+    const dinamicStyle = ()=>{
+
+        if(
+            errors.email && errors.email.type === "maxLength" && 
+            errors.password && errors.password.type === "maxLength" &&
+            errors.name && errors.name.type === "maxLength" ||
+            errors.email && errors.email.type === "maxLength" && 
+            errors.password && errors.password.type === "maxLength" ||
+            errors.password && errors.password.type === "maxLength" &&
+            errors.name && errors.name.type === "maxLength" ||
+            errors.name && errors.name.type === "maxLength" &&
+            errors.email && errors.email.type === "maxLength"
+            ){
+    
+                return myStyleForLength
+        }
+
+        if(errors.email && errors.email.type === "required"){
+            return myStyleForEmpty
+        }
+
+        if(errors.name && errors.name.type === "required"){
+            return myStyleForEmpty
+        }
+
+        if(errors.password && errors.password.type === "required"){
+            return myStyleForEmpty
+        }
+
+        if(errors.email && errors.email.type === "maxLength"){
+            return myStyleForLength
+        }
+
+        if(errors.name && errors.name.type === "maxLength"){
+            return myStyleForLength
+        }
+
+        if(errors.password && errors.password.type === "maxLength"){
+            return myStyleForLength
+        }
+    }    
 
     const [isOpen, setIsOpen] = useState(false)
-    const onSubmit = (data:NewUser) => {
+    const onSubmit = async (data:NewUser) => {
         console.log(data)
 
         if(valueInputs('confirmPassword') !== valueInputs('password')){
             setIsOpen(true)
         }else{
-            cadastro(data)
-            setShowAlert1(true)
+            try{
+                cadastro(data)
+                setShowAlert1(true)
+            }catch(e){
+                console.log(e)
+                setIsOpen(true)
+            }
+ 
         }
 
     }
@@ -51,45 +255,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
         setValue('confirmPassword', '')
     }
 
-    const Errors = ()=>{
-        if(errors.email && errors.name && errors.password || 
-            errors.name && errors.password || 
-            errors.email && errors.name || 
-            errors.email && errors.password){
-            setIsOpen(true)
-        }else if(errors.email) {
-            setIsOpen(true)
-        }else if(errors.name){
-            setIsOpen(true)
-        }else if(errors.password){
-            setIsOpen(true)
-        }
-
-    }
-
-    const MsgsAndErrors = ()=>{
-
-        if(errors.email && errors.name && errors.password || 
-            errors.name && errors.password || 
-            errors.email && errors.name || 
-            errors.email && errors.password){
-
-            return 'Campos inválidos.'
-        }else if(errors.email){
-
-            return 'Email inválido.'
-        }else if(errors.name){
-
-            return 'Nome inválido.'
-        }else if(errors.password){
-
-            return 'Senha inválida.'
-        }else if(valueInputs('confirmPassword') !== valueInputs('password')){
-
-            return 'As senhas não são iguais.'
-        }
-       
-    }
+   
 
        
     return (
@@ -102,7 +268,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>E-mail:</IonLabel>
-                            <IonInput  name='email' ref={register({required: true, maxLength:50})}  color='dark' type='text'></IonInput>
+                            <IonInput  name='email' ref={register({required: true, maxLength:65})}  color='dark' type='text'></IonInput>
                             
                         </IonItem>
                     </IonCol>
@@ -112,7 +278,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Nome:</IonLabel>
-                            <IonInput  name='name' ref={register({required:true, maxLength:20})}  color='dark' type='text'></IonInput>
+                            <IonInput  name='name' ref={register({required:true, maxLength:30})}  color='dark' type='text'></IonInput>
                             
                         </IonItem>
                     </IonCol>
@@ -122,7 +288,9 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     backdropDismiss={true} 
                     msg={MsgsAndErrors()!} 
                     color='danger' 
-                    onDidDismiss={()=> setIsOpen(false)} 
+                    onDidDismiss={()=> setIsOpen(false)}
+                    style={dinamicStyle()} 
+                    styleBtn={dinamicBtnStyle()}
                     isOpen={isOpen} 
                     onClick={()=> {
                         setIsOpen(false)
@@ -132,7 +300,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Senha:</IonLabel>
-                            <IonInput  name='password' ref={register({required:true, maxLength:25})}  color='dark' type='password'></IonInput>                           
+                            <IonInput  name='password' ref={register({required:true, maxLength:30})}  color='dark' type='password'></IonInput>                           
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -141,7 +309,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     <IonCol>
                         <IonItem color='light'>
                             <IonLabel color='primary' position='floating'>Confirmar senha:</IonLabel>
-                            <IonInput  name='confirmPassword' ref={register({required:true, maxLength:25})}  color='dark' type='password'></IonInput>
+                            <IonInput  name='confirmPassword' ref={register({required:true})}  color='dark' type='password'></IonInput>
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -175,11 +343,13 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     onDidDismiss={() => {
                         props.handleClickCad();
                         setShowAlert1(false);
+                        cleanInputs()
                     }}
+                    mode='md'
                     cssClass='my-custom-class .alert-wrapper'
                     header={'Parabéns !!!'}
                     subHeader={'Cadastro realizado com sucesso.'}
-                    message={'Um e-mail de confirmação foi enviado para sua caixa de entrada.'}
+                    message={'Agora vá até o login para entrar no Fixer.'}
                     buttons={[{
                         text: 'OK',
                         handler: () => {

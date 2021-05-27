@@ -31,7 +31,7 @@ const onSubmit = async (data:Credentials):Promise<AccessToken | any> =>{
 }
 
 var myStyleForLength ={
-    fontSize:'19px',
+    fontSize:'16px',
     marginTop:'0rem',
     paddingBottom:'0rem'
 } as React.CSSProperties
@@ -83,13 +83,13 @@ const MsgsAndErrors = ()=>{
     }else if(errors.email && errors.email.type === "maxLength" && 
     errors.password && errors.password.type === "maxLength"){
 
-        return 'Campos com muitos caracteres.'
+        return 'Você ultrapassou o número máximo de caracteres nos dois campos.'
     }else if(errors.email && errors.email.type === "required"){
 
-        return 'Email Vazio.'
+        return 'Campo email vazio.'
     }else if(errors.password && errors.password.type === "required"){
 
-        return 'Senha Vazio.'
+        return 'Campo senha vazio.'
     }else if(errors.email && errors.email.type === "maxLength"){
 
         return 'Você ultrapassou o número máximo de 65 caracteres no campo email.'

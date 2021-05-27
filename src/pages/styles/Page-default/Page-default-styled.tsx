@@ -784,6 +784,7 @@ export const ModalErrorDefault:React.FC<{
     color:string;
     onClick:()=>void;
     style?:CSSProperties;
+    styleBtn?:CSSProperties
 }> = props=>{
         
     return(
@@ -794,7 +795,7 @@ export const ModalErrorDefault:React.FC<{
                         <IonLabel style={props.style} color={props.color} >{props.msg}</IonLabel>
                     </IonText>
                     <IonRow className='ion-justify-content-center'>
-                        <IonButton  className="btn-edit" onClick={props.onClick}>Ok</IonButton>
+                        <IonButton style={props.styleBtn} className="btn-edit" onClick={props.onClick}>Ok</IonButton>
                     </IonRow>
                 </IonCardTitle>
             </IonModal>
