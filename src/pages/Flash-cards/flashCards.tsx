@@ -117,6 +117,7 @@ const FlashCards: React.FC = () => {
                                     status={filteredCards} 
                                     // text={card.title} 
                                     title={card.title} 
+                                    size='6'
                                     key={index} 
                                     type={card.type === 'alternative' && 'alternativa' || 'dissertativa'} 
                                     id={card.id!} 

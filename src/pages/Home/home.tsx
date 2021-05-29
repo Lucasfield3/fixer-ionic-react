@@ -78,9 +78,8 @@ const Home: React.FC = () => {
   }
 const breakPoints = [
   {width: 1, itemsToShow:1},
-  {width: 500, itemsToShow:2},
-  {width: 768, itemsToShow:3},
-  {width: 1200, itemsToShow:4},
+  {width: 768, itemsToShow:2},
+  {width: 1200, itemsToShow:3},
 ]
 
   return (
@@ -213,12 +212,27 @@ const breakPoints = [
           <TitleCards>Últimos criados </TitleCards>
 
             <ContainersHome  style={{alignItems:cards!.length == 0 && 'center' || 'unset'}}>
-                  <IonGrid style={{display:cards!.length == 0 && 'none' || 'block'}} className='ios style-carousel'>
+                  <IonGrid style={{display:cards!.length == 0 && 'none' || 'flex'}} className='ios style-carousel'>
                   <Carousel  breakPoints={breakPoints}>
                       {cards.length > 0 && 
                       cards.map((card: FlashCard, index:number) => {
                           return (        
-                              <Cards status={cards} text={card.title!} title={card.title!} key={index} type={card.type! === 'alternative' && 'alternativa' || 'dissertativa'} id={card.id!} onClick={()=> console.log('clicked')} />
+                              <Cards styleTitle={{
+                              marginBottom:'-21px', 
+                              marginTop:'-8px',
+                              width: '6.3rem',
+                              marginInlineEnd:'2px',
+                              marginInlineStart:'4px',                    
+                            }} 
+                            styleType={{marginTop:'-22px', marginBottom:'-5px'}} 
+                            size='5'
+                            status={cards} 
+                            text={card.title!} 
+                            title={card.title!} 
+                            key={index} 
+                            type={card.type! === 'alternative' && 'alternativa' || 'dissertativa'} 
+                            id={card.id!} 
+                            onClick={()=> console.log('clicked')} />
                           )
                       })}
                        {/* {cards.length == 0 && <IonLabel className='label-vazio'>VAZIO</IonLabel>|| '' } */}

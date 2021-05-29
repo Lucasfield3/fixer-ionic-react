@@ -32,14 +32,18 @@ export const CardContainer = styled(IonCard)`
     align-items: center;
     background: rgba(1, 22, 39, 0.29);
     width: 95%;
-    height: 25vh;
+    height: 28vh;
     margin-bottom: 1rem;
     border-radius: 5px;
 `;
 const CardContent = styled(IonCardContent)`
-  display: flex;
-  text-align: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    height: 14.1rem;
 `;
 export const BtnSideMenu = styled(IonButton)`
    margin:12px!important;
@@ -56,8 +60,8 @@ export const ContainersHome:React.FC<{style: React.CSSProperties }> = props =>{
 
   return(
     <>
-      <CardContainer  style={props.style}>
-        <CardContent>
+      <CardContainer>
+        <CardContent style={props.style}>
             {props.children}
         </CardContent>
       </CardContainer>

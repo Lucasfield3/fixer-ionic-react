@@ -191,10 +191,10 @@ ion-button{
   box-shadow: 0 0 1px 3px var(--ion-color-dark)!important;
 }
 .rec .rec-arrow-right{
-  display: auto;
+  display: none;
 }
 .rec .rec-arrow-left{
-  display: auto;
+  display: none;
 }
 .slides-presentation{
   height: 7rem;
@@ -208,16 +208,14 @@ ion-button{
   font-weight: bold;
   padding: 2px;
 }
-.style-carousel{
+.style-carousel {
   display: flex;
   justify-content: center;
   background: rgba(1,22,39,0.29);
-  width: 96%;
-  height: 25vh;
-  border-radius:5px;
+  width: 100%;
+  border-radius: 5px;
   overflow: auto;
-  margin-inline-start:5px;
-  margin-inline-end: 5px;
   margin-bottom: 1.3rem;
-  margin-top: 0.4rem
+  margin-top: 0.4rem;
+  padding-top: 1rem;
 }

@@ -347,7 +347,7 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
                     }}
                     mode='md'
                     cssClass='my-custom-class .alert-wrapper'
-                    header={'Parabéns !!!'}
+                    
                     subHeader={'Cadastro realizado com sucesso.'}
                     message={'Agora vá até o login para entrar no Fixer.'}
                     buttons={[{
