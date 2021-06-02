@@ -203,9 +203,7 @@ const CriarQuestionario:React.FC = ()=>{
                 themes:card.themes,
                 title:card.title,
                 alternatives:card.alternatives,
-                time:card.time,
-                id:card.id!,
-
+                time:card.time
             })
         })
         data.flashCards = flashCardsSend

@@ -221,10 +221,11 @@ const breakPoints = [
                               marginBottom:'-21px', 
                               marginTop:'-8px',
                               width: '6.3rem',
-                              marginInlineEnd:'2px',
-                              marginInlineStart:'4px',                    
+                              marginInlineEnd:'3px',
+                              marginInlineStart:'4px', 
+                              fontSize:'16px'                   
                             }} 
-                            styleType={{marginTop:'-22px', marginBottom:'-5px'}} 
+                            styleType={{marginTop:'-22px', marginBottom:'-5px', fontSize:'17px'}} 
                             size='5'
                             status={cards} 
                             text={card.title!} 
