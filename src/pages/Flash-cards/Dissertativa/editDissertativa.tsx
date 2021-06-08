@@ -53,6 +53,7 @@ const EditDissertativa: React.FC = () => {
         }, 1000)
     }
 
+ 
     const AddTema = () => {
         const inputValue = getValues(`themes[${temas.textPop}].textPop`) as string
         setTemasAt([...temasAt, inputValue])
@@ -71,7 +72,7 @@ const EditDissertativa: React.FC = () => {
         setValue('answerFlashCard', rightAnswer)
     }
 
-    useIonViewWillEnter(() => {
+    useIonViewWillEnter(() => {  
         disableButton()
         if (history.location.state) {
             const card = history.location.state as FlashCard
@@ -86,11 +87,14 @@ const EditDissertativa: React.FC = () => {
             if(timeUnconverted(time!) == "00:00" || card.time == 0){ 
                 setChecked(false)
                 setShownTimer(false)
-                setToggleChek(false)   
+                setToggleChek(false)
+                delay(500)
+                
             }else{
                 setChecked(true)
                 setShownTimer(true)
                 setToggleChek(true)
+                delay(500)
             }
         } else {
             console.log('Não tem nada');
@@ -273,6 +277,12 @@ const EditDissertativa: React.FC = () => {
 }
 const [toggleChek, setToggleChek] = useState<boolean>()
 
+const delay = (time:number = 758) => new Promise(resolve => setTimeout(()=>{
+    console.log('await...')
+    return CompareOldAndCurrenttValues()
+}, time))
+
+
    const CompareOldAndCurrenttValues = async()=>{
     if(history.location.state){
         const card = history.location.state as FlashCard
@@ -284,7 +294,7 @@ const [toggleChek, setToggleChek] = useState<boolean>()
                         subject:card.subject,
                         enunciated:card.enunciated,                   
                         themes:card.themes,
-                        answerFlashCard:answer,
+                        answerFlashCard:answer.toString(),
                         timeString:timeUnconverted(time!),
                         toggle:toggleChek
                     }
@@ -343,7 +353,6 @@ const [toggleChek, setToggleChek] = useState<boolean>()
                             onDidDismissTheme={e => setShowPopover(false)}
                             onClickSaveBtn={() => popOverSave()}
                             onClickCleanBtn={() => {
-                                setShowPopover(false)
                                 setTemasAt([])
                                 CompareOldAndCurrenttValues()
                             }}

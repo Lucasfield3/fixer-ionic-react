@@ -10,7 +10,8 @@ import {
     useIonViewWillLeave,
     useIonViewWillEnter,
     IonInput,
-    IonTextarea
+    IonTextarea,
+    IonLoading
 } from '@ionic/react'
 import { add, remove} from 'ionicons/icons';
 import { menuController } from '@ionic/core';
@@ -35,7 +36,7 @@ const EditAlternativa: React.FC = () => {
     const [showModalExit, setShowModalExit] = useState(false)
     const [idFlashCard, setIdFlashCard] = useState<string>('')
     const [answer] = useState<string>('')
-
+    const [showLoading, setShowLoading] = useState(true);
     const [alternatives, setAlternatives] = useState<NewAlternative[]>([]);
     let temas = {
         id:0,
@@ -100,6 +101,7 @@ const EditAlternativa: React.FC = () => {
     }
  const [toggleChek, setToggleChek] = useState<boolean>()
 
+
     useIonViewWillEnter(()=>{
         disableButton()
         if (history.location.state) {
@@ -125,7 +127,6 @@ const EditAlternativa: React.FC = () => {
         } else {
             console.log('Não tem nada');
         }
-         
     },[])
     useIonViewWillLeave(()=>{
         menuController.enable(true)   
@@ -377,6 +378,8 @@ const Errors =()=>{
         
     }
 
+
+    const card = history.location.state as FlashCard
     
     return (
         <>
@@ -492,6 +495,14 @@ const Errors =()=>{
                         cssClass='ios modal-criar'
                         />
 
+                        <IonLoading
+                        showBackdrop={true}
+                        cssClass='loading-edit'
+                        isOpen={showLoading}
+                        duration={1000}
+                        />
+                        
+
                         <GridAlternatives
                                 onIonChange={()=> CompareOldAndCurrenttValues()}
                                 styleGrid={{}}                         
@@ -516,7 +527,7 @@ const Errors =()=>{
                                     </IonRow>
                                     {alternatives.map((alternative:NewAlternative, index)=>(
                                         <IonRow key={index} style={{cursor:'default', marginTop:'1rem'}}  className='ion-justify-content-center colunas'>
-                                            <Controller as={<IonInput style={{height:'auto', width:'10rem'}} key={index} className='alternativas' color='dark'  placeholder='alternativas'></IonInput>} 
+                                            <Controller as={<IonInput onLoad={()=>setShowLoading(true)} style={{height:'auto', width:'10rem'}} key={index} className='alternativas' color='dark'  placeholder='alternativas'></IonInput>} 
                                             name={`alternatives[${index}].answer`}
                                             defaultValue={alternative.answer}
                                             control={control}

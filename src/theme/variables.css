@@ -897,10 +897,33 @@ ion-button{
   height: 2rem;
   margin-top: 0.3rem;
 }
+
+.loading-edit ion-backdrop {
+  background-color: #2cbfc0;
+  --backdrop-opacity:var(--ion-backdrop-opacity, 1);
+  top:11%;
+}
+.loading-edit .sc-ion-loading-md-h{
+  --background: var(--ion-color-step-50, #f2f2f2);
+  --max-width: 280px;
+  --max-height: 90%;
+  --spinner-color: var(--ion-color-primary, #3880ff);
+  --backdrop-opacity: var(--ion-backdrop-opacity, 1);
+  color: var(--ion-color-step-850, #262626);
+  font-size: 14px;
+  --height: 3.1rem;
+  top:12%;
+  left: -8%;
+  margin: auto;
+}
+
+.loading-edit .loading-wrapper.sc-ion-loading-md{
+  --background:white;
+}
 .loading-custom{
   top:14%;
 }
-.sc-ion-loading-md-h{
+.loading-custom .sc-ion-loading-md-h{
   --background: var(--ion-color-step-50, #f2f2f2);
   --max-width: 280px;
   --max-height: 90%;
@@ -916,9 +939,7 @@ ion-button{
 .loading-custom .loading-wrapper.sc-ion-loading-md{
   box-shadow:none;
   margin-top: 0px;
-}
-.loading-wrapper.sc-ion-loading-md{
---background:transparent;
+  --background:transparent;
 }
 
 .flashcard-title{
