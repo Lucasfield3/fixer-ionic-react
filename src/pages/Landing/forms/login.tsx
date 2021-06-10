@@ -20,16 +20,20 @@ const [isOpen, setIsOpen] = useState(false)
 const [showLoading, setShowLoading] = useState(false);
 var access_token:AccessToken | any = null
 const onSubmit = async (data:Credentials):Promise<AccessToken | any> =>{
+    setShowLoading(false)
     console.log(data)
     if(Errors() == false){
         setShowLoading(true)
         access_token = await login(data)
         if(access_token){
+            props.handleClickLogin()
+            CleanInputs()
             storeToken(access_token)
             menuController.enable(true)
             history.push('Home')
             setShowLoading(false)
         }else{
+            setShowLoading(false)
             setIsOpen(true)
         }
     }else {
@@ -108,6 +112,7 @@ const MsgsAndErrors = ()=>{
         return 'Você ultrapassou o número máximo de 30 caracteres no campo senha.'
     } 
     else{
+       
         return 'Senha ou Login Incorretos.'
     }   
 
