@@ -9,7 +9,8 @@ import {
     IonContent, 
     useIonViewWillLeave,
     useIonViewWillEnter,
-    IonInput
+    IonInput,
+    IonLoading
 } from '@ionic/react'
 import { add,  remove } from 'ionicons/icons';
 import { menuController } from '@ionic/core';
@@ -33,6 +34,7 @@ const EditDissertativa: React.FC = () => {
     const [showModal, setShowModal] = useState(false)
     const [showModalExit, setShowModalExit] = useState(false)
     const [idFlashCard, setIdFlashCard] = useState<string>('')
+    const [showLoading, setShowLoading] = useState(true);
     let temas = {
         id:0,
         textPop:''
@@ -88,13 +90,10 @@ const EditDissertativa: React.FC = () => {
                 setChecked(false)
                 setShownTimer(false)
                 setToggleChek(false)
-                delay(500)
-                
             }else{
                 setChecked(true)
                 setShownTimer(true)
                 setToggleChek(true)
-                delay(500)
             }
         } else {
             console.log('Não tem nada');
@@ -277,12 +276,6 @@ const EditDissertativa: React.FC = () => {
 }
 const [toggleChek, setToggleChek] = useState<boolean>()
 
-const delay = (time:number = 758) => new Promise(resolve => setTimeout(()=>{
-    console.log('await...')
-    return CompareOldAndCurrenttValues()
-}, time))
-
-
    const CompareOldAndCurrenttValues = async()=>{
     if(history.location.state){
         const card = history.location.state as FlashCard
@@ -296,7 +289,7 @@ const delay = (time:number = 758) => new Promise(resolve => setTimeout(()=>{
                         themes:card.themes,
                         answerFlashCard:answer.toString(),
                         timeString:timeUnconverted(time!),
-                        toggle:toggleChek
+                        toggle:toggleChek == undefined && false || toggleChek
                     }
                     console.log(defaultValues)
                     const currentValues:CompareValues = {
@@ -395,7 +388,10 @@ const delay = (time:number = 758) => new Promise(resolve => setTimeout(()=>{
 
                     <CreateAreaDissertativeAnswer         
                         refAnswer={register({required:true})}
-                        onIonChange={()=>CompareOldAndCurrenttValues()}
+                        onIonChange={(e)=>{
+                            CompareOldAndCurrenttValues()
+                            valueInputs('answerFlashCard') == '' ? setShowLoading(true) : setShowLoading(false)
+                        }}
                     />
 
                    <RowTimer 
@@ -450,7 +446,12 @@ const delay = (time:number = 758) => new Promise(resolve => setTimeout(()=>{
                         msg='Tem certeza que deseja sair sem salvar?'
                         cssClass='ios modal-criar'
                         />        
-
+                         <IonLoading
+                        showBackdrop={true}
+                        cssClass='loading-edit'
+                        isOpen={showLoading}
+                        duration={1000}
+                        />
                     <IonRow slot='start' className='ios ion-justify-content-center row-btn-final'>
                         <IonButton  type='submit' onClick={() => Errors()} style={{marginTop: '1.7rem' }} className='ios btn-final-edit-diss' color='light' size='default' >Salvar</IonButton>
                     </IonRow>

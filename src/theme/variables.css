@@ -920,6 +920,29 @@ ion-button{
 .loading-edit .loading-wrapper.sc-ion-loading-md{
   --background:white;
 }
+
+.loading-edit-login ion-backdrop {
+  background-color: #2cbfc0;
+  --backdrop-opacity:var(--ion-backdrop-opacity, 1);
+  top:0%;
+}
+.loading-edit-login .sc-ion-loading-md-h{
+  --background: var(--ion-color-step-50, #f2f2f2);
+  --max-width: 280px;
+  --max-height: 90%;
+  --spinner-color: var(--ion-color-primary, #3880ff);
+  --backdrop-opacity: var(--ion-backdrop-opacity, 1);
+  color: var(--ion-color-step-850, #262626);
+  font-size: 14px;
+  --height: 3.1rem;
+  top:12%;
+  left: -8%;
+  margin: auto;
+}
+
+.loading-edit-login .loading-wrapper.sc-ion-loading-md{
+  --background:white;
+}
 .loading-custom{
   top:14%;
 }

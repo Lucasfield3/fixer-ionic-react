@@ -377,9 +377,6 @@ const Errors =()=>{
         }   
         
     }
-
-
-    const card = history.location.state as FlashCard
     
     return (
         <>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import {useForm} from 'react-hook-form'
-import { IonCardContent, IonRow, IonCol, IonLabel, IonInput, IonItem } from '@ionic/react';
+import { IonCardContent, IonRow, IonCol, IonLabel, IonInput, IonItem, IonLoading } from '@ionic/react';
 import {ButtonRed, ButtonDark} from '../Landing-style/Landing-styled'
 import { useHistory } from 'react-router-dom'
 import '../style.css'
 import { menuController } from '@ionic/core';
-import { AccessToken, Credentials, getPayload, login, storeToken} from '../../../services/Authentication.service';
+import { AccessToken, Credentials, login, storeToken} from '../../../services/Authentication.service';
 import { ModalErrorDefault } from '../../styles/Page-default/Page-default-styled';
 
 
@@ -13,20 +13,30 @@ const Login: React.FC<{handleClickLogin:()=> void}> = props=>{
 
 const history = useHistory()
 
-const { register, handleSubmit,  errors, setValue, getValues } = useForm()
+const { register, handleSubmit,  errors, setValue } = useForm()
 
 
 const [isOpen, setIsOpen] = useState(false)
+const [showLoading, setShowLoading] = useState(false);
+var access_token:AccessToken | any = null
 const onSubmit = async (data:Credentials):Promise<AccessToken | any> =>{
     console.log(data)
-    const access_token = await login(data)
-    if(access_token){
-        storeToken(access_token)
-        menuController.enable(true)
-        history.push('Home')
-    }else{
-        setIsOpen(true)
+    if(Errors() == false){
+        setShowLoading(true)
+        access_token = await login(data)
+        if(access_token){
+            storeToken(access_token)
+            menuController.enable(true)
+            history.push('Home')
+            setShowLoading(false)
+        }else{
+            setIsOpen(true)
+        }
+    }else {
+        setShowLoading(false)
     }
+
+   
     
 }
 
@@ -46,31 +56,31 @@ var myStyleForEmpty ={
 const Errors = ()=>{
     if(errors.email && errors.email.type === "required" && 
     errors.password && errors.password.type === "required"){
-
+       
         setIsOpen(true)
         
     }else if(errors.email && errors.email.type === "maxLength" && 
     errors.password && errors.password.type === "maxLength"){
-
+       
         setIsOpen(true)
        
     }else if(errors.email && errors.email.type === "required"){
-
+       
         setIsOpen(true)
        
     }else if(errors.password && errors.password.type === "required"){
-
+       
         setIsOpen(true)
         
     }else if(errors.email && errors.email.type === "maxLength"){
-
+       
         setIsOpen(true)
        
     }else if(errors.password && errors.password.type === "maxLength"){
-
+       
         setIsOpen(true)
        
-    } 
+    }else return false
 }
 
 
@@ -177,6 +187,12 @@ const CleanInputs =()=>{
             onClick={()=> {
                 setIsOpen(false)
             }}/>
+
+            <IonLoading
+            showBackdrop={true}
+            cssClass='loading-edit-login'
+            isOpen={showLoading}
+            />                      
             </IonCardContent>
         </>
     );
