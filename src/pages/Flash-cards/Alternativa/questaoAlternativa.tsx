@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 import React, {  useState } from 'react';
 import {
     IonPage,
@@ -31,7 +32,7 @@ const QuestaoAlternativa: React.FC = () => {
     const [showModal2, setShowModal2] = useState(false)
     const history = useHistory()
     const [isOpenLimit, setIsOpenLimit] = useState(false)
-    const [textRightAnswer, setTextRightAnswer] = useState<string>('')
+    const [textRightAnswer] = useState<string>('')
     const [time, setTime] = useState<string>(':');
     let newAlternative:NewAlternative= {
         answer:''
@@ -57,7 +58,7 @@ const QuestaoAlternativa: React.FC = () => {
             textPop: inputValue
         }
         ])
-        if(inputValue == ''){
+        if(inputValue === ''){
             setThemes(themes)
         }
         console.log(themes)
@@ -71,7 +72,7 @@ const QuestaoAlternativa: React.FC = () => {
         const inputValue = getValues(`alternatives[${newAlternative.answer}].answer`)
         setAlternatives([...alternatives, { answer: inputValue }])
         console.log(inputValue)
-        if (alternatives.length == 4 || inputValue === '') {
+        if (alternatives.length === 4 || inputValue === '') {
             setAlternatives(alternatives)
         }
     }
@@ -85,6 +86,7 @@ const QuestaoAlternativa: React.FC = () => {
         setAlternatives([])
     }, [])
     useIonViewWillLeave(() => {
+        setChecked(false)
         menuController.enable(true)
         CleanInputs()
         
@@ -97,7 +99,7 @@ const QuestaoAlternativa: React.FC = () => {
         setTime('')
         setAlternatives([])
         setThemes([])
-        let dinamicChecked = checked == true && false || false
+        let dinamicChecked = checked === true && false || false
         setChecked(dinamicChecked)
         setShownTimer(dinamicChecked)
     }
@@ -127,10 +129,10 @@ const QuestaoAlternativa: React.FC = () => {
         const alternativesSend = [] as NewAlternative[]
         const themesSend= [] as string[]
         themes.map(textTheme=>{
-            themesSend.push(textTheme.textPop)
+            return themesSend.push(textTheme.textPop)
         })
         alternatives.map(a=>{
-            alternativesSend.push({answer: a.answer})
+            return alternativesSend.push({answer: a.answer})
         })
         const rightAnswer = getValues('answerFlashCard')
         alternativesSend.push({answer: rightAnswer})
@@ -139,9 +141,9 @@ const QuestaoAlternativa: React.FC = () => {
         data.alternatives = alternativesSend
         data.creator = payLoad.id
         ShuffleAlternativas(alternativesSend)
-        if(convertTime() < 10000 && convertTime() > 0 && checked == true || time == '00:00' && checked == true || !convertTime()){
+        if(convertTime() < 10000 && convertTime() > 0 && checked === true || time === '00:00' && checked === true || !convertTime() && checked === true){
             setIsOpen(true)
-        }else if(alternatives.length == 0){
+        }else if(alternatives.length === 0){
             setIsOpen(true)
         }else{
             await createFlashCard(data)
@@ -167,11 +169,11 @@ const QuestaoAlternativa: React.FC = () => {
             return 'Título inválido.'
         }else if(errors.answerFlashCard){
             return 'Resposta inválida.'
-        }else if(alternatives.length == 0){
+        }else if(alternatives.length === 0){
             return 'Numero insuficiênte de alternativas.'
-        } else if(convertTime() < 10000 && convertTime() > 0 && checked == true){
+        } else if(convertTime() < 10000 && convertTime() > 0 && checked === true){
             return 'Tempo muito curto.' 
-        }else if(time == '00:00' && checked == true || !convertTime()){
+        }else if(time === '00:00' && checked === true || !convertTime() && checked === true){
             return 'Tempo zerado, desabilite o tempo ou mude o tempo.' 
         }
        
@@ -190,7 +192,7 @@ const QuestaoAlternativa: React.FC = () => {
             setIsOpen(true)
         }else if(errors.answerFlashCard){
             setIsOpen(true)
-        }else if(alternatives.length == 0){
+        }else if(alternatives.length === 0){
             setIsOpen(true)
         }
   
@@ -282,10 +284,10 @@ const QuestaoAlternativa: React.FC = () => {
                             <GridAlternatives
                             onIonChange={()=> {}}
                             styleGrid={{}}                         
-                            style={{height: textRightAnswer.length == 0 && '4rem' || 'auto'}}
+                            style={{height: textRightAnswer.length === 0 && '4rem' || 'auto'}}
                             refAlternatives={register({required:true, minLength:1, maxLength:100})}
                             refAnswer={register({required:true, minLength:1, maxLength:100})}
-                            autoGrow={textRightAnswer == '' && false || true}
+                            autoGrow={textRightAnswer === '' && false || true}
                             nameAnswerFlashCard='answerFlashCard'
                             >
                                 <IonRow  className='ion-justify-content-center'>
@@ -295,7 +297,7 @@ const QuestaoAlternativa: React.FC = () => {
                                     name={`alternatives[${newAlternative.answer}].answer`}>                         
                                     </IonTextarea>
                                     <IonFabButton id='add-alternative' className='add-btn'  onClick={()=>{
-                                        if(alternatives.length == 4)   setIsOpenLimit(true)
+                                        if(alternatives.length === 4)   setIsOpenLimit(true)
                                         AddAlternative()
                                         console.log(newAlternative.answer)
                                         setValue(`alternatives[${newAlternative.answer}].answer`, '')
