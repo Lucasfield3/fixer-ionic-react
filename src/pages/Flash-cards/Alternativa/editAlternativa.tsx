@@ -88,16 +88,16 @@ const EditAlternativa: React.FC = () => {
 
     const { register, handleSubmit, errors, setValue, getValues, control} = useForm()
 
-    const removeRightAnswerOfAlternative = (answer:string) =>{ 
+    const removeRightAnswerOfAlternative = (answer:string | number) =>{ 
         const card = history.location.state as FlashCard         
         let alternativeDeleted = card.alternatives!.filter(alternative => alternative.answer !== answer)
         setAlternatives(alternativeDeleted)
     }
 
     async function getAnswer(id:string){
-        const rightAnswer = await getRightAnswer(id) as string     
+        const rightAnswer = await getRightAnswer(id) 
         setValue('answerFlashCard', rightAnswer)
-        removeRightAnswerOfAlternative(rightAnswer)
+        removeRightAnswerOfAlternative(rightAnswer.toString())
     }
  const [toggleChek, setToggleChek] = useState<boolean>()
 
@@ -106,14 +106,14 @@ const EditAlternativa: React.FC = () => {
         disableButton()
         if (history.location.state) {
             const card = history.location.state as FlashCard
+            getAnswer(card.id!)
             setValue('title', card.title)
             setValue('subject', card.subject)
             setValue('enunciated', card.enunciated)
             setIdFlashCard(card.id!)
             setTime(card.time!)
-            getAnswer(card.id!)
             setTemasAt(card.themes) 
-            console.log(card) 
+            console.log(card)
             if(timeUnconverted(time!) == "00:00" || card.time == 0){ 
                 setChecked(false)
                 setShownTimer(false)
@@ -129,7 +129,8 @@ const EditAlternativa: React.FC = () => {
         }
     },[])
     useIonViewWillLeave(()=>{
-        menuController.enable(true)   
+        menuController.enable(true)  
+        setAlternatives([]) 
     }, [])
     
 
@@ -211,16 +212,11 @@ const EditAlternativa: React.FC = () => {
                 convertTime() == 0 && checked == true && 
                 timeUnconverted(time!) == "00:00" && 
                 checked == true){
-
-            console.log(convertTime())
-            console.log(timeUnconverted(time!))
-            console.log(newTime)
             setIsOpen(true)
 
         }else {
             data.time = convertTime()
             await putFlashCard(data)
-            console.log(data)
             setShowModal(true)
         }
         
@@ -253,7 +249,6 @@ const EditAlternativa: React.FC = () => {
         }else if(alternatives.length == 0){
             return 'Numero insuficiênte de alternativas.'
         }else if(convertTime()! < 10000  && convertTime()! > 0 && checked == true){
-            console.log(convertTime())
             return 'Tempo muito curto.' 
         }else if(convertTime() == 0 && checked == true && timeUnconverted(time!) == "00:00" && checked == true){
             return 'Tempo zerado, desabilite o tempo ou mude o tempo.' 
@@ -270,7 +265,7 @@ const EditAlternativa: React.FC = () => {
 
     async function getFilterAnswer(id:string){
         const rightAnswer = await getRightAnswer(id) as string  
-        return rightAnswer
+        return rightAnswer.toString()
     }
 
    
@@ -348,11 +343,11 @@ const Errors =()=>{
                     enunciated:card.enunciated,
                     alternatives:alternativeDeleted,                    
                     themes:card.themes,
-                    answerFlashCard:answer,
+                    answerFlashCard:String(answer),
                     timeString:timeUnconverted(time!),
                     toggle:toggleChek
                 }
-
+                console.log(defaultValues)
                 const currentValues:CompareValues = {
                     title:valueInputs('title'),
                     subject:valueInputs('subject'),
@@ -363,8 +358,9 @@ const Errors =()=>{
                     timeString:checkTime(),
                     toggle:checked
                 }
+                console.log(currentValues)
                 if(JSON.stringify(currentValues) === JSON.stringify(defaultValues)) {
-
+                    
                     disableButton()
                 }else{
 
@@ -423,7 +419,6 @@ const Errors =()=>{
                             <IonInput maxlength={100} className='ios add-temas' placeholder='Tema' color='dark' name={`themes[${temas.textPop}].textPop`} ref={register({required:false})}   type='text'></IonInput>
                             <IonFabButton className='add-btn' onClick={() => {
                                 AddTema()
-                                console.log(getValues(`themes[${temas.textPop}].textPop`))
                                 setValue(`themes[${temas.textPop}].textPop`, '')
                                 CompareOldAndCurrenttValues()
                             }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
@@ -532,6 +527,7 @@ const Errors =()=>{
                                             <IonFabButton  onClick={()=>{
                                                 RemoveAlternative(alternative.answer, index)
                                                 CompareOldAndCurrenttValues()
+                                                console.log(alternatives)
                                                 }} className='remove-btn'  color='light'><IonIcon color='danger' icon={remove} ></IonIcon></IonFabButton>              
                                         </IonRow>
                                     ))}       

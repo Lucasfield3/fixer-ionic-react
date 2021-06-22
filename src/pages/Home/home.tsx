@@ -49,13 +49,10 @@ const Home: React.FC = () => {
     let cardsValues = await getAllFlashCards()
     
     setCards(cardsValues)
-    console.log(cardsValues)
-    console.log(cards)
 }
   useIonViewWillEnter(() => {
     menuController.enable(true)
       getCards()
-     console.log(getCards())  
 }, [])
   const changeBtn = () => {
     setTimeout(() => {

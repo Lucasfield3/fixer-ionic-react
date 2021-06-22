@@ -39,13 +39,11 @@ const FlashCards: React.FC = () => {
     const [cards, setCards] = useState<FlashCard[]>([])
     const status:FlashCard[] = []
     async function getCards() {
-        let cardsValues = await getAllFlashCards()
-        console.log(cardsValues)        
+        let cardsValues = await getAllFlashCards()    
         setCards(cardsValues)
     }
 
     useIonViewWillEnter(() => {
-        console.log(getCards())
         if(cards) {
             getCards()
         }else {
@@ -81,7 +79,6 @@ const FlashCards: React.FC = () => {
         const flashCardDeleted = cards.filter((cardDeleted)=> cardDeleted.id !== card.id )
         deleteFlashCard(card.id!)
         setCards(flashCardDeleted)
-        console.log(cards)
     }
 
     let cardsFiltered = cards.filter(card =>{

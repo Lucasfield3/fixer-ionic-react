@@ -77,9 +77,6 @@ const AnswerAlternativa: React.FC = () => {
         setIsFlipped(false)
         if (history.location.state) {
             const card = history.location.state as FlashCard
-            const path = history.location.pathname
-            console.log(path)
-            console.log(card)
             setValue('subject' ,card.subject)
             setThemes(card.themes)
             setValue('enunciated' ,card.enunciated)
@@ -87,7 +84,6 @@ const AnswerAlternativa: React.FC = () => {
             setIdFlashCard(card.id!)
             setTime(card.time!)
             setValue('title' ,card.title)
-            console.log(history.location)
         } else {
             console.log('Não tem nada');
         }
@@ -113,7 +109,6 @@ const AnswerAlternativa: React.FC = () => {
 
     const handleFlipAnswer = async () => {
         let checker = await getCheck(idFlashCard, activeAlternative.answer)
-        console.log(checker)
         ProgressBar(checker)
         DinamicLevel()
         setCheck(checker)
@@ -142,19 +137,15 @@ const AnswerAlternativa: React.FC = () => {
             if(progress == 1){
                 progressNumber = ((1 - progress) + (0.20 - (1 - progress))).toFixed(2)
             setProgress(parseFloat(progressNumber))
-            console.log(parseFloat(progressNumber))
             }          
         }else if(validator.correct == true && (1 - progress) > 0.20 ){
             progressNumber = (progress + 0.20).toFixed(2)
             setProgress(parseFloat(progressNumber))
-            console.log(parseFloat(progressNumber))
         }else if(validator.correct == false && progress == 0){
             setProgress(0)  
-            console.log(progress)
         }else if(validator.correct == false && progress >= 0.20 || progress <= 0.20){
             progressNumber = (progress - 0.10).toFixed(2)
             setProgress(parseFloat(progressNumber))
-            console.log(parseFloat(progressNumber))
         }
      }
 

@@ -71,7 +71,6 @@ const AnswerDissertativa: React.FC = () => {
         if (history.location.state) {
             try{
                 const card = history.location.state as FlashCard
-                console.log(card)
                 setValue('subject' ,card.subject)
                 setThemes(card.themes)
                 setValue('enunciated' ,card.enunciated)
@@ -114,10 +113,8 @@ const AnswerDissertativa: React.FC = () => {
     }
     const handleFlipAnswer = async () => {
         let checker = await getCheck(idFlashCard, textAreaAnswer!)
-        console.log(checker)
         setCheck(checker)
         ProgressBar(checker)
-        console.log(progress)
         disableAnswer()
     }
     
@@ -133,19 +130,15 @@ const AnswerDissertativa: React.FC = () => {
             if(progress == 1){
                 progressNumber = ((1 - progress) + (0.20 - (1 - progress))).toFixed(2)
             setProgress(parseFloat(progressNumber))
-            console.log(parseFloat(progressNumber))
             }          
         }else if(validator.correct == true && (1 - progress) > 0.20 ){
             progressNumber = (progress + 0.20).toFixed(2)
             setProgress(parseFloat(progressNumber))
-            console.log(parseFloat(progressNumber))
         }else if(validator.correct == false && progress == 0){
             setProgress(0)  
-            console.log(progress)
         }else if(validator.correct == false && progress >= 0.20 || progress <= 0.20){
             progressNumber = (progress - 0.10).toFixed(2)
             setProgress(parseFloat(progressNumber))
-            console.log(parseFloat(progressNumber))
         }
      }
 

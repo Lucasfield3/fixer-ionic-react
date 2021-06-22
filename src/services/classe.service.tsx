@@ -59,7 +59,6 @@ export async function getClasse(id:string){
 
 export async function deleteClass(idClass:string){
     const payload = getPayload() as Payload
-    console.log(idClass)
     https
         .delete(`/classrooms/owner/${payload.id}?id-classroom=${idClass}`)
         .then(async (res)=>{
@@ -72,7 +71,6 @@ export async function deleteClass(idClass:string){
 }
 
 export async function putClass(newClass:NewClass){
-    console.log(newClass)
     const  payload = getPayload() as Payload
     https
         .put<Classe>(`/classrooms/owner/${payload.id}`, newClass)

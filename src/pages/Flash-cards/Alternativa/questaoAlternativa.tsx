@@ -61,7 +61,6 @@ const QuestaoAlternativa: React.FC = () => {
         if(inputValue === ''){
             setThemes(themes)
         }
-        console.log(themes)
     }
     const RemoveTema = (id: number) => {
         const themeToBedeleted = themes.filter(theme => theme.id !== id);
@@ -71,7 +70,6 @@ const QuestaoAlternativa: React.FC = () => {
     const AddAlternative = () => {
         const inputValue = getValues(`alternatives[${newAlternative.answer}].answer`)
         setAlternatives([...alternatives, { answer: inputValue }])
-        console.log(inputValue)
         if (alternatives.length === 4 || inputValue === '') {
             setAlternatives(alternatives)
         }
@@ -106,8 +104,7 @@ const QuestaoAlternativa: React.FC = () => {
     const convertTime = () => {
         const [minutes, seconds] = time.split(':').map(Number)
         const timeInSeconds = (minutes * 60) + seconds
-        console.log(time)
-        console.log(timeInSeconds * 1000)
+
         return timeInSeconds * 1000
 
     }
@@ -299,7 +296,6 @@ const QuestaoAlternativa: React.FC = () => {
                                     <IonFabButton id='add-alternative' className='add-btn'  onClick={()=>{
                                         if(alternatives.length === 4)   setIsOpenLimit(true)
                                         AddAlternative()
-                                        console.log(newAlternative.answer)
                                         setValue(`alternatives[${newAlternative.answer}].answer`, '')
                                     }} color='light'><IonIcon color='success' icon={add}></IonIcon></IonFabButton>
                                 </IonRow>

@@ -55,7 +55,6 @@ const QuestaoDissertativa: React.FC = () => {
         if(inputValue == ''){
             setThemes(themes)
         }
-        console.log(themes)
     }
     const RemoveTema = (id: number) => {
         const themeToBedeleted = themes.filter(theme => theme.id !== id);
@@ -88,8 +87,6 @@ const QuestaoDissertativa: React.FC = () => {
     const convertTime = () => {
         const [minutes, seconds] = time.split(':').map(Number)
         const timeInSeconds = (minutes * 60) + seconds
-        console.log(time)
-        console.log(timeInSeconds * 1000)
         return timeInSeconds * 1000
 
     }

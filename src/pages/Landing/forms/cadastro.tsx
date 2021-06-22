@@ -225,8 +225,6 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
 
     const [isOpen, setIsOpen] = useState(false)
     const onSubmit = async (data:NewUser) => {
-        console.log(data)
-
         if(valueInputs('confirmPassword') !== valueInputs('password')){
             setIsOpen(true)
         }else{
@@ -244,7 +242,6 @@ const Cadastro: React.FC<{ handleClickCad: () => void; }> = props => {
 
     const valueInputs = (value:string)=>{
         const inputValue = getValues(value)
-        console.log(inputValue)
         return inputValue
     }
 

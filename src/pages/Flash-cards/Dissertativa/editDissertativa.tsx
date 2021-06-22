@@ -78,7 +78,6 @@ const EditDissertativa: React.FC = () => {
         disableButton()
         if (history.location.state) {
             const card = history.location.state as FlashCard
-            console.log(card)
             setValue('title', card.title)
             setValue('subject', card.subject)
             setValue('enunciated', card.enunciated)
@@ -174,7 +173,6 @@ const EditDissertativa: React.FC = () => {
         }else {
             data.time = convertTime()
             await putFlashCard(data)
-            console.log(data)
             setShowModal(true)
         }
     }
@@ -247,7 +245,6 @@ const EditDissertativa: React.FC = () => {
         }else if(errors.subject){
             return 'Matéria inválida.'
         }else if(convertTime()! < 10000  && convertTime()! > 0 && checked == true){
-            console.log(convertTime())
             return 'Tempo muito curto.' 
         }else if(convertTime() == 0 && checked == true && timeUnconverted(time!) == "00:00" && checked == true){
             return 'Tempo zerado, desabilite o tempo ou mude o tempo.' 
@@ -291,7 +288,7 @@ const [toggleChek, setToggleChek] = useState<boolean>()
                         timeString:timeUnconverted(time!),
                         toggle:toggleChek == undefined && false || toggleChek
                     }
-                    console.log(defaultValues)
+
                     const currentValues:CompareValues = {
                         title:valueInputs('title'),
                         subject:valueInputs('subject'),
@@ -301,12 +298,12 @@ const [toggleChek, setToggleChek] = useState<boolean>()
                         timeString:checkTime(),
                         toggle:checked
                     }
-                    console.log(currentValues)
+
                     if(JSON.stringify(currentValues) === JSON.stringify(defaultValues)) {
-                        console.log('ingual')
+
                         disableButton()
                     }else if(JSON.stringify(currentValues) !== JSON.stringify(defaultValues)){
-                        console.log('diferente')
+
                         enableButton()
                     }
                 })
