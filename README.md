@@ -6,6 +6,8 @@ Neste projeto sou responsável pelo front-end e a comunicação com a API.
 
 Tecnologias: React, Ionic, typescript, CSS, HTML e Figma.
 
+##
+
 In this project i am responsible for the front-end and the comunication with the API.
 
 Study plataform for android and IOS, with the objective of helping students in general to fix the studies through a flash cards sistem that the user fill, so that the user can at any moment test if what is being studied its in the user memory. 
