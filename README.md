@@ -14,7 +14,7 @@ Study plataform for android and IOS, with the objective of helping students in g
 
 Technologies: React, Ionic, typescript, CSS, HTML e Figma.
 
-fluxo de telas do protótipo/prototype screens' flows:
+fluxo de telas do protótipo/prototype screen flow:
 
 ![fluxo-prototipo](https://user-images.githubusercontent.com/62312987/125363813-aed04500-e347-11eb-8c37-59a10945a4d3.png)
 
